@@ -1,0 +1,9 @@
+# Exclude compressed files
+**/*.zip
+**/*.tar
+**/*.gz
+**/*.lck
+
+# Exclude JDev-OSB specific directories
+**/.data/
+**/.settings/oracle.xquery.mapper.jdev.model/
