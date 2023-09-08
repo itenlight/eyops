@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="GenericRestService">RestService</doc>
+   <resources>
+      <resource path="/getListCategoriesByCategoryId">
+         <method name="POST" soa:name="GetListCategoriesByCategoryID">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+   </resources>
+</application>

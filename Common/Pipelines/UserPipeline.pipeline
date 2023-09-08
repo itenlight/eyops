@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config">
+    <con:coreEntry>
+        <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
+            <con:wadl ref="Common/Resources/WADL/UserService"/>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000101.c1a5fa1.0.189ea48aca1.N7b10">
+            <con:stage id="_StageId-7f000101.c1a5fa1.0.189ea48aca1.N7b0f" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
+                    <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="Common/Resources/user"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N29807041.0.18a6b906fca.N7ef0</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>user:is-DiaxistikiArxi($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.c1a5fa1.0.189ea48aca1.N7b0d">
+            <con:stage id="_StageId-7f000101.c1a5fa1.0.189ea48aca1.N7b0c" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N29807041.0.18a6b906fca.N7ebb</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/user:Response</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="Common/Resources/XSD/nxsd_diaxistikiarxi"/>
+                        <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Response</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.N29807041.0.18a6b906fca.N7eb8</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N29807041.0.18a6b906fca.N7f39">
+            <con:stage id="_StageId-7f000101.N29807041.0.18a6b906fca.N7f37" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="urn" namespace="urn:espa:v6:library:user"/>
+                    <con1:userNsDecl prefix="common" namespace="urn:espa:v6:library:common"/>
+                    <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="Common/Resources/user"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N29807041.0.18a6b906fca.N7f2f</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>user:get-OAM-Cookie($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N29807041.0.18a6b906fca.N7f38">
+            <con:stage id="_StageId-7f000101.N29807041.0.18a6b906fca.N7f36" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N29807041.0.18a6b906fca.N7f2b</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/user:Response</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="Common/Resources/XSD/nxsd_oamcookie"/>
+                        <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Response</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.N29807041.0.18a6b906fca.N7f33</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.218fcbd8.0.18a70e5703d.N7f90">
+            <con:stage id="_StageId-7f000101.218fcbd8.0.18a70e5703d.N7f8f" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
+                    <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="Common/Resources/user"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7f8e</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>user:get-User-Kodikos-Forea($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.218fcbd8.0.18a70e5703d.N7f8d">
+            <con:stage id="_StageId-7f000101.218fcbd8.0.18a70e5703d.N7f8c" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7f8b</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/user:Response</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="Common/Resources/XSD/nxsd_kodikosforea"/>
+                        <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Response</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7f8a</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.218fcbd8.0.18a70e5703d.N7f16">
+            <con:stage id="_StageId-7f000101.218fcbd8.0.18a70e5703d.N7f15" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
+                    <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="Common/Resources/user"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7f14</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>user:is-Controller($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.218fcbd8.0.18a70e5703d.N7f13">
+            <con:stage id="_StageId-7f000101.218fcbd8.0.18a70e5703d.N7f12" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7f11</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/user:Controller</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="Common/Resources/XSD/nxsd_controller"/>
+                        <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Controller</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7f10</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.218fcbd8.0.18a70e5703d.N7e6b">
+            <con:stage id="_StageId-7f000101.218fcbd8.0.18a70e5703d.N7e6a" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
+                    <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="Common/Resources/user"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7e69</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>user:get-User-Category($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.218fcbd8.0.18a70e5703d.N7e68">
+            <con:stage id="_StageId-7f000101.218fcbd8.0.18a70e5703d.N7e67" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7e66</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/user:UserCategory</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="Common/Resources/XSD/nxsd_usercategory"/>
+                        <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:UserCategory</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.218fcbd8.0.18a70e5703d.N7e65</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-7f000101.c1a5fa1.0.189ea48aca1.N7b79" name="UserNode">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="IsDiaxiristikiArxi">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node1">
+                                <con:request>request-7f000101.c1a5fa1.0.189ea48aca1.N7b10</con:request>
+                                <con:response>response-7f000101.c1a5fa1.0.189ea48aca1.N7b0d</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetOAMCookie">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node2">
+                                <con:request>request-7f000101.N29807041.0.18a6b906fca.N7f39</con:request>
+                                <con:response>response-7f000101.N29807041.0.18a6b906fca.N7f38</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetUserKodikosForea">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node3">
+                                <con:request>request-7f000101.218fcbd8.0.18a70e5703d.N7f90</con:request>
+                                <con:response>response-7f000101.218fcbd8.0.18a70e5703d.N7f8d</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="IsController">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node4">
+                                <con:request>request-7f000101.218fcbd8.0.18a70e5703d.N7f16</con:request>
+                                <con:response>response-7f000101.218fcbd8.0.18a70e5703d.N7f13</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetUserCatetgory">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node5">
+                                <con:request>request-7f000101.218fcbd8.0.18a70e5703d.N7e6b</con:request>
+                                <con:response>response-7f000101.218fcbd8.0.18a70e5703d.N7e68</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="CheckManagerRole">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="RouteNode1">
+                                <con:context>
+                                    <con1:userNsDecl prefix="role" namespace="http://xmlns.oracle.com/bpel/services/IdentityService"/>
+                                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                                </con:context>
+                                <con:actions>
+                                    <con3:route>
+                                        <con1:id>_ActionId-7f000101.181a28b8.0.18a74698a58.N7f9d</con1:id>
+                                        <con3:service ref="Common/Pipelines/RolesPipeline" xsi:type="con:PipelineRef"/>
+                                        <con3:outboundTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.181a28b8.0.18a74698a58.N7f91</con1:id>
+                                                <con2:location>
+                                                    <con1:xpathText>.</con1:xpathText>
+                                                </con2:location>
+                                                <con2:expr>
+                                                    <con1:xqueryText>&lt;user>{xs:string($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name='OAM_REMOTE_USER']/@value)}&lt;/user></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                        </con3:outboundTransform>
+                                        <con3:responseTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.181a28b8.0.18a74698a58.N7f9a</con1:id>
+                                                <con2:location>
+                                                    <con1:xpathText>.</con1:xpathText>
+                                                </con2:location>
+                                                <con2:expr>
+                                                    <con1:xqueryText>&lt;HasManagerRole xmlns="http://espa.gr/v6/user">
+ {if ($bodt/role:Roles/node() and fn:exists($body//role:espaRole[.='ESPA5_M_RESTART'])) then fn:true() else fn:false()}
+&lt;/HasManagerRole></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                            <con2:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.181a28b8.0.18a74698a58.N7f94</con1:id>
+                                                <con2:type>XML-To-Native</con2:type>
+                                                <con2:sourceExpr>
+                                                    <con1:xqueryText>$body/user:HasManagerRole</con1:xqueryText>
+                                                </con2:sourceExpr>
+                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_manager"/>
+                                                <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:HasManagerRole</con2:schemaElement>
+                                                <con2:replace-body-content/>
+                                            </con2:nxsdTranslation>
+                                            <con2:transport-headers>
+                                                <con1:id>_ActionId-7f000101.181a28b8.0.18a74698a58.N7f97</con1:id>
+                                                <con2:header-set>inbound-response</con2:header-set>
+                                                <con2:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText>'application/json'</con1:xqueryText>
+                                                </con2:header>
+                                            </con2:transport-headers>
+                                        </con3:responseTransform>
+                                    </con3:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetUserRoles">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="RouteNode2">
+                                <con:context>
+                                    <con1:userNsDecl prefix="role" namespace="http://xmlns.oracle.com/bpel/services/IdentityService"/>
+                                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                                </con:context>
+                                <con:actions>
+                                    <con3:route>
+                                        <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f8b</con1:id>
+                                        <con3:service ref="Common/Pipelines/RolesPipeline" xsi:type="con:PipelineRef"/>
+                                        <con3:outboundTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f8a</con1:id>
+                                                <con2:location>
+                                                    <con1:xpathText>.</con1:xpathText>
+                                                </con2:location>
+                                                <con2:expr>
+                                                    <con1:xqueryText>&lt;user>{xs:string($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name='OAM_REMOTE_USER']/@value)}&lt;/user></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                        </con3:outboundTransform>
+                                        <con3:responseTransform>
+                                            <con2:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f88</con1:id>
+                                                <con2:type>XML-To-Native</con2:type>
+                                                <con2:sourceExpr>
+                                                    <con1:xqueryText>$body/*</con1:xqueryText>
+                                                </con2:sourceExpr>
+                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_userroles"/>
+                                                <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Roles</con2:schemaElement>
+                                                <con2:replace-body-content/>
+                                            </con2:nxsdTranslation>
+                                            <con2:transport-headers>
+                                                <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f87</con1:id>
+                                                <con2:header-set>inbound-response</con2:header-set>
+                                                <con2:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText>'application/json'</con1:xqueryText>
+                                                </con2:header>
+                                            </con2:transport-headers>
+                                        </con3:responseTransform>
+                                    </con3:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="BulletinACL">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="RouteNode3">
+                                <con:context>
+                                    <con1:userNsDecl prefix="privs" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/GetRowPrivs"/>
+                                    <con1:userNsDecl prefix="user" namespace="http://espa.gr/v6/user"/>
+                                </con:context>
+                                <con:actions>
+                                    <con3:route>
+                                        <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f83</con1:id>
+                                        <con3:service ref="Common/BusinessServices/GetRowPrivs" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con3:operation>GetRowPrivs</con3:operation>
+                                        <con3:outboundTransform>
+                                            <con2:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f80</con1:id>
+                                                <con2:type>Native-To-XML</con2:type>
+                                                <con2:sourceExpr>
+                                                    <con1:xqueryText>$body/text()</con1:xqueryText>
+                                                </con2:sourceExpr>
+                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_acl_request"/>
+                                                <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Bulletin</con2:schemaElement>
+                                                <con2:replace-body-content/>
+                                            </con2:nxsdTranslation>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f7a</con1:id>
+                                                <con2:location>
+                                                    <con1:xpathText>.</con1:xpathText>
+                                                </con2:location>
+                                                <con2:expr>
+                                                    <con1:xqueryText><![CDATA[<InputParameters xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/sp/GetRowPrivs">
+   <P_USER>{xs:string($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name='OAM_REMOTE_USER']/@value)}</P_USER>
+   <P_PRIV>U</P_PRIV>
+   <P_CATEGORY_ID>{fn:data($body//user:bulletinCatID)}</P_CATEGORY_ID>
+   <P_OBJECT_ID>{fn:data($body//user:bulletinID)}</P_OBJECT_ID>
+</InputParameters>]]></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                        </con3:outboundTransform>
+                                        <con3:responseTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.N16274044.0.18a764221ad.N7ffe</con1:id>
+                                                <con2:location>
+                                                    <con1:xpathText>.</con1:xpathText>
+                                                </con2:location>
+                                                <con2:expr>
+                                                    <con1:xqueryText>&lt;OutputParameters xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/sp/GetRowPrivs">
+ &lt;has_priv>{fn:data($body//privs:GET_ROW_PRIV)}&lt;/has_priv>
+&lt;/OutputParameters></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                            <con2:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f71</con1:id>
+                                                <con2:type>XML-To-Native</con2:type>
+                                                <con2:sourceExpr>
+                                                    <con1:xqueryText>$body/privs:OutputParameters</con1:xqueryText>
+                                                </con2:sourceExpr>
+                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_acl_response"/>
+                                                <con2:schemaElement xmlns:get="http://xmlns.oracle.com/pcbpel/adapter/db/sp/GetRowPrivs">get:OutputParameters</con2:schemaElement>
+                                                <con2:replace-body-content/>
+                                            </con2:nxsdTranslation>
+                                            <con2:transport-headers>
+                                                <con1:id>_ActionId-7f000101.7b8cc891.0.18a75528311.N7f6e</con1:id>
+                                                <con2:header-set>inbound-response</con2:header-set>
+                                                <con2:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText>'application/json'</con1:xqueryText>
+                                                </con2:header>
+                                            </con2:transport-headers>
+                                        </con3:responseTransform>
+                                    </con3:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

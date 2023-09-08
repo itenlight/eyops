@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
+            <con:wadl ref="Common/Resources/WADL/GenericService"/>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000101.c1a5fa1.0.189ea48aca1.N7ca5">
+            <con:stage id="_StageId-7f000101.c1a5fa1.0.189ea48aca1.N7ca3" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con1:log xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                        <con2:id>_ActionId-7f000101.c1a5fa1.0.189ea48aca1.N7c6f</con2:id>
+                        <con1:logLevel>error</con1:logLevel>
+                        <con1:expr>
+                            <con2:xqueryText>$inbound</con2:xqueryText>
+                        </con1:expr>
+                    </con1:log>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.c1a5fa1.0.189ea48aca1.N7ca4">
+            <con:stage id="_StageId-7f000101.c1a5fa1.0.189ea48aca1.N7ca2" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-7f000101.c1a5fa1.0.189ea48aca1.N7cd8" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="GetListCategoriesByCategoryID">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node1">
+                                <con:request>request-7f000101.c1a5fa1.0.189ea48aca1.N7ca5</con:request>
+                                <con:response>response-7f000101.c1a5fa1.0.189ea48aca1.N7ca4</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

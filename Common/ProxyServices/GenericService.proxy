@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ser:proxyServiceEntry xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:con="http://www.bea.com/wli/sb/services/security/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oper="http://xmlns.oracle.com/servicebus/proxy/operations" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env">
+    <ser:coreEntry>
+        <ser:security>
+            <con:inboundWss processWssHeader="true"/>
+        </ser:security>
+        <ser:binding type="native REST" xsi:type="con:NativeRestBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
+            <con:wadl ref="Common/Resources/WADL/GenericService"/>
+        </ser:binding>
+        <oper:operations enabled="true"/>
+        <ser:ws-policy>
+            <ser:binding-mode>no-policies</ser:binding-mode>
+        </ser:ws-policy>
+        <ser:invoke ref="Common/Pipelines/GenericPipeline" xsi:type="con1:PipelineRef" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config"/>
+        <ser:xqConfiguration>
+            <ser:snippetVersion>1.0</ser:snippetVersion>
+        </ser:xqConfiguration>
+    </ser:coreEntry>
+    <ser:endpointConfig>
+        <tran:provider-id>http</tran:provider-id>
+        <tran:inbound>true</tran:inbound>
+        <tran:URI>
+            <env:value>/api/v6/generic</env:value>
+        </tran:URI>
+        <tran:inbound-properties/>
+        <tran:provider-specific xsi:type="http:HttpEndPointConfiguration" xmlns:http="http://www.bea.com/wli/sb/transports/http">
+            <http:inbound-properties>
+                <http:client-authentication xsi:type="http:CustomTokenAuthenticationType">
+                    <http:token-type>OAM_REMOTE_USER</http:token-type>
+                    <http:header-name>OAM_REMOTE_USER</http:header-name>
+                </http:client-authentication>
+            </http:inbound-properties>
+            <http:request-encoding>utf-8</http:request-encoding>
+            <http:response-encoding>utf-8</http:response-encoding>
+            <http:compression>
+                <http:compression-support>false</http:compression-support>
+            </http:compression>
+        </tran:provider-specific>
+    </ser:endpointConfig>
+</ser:proxyServiceEntry>
