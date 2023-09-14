@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
     <con:coreEntry>
         <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
             <con:wadl ref="Common/Resources/WADL/GenericService"/>
@@ -11,22 +11,50 @@
     <con:router>
         <con:pipeline type="request" name="request-7f000101.c1a5fa1.0.189ea48aca1.N7ca5">
             <con:stage id="_StageId-7f000101.c1a5fa1.0.189ea48aca1.N7ca3" name="Stage1">
-                <con:context/>
+                <con:context>
+                    <con1:userNsDecl prefix="urn" namespace="urn:espa:v6:library:generic"/>
+                    <con1:userNsDecl prefix="generic" namespace="http://espa.gr/v6/library/generic"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="Common/Resources/generic"/>
+                    </con1:dependencies>
+                </con:context>
                 <con:actions>
-                    <con1:log xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
-                        <con2:id>_ActionId-7f000101.c1a5fa1.0.189ea48aca1.N7c6f</con2:id>
-                        <con1:logLevel>error</con1:logLevel>
-                        <con1:expr>
-                            <con2:xqueryText>$inbound</con2:xqueryText>
-                        </con1:expr>
-                    </con1:log>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.73f5a3ff.0.18a92ef64c3.N7ffd</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>urn:GetKatastaseisDeltioy($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
                 </con:actions>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="response" name="response-7f000101.c1a5fa1.0.189ea48aca1.N7ca4">
             <con:stage id="_StageId-7f000101.c1a5fa1.0.189ea48aca1.N7ca2" name="Stage1">
-                <con:context/>
-                <con:actions/>
+                <con:context>
+                    <con1:userNsDecl prefix="generic" namespace="http://espa.gr/v6/generic"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.73f5a3ff.0.18a92ef64c3.N7ffa</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/generic:KatastaseisDeltioy</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="Common/Resources/XSD/nxsd_katastaseisdeltioy"/>
+                        <con2:schemaElement xmlns:gen="http://espa.gr/v6/generic">gen:KatastaseisDeltioy</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con1:id>_ActionId-7f000101.4f1abf5e.0.18a9491a556.N7fc5</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
             </con:stage>
         </con:pipeline>
         <con:flow>
@@ -34,6 +62,11 @@
                 <con:context/>
                 <con:branch-table>
                     <con:branch name="GetListCategoriesByCategoryID">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow/>
+                    </con:branch>
+                    <con:branch name="GetKatastaseisDeltioy">
                         <con:operator>equals</con:operator>
                         <con:value/>
                         <con:flow>

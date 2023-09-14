@@ -13,6 +13,7 @@
         <module>System</module>
         <module>TDY</module>
         <module>E524</module>
+        <module>E553</module>
     </modules>
 
 </project>
