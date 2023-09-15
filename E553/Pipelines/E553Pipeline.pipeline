@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
+            <con:wadl ref="E553/Resources/WADL/E553Controller"/>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000101.4f1abf5e.0.18a9491a556.N7efb">
+            <con:stage id="_StageId-7f000101.4f1abf5e.0.18a9491a556.N7ef9" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="e553" namespace="urn:espa:v6:library:e553"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E553/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.4f1abf5e.0.18a9491a556.N7ef5</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>e553:getXrewseisCountPerUser($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.4f1abf5e.0.18a9491a556.N7efa">
+            <con:stage id="_StageId-7f000101.4f1abf5e.0.18a9491a556.N7ef8" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="e553" namespace="http://espa.gr/v6/e553"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.4f1abf5e.0.18a9491a556.N7ef2</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/e553:Xrewsis</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="E553/Resources/XSD/nxsd_xrewsis"/>
+                        <con2:schemaElement xmlns:e553="http://espa.gr/v6/e553">e553:Xrewsis</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con1:id>_ActionId-7f000101.4f1abf5e.0.18a9491a556.N7eef</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-7f000101.4f1abf5e.0.18a9491a556.N7f8f" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="GetXrewsis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node1">
+                                <con:request>request-7f000101.4f1abf5e.0.18a9491a556.N7efb</con:request>
+                                <con:response>response-7f000101.4f1abf5e.0.18a9491a556.N7efa</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>
