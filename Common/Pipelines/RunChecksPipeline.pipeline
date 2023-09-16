@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="Any XML"/>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:flow>
+            <con:route-node name="RouteNode1">
+                <con:context>
+                    <con1:userNsDecl prefix="soa" namespace="http://espa.gr/v6/soa"/>
+                </con:context>
+                <con:actions>
+                    <con2:route>
+                        <con1:id>_ActionId-7f000101.356a7db8.0.18a9ebcc3c5.N7ed0</con1:id>
+                        <con2:service ref="Common/BusinessServices/RunChecksService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:operation>PostRunChecks</con2:operation>
+                        <con2:outboundTransform>
+                            <con3:nxsdTranslation>
+                                <con1:id>_ActionId-7f000101.356a7db8.0.18a9ebcc3c5.N7ecd</con1:id>
+                                <con3:type>XML-To-Native</con3:type>
+                                <con3:sourceExpr>
+                                    <con1:xqueryText>$body/soa:Root-Element</con1:xqueryText>
+                                </con3:sourceExpr>
+                                <con3:nxsd ref="Common/Resources/XSD/RunChecks/nxsd_runchecksinput"/>
+                                <con3:schemaElement xmlns:soa="http://espa.gr/v6/soa">soa:Root-Element</con3:schemaElement>
+                                <con3:replace-body-content/>
+                            </con3:nxsdTranslation>
+                        </con2:outboundTransform>
+                        <con2:responseTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.356a7db8.0.18a9ebcc3c5.N7e8e</con1:id>
+                                <con3:location>
+                                    <con1:xpathText>.</con1:xpathText>
+                                </con3:location>
+                                <con3:expr>
+                                    <con1:xqueryText><![CDATA[<CheckDeltio xmlns="http://espa.gr/v6/soa">
+{for $data in $body//*:DATA return
+ <DATA>
+  <RCODE>{fn:data($data/*:RCODE)}</RCODE>
+  <RSTRING>{fn:data($data/*:RSTRING)}</RSTRING>
+ </DATA> 
+}
+</CheckDeltio>]]></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                            <con3:nxsdTranslation>
+                                <con1:id>_ActionId-7f000101.356a7db8.0.18a9ebcc3c5.N7e8b</con1:id>
+                                <con3:type>XML-To-Native</con3:type>
+                                <con3:sourceExpr>
+                                    <con1:xqueryText>$body/soa:CheckDeltio</con1:xqueryText>
+                                </con3:sourceExpr>
+                                <con3:nxsd ref="Common/Resources/XSD/RunChecks/nxsd_runchecksoutput"/>
+                                <con3:schemaElement xmlns:soa="http://espa.gr/v6/soa">soa:CheckDeltio</con3:schemaElement>
+                                <con3:replace-body-content/>
+                            </con3:nxsdTranslation>
+                        </con2:responseTransform>
+                    </con2:route>
+                </con:actions>
+            </con:route-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

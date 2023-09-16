@@ -7,8 +7,10 @@
     </plnk:partnerLinkType>
     <types>
         <schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/bpel/services/IdentityService/schema" xmlns="http://www.w3.org/2001/XMLSchema">
-            <import namespace="http://xmlns.oracle.com/bpel/services/IdentityService" schemaLocation="../XSD/IdentityService.xsd"/>
-            <import namespace="http://www.oracle.com/pcbpel/identityservice/isconfig" schemaLocation="../XSD/IdentityServiceConfig.xsd"/>
+            <import namespace="http://xmlns.oracle.com/bpel/services/IdentityService"
+                    schemaLocation="../XSD/IdentityService/IdentityService.xsd"/>
+            <import namespace="http://www.oracle.com/pcbpel/identityservice/isconfig"
+                    schemaLocation="../XSD/IdentityService/IdentityServiceConfig.xsd"/>
             <element name="configuration" type="iscrem:ConfigurationType"/>
             <element name="configurations" type="iscrem:ConfigurationListType"/>
         </schema>

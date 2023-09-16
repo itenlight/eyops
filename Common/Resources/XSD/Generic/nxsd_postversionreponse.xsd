@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/generic" targetNamespace="http://espa.gr/v6/generic" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="NewVersion">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="id" type="xsd:unsignedInt"/>
+            <xsd:element name="neaEkdosh" type="xsd:unsignedByte"/>
+            <xsd:element name="neaYpoekdosh" type="xsd:unsignedByte"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

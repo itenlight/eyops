@@ -43,7 +43,7 @@
                         <con2:sourceExpr>
                             <con1:xqueryText>$body/user:Response</con1:xqueryText>
                         </con2:sourceExpr>
-                        <con2:nxsd ref="Common/Resources/XSD/nxsd_diaxistikiarxi"/>
+                        <con2:nxsd ref="Common/Resources/XSD/User/nxsd_diaxistikiarxi"/>
                         <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Response</con2:schemaElement>
                         <con2:replace-body-content/>
                     </con2:nxsdTranslation>
@@ -92,7 +92,7 @@
                         <con2:sourceExpr>
                             <con1:xqueryText>$body/user:Response</con1:xqueryText>
                         </con2:sourceExpr>
-                        <con2:nxsd ref="Common/Resources/XSD/nxsd_oamcookie"/>
+                        <con2:nxsd ref="Common/Resources/XSD/User/nxsd_oamcookie"/>
                         <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Response</con2:schemaElement>
                         <con2:replace-body-content/>
                     </con2:nxsdTranslation>
@@ -140,7 +140,7 @@
                         <con2:sourceExpr>
                             <con1:xqueryText>$body/user:Response</con1:xqueryText>
                         </con2:sourceExpr>
-                        <con2:nxsd ref="Common/Resources/XSD/nxsd_kodikosforea"/>
+                        <con2:nxsd ref="Common/Resources/XSD/User/nxsd_kodikosforea"/>
                         <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Response</con2:schemaElement>
                         <con2:replace-body-content/>
                     </con2:nxsdTranslation>
@@ -188,7 +188,7 @@
                         <con2:sourceExpr>
                             <con1:xqueryText>$body/user:Controller</con1:xqueryText>
                         </con2:sourceExpr>
-                        <con2:nxsd ref="Common/Resources/XSD/nxsd_controller"/>
+                        <con2:nxsd ref="Common/Resources/XSD/User/nxsd_controller"/>
                         <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Controller</con2:schemaElement>
                         <con2:replace-body-content/>
                     </con2:nxsdTranslation>
@@ -236,7 +236,7 @@
                         <con2:sourceExpr>
                             <con1:xqueryText>$body/user:UserCategory</con1:xqueryText>
                         </con2:sourceExpr>
-                        <con2:nxsd ref="Common/Resources/XSD/nxsd_usercategory"/>
+                        <con2:nxsd ref="Common/Resources/XSD/User/nxsd_usercategory"/>
                         <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:UserCategory</con2:schemaElement>
                         <con2:replace-body-content/>
                     </con2:nxsdTranslation>
@@ -346,7 +346,7 @@
                                                 <con2:sourceExpr>
                                                     <con1:xqueryText>$body/user:HasManagerRole</con1:xqueryText>
                                                 </con2:sourceExpr>
-                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_manager"/>
+                                                <con2:nxsd ref="Common/Resources/XSD/User/nxsd_manager"/>
                                                 <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:HasManagerRole</con2:schemaElement>
                                                 <con2:replace-body-content/>
                                             </con2:nxsdTranslation>
@@ -394,7 +394,7 @@
                                                 <con2:sourceExpr>
                                                     <con1:xqueryText>$body/*</con1:xqueryText>
                                                 </con2:sourceExpr>
-                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_userroles"/>
+                                                <con2:nxsd ref="Common/Resources/XSD/User/nxsd_userroles"/>
                                                 <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Roles</con2:schemaElement>
                                                 <con2:replace-body-content/>
                                             </con2:nxsdTranslation>
@@ -432,7 +432,7 @@
                                                 <con2:sourceExpr>
                                                     <con1:xqueryText>$body/text()</con1:xqueryText>
                                                 </con2:sourceExpr>
-                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_acl_request"/>
+                                                <con2:nxsd ref="Common/Resources/XSD/User/nxsd_acl_request"/>
                                                 <con2:schemaElement xmlns:user="http://espa.gr/v6/user">user:Bulletin</con2:schemaElement>
                                                 <con2:replace-body-content/>
                                             </con2:nxsdTranslation>
@@ -450,6 +450,10 @@
 </InputParameters>]]></con1:xqueryText>
                                                 </con2:expr>
                                             </con2:replace>
+                                            <con2:routing-options>
+                                                <con1:id>_ActionId-7f000101.356a7db8.0.18a9ebcc3c5.N7fc9</con1:id>
+                                                <con2:qualityOfService>best-effort</con2:qualityOfService>
+                                            </con2:routing-options>
                                         </con3:outboundTransform>
                                         <con3:responseTransform>
                                             <con2:replace varName="body" contents-only="true">
@@ -469,7 +473,7 @@
                                                 <con2:sourceExpr>
                                                     <con1:xqueryText>$body/privs:OutputParameters</con1:xqueryText>
                                                 </con2:sourceExpr>
-                                                <con2:nxsd ref="Common/Resources/XSD/nxsd_acl_response"/>
+                                                <con2:nxsd ref="Common/Resources/XSD/User/nxsd_acl_response"/>
                                                 <con2:schemaElement xmlns:get="http://xmlns.oracle.com/pcbpel/adapter/db/sp/GetRowPrivs">get:OutputParameters</con2:schemaElement>
                                                 <con2:replace-body-content/>
                                             </con2:nxsdTranslation>
