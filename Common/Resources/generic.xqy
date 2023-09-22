@@ -24,7 +24,7 @@ declare function generic:get-user($inbound as element()) as xs:string{
 
 declare function generic:GetKatastaseisDeltioy($inbound as element()) as element(){
 <KatastaseisDeltioy xmlns="http://espa.gr/v6/generic">
-{for $Katastasi in fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('SQL-RESULT'),
+  {for $Katastasi in fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('SQL-RESULT'),
                     "Select OBJECT_STATUS_ID, Decode(?,'gr',OBJECT_STATUS_NAME,OBJECT_STATUS_NAME_EN) OBJECT_STATUS_NAME, OBJECT_STATUS_NAME_EN
                      from V6_OBJ_STATUS_LOOK 
                      Where OBJECT_CATEGORY_ID=?", generic:get-lang($inbound),

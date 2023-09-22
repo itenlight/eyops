@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="TdyControlle">TDY Controller</doc>
+   <resources>
+      <resource path="/compare/getVersionList/{id}">
+         <method name="GET" soa:name="GetOtherVersionList">
+            <request>
+               <param name="id" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/create/getAaYpoergouList">
+         <method name="GET" soa:name="GetListAAYpoergoy">
+            <request>
+               <param name="kodikosMis" style="query" type="xsd:string"/>
+               <param name="aaYpoergou" style="query" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/create/getAaYpoergouListForCopy">
+         <method name="GET" soa:name="GetlistYpoeroyForCopy">
+            <request>
+               <param name="kodikosMis" style="query" type="xsd:string"/>
+               <param name="aaYpoergou" style="query" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/elenxosNomimotitasList/{kodikosMis}/{kodikosYpoergoy}/{aaTyd}">
+         <method name="GET" soa:name="GetElegxosNomimotitas">
+            <request>
+               <param name="kodikosMis" style="template" type="xsd:string"/>
+               <param name="kodikosYpoergoy" style="template" type="xsd:string"/>
+               <param name="aaTyd" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/fetchCountMeep/{kodikosMis}/{kodikosYpoergoy}">
+         <method name="GET" soa:name="GetMeepCount">
+            <request>
+               <param name="kodikosMis" style="template" type="xsd:string"/>
+               <param name="kodikosYpoergoy" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/fetchCountMeepNotNullInOtherTdyEkdoseis/{kodikosYpoergoy}/{aaTdy}/{aaYpoekdosh}">
+         <method name="GET" soa:name="GetMeepCountEkdoseis">
+            <request>
+               <param name="kodikosYpoergoy" style="template" type="xsd:string"/>
+               <param name="aaTdy" style="template" type="xsd:string"/>
+               <param name="aaYpoekdosh" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/geoList/{kodikosMis}">
+         <method name="GET" soa:name="GetGeoList">
+            <request>
+               <param name="kodikosMis" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+   </resources>
+</application>

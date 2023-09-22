@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy" targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="ListYpoergon" nillable="true" >
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="Ypoergo" maxOccurs="unbounded" nillable="true" >
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="kodikosMis" type="xsd:string"/>
+                     <xsd:element name="aaYpoergoy" type="xsd:unsignedShort"/>
+                     <xsd:element name="titlosYpoergoy" type="xsd:string"/>
+                     <xsd:element name="tdyId" type="xsd:string"/>
+                     <xsd:element name="typeNewEk" type="xsd:string"/>
+                     <xsd:element name="neaEkdosh" type="xsd:string"/>
+                     <xsd:element name="actionTyp" type="xsd:string"/>
+                     <xsd:element name="kodikosYpoergoy" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

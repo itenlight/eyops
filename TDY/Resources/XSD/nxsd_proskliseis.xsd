@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy" targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="ListaProskliseon">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="Prosklisi" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="dateTo"/>
+                     <xsd:element name="ekdosh"/>
+                     <xsd:element name="epKodikos"/>
+                     <xsd:element name="flagMicrodata" type="xsd:unsignedByte"/>
+                     <xsd:element name="foreasKodikos" type="xsd:string"/>
+                     <xsd:element name="idProsklhshs" type="xsd:integer"/>
+                     <xsd:element name="kodikosProsklForea" type="xsd:integer"/>
+                     <xsd:element name="kodikosProsklhshs" type="xsd:string"/>
+                     <xsd:element name="metroKodikos"/>
+                     <xsd:element name="perigrafhForeaProsklhshs" type="xsd:string"/>
+                     <xsd:element name="titlos" type="xsd:string"/>
+                     <xsd:element name="userPermissionsMap"/>
+                     <xsd:element name="ypoprKodikos"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+</xsd:schema>

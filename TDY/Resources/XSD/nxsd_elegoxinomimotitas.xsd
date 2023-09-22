@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy" targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="ListElegxonNomimotitas">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="ElegxosNomimotitas">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="aaProegrisis" type="xsd:integer"/>
+                     <xsd:element name="titlos" type="xsd:string"/>
+                     <xsd:element name="aa" type="xsd:integer"/>
+                     <xsd:element name="idProegTropop" type="xsd:integer"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://epsa.gr/v6/tdy" targetNamespace="http://epsa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="GeoList">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="GeoItem" maxOccurs="unbounded" nillable="true">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="kodikosPerifereias" type="xsd:string"/>
+                     <xsd:element name="kodikosNomou" type="xsd:string"/>
+                     <xsd:element name="kodikosNuts" type="xsd:string"/>
+                     <xsd:element name="kodikosNutsNomou" type="xsd:string"/>
+                     <xsd:element name="labelPerifereiaNomos" type="xsd:string"/>
+                     <xsd:element name="idGeo" type="xsd:unsignedInt"/>
+                     <xsd:element name="idCountry" type="xsd:unsignedInt"/>
+                     <xsd:element name="idKratid" type="xsd:unsignedInt"/>
+                     <xsd:element name="idPerif" type="xsd:unsignedInt"/>
+                     <xsd:element name="idNomos" type="xsd:unsignedInt"/>
+                     <xsd:element name="idDhmos" type="xsd:unsignedInt"/>
+                     <xsd:element name="perigrafhPerifereias" type="xsd:string"/>
+                     <xsd:element name="perigrafhNomou" type="xsd:string"/>
+                     <xsd:element name="idDhmosPerigrafh" type="xsd:string"/>
+                     <xsd:element name="epipedo" type="xsd:string"/>
+                     <xsd:element name="aaProsklhshs" type="xsd:unsignedInt"/>
+                     <xsd:element name="idKatper" type="xsd:unsignedInt"/>
+                     <xsd:element name="perigrafh" type="xsd:string"/>
+                     <xsd:element name="perigrafhCountry" type="xsd:string"/>
+                     <xsd:element name="perigrafhKratid" type="xsd:string"/>
+                     <xsd:element name="parent" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

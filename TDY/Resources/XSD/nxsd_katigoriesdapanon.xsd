@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http;//espa.gr/v6/tdy" targetNamespace="http;//espa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="ListaKatigorionDapanis">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="KatigoriaDapanis" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="id_kathgoria_dapanhs" type="xsd:string"/>
+                     <xsd:element name="kodikos_dapanhs" type="xsd:string"/>
+                     <xsd:element name="perigrafh_kathgoria_dapanhs" type="xsd:string"/>
+                     <xsd:element name="pososto" type="xsd:string"/>
+                     <xsd:element name="id_unco" type="xsd:string"/>
+                     <xsd:element name="monadiaio_kostos" type="xsd:string"/>
+                     <xsd:element name="monada_metrhshs" type="xsd:string"/>
+                     <xsd:element name="perigrafh_monadas" type="xsd:string"/>
+                     <xsd:element name="oroi_efarmoghs" type="xsd:string"/>
+                     <xsd:element name="mis" type="xsd:string"/>
+                     <xsd:element name="id_xar" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>
