@@ -366,6 +366,484 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7ffd">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ffb" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7ffc">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ffa" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7ff7</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>'{"TDY_ID":null,"KODIKOS_MIS":null,"KODIKOS_YPOERGOY":null,"AA_YPOERGOY":null,"AA_TDY":null,"AA_YPOEKDOSH":null,"KATHGORIA_EKDOSHS":null,"TITLOS_YPOERGOY":null,"KODIKOS_PROEG":null,"TEXNIKH_PERIGRAFH":null,"AR_PROTOK_DA":null,"DATE_CREATION":null,"DATE_MET_YPOVOLHS":null,"DATE_YPOVOLIS":null,"DATE_EPILEKSIMOTHTAS":null,"DATE_ANALHPSHS":null,"DATE_LHKSHS":null,"DATE_TROPOP":null,"KODIKOS_EPIVLEPOYSAS":null,"PARATHRHSEIS_KATAXOR_TDY":null,"EIDOS_ANATHESHS":null,"KODIKOS_DIKAIOYXOS":null,"ELEGXOS_AATDP":null,"ONOMA_YPEYTHINOY":null,"THESH_YPEYTHINOY":null,"DIEYTHYNSH_YPEYTHINOY":null,"SPECIALITY_YPEYTHINOY":null,"THL_YPEYTHINOY":null,"FAX_YPEYTHINOY":null,"EMAIL_YPEYTHINOY":null,"PARATHRHSEIS_KATAXOR_TDY_DIK":null,"TITLOS_FOREA":null,"ELEGXOS":null,"KATASTASH_DELTIOY":null,"KATASTASH_DELTIOY_DESCR":null,"DATE_ELEGXOY":null,"ID_TDY_SYMPLHROMATIKHS":null,"TYPOS_TDY":null,"AITIOLOGIA_YPOEKDOSHS":null,"FLAG_TROP_TIMETABLE":null,"FLAG_TROP_OIK":null,"FLAG_TROP_FYS":null,"FLAG_TROP_ALLO":null,"KODIKOS_OIKONOMIKHS":null,"PERIGRAFH_OIKONOMIKHS":null,"ONOMA_YPEYTHINOY_OIK":null,"THESH_YPEYTHINOY_OIK":null,"DIEYTHYNSH_YPEYTHINOY_OIK":null,"THL_YPEYTHINOY_OIK":null,"EMAIL_YPEYTHINOY_OIK":null,"POSO_MH_ENISXYOMENH":null,"YPOE_ARXAIOLOGIA_FLAG":null,"YPOE_ENISXYSH_FLAG":null,"FPA_ANAKTHSIMOS_FLAG":null,"PERIORISMOI_MEEP":null,"DATE_MEEP":null,"POSO_IDIOT":null,"PROEG_AA":null,"EKDOSH_PROEG":null,"TITLOS_PROEG":null,"DIKAIOYXOS_YPOERGOY":null,"FOREAS_PARAKOLOYTHISHS":null,"TDP_ID_ATP":null,"RHTRA":null,"PERIGRAFH_EPIVLEPOYSAS":null,"PROELEYSH_DELTIO":null,"DA_TEXT":null,"FLAG_AYTOMATI_EKGKRISH_TDY":null,"KPS_KATALOGOS_ERGON":null,"KPS6_YPOE_ANADOXOI":[],"KPS6_YPOE_KATANOMH":[],"KPS6_YPOE_EPILEKSIMES":[],"KPS6_YPOE_DEIKTES":[],"KPS6_YPOE_DIAKRITA":[],"KPS6_YPOE_XOROTHETHSEIS":[],"Kps6DeltioErothmata":[],"KRISIMO_YE":null,"FLAG_TMHMATOPOIHMENO":null,"THESMIKO_PLAISIO":null,"FLAG_EKSAIRESI_PROE":null}'</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7ff4</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7e7b">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7e7a" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7e72</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetKatastaseisDeltio()</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7e78">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7e77" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7e76</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaKatastaseon</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_katastaseisdeltiou"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:ListaKatastaseon</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7e75</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7e01">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7e00" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7dff</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetYpoerga($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7dfe">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7dfd" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7dfc</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaYpoergon</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_listaypoergon"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:ListaYpoergon</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7dfb</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7d8a">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7d89" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7d88</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetKatigoriesDapanis($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7d87">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7d86" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7d85</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaKatigorionDapanis</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_katigoriesdapanon"/>
+                        <con2:schemaElement xmlns:tdy="http;//espa.gr/v6/tdy">tdy:ListaKatigorionDapanis</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7d84</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7d10">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7d0f" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7d0e</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetAplopoimenoKostos($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7d0d">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7d0c" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7d0b</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaKatigorionDapanis</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_aplopoimenokostos"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/tdy">tdy:ListaKatigorionDapanis</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7d0a</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7c68">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7c67" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7c66</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetEti($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7c65">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7c64" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7c63</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaEton</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_eti"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:ListaEton</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7c62</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7bf1">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7bf0" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7bef</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetErotimata()</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7bee">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7bed" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7bec</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaErotimaton</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_erotimata"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:ListaErotimaton</con2:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>false</con2:enforceSchemaOrder>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7beb</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7b49">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7b48" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7b47</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetKatigoriesDapanon($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7b46">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7b45" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7b44</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaKatigorionDapanis</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_katigoriesdapanon"/>
+                        <con2:schemaElement xmlns:tdy="http;//espa.gr/v6/tdy">tdy:ListaKatigorionDapanis</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7b43</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7ad2">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ad1" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7ac9</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_listestimon_request"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:Request</con2:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>false</con2:enforceSchemaOrder>
+                    </con2:nxsdTranslation>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7ad0</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetListesTimon(xs:unsignedInt($body//*:mis), xs:unsignedInt($body//*:aa))</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7acf">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ace" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7acd</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaTimon</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_listestimon_response"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/tdy">tdy:ListaTimon</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7acc</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N79f3">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N79f2" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N79f1</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetTitloYpoergoy($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N79f0">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N79ef" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N79ee</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:TitlosYpoergoy</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_titlosypoergoy"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TitlosYpoergoy</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N79ed</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N797c">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N797b" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N797a</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetProsklisis()</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7979">
+            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7978" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7977</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaProskliseon</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_proskliseis"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:ListaProskliseon</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7976</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
             <con:branch-node type="operation" id="_FlowId-7f000101.356a7db8.0.18a9ebcc3c5.N7e1c" name="BranchNode1">
                 <con:context/>
@@ -437,6 +915,116 @@
                             <con:pipeline-node name="Pipeline Pair Node7">
                                 <con:request>request-7f000101.66cb5836.0.18ab33a24fb.N7d7c</con:request>
                                 <con:response>response-7f000101.66cb5836.0.18ab33a24fb.N7d79</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetEmptyTDY">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node8">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7ffd</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7ffc</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetKatastseisDeltiou">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node9">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7e7b</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7e78</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetkodikosYpoergoy">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node10">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7e01</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7dfe</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetKatigoriaDapanis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node11">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7d8a</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7d87</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetApplopoimenoKostos">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node12">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7d10</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7d0d</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetErotimata">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node14">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7bf1</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7bee</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetEti">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node13">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7c68</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7c65</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetKatigoriesDapanis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node15">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7b49</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7b46</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetListesTimonEdika">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node16">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N7ad2</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7acf</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetTitloYpoergoy">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node17">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N79f3</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N79f0</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="Getprosklisis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node18">
+                                <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N797c</con:request>
+                                <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7979</con:response>
                             </con:pipeline-node>
                         </con:flow>
                     </con:branch>

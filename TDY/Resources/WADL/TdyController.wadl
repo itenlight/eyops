@@ -90,5 +90,143 @@
             <response status="500"/>
          </method>
       </resource>
+      <resource path="/getEmpty">
+         <method name="GET" soa:name="GetEmptyTDY">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/getKatastasoisDeltion">
+         <method name="GET" soa:name="GetKatastseisDeltiou">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/getKodikosYpoergoy/{kodikosMis}">
+         <method name="GET" soa:name="GetkodikosYpoergoy">
+            <request>
+               <param name="kodikosMis" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/katDapanis/{mis}">
+         <method name="GET" soa:name="GetKatigoriaDapanis">
+            <request>
+               <param name="mis" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/retrieveAplopoihmenoKostosList/{mis}/{ypoergo}">
+         <method name="GET" soa:name="GetApplopoimenoKostos">
+            <request>
+               <param name="mis" style="template" type="xsd:string"/>
+               <param name="ypoergo" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/retrieveErothmataApanthsh">
+         <method name="GET" soa:name="GetErotimata">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/retrieveEti/{kodikosMis}/{tdyId}">
+         <method name="GET" soa:name="GetEti">
+            <request>
+               <param name="kodikosMis" style="template" type="xsd:string"/>
+               <param name="tdyId" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/retrieveKathgoriesDapanhs/{tdyid}/{kodikosMis}/{kodikosYpoergou}">
+         <method name="GET" soa:name="GetKatigoriesDapanis">
+            <request>
+               <param name="tdyid" style="template" type="xsd:string"/>
+               <param name="kodikosMis" style="template" type="xsd:string"/>
+               <param name="kodikosYpoergou" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/retrieveListesTimwnEidika">
+         <method name="POST" soa:name="GetListesTimonEdika">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/retrieveTitlosYpoergoyTdp/{kodikosMis}/{kodikosYpoergoy}">
+         <method name="GET" soa:name="GetTitloYpoergoy">
+            <request>
+               <param name="kodikosMis" style="template" type="xsd:string"/>
+               <param name="kodikosYpoergoy" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/search/aaProsklishs">
+         <method name="GET" soa:name="Getprosklisis">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
    </resources>
 </application>
