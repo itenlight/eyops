@@ -6,7 +6,7 @@
   </plt:partnerLinkType>
     <wsdl:types>
       <schema xmlns="http://www.w3.org/2001/XMLSchema">
-        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read" schemaLocation="../../ADAPTERS/TDY_read/TDY_read_table.xsd"/>
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read" schemaLocation="../../ADAPTERS/TDYReadService/TDYReadService_table.xsd"/>
       </schema>
     </wsdl:types>
     <wsdl:message name="selectByPrimaryKey_inputParameters">
