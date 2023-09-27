@@ -2,10 +2,10 @@
 <ser:businessServiceEntry xmlns:ser="http://xmlns.oracle.com/servicebus/business/config" xmlns:svc="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:jca="http://www.bea.com/wli/sb/transports/jca" xmlns:ops="http://xmlns.oracle.com/servicebus/business/operations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ser:coreEntry>
         <ser:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
-            <con:wsdl ref="TDY/Resources/WSDL/TDYReadService/TDY_read-concrete"/>
+            <con:wsdl ref="TDY/Resources/WSDL/TDYSearchService/TDYSearchService-concrete"/>
             <con:binding>
-                <con:name>TDY_read_ptt-binding</con:name>
-                <con:namespace>http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/TDY_read</con:namespace>
+                <con:name>TDYSearchService_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/TDYSearchService</con:namespace>
             </con:binding>
         </ser:binding>
         <ops:operations enabled="true">
@@ -32,27 +32,22 @@
         </tran:outbound-properties>
         <tran:all-headers>false</tran:all-headers>
         <tran:provider-specific xsi:type="jca:JCAEndPointConfiguration">
-            <jca:jca-file ref="TDY/Resources/ADAPTERS/TDYReadService/TDYReadService_db"/>
-            <jca:adapter-name>Database Adapter</jca:adapter-name>
-            <jca:adapter-type>db</jca:adapter-type>
-            <jca:dispatch-policy>SBDefaultResponseWorkManager</jca:dispatch-policy>
+            <jca:jca-file ref="TDY/Resources/ADAPTERS/TDYSearchService/TDYSearchService_db"/>
+            <jca:adapter-name>TDYSearchService</jca:adapter-name>
+            <jca:adapter-type>DB</jca:adapter-type>
             <jca:always-use-wsdl>true</jca:always-use-wsdl>
             <jca:connection-mode>managed</jca:connection-mode>
             <jca:outbound-properties>
                 <jca:operation-properties>
-                    <jca:operation-name>selectByPrimaryKey</jca:operation-name>
+                    <jca:operation-name>TDYSearchService</jca:operation-name>
                     <jca:spec-properties>
                         <jca:property>
-                            <jca:name>DescriptorName</jca:name>
-                            <jca:value>TDY_read.Kps6Ypoerga</jca:value>
+                            <jca:name>SchemaName</jca:name>
+                            <jca:value>MASTER6</jca:value>
                         </jca:property>
                         <jca:property>
-                            <jca:name>MappingsMetaDataURL</jca:name>
-                            <jca:value>servicebus:/TDY/Resources/ADAPTERS/TDY_read/TDY_read-or-mappings.xml</jca:value>
-                        </jca:property>
-                        <jca:property>
-                            <jca:name>QueryName</jca:name>
-                            <jca:value>readObject</jca:value>
+                            <jca:name>ProcedureName</jca:name>
+                            <jca:value>TEXNIKO_DELTIO_YPOERGOY_L</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>GetActiveUnitOfWork</jca:name>
@@ -61,6 +56,24 @@
                     </jca:spec-properties>
                 </jca:operation-properties>
             </jca:outbound-properties>
+            <jca:endpoint-properties>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.backoff</jca:name>
+                    <jca:value>2</jca:value>
+                </jca:endpoint-property>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.count</jca:name>
+                    <jca:value>4</jca:value>
+                </jca:endpoint-property>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.maxInterval</jca:name>
+                    <jca:value>120</jca:value>
+                </jca:endpoint-property>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.interval</jca:name>
+                    <jca:value>1</jca:value>
+                </jca:endpoint-property>
+            </jca:endpoint-properties>
         </tran:provider-specific>
     </ser:endpointConfig>
 </ser:businessServiceEntry>

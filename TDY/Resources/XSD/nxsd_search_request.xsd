@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy"
+            targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+  <xsd:element name="TdySearchRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="pKodikosMIS" type="xsd:integer"/>
+        <xsd:element name="pYpoergo" type="xsd:integer"/>
+        <xsd:element name="pAaTdy" type="xsd:integer"/>
+        <xsd:element name="pTdyId" type="xsd:integer"/>
+        <xsd:element name="pDateYpobolhsFrom" type="xsd:string"/>
+        <xsd:element name="pDateYpobolhsEos" type="xsd:string"/>
+        <xsd:element name="pKodikosProsklhshs" type="xsd:integer"/>
+        <xsd:element name="pKodikosDikaioyxos" type="xsd:integer"/>
+        <xsd:element name="pKodikosEkxorhshs" type="xsd:integer"/>
+        <xsd:element name="pKatastashDeltioy" type="xsd:string"/>
+        <xsd:element name="pTitlosYpoergoy" type="xsd:string"/>
+        <xsd:element name="pEkdosh" type="xsd:double"/>
+        <xsd:element name="pEp" type="xsd:double"/>
+        <xsd:element name="pIsInterReg" type="xsd:string"/>
+        <xsd:element name="pIsxyon" type="xsd:integer"/>
+        <xsd:element name="pKodikosYpoergou" type="xsd:integer"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>
