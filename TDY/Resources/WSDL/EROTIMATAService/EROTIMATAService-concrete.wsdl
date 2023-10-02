@@ -1,0 +1,12 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/EROTIMATAService" name="EROTIMATAService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="EROTIMATAService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/EROTIMATAService"/>
+    <wsdl:binding name="EROTIMATAService_ptt-binding" type="erot:EROTIMATAService_ptt" xmlns:erot="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/EROTIMATAService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="merge">
+            <soap:operation soapAction="merge"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

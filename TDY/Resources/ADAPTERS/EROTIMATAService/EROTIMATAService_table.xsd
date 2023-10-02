@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/EROTIMATAService"
+           xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/EROTIMATAService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Kps6DeltioErothmataCollection" type="Kps6DeltioErothmataCollection"/>
+   <xs:complexType name="Kps6DeltioErothmataCollection">
+      <xs:sequence>
+         <xs:element name="Kps6DeltioErothmata" type="Kps6DeltioErothmata" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6DeltioErothmata">
+      <xs:sequence>
+         <xs:element name="idDeler" type="xs:decimal" nillable="true"/>
+         <xs:element name="objectCategoryId" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="parentId" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="checklistType" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idErothma" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="apanthshValue" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="apanthshDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="statusId" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="isxysFlg" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="isxysDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="objectId" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="sxoliaYops" type="string2000" minOccurs="0" nillable="true"/>
+         <xs:element name="parathrhseis" type="string4000" minOccurs="0" nillable="true"/>
+         <xs:element name="alloKeimeno" type="string4000" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string2000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string4000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="4000"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
