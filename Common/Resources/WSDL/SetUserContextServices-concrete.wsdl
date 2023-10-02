@@ -1,0 +1,12 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/SetUserContextServices" name="SetUserContextServices-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="SetUserContextServices.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/SetUserContextServices"/>
+    <wsdl:binding name="SetUserContextServices_ptt-binding" type="set:SetUserContextServices_ptt" xmlns:set="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/SetUserContextServices">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="SetUserContextServices">
+            <soap:operation soapAction="SetUserContextServices"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

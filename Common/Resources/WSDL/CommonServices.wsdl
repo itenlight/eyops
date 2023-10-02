@@ -1,0 +1,32 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="CommonServices"
+     targetNamespace="http://espa.gr/v6/common"
+     xmlns:tns="http://espa.gr/v6/common"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://espa.gr/v6/common" schemaLocation="../XSD/common.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="requestMessage">
+        <wsdl:part name="UsernamePart" element="tns:username"/>
+    </wsdl:message>
+    <wsdl:portType name="CommonServices_ppt">
+        <wsdl:operation name="SetUserContext">
+            <wsdl:input message="tns:requestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="common_services" type="tns:CommonServices_ppt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="SetUserContext">
+            <soap:operation style="document" soapAction="SetUserContext"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://espa.gr/v6/common"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

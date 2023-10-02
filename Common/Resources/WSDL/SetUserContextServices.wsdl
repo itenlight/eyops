@@ -1,0 +1,20 @@
+<wsdl:definitions name="SetUserContextServices" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/SetUserContextServices" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/SetUserContextServices" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/sp/SetUserContextServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plt:partnerLinkType name="SetUserContextServices_plt">
+    <plt:role name="SetUserContextServices_role">
+      <plt:portType name="tns:SetUserContextServices_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+     <schema xmlns="http://www.w3.org/2001/XMLSchema">
+       <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/SetUserContextServices" schemaLocation="../XSD/SetUserContextServices_sp.xsd"/>
+     </schema>
+    </wsdl:types>
+    <wsdl:message name="args_in_msg">
+        <wsdl:part name="InputParameters" element="db:InputParameters"/>
+    </wsdl:message>
+    <wsdl:portType name="SetUserContextServices_ptt">
+        <wsdl:operation name="SetUserContextServices">
+            <wsdl:input message="tns:args_in_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

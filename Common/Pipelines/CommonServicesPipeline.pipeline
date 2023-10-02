@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="Common/Resources/WSDL/CommonServices"/>
+            <con:binding>
+                <con:name>common_services</con:name>
+                <con:namespace>http://espa.gr/v6/common</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:transactions isRequired="false" sameTxForResponse="true"/>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-7f000101.Nf02868f.0.18ae71bb62c.N7f39" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="SetUserContext">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="SetUserContextNode">
+                                <con:context>
+                                    <con1:userNsDecl prefix="com" namespace="http://espa.gr/v6/common"/>
+                                </con:context>
+                                <con:actions>
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.Nf02868f.0.18ae71bb62c.N7f35</con2:id>
+                                        <con1:service ref="Common/BusinessServices/SetUserContextServices" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>SetUserContextServices</con1:operation>
+                                        <con1:outboundTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con3:id xmlns:con3="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.Nf02868f.0.18ae71bb62c.N7f32</con3:id>
+                                                <con2:expr>
+                                                    <con3:xqueryText xmlns:con3="http://www.bea.com/wli/sb/stages/config">&lt;set:InputParameters xmlns:set="http://xmlns.oracle.com/pcbpel/adapter/db/sp/SetUserContextServices">
+    &lt;set:PUSERID>{fn:data($body/com:username)}&lt;/set:PUSERID>
+&lt;/set:InputParameters></con3:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                            <con2:routing-options>
+                                                <con3:id xmlns:con3="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.Nf02868f.0.18ae71bb62c.N7f2f</con3:id>
+                                                <con2:qualityOfService>best-effort</con2:qualityOfService>
+                                            </con2:routing-options>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform/>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>
