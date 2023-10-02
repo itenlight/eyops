@@ -241,5 +241,18 @@
             </response>
          </method>
       </resource>
+      <resource path="/{tdyId}">
+         <method name="GET" soa:name="GetTDY">
+            <request>
+               <param name="tdyId" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
    </resources>
 </application>

@@ -48,7 +48,7 @@
                         </jca:property>
                         <jca:property>
                             <jca:name>MappingsMetaDataURL</jca:name>
-                            <jca:value>servicebus:/TDY/Resources/ADAPTERS/TDY_read/TDY_read-or-mappings.xml</jca:value>
+                            <jca:value>servicebus:/TDY/Resources/ADAPTERS/TDYReadService/TDYReadService-or-mappings.xml</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>QueryName</jca:name>

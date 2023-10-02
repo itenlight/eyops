@@ -1,5 +1,5 @@
 <adapter-config name="TDY_read" adapter="db" wsdlLocation="../../WSDL/TDYReadService/TDY_read.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
-   <connection-factory UIConnectionName="SBYTEN" location="eis/mis_master6DS"/>
+   <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
    <endpoint-interaction portType="TDY_read_ptt" operation="selectByPrimaryKey">
       <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
          <property name="DescriptorName" value="TDY_read.Kps6Ypoerga"/>

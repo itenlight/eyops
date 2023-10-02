@@ -4,13 +4,22 @@ xquery version "1.0" encoding "utf-8";
 
 module namespace tdy="http://espa.gr/v6/tdy/library";
 
-(: Δηλώσεις namespaces OSB  :)
 declare namespace ctx="http://www.bea.com/wli/sb/context";
 declare namespace http="http://www.bea.com/wli/sb/transports/http";
 declare namespace tp="http://www.bea.com/wli/sb/transports";
-declare namespace dvm="http://www.oracle.com/osb/xpath-functions/dvm";
-declare namespace soap-env="http://schemas.xmlsoap.org/soap/envelope";
 declare namespace error="urn:espa:v6:library:error";
+
+(: Δηλώσεις namespaces ΤΔΥ :)
+declare namespace tdy-db="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read";
+(:: import schema at "ADAPTERS/TDYReadService/TDYReadService_table.xsd" ::)
+declare namespace tdy-response="http://espa.gr/v6/tdy";
+(:: import schema at "XSD/nxsd_getdy_response.xsd" ::)
+
+declare function tdy:if-empty( $arg as item()? ,$value as item()* )  as item()* {
+  if (string($arg) != '') then 
+    data($arg)
+  else $value
+ } ;
 
 declare function tdy:get-lang($inbound as element()) as xs:string{
   fn:substring(
@@ -711,4 +720,271 @@ declare function tdy:GetProsklisis() as element(){
     </Prosklisi>
   }
   </ListaProskliseon>
+};
+
+declare function tdy:map-db-to-get-response($db-response as element()) 
+as element()(:: schema-element(tdy-response:TDYGetResponse)::) {
+ <TDYGetResponse xmlns='http://espa.gr/v6/tdy'>
+    <ERROR_CODE/>
+    <ERROR_MESSAGE/>
+    <DATA>
+    {if ($db-response//tdy-db:Kps6Ypoerga/node()) then 
+      <KPS6_YPOERGA> 
+        <TDY_ID>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:tdyId)}</TDY_ID>
+        <KODIKOS_MIS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:kodikosMis)}</KODIKOS_MIS>
+        <KODIKOS_YPOERGOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:kodikosYpoergoy)}</KODIKOS_YPOERGOY>
+        <AA_YPOERGOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:aaYpoergoy)}</AA_YPOERGOY>
+        <AA_TDY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:aaTdy)}</AA_TDY>
+        <AA_YPOEKDOSH>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:aaYpoekdosh)}</AA_YPOEKDOSH>
+        <KATHGORIA_EKDOSHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:kathgoriaEkdoshs)}</KATHGORIA_EKDOSHS>
+        <TITLOS_YPOERGOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:titlosYpoergoy)}</TITLOS_YPOERGOY>
+        <KODIKOS_PROEG>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:kodikosProeg)}</KODIKOS_PROEG>
+        <TEXNIKH_PERIGRAFH>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:texnikhPerigrafh)}</TEXNIKH_PERIGRAFH>
+        <AR_PROTOK_DA>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:arProtokDa)}</AR_PROTOK_DA>
+        <DATE_CREATION>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:dateCreation)}</DATE_CREATION>
+        <DATE_MET_YPOVOLHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:dateMetYpovolhs)}</DATE_MET_YPOVOLHS>
+        <DATE_YPOVOLIS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dateYpovolis)}</DATE_YPOVOLIS>
+        <DATE_EPILEKSIMOTHTAS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dateEpileksimothtas)}</DATE_EPILEKSIMOTHTAS>
+        <DATE_ANALHPSHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dateAnalhpshs)}</DATE_ANALHPSHS>
+        <DATE_LHKSHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dateLhkshs)}</DATE_LHKSHS>
+        <DATE_TROPOP>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dateTropop)}</DATE_TROPOP>
+        <KODIKOS_EPIVLEPOYSAS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:kodikosEpivlepoysas)}</KODIKOS_EPIVLEPOYSAS>
+        <PARATHRHSEIS_KATAXOR_TDY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:parathrhseisKataxorTdy)}</PARATHRHSEIS_KATAXOR_TDY>
+        <EIDOS_ANATHESHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:eidosAnatheshs)}</EIDOS_ANATHESHS>
+        <KODIKOS_DIKAIOYXOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:kodikosDikaioyxos)}</KODIKOS_DIKAIOYXOS>
+        <ELEGXOS_AATDP>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:elegxosAatdp)}</ELEGXOS_AATDP>
+        <ONOMA_YPEYTHINOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:onomaYpeythinoy)}</ONOMA_YPEYTHINOY>
+        <THESH_YPEYTHINOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:theshYpeythinoy)}</THESH_YPEYTHINOY>
+        <DIEYTHYNSH_YPEYTHINOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dieythynshYpeythinoy)}</DIEYTHYNSH_YPEYTHINOY>
+        <SPECIALITY_YPEYTHINOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:specialityYpeythinoy)}</SPECIALITY_YPEYTHINOY>
+        <THL_YPEYTHINOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:thlYpeythinoy)}</THL_YPEYTHINOY>
+        <FAX_YPEYTHINOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:faxYpeythinoy)}</FAX_YPEYTHINOY>
+        <EMAIL_YPEYTHINOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:emailYpeythinoy)}</EMAIL_YPEYTHINOY>
+        <PARATHRHSEIS_KATAXOR_TDY_DIK>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:parathrhseisKataxorTdyDik)}</PARATHRHSEIS_KATAXOR_TDY_DIK>
+        <TITLOS_FOREA>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:titlosForea)}</TITLOS_FOREA>
+        <ELEGXOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:elegxos)}</ELEGXOS>
+        <KATASTASH_DELTIOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:katastashDeltioy)}</KATASTASH_DELTIOY>
+        <KATASTASH_DELTIOY_DESCR>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:katastashDeltioyDescr)}</KATASTASH_DELTIOY_DESCR>
+        <DATE_ELEGXOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:dateElegxoy)}</DATE_ELEGXOY>
+        <ID_TDY_SYMPLHROMATIKHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:idTdySymplhromatikhs)}</ID_TDY_SYMPLHROMATIKHS>
+        <TYPOS_TDY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:typosTdy)}</TYPOS_TDY>
+        <AITIOLOGIA_YPOEKDOSHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:aitiologiaYpoekdoshs)}</AITIOLOGIA_YPOEKDOSHS>
+        <FLAG_TROP_TIMETABLE>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:flagTropTimetable)}</FLAG_TROP_TIMETABLE>
+        <FLAG_TROP_OIK>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:flagTropOik)}</FLAG_TROP_OIK>
+        <FLAG_TROP_FYS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:flagTropFys)}</FLAG_TROP_FYS>
+        <FLAG_TROP_ALLO>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:flagTropAllo)}</FLAG_TROP_ALLO>
+        <KODIKOS_OIKONOMIKHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:kodikosOikonomikhs)}</KODIKOS_OIKONOMIKHS>
+        <PERIGRAFH_OIKONOMIKHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:perigrafhOikonomikhs)}</PERIGRAFH_OIKONOMIKHS>
+        <ONOMA_YPEYTHINOY_OIK>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:onomaYpeythinoyOik)}</ONOMA_YPEYTHINOY_OIK>
+        <THESH_YPEYTHINOY_OIK>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:theshYpeythinoyOik)}</THESH_YPEYTHINOY_OIK>
+        <DIEYTHYNSH_YPEYTHINOY_OIK>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dieythynshYpeythinoyOik)}</DIEYTHYNSH_YPEYTHINOY_OIK>
+        <THL_YPEYTHINOY_OIK>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:thlYpeythinoyOik)}</THL_YPEYTHINOY_OIK>
+        <EMAIL_YPEYTHINOY_OIK>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:emailYpeythinoyOik)}</EMAIL_YPEYTHINOY_OIK>
+          <POSO_MH_ENISXYOMENH>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:posoMhEnisxyomenh)}</POSO_MH_ENISXYOMENH>
+        <YPOE_ARXAIOLOGIA_FLAG>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:ypoeArxaiologiaFlag)}</YPOE_ARXAIOLOGIA_FLAG>
+        <YPOE_ENISXYSH_FLAG>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:ypoeEnisxyshFlag)}</YPOE_ENISXYSH_FLAG>
+        <FPA_ANAKTHSIMOS_FLAG>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:fpaAnakthsimosFlag)}</FPA_ANAKTHSIMOS_FLAG>
+        <PERIORISMOI_MEEP>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:periorismoiMeep)}</PERIORISMOI_MEEP>
+        <DATE_MEEP>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:dateMeep)}</DATE_MEEP>
+        <POSO_IDIOT>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:posoIdiot)}</POSO_IDIOT>
+        <ST_FLAG/>
+        <PROEG_AA>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:proegAa)}</PROEG_AA>
+        <EKDOSH_PROEG>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:ekdoshProeg)}</EKDOSH_PROEG>
+        <TITLOS_PROEG>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vs6TdyInfo/tdy-db:titlos)}</TITLOS_PROEG>
+        <DIKAIOYXOS_YPOERGOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:dikaioyxosYpoergoy)}</DIKAIOYXOS_YPOERGOY>
+        <FOREAS_PARAKOLOYTHISHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:foreasParakol)}</FOREAS_PARAKOLOYTHISHS>
+        <TDP_ID_ATP>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:tdpIdAtp)}</TDP_ID_ATP>
+        <RHTRA>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:rhtra)}</RHTRA>
+        <PERIGRAFH_EPIVLEPOYSAS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:perigrafhEpivlepousas)}</PERIGRAFH_EPIVLEPOYSAS>
+        <PROELEYSH_DELTIO>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:proelefshDeltio)}</PROELEYSH_DELTIO>
+        <DA_TEXT>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:daText)}</DA_TEXT>
+        <FLAG_AYTOMATI_EKGKRISH_TDY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:flagAytomatiEkgkrishTdy)}</FLAG_AYTOMATI_EKGKRISH_TDY>
+        <KPS_KATALOGOS_ERGON>
+         <EP_KODIKOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:epKodikos)}</EP_KODIKOS>
+         <EP_TITLOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:epTitlos)}</EP_TITLOS>
+         <YPOPROGR_KODIKOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:ypoprogrKodikos)}</YPOPROGR_KODIKOS>
+         <YPOPROGR_TITLOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:ypoprogrTitlos)}</YPOPROGR_TITLOS>
+         <KATASTASH_PRAKSHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:katastashPrakshs)}</KATASTASH_PRAKSHS>
+         <TITLOS_MIS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:titlosMis)}</TITLOS_MIS>
+         <PROSKLHSH_KODIKOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:prosklhshKodikos)}</PROSKLHSH_KODIKOS>
+         <TITLOS_PROSKLHSHS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:titlosProsklhshs)}</TITLOS_PROSKLHSHS>
+         <EKXOR_KODIKOS>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:ekxorKodikos)}</EKXOR_KODIKOS>
+         <EIDOS_YPOERGOY>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:eidosYpoergoy)}</EIDOS_YPOERGOY>
+         <EIDOS_YPOERGOY_DESCR>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:eidosYpoergoyDescr)}</EIDOS_YPOERGOY_DESCR>
+         <ORIZONTIO_YPOERGO_FLAG>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:vsTdyKatalogosErgonInfo/tdy-db:orizontioYpoergoFlag)}</ORIZONTIO_YPOERGO_FLAG>
+         <FLAG_MEEP_ENABLE>{if (fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:periorismoiMeep)) then  1  else  0 }</FLAG_MEEP_ENABLE>
+      </KPS_KATALOGOS_ERGON>
+      {if ($db-response//tdy-db:Kps6YpoeAnadoxoi/node()) then 
+       for $YpoAnadoxos in $db-response//tdy-db:Kps6YpoeAnadoxoi return
+       <KPS6_YPOE_ANADOXOI>
+        <YAN_ID>{fn:data($YpoAnadoxos/tdy-db:yanId)}</YAN_ID>
+        <TDY_ID>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:tdyId)}</TDY_ID>
+        <AFM>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:afm)}</AFM>
+        <ADAM_SYMVASHS>{fn:data($YpoAnadoxos/tdy-db:adamSymvashs)}</ADAM_SYMVASHS>
+        <ROLOS_ANADOXOU>{fn:data($YpoAnadoxos/tdy-db:rolosAnadoxou)}</ROLOS_ANADOXOU>
+        <ENERGOS_ANADOXOS>{fn:data($YpoAnadoxos/tdy-db:energosAnadoxos)}</ENERGOS_ANADOXOS>
+        <AITIOLOGIA_ANENERGOY>{fn:data($YpoAnadoxos/tdy-db:aitiologiaAnenergoy)}</AITIOLOGIA_ANENERGOY>
+        <POSO_DD>{fn:data($YpoAnadoxos/tdy-db:posoDd)}</POSO_DD>
+        <PARATHRHSEIS_KATAXOR_TDY_ANA>{fn:data($YpoAnadoxos/tdy-db:parathrhseisKataxorTdyAna)}</PARATHRHSEIS_KATAXOR_TDY_ANA>
+        <ROLOS_ANADOXOU_DESCR>
+         {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('LIST-CATEGORIES'),
+                  'Select VAL.LIST_VALUE_NAME as col1  
+                  from KPS6_LIST_CATEGORIES_VALUES val 
+                  where VAL.LIST_VALUE_ID = ?',xs:unsignedInt(tdy:if-empty($YpoAnadoxos/tdy-db:rolosAnadoxou,0)))//*:LIST_VALUE_NAME)}           
+        </ROLOS_ANADOXOU_DESCR>
+        <KPS_ANADOXOI>
+         <AFM>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:afm)}</AFM>
+         <DOY>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:doy)}</DOY>
+         <EPONYMIA>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:eponymia)}</EPONYMIA>
+         <XRHSTHS_EISAG>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:xrhsthsEisag)}</XRHSTHS_EISAG>
+         <HMEROM_EISAG>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:hmeromEisag)}</HMEROM_EISAG>
+         <XRHSTHS_ENHM>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:xrhsthsEnhm)}</XRHSTHS_ENHM>
+         <HMEROM_ENHM>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:hmeromEnhm)}</HMEROM_ENHM>
+         <ELEGXOS>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:elegxos)}</ELEGXOS>
+         <AFM_TEMP>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:afmTemp)}</AFM_TEMP>
+         <DIEYTHYNSH>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:dieythynsh)}</DIEYTHYNSH>
+         <FAX>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:fax)}</FAX>
+         <POLH>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:polh)}</POLH>
+         <TK>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:tk)}</TK>
+         <EMAIL>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:email)}</EMAIL>
+         <DIAKRITOS_TITLOS>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:diakritosTitlos)}</DIAKRITOS_TITLOS>
+         <ENISX_EPIX>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:enisxEpix)}</ENISX_EPIX>
+         <ANAD_DHM_SYMB>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:anadDhmsymb)}</ANAD_DHM_SYMB>
+         <EGKYRO>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:egkyro)}</EGKYRO>
+         <PROSOPO>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:prosopo)}</PROSOPO>
+         <XENO_AFM>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:xenoAfm)}</XENO_AFM>
+         <ENLYPOLOGOS_FLG>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:enlYpologosFlg)}</ENLYPOLOGOS_FLG>
+         <ENL_DIKAIOYX_FLG>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:enlDikaioyxFlg)}</ENL_DIKAIOYX_FLG>
+         <THL>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:thl)}</THL>
+         <KODIKOS_DOY>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:kodikosDoy)}</KODIKOS_DOY>
+         <MEGETHOS_EPIXEIRHSHS>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:megethosEpixeirhshs)}</MEGETHOS_EPIXEIRHSHS>
+         <AFM_T>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:afmt)}</AFM_T>
+         <FLAG_FYLO>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:flagFylo)}</FLAG_FYLO>
+         <ID_GEO>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:idGeo)}</ID_GEO>
+         <AXT_MAIN_DESC>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:axtMainDesc)}</AXT_MAIN_DESC>
+         <ENARXI>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:enarxh)}</ENARXI>
+         <DIAKOPI>{fn:data($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:diakoph)}</DIAKOPI>
+         <anadoxoiIdGeoDescr>
+          {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Geo'),
+                                      'select perigrafh from Kps6_c_geografia  where  id_geo = ?',
+                                       xs:unsignedInt(tdy:if-empty($YpoAnadoxos/tdy-db:kpsAnadoxoi/tdy-db:idGeo,0)))//*:PERIGRAFH)}
+         </anadoxoiIdGeoDescr>
+        </KPS_ANADOXOI>
+       </KPS6_YPOE_ANADOXOI>
+       else <KPS6_YPOE_ANADOXOI/>
+      }
+      {if ($db-response//tdy-db:Kps6YpoeKatanomh/node()) then  
+       for $Katanomi in $db-response//tdy-db:Kps6YpoeKatanomh return
+       <KPS6_YPOE_KATANOMH>
+        <YKA_ID>{fn:data($Katanomi/tdy-db:ykaId)}</YKA_ID>
+        <TDY_ID>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:tdyId)}</TDY_ID>
+        <ETOS>{fn:data($Katanomi/tdy-db:etos)}</ETOS>
+        <POSO_DD_A>{fn:data($Katanomi/tdy-db:posoDdA)}</POSO_DD_A>
+        <POSO_DD_EPIL_A>{fn:data($Katanomi/tdy-db:posoDdEpilA)}</POSO_DD_EPIL_A>
+      </KPS6_YPOE_KATANOMH>
+      else <KPS6_YPOE_KATANOMH/>
+      }
+      {if ($db-response//tdy-db:Kps6YpoeEpileksimes/node()) then  
+       for $EpileksimiDapani in $db-response//tdy-db:Kps6YpoeEpileksimes return
+        <KPS6_YPOE_EPILEKSIMES>
+        <YEP_ID>{fn:data($EpileksimiDapani/tdy-db:yepId)}</YEP_ID>
+        <TDY_ID>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:tdyId)}</TDY_ID>
+        <ID_KATHGORIA_DAPANHS>{fn:data($EpileksimiDapani/tdy-db:idKathgoriaDapanhs)}</ID_KATHGORIA_DAPANHS>
+        <ID_XARAKTHRISTIKO_DAPANHS>{fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:idXarakthristikoDapanhs)}</ID_XARAKTHRISTIKO_DAPANHS>
+        <POSO_DD_NOFPA>{fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:posoDdNofpa)}</POSO_DD_NOFPA>
+        <POSO_FPA_DD>{fn:data($EpileksimiDapani/tdy-db:posoFpaDd)}</POSO_FPA_DD>
+        <POSO_DD_EPIL>{fn:data($EpileksimiDapani/tdy-db:posoDdEpil)}</POSO_DD_EPIL>
+        <POSO_FPA_EPILEKSIMH_DD>{fn:data($EpileksimiDapani/tdy-db:posoFpaEpileksimhDd)}</POSO_FPA_EPILEKSIMH_DD>
+        <PERIGRAFH_KAT_DAPANHS>{fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:perigrafhKatDapanhs)}</PERIGRAFH_KAT_DAPANHS>
+        <POSOSTO>{fn:data($EpileksimiDapani/tdy-db:pososto)}</POSOSTO>
+        <KOSTOS_MONADAS>
+          { if (fn:data($EpileksimiDapani/tdy-db:idKathgoriaDapanhs)=(10,11)) then
+              fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:monadiaioKostos)
+            else fn:data($EpileksimiDapani/tdy-db:kostosMonadas)
+          }
+        </KOSTOS_MONADAS>
+        <MONADA_METRHSHS>
+          {if (fn:data($EpileksimiDapani/tdy-db:idKathgoriaDapanhs)=(10,11)) then
+            fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:monadaMetrhshs)
+           else 
+           fn:data($EpileksimiDapani/tdy-db:monadaMetrhshs)
+          }
+        </MONADA_METRHSHS>
+        <PERIGRAFH_MONADAS>
+          {if (fn:data($EpileksimiDapani/tdy-db:idKathgoriaDapanhs)=(10,11)) then
+            fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:perigrafhMonadas)
+           else 
+           fn:data($EpileksimiDapani/tdy-db:perigrafhMonadas)
+          }
+        </PERIGRAFH_MONADAS>
+        <ARITHMOS_MONADON>
+          {if (fn:data($EpileksimiDapani/tdy-db:idKathgoriaDapanhs)=(10,11)) then
+            fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:arithmosMonadon)
+          else 
+           fn:data($EpileksimiDapani/tdy-db:arithmosMonadon)
+          }
+        </ARITHMOS_MONADON>
+        <AITIOLOGHSH_MH_EPILEKSIMOTHTAS>{fn:data($EpileksimiDapani/tdy-db:aitiologhshMhEpileksimothtas)}</AITIOLOGHSH_MH_EPILEKSIMOTHTAS>
+        <ID_UNCO>{fn:data($EpileksimiDapani/tdy-db:idUnco)}</ID_UNCO>
+        <ST_FLAG>{fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:stFlag)}</ST_FLAG>
+        <KODIKOS_DAPANHS>{fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:kodikosDapanhs)}</KODIKOS_DAPANHS>
+        <POSOTHTA_SYNOLIKH>
+          {if (fn:data($EpileksimiDapani/tdy-db:idKathgoriaDapanhs)=(10,11)) then
+            fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:posothtaSynolikh)
+          else ()
+          } 
+        </POSOTHTA_SYNOLIKH>
+        <ID_YPUNCO>{fn:data($EpileksimiDapani/tdy-db:idYpunco)}</ID_YPUNCO>    
+        <FLAG_APLOPOIHMENO_KOSTOS>{fn:data($EpileksimiDapani//tdy-db:VsTdyEpileksimesInfo/tdy-db:flagAplopoihmenoKostos)}</FLAG_APLOPOIHMENO_KOSTOS>
+       </KPS6_YPOE_EPILEKSIMES>
+       else <KPS6_YPOE_EPILEKSIMES/>
+      }      
+      {if ($db-response//tdy-db:Kps6YpoeDeiktes/node()) then      
+        for $Deikti in $db-response//tdy-db:Kps6YpoeDeiktes return
+         <KPS6_YPOE_DEIKTES>
+          <YDE_ID>{fn:data($Deikti/tdy-db:ydeId)}</YDE_ID>
+          <TDY_ID>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:tdyId)}</TDY_ID>
+          <KODIKOS_DEIKTHS>{fn:data($Deikti/tdy-db:kodikosDeikths)}</KODIKOS_DEIKTHS>
+          <TIMH_STOXOS>{fn:data($Deikti/tdy-db:timhStoxos)}</TIMH_STOXOS>
+         </KPS6_YPOE_DEIKTES> 
+       else <KPS6_YPOE_DEIKTES/>        
+      }      
+      {if ($db-response//tdy-db:Kps6YpoeDiakrita/node()) then
+       for $Diakrito in $db-response//tdy-db:Kps6YpoeDiakrita return
+        <KPS6_YPOE_DIAKRITA>            
+         <YDI_ID>{fn:data($Diakrito/tdy-db:ydiId)}</YDI_ID>
+         <TDY_ID>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:tdyId)}</TDY_ID>
+         <AA_DIAKRITOY>{fn:data($Diakrito/tdy-db:aaDiakritoy)}</AA_DIAKRITOY>
+         <ONOMA_DIAKRITOY>{fn:data($Diakrito/tdy-db:onomaDiakritoy)}</ONOMA_DIAKRITOY>
+         <PROYPOLOGISMOS>{fn:data($Diakrito/tdy-db:proypologismos)}</PROYPOLOGISMOS>
+         <DATE_MILESTONE>{fn:data($Diakrito/tdy-db:dateMilestone)}</DATE_MILESTONE>
+         <ENERGEIES_FAPE>{fn:data($Diakrito/tdy-db:energeiesFape)}</ENERGEIES_FAPE>
+         <PARADOTEA_FAPE>{fn:data($Diakrito/tdy-db:paradoteaFape)}</PARADOTEA_FAPE>
+         <PROYPOLOGISMOS_EPIL>{fn:data($Diakrito/tdy-db:proypologismosEpil)}</PROYPOLOGISMOS_EPIL>
+         <DATE_START>{fn:data($Diakrito/tdy-db:dateStart)}</DATE_START>
+        </KPS6_YPOE_DIAKRITA>
+       else <KPS6_YPOE_DIAKRITA/>  
+      }
+      {if ($db-response//tdy-db:Kps6YpoeXorothethseis/node()) then  
+       for $Xorothetisi in $db-response//tdy-db:Kps6YpoeXorothethseis return 
+       <KPS6_YPOE_XOROTHETHSEIS>
+        <YXO_ID>{fn:data($Xorothetisi/tdy-db:yxoId)}</YXO_ID>
+        <TDY_ID>{fn:data($db-response//tdy-db:Kps6Ypoerga/tdy-db:tdyId)}</TDY_ID>
+        <AA_XOROTHETHSHS>{fn:data($Xorothetisi/tdy-db:aaXorothethshs)}</AA_XOROTHETHSHS>
+        <POSOSTO>{fn:data($Xorothetisi/tdy-db:pososto)}</POSOSTO>
+        <ID_GEO>{fn:data($Xorothetisi/tdy-db:idGeo)}</ID_GEO>
+        <ID_TK>{fn:data($Xorothetisi/tdy-db:idTk)}</ID_TK>
+        <POSO>{fn:data($Xorothetisi/tdy-db:poso)}</POSO>
+        <PER_NOM_DESCR>{fn:data($Xorothetisi/tdy-db:vsTdyXorothethseisInfo/tdy-db:perNomDescr)}</PER_NOM_DESCR>
+       </KPS6_YPOE_XOROTHETHSEIS>
+       else <KPS6_YPOE_XOROTHETHSEIS/>
+      }
+     </KPS6_YPOERGA> else ()}      
+    </DATA>   
+    {if ($db-response//tdy-db:Kps6Ypoerga/node()) then 
+    (<actionCode/>,
+    <comments/>,
+    <combineChecks>1</combineChecks>)   
+    else ()}
+ </TDYGetResponse>
 };
