@@ -4,6 +4,7 @@
         <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
             <con:wadl ref="TDY/Resources/WADL/TdyController"/>
         </con:binding>
+        <con:transactions isRequired="false" sameTxForResponse="true"/>
         <con:xqConfiguration>
             <con:snippetVersion>1.0</con:snippetVersion>
         </con:xqConfiguration>
@@ -1197,13 +1198,6 @@
                                                     <con1:xqueryText>lib:map-db-to-get-response($body/tdy-db:Kps6YpoergaCollection)</con1:xqueryText>
                                                 </con2:expr>
                                             </con2:replace>
-                                            <con5:log>
-                                                <con1:id>_ActionId-7f000101.57405637.0.18af12ace1f.N7feb</con1:id>
-                                                <con5:logLevel>error</con5:logLevel>
-                                                <con5:expr>
-                                                    <con1:xqueryText>$body//tdy:KPS6_YPOERGA/tdy:TDY_ID</con1:xqueryText>
-                                                </con5:expr>
-                                            </con5:log>
                                             <con2:insert varName="body">
                                                 <con1:id>_ActionId-7f000101.57405637.0.18af12ace1f.N7ff2</con1:id>
                                                 <con2:location>
@@ -1282,6 +1276,110 @@
                                                     <con1:xqueryText>'application/json'</con1:xqueryText>
                                                 </con2:header>
                                             </con2:transport-headers>
+                                        </con3:responseTransform>
+                                    </con3:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="DeleteTdy">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="RouteNode1">
+                                <con:context>
+                                    <con1:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library"/>
+                                    <con1:userNsDecl prefix="tdy" namespace="https://espa.gr/v6/tdy"/>
+                                    <con1:dependencies>
+                                        <con1:importModule ref="TDY/Resources/library"/>
+                                    </con1:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con3:route>
+                                        <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7fcc</con1:id>
+                                        <con3:service ref="TDY/BusinessServices/STATUSService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con3:operation>STATUSService</con3:operation>
+                                        <con3:outboundTransform>
+                                            <con4:route>
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7fc9</con1:id>
+                                                <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                                <con4:operation>SetUserContext</con4:operation>
+                                                <con4:outboundTransform>
+                                                    <con2:replace varName="body" contents-only="true">
+                                                        <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f60</con1:id>
+                                                        <con2:expr>
+                                                            <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                                        </con2:expr>
+                                                    </con2:replace>
+                                                    <con2:routing-options>
+                                                        <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f95</con1:id>
+                                                        <con2:qualityOfService>best-effort</con2:qualityOfService>
+                                                    </con2:routing-options>
+                                                </con4:outboundTransform>
+                                            </con4:route>
+                                            <con2:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f4f</con1:id>
+                                                <con2:type>Native-To-XML</con2:type>
+                                                <con2:sourceExpr>
+                                                    <con1:xqueryText>$body/text()</con1:xqueryText>
+                                                </con2:sourceExpr>
+                                                <con2:nxsd ref="TDY/Resources/XSD/nxsd_delete_request"/>
+                                                <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:DeleteAction</con2:schemaElement>
+                                                <con2:replace-body-content/>
+                                                <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                                            </con2:nxsdTranslation>
+                                            <con2:assign varName="vObjectID">
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f49</con1:id>
+                                                <con2:expr>
+                                                    <con1:xqueryText>$body//tdy:TDY_ID</con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:assign>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f5c</con1:id>
+                                                <con2:expr>
+                                                    <con1:xqueryText><![CDATA[<stat:InputParameters xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService">
+    <stat:USERNAME>{lib:get-user($inbound)}</stat:USERNAME>
+    <stat:PLANG>{lib:get-user($inbound)}</stat:PLANG>
+    <stat:COMBINECHECKS>{fn:data($body//tdy:combineChecks)}</stat:COMBINECHECKS>
+    <stat:OBJECTID>{fn:data($body//tdy:TDY_ID)}</stat:OBJECTID>
+    <stat:CATEGORYID>103</stat:CATEGORYID>
+    <stat:ACTIONUI>{fn:data($body//tdy:actionCode)}</stat:ACTIONUI>
+    <stat:COMMENTSSTATUS>{fn:data($body//tdy:comments)}</stat:COMMENTSSTATUS>
+    <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
+    <stat:OBJECTPARENTID>{fn:data($body//tdy:KODIKOS_YPOERGOY)}</stat:OBJECTPARENTID>
+</stat:InputParameters>]]></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                            <con2:routing-options>
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f41</con1:id>
+                                                <con2:qualityOfService>best-effort</con2:qualityOfService>
+                                            </con2:routing-options>
+                                        </con3:outboundTransform>
+                                        <con3:responseTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f4c</con1:id>
+                                                <con2:expr>
+                                                    <con1:xqueryText><![CDATA[<tdy:TDYResponse>
+ <tdy:ERROR_CODE></tdy:ERROR_CODE>
+ <tdy:ERROR_MESSAGE></tdy:ERROR_MESSAGE>
+ <tdy:DATA>
+  <tdy:KPS6_YPOERGA>
+   <tdy:TDY_ID>{fn:data($vObjectID)}</tdy:TDY_ID>
+  </tdy:KPS6_YPOERGA>
+ </tdy:DATA>
+</tdy:TDYResponse>]]></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                            <con2:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f46</con1:id>
+                                                <con2:type>XML-To-Native</con2:type>
+                                                <con2:sourceExpr>
+                                                    <con1:xqueryText>$body/tdy:TDYResponse</con1:xqueryText>
+                                                </con2:sourceExpr>
+                                                <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_generic_response"/>
+                                                <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYResponse</con2:schemaElement>
+                                                <con2:replace-body-content/>
+                                            </con2:nxsdTranslation>
                                         </con3:responseTransform>
                                     </con3:route>
                                 </con:actions>

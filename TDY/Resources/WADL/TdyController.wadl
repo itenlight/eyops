@@ -254,5 +254,18 @@
             </response>
          </method>
       </resource>
+      <resource path="/del">
+         <method name="POST" soa:name="DeleteTdy">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
    </resources>
 </application>

@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy" targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="DeleteAction">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="KPS6_YPOERGA">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="TDY_ID" type="xsd:unsignedInt"/>
+                     <xsd:element name="KODIKOS_YPOERGOY" type="xsd:unsignedInt"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="actionCode" type="xsd:integer"/>
+            <xsd:element name="comments"/>
+            <xsd:element name="combineChecks" type="xsd:integer"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>
