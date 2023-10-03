@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/CheckForUpdateService" name="CheckForUpdateService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="CheckForUpdateService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/CheckForUpdateService"/>
+    <wsdl:binding name="CheckForUpdateService_ptt-binding" type="chec:CheckForUpdateService_ptt" xmlns:chec="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/Common/CheckForUpdateService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="CheckForUpdateService">
+            <soap:operation soapAction="CheckForUpdateService"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

@@ -2,4 +2,23 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:common="http://espa.gr/v6/common"
             targetNamespace="http://espa.gr/v6/common" elementFormDefault="qualified">
   <xsd:element name="username" type="xsd:string"/>
+  <xsd:element name="UpdateStatusIn">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="username" type="xsd:string"/>
+        <xsd:element name="lang" type="xsd:string"/>
+        <xsd:element name="objectId" type="xsd:unsignedInt"/>
+        <xsd:element name="categoryId" type="xsd:unsignedInt"/>
+        <xsd:element name="actionyId" type="xsd:unsignedShort"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="UpdateStatusOut">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="errorCode" type="xsd:unsignedShort"/>
+        <xsd:element name="errorMessage" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
 </xsd:schema>

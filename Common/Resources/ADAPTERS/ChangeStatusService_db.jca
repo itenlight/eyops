@@ -1,4 +1,4 @@
-<adapter-config name="ChangeStatusService" adapter="db" wsdlLocation="ChangeStatusService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+<adapter-config name="ChangeStatusService" adapter="db" wsdlLocation="../WSDL/ChangeStatusService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
   <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
   <endpoint-interaction portType="ChangeStatusService_ptt" operation="ChangeStatusService">

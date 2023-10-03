@@ -15,9 +15,19 @@
     <wsdl:message name="requestMessage">
         <wsdl:part name="UsernamePart" element="tns:username"/>
     </wsdl:message>
+    <wsdl:message name="requestCheckUpdateStatusMessage">
+        <wsdl:part name="UsernamePart" element="tns:UpdateStatusIn"/>
+    </wsdl:message>
+    <wsdl:message name="responseCheckUpdateStatusMessage">
+        <wsdl:part name="UsernamePart" element="tns:UpdateStatusOut"/>
+    </wsdl:message>
     <wsdl:portType name="CommonServices_ppt">
         <wsdl:operation name="SetUserContext">
             <wsdl:input message="tns:requestMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="CheckUpdateStatus">
+            <wsdl:input message="tns:requestCheckUpdateStatusMessage"/>
+            <wsdl:output message="tns:responseCheckUpdateStatusMessage"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="common_services" type="tns:CommonServices_ppt">
@@ -27,6 +37,15 @@
             <wsdl:input>
                 <soap:body use="literal" namespace="http://espa.gr/v6/common"/>
             </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="CheckUpdateStatus">
+            <soap:operation style="document" soapAction="CheckUpdateStatus"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://espa.gr/v6/common"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://espa.gr/v6/common"/>
+            </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
 </wsdl:definitions>

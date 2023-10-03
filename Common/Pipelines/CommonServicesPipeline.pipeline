@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
     <con:coreEntry>
         <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
             <con:wsdl ref="Common/Resources/WSDL/CommonServices"/>
@@ -47,6 +47,49 @@
                                         </con1:outboundTransform>
                                         <con1:responseTransform/>
                                     </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="CheckUpdateStatus">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="CheckForUpdateRouteNode">
+                                <con:context>
+                                    <con1:userNsDecl prefix="com" namespace="http://espa.gr/v6/common"/>
+                                </con:context>
+                                <con:actions>
+                                    <con3:route>
+                                        <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f58</con1:id>
+                                        <con3:service ref="Common/BusinessServices/CheckForUpdateService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con3:operation>CheckForUpdateService</con3:operation>
+                                        <con3:outboundTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f55</con1:id>
+                                                <con2:expr>
+                                                    <con1:xqueryText><![CDATA[<chec:InputParameters 	xmlns:chec="http://xmlns.oracle.com/pcbpel/adapter/db/sp/CheckForUpdateService">
+<chec:PLANG>{fn:data($body/com:UpdateStatusIn/com:lang)}</chec:PLANG>
+<chec:PI_USERNAME>{fn:data($body/com:UpdateStatusIn/com:username)}</chec:PI_USERNAME>
+<chec:PI_OBJECTID>{fn:data($body/com:UpdateStatusIn/com:objectId)}</chec:PI_OBJECTID>
+<chec:PI_CATEGORYID>{fn:data($body/com:UpdateStatusIn/com:categoryId)}</chec:PI_CATEGORYID>
+<chec:PI_ACTIONID>{fn:data($body/com:UpdateStatusIn/com:actionyId)}</chec:PI_ACTIONID>
+</chec:InputParameters>]]></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                        </con3:outboundTransform>
+                                        <con3:responseTransform>
+                                            <con2:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f52</con1:id>
+                                                <con2:expr>
+                                                    <con1:xqueryText><![CDATA[<com:UpdateStatusOut>
+  <com:errorCode>{fn:data($body//*:ERRORCODE)}</com:errorCode>
+  <com:errorMessage>{fn:data($body//*:ERRORMESSAGE)}</com:errorMessage>
+</com:UpdateStatusOut>]]></con1:xqueryText>
+                                                </con2:expr>
+                                            </con2:replace>
+                                        </con3:responseTransform>
+                                    </con3:route>
                                 </con:actions>
                             </con:route-node>
                         </con:flow>
