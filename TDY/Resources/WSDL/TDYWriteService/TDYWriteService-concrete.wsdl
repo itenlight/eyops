@@ -1,0 +1,12 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/TDYWriteService" name="TDYWriteService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="TDYWriteService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/TDYWriteService"/>
+    <wsdl:binding name="TDYWriteService_ptt-binding" type="tdy:TDYWriteService_ptt" xmlns:tdy="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/TDYWriteService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="merge">
+            <soap:operation soapAction="merge"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

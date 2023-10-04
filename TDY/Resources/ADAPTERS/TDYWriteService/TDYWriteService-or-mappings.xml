@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.4.v20160829-44060b6">
+	<name>TDY_Write-OR</name>
+	<class-mapping-descriptors>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6Ypoerga</class>
+			<alias>KPS6_YPOERGA</alias>
+			<primary-key>
+				<field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying>
+				<queries>
+					<query name="TDY_WriteSelect" xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6Ypoerga</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>java.util.Vector</collection-type>
+						</container>
+					</query>
+				</queries>
+			</querying>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kodikosMis</attribute-name>
+					<field table="KPS6_YPOERGA" name="KODIKOS_MIS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kodikosYpoergoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="KODIKOS_YPOERGOY" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>aaTdy</attribute-name>
+					<field table="KPS6_YPOERGA" name="AA_TDY" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>aaYpoekdosh</attribute-name>
+					<field table="KPS6_YPOERGA" name="AA_YPOEKDOSH" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kathgoriaEkdoshs</attribute-name>
+					<field table="KPS6_YPOERGA" name="KATHGORIA_EKDOSHS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>titlosYpoergoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="TITLOS_YPOERGOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kodikosProeg</attribute-name>
+					<field table="KPS6_YPOERGA" name="KODIKOS_PROEG" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>texnikhPerigrafh</attribute-name>
+					<field table="KPS6_YPOERGA" name="TEXNIKH_PERIGRAFH" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>arProtokDa</attribute-name>
+					<field table="KPS6_YPOERGA" name="AR_PROTOK_DA" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateYpovolis</attribute-name>
+					<field table="KPS6_YPOERGA" name="DATE_YPOVOLIS" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateEpileksimothtas</attribute-name>
+					<field table="KPS6_YPOERGA" name="DATE_EPILEKSIMOTHTAS" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateAnalhpshs</attribute-name>
+					<field table="KPS6_YPOERGA" name="DATE_ANALHPSHS" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateLhkshs</attribute-name>
+					<field table="KPS6_YPOERGA" name="DATE_LHKSHS" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateTropop</attribute-name>
+					<field table="KPS6_YPOERGA" name="DATE_TROPOP" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kodikosEpivlepoysas</attribute-name>
+					<field table="KPS6_YPOERGA" name="KODIKOS_EPIVLEPOYSAS" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>parathrhseisKataxorTdy</attribute-name>
+					<field table="KPS6_YPOERGA" name="PARATHRHSEIS_KATAXOR_TDY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>parathrhseisKataxorTdyDik</attribute-name>
+					<field table="KPS6_YPOERGA" name="PARATHRHSEIS_KATAXOR_TDY_DIK" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>eidosAnatheshs</attribute-name>
+					<field table="KPS6_YPOERGA" name="EIDOS_ANATHESHS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kodikosDikaioyxos</attribute-name>
+					<field table="KPS6_YPOERGA" name="KODIKOS_DIKAIOYXOS" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>elegxosAatdp</attribute-name>
+					<field table="KPS6_YPOERGA" name="ELEGXOS_AATDP" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>onomaYpeythinoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="ONOMA_YPEYTHINOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>theshYpeythinoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="THESH_YPEYTHINOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>specialityYpeythinoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="SPECIALITY_YPEYTHINOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dieythynshYpeythinoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="DIEYTHYNSH_YPEYTHINOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>thlYpeythinoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="THL_YPEYTHINOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>faxYpeythinoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="FAX_YPEYTHINOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>emailYpeythinoy</attribute-name>
+					<field table="KPS6_YPOERGA" name="EMAIL_YPEYTHINOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idTdySymplhromatikhs</attribute-name>
+					<field table="KPS6_YPOERGA" name="ID_TDY_SYMPLHROMATIKHS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>typosTdy</attribute-name>
+					<field table="KPS6_YPOERGA" name="TYPOS_TDY" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>aitiologiaYpoekdoshs</attribute-name>
+					<field table="KPS6_YPOERGA" name="AITIOLOGIA_YPOEKDOSHS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagTropTimetable</attribute-name>
+					<field table="KPS6_YPOERGA" name="FLAG_TROP_TIMETABLE" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagTropOik</attribute-name>
+					<field table="KPS6_YPOERGA" name="FLAG_TROP_OIK" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagTropFys</attribute-name>
+					<field table="KPS6_YPOERGA" name="FLAG_TROP_FYS" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagTropAllo</attribute-name>
+					<field table="KPS6_YPOERGA" name="FLAG_TROP_ALLO" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kodikosOikonomikhs</attribute-name>
+					<field table="KPS6_YPOERGA" name="KODIKOS_OIKONOMIKHS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>perigrafhOikonomikhs</attribute-name>
+					<field table="KPS6_YPOERGA" name="PERIGRAFH_OIKONOMIKHS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>onomaYpeythinoyOik</attribute-name>
+					<field table="KPS6_YPOERGA" name="ONOMA_YPEYTHINOY_OIK" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>theshYpeythinoyOik</attribute-name>
+					<field table="KPS6_YPOERGA" name="THESH_YPEYTHINOY_OIK" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dieythynshYpeythinoyOik</attribute-name>
+					<field table="KPS6_YPOERGA" name="DIEYTHYNSH_YPEYTHINOY_OIK" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>thlYpeythinoyOik</attribute-name>
+					<field table="KPS6_YPOERGA" name="THL_YPEYTHINOY_OIK" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>emailYpeythinoyOik</attribute-name>
+					<field table="KPS6_YPOERGA" name="EMAIL_YPEYTHINOY_OIK" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoMhEnisxyomenh</attribute-name>
+					<field table="KPS6_YPOERGA" name="POSO_MH_ENISXYOMENH" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoIdiot</attribute-name>
+					<field table="KPS6_YPOERGA" name="POSO_IDIOT" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>periorismoiMeep</attribute-name>
+					<field table="KPS6_YPOERGA" name="PERIORISMOI_MEEP" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateMeep</attribute-name>
+					<field table="KPS6_YPOERGA" name="DATE_MEEP" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>perigrafhEpivlepousas</attribute-name>
+					<field table="KPS6_YPOERGA" name="PERIGRAFH_EPIVLEPOUSAS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>proelefshDeltio</attribute-name>
+					<field table="KPS6_YPOERGA" name="PROELEFSH_DELTIO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>daText</attribute-name>
+					<field table="KPS6_YPOERGA" name="DA_TEXT" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagAytomatiEkgkrishTdy</attribute-name>
+					<field table="KPS6_YPOERGA" name="FLAG_AYTOMATI_EKGKRISH_TDY" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="one-to-many-mapping">
+					<attribute-name>kps6YpoergaMonadiaiaKosthCollection</attribute-name>
+					<reference-class>TDY_Write.Kps6YpoergaMonadiaiaKosth</reference-class>
+					<private-owned>true</private-owned>
+					<target-foreign-key>
+						<field-reference>
+							<source-field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="TDY_ID" xsi:type="column"/>
+							<target-field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+						</field-reference>
+					</target-foreign-key>
+					<batch-reading>true</batch-reading>
+					<container xsi:type="list-container-policy">
+						<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+					</container>
+					<indirection xsi:type="value-holder-indirection-policy"/>
+					<selection-query xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoergaMonadiaiaKosth</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+						</container>
+					</selection-query>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="one-to-many-mapping">
+					<attribute-name>kps6YpoeAnadoxoiCollection</attribute-name>
+					<reference-class>TDY_Write.Kps6YpoeAnadoxoi</reference-class>
+					<private-owned>true</private-owned>
+					<target-foreign-key>
+						<field-reference>
+							<source-field table="KPS6_YPOE_ANADOXOI" name="TDY_ID" xsi:type="column"/>
+							<target-field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+						</field-reference>
+					</target-foreign-key>
+					<batch-reading>true</batch-reading>
+					<container xsi:type="list-container-policy">
+						<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+					</container>
+					<indirection xsi:type="value-holder-indirection-policy"/>
+					<selection-query xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoeAnadoxoi</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+						</container>
+					</selection-query>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="one-to-many-mapping">
+					<attribute-name>kps6YpoeDiakritaCollection</attribute-name>
+					<reference-class>TDY_Write.Kps6YpoeDiakrita</reference-class>
+					<private-owned>true</private-owned>
+					<target-foreign-key>
+						<field-reference>
+							<source-field table="KPS6_YPOE_DIAKRITA" name="TDY_ID" xsi:type="column"/>
+							<target-field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+						</field-reference>
+					</target-foreign-key>
+					<batch-reading>true</batch-reading>
+					<container xsi:type="list-container-policy">
+						<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+					</container>
+					<indirection xsi:type="value-holder-indirection-policy"/>
+					<selection-query xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoeDiakrita</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+						</container>
+					</selection-query>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="one-to-many-mapping">
+					<attribute-name>kps6YpoeEpileksimesCollection</attribute-name>
+					<reference-class>TDY_Write.Kps6YpoeEpileksimes</reference-class>
+					<private-owned>true</private-owned>
+					<target-foreign-key>
+						<field-reference>
+							<source-field table="KPS6_YPOE_EPILEKSIMES" name="TDY_ID" xsi:type="column"/>
+							<target-field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+						</field-reference>
+					</target-foreign-key>
+					<batch-reading>true</batch-reading>
+					<container xsi:type="list-container-policy">
+						<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+					</container>
+					<indirection xsi:type="value-holder-indirection-policy"/>
+					<selection-query xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoeEpileksimes</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+						</container>
+					</selection-query>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="one-to-many-mapping">
+					<attribute-name>kps6YpoeKatanomhCollection</attribute-name>
+					<reference-class>TDY_Write.Kps6YpoeKatanomh</reference-class>
+					<private-owned>true</private-owned>
+					<target-foreign-key>
+						<field-reference>
+							<source-field table="KPS6_YPOE_KATANOMH" name="TDY_ID" xsi:type="column"/>
+							<target-field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+						</field-reference>
+					</target-foreign-key>
+					<batch-reading>true</batch-reading>
+					<container xsi:type="list-container-policy">
+						<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+					</container>
+					<indirection xsi:type="value-holder-indirection-policy"/>
+					<selection-query xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoeKatanomh</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+						</container>
+					</selection-query>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="one-to-many-mapping">
+					<attribute-name>kps6YpoeXorothethseisCollection</attribute-name>
+					<reference-class>TDY_Write.Kps6YpoeXorothethseis</reference-class>
+					<private-owned>true</private-owned>
+					<target-foreign-key>
+						<field-reference>
+							<source-field table="KPS6_YPOE_XOROTHETHSEIS" name="TDY_ID" xsi:type="column"/>
+							<target-field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+						</field-reference>
+					</target-foreign-key>
+					<batch-reading>true</batch-reading>
+					<container xsi:type="list-container-policy">
+						<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+					</container>
+					<indirection xsi:type="value-holder-indirection-policy"/>
+					<selection-query xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoeXorothethseis</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+						</container>
+					</selection-query>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="one-to-many-mapping">
+					<attribute-name>kps6YpoeDeiktesCollection</attribute-name>
+					<properties>
+						<property name="enabled">
+							<value>true</value>
+						</property>
+					</properties>
+					<reference-class>TDY_Write.Kps6YpoeDeiktes</reference-class>
+					<private-owned>true</private-owned>
+					<target-foreign-key>
+						<field-reference>
+							<source-field table="KPS6_YPOE_DEIKTES" name="TDY_ID" xsi:type="column"/>
+							<target-field table="KPS6_YPOERGA" name="TDY_ID" xsi:type="column"/>
+						</field-reference>
+					</target-foreign-key>
+					<batch-reading>true</batch-reading>
+					<container xsi:type="list-container-policy">
+						<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+					</container>
+					<indirection xsi:type="value-holder-indirection-policy"/>
+					<selection-query xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoeDeiktes</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+						</container>
+					</selection-query>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>TDY_ID_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOERGA.TDY_ID"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOERGA"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6YpoergaMonadiaiaKosth</class>
+			<alias>KPS6_YPOERGA_MONADIAIA_KOSTH</alias>
+			<primary-key>
+				<field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="ID_YPUNCO" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying/>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idYpunco</attribute-name>
+					<field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="ID_YPUNCO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<read-only>true</read-only>
+					<properties>
+						<property name="fkPlaceholder">
+							<value>true</value>
+						</property>
+					</properties>
+					<field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idUnco</attribute-name>
+					<field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="ID_UNCO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>timhMonadas</attribute-name>
+					<field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="TIMH_MONADAS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posothta</attribute-name>
+					<field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="POSOTHTA" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posothtaSynolikh</attribute-name>
+					<field table="KPS6_YPOERGA_MONADIAIA_KOSTH" name="POSOTHTA_SYNOLIKH" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>ID_YPUNCO_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOERGA_MONADIAIA_KOSTH.ID_YPUNCO"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOERGA_MONADIAIA_KOSTH"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6YpoeAnadoxoi</class>
+			<alias>KPS6_YPOE_ANADOXOI</alias>
+			<primary-key>
+				<field table="KPS6_YPOE_ANADOXOI" name="YAN_ID" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying>
+				<queries>
+					<query name="TDY_WriteSelect" xsi:type="read-all-query">
+						<reference-class>TDY_Write.Kps6YpoeAnadoxoi</reference-class>
+						<container xsi:type="list-container-policy">
+							<collection-type>java.util.Vector</collection-type>
+						</container>
+					</query>
+				</queries>
+			</querying>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<read-only>true</read-only>
+					<properties>
+						<property name="fkPlaceholder">
+							<value>true</value>
+						</property>
+					</properties>
+					<field table="KPS6_YPOE_ANADOXOI" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>yanId</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="YAN_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>afm</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="AFM" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>adamSymvashs</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="ADAM_SYMVASHS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>rolosAnadoxou</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="ROLOS_ANADOXOU" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>energosAnadoxos</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="ENERGOS_ANADOXOS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>aitiologiaAnenergoy</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="AITIOLOGIA_ANENERGOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoDd</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="POSO_DD" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>parathrhseisKataxorTdyAna</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="PARATHRHSEIS_KATAXOR_TDY_ANA" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>KPS6_YPOE_ANADOXOI_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOE_ANADOXOI.YAN_ID"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOE_ANADOXOI"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6YpoeDeiktes</class>
+			<alias>KPS6_YPOE_DEIKTES</alias>
+			<primary-key>
+				<field table="KPS6_YPOE_DEIKTES" name="YDE_ID" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying/>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<read-only>true</read-only>
+					<properties>
+						<property name="fkPlaceholder">
+							<value>true</value>
+						</property>
+					</properties>
+					<field table="KPS6_YPOE_DEIKTES" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>ydeId</attribute-name>
+					<field table="KPS6_YPOE_DEIKTES" name="YDE_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kodikosDeikths</attribute-name>
+					<field table="KPS6_YPOE_DEIKTES" name="KODIKOS_DEIKTHS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>timhStoxos</attribute-name>
+					<field table="KPS6_YPOE_DEIKTES" name="TIMH_STOXOS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>YDE_ID_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOE_DEIKTES.YDE_ID"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOE_DEIKTES"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6YpoeDiakrita</class>
+			<alias>KPS6_YPOE_DIAKRITA</alias>
+			<primary-key>
+				<field table="KPS6_YPOE_DIAKRITA" name="YDI_ID" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying/>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<read-only>true</read-only>
+					<properties>
+						<property name="fkPlaceholder">
+							<value>true</value>
+						</property>
+					</properties>
+					<field table="KPS6_YPOE_DIAKRITA" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>ydiId</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="YDI_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>aaDiakritoy</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="AA_DIAKRITOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>onomaDiakritoy</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="ONOMA_DIAKRITOY" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>proypologismos</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="PROYPOLOGISMOS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateMilestone</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="DATE_MILESTONE" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>energeiesFape</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="ENERGEIES_FAPE" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>paradoteaFape</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="PARADOTEA_FAPE" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>proypologismosEpil</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="PROYPOLOGISMOS_EPIL" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateStart</attribute-name>
+					<field table="KPS6_YPOE_DIAKRITA" name="DATE_START" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>YDI_ID_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOE_DIAKRITA.YDI_ID"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOE_DIAKRITA"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6YpoeEpileksimes</class>
+			<alias>KPS6_YPOE_EPILEKSIMES</alias>
+			<primary-key>
+				<field table="KPS6_YPOE_EPILEKSIMES" name="YEP_ID" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying/>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<read-only>true</read-only>
+					<properties>
+						<property name="fkPlaceholder">
+							<value>true</value>
+						</property>
+					</properties>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>yepId</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="YEP_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoDdNofpa</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="POSO_DD_NOFPA" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoFpaDd</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="POSO_FPA_DD" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoDdEpil</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="POSO_DD_EPIL" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idKathgoriaDapanhs</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="ID_KATHGORIA_DAPANHS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoFpaEpileksimhDd</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="POSO_FPA_EPILEKSIMH_DD" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>perigrafhKatDapanhs</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="PERIGRAFH_KAT_DAPANHS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>pososto</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="POSOSTO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kostosMonadas</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="KOSTOS_MONADAS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>monadaMetrhshs</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="MONADA_METRHSHS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>perigrafhMonadas</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="PERIGRAFH_MONADAS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>arithmosMonadon</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="ARITHMOS_MONADON" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>kathgMhEpileksimothtas</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="KATHG_MH_EPILEKSIMOTHTAS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>aitiologhshMhEpileksimothtas</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="AITIOLOGHSH_MH_EPILEKSIMOTHTAS" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idUnco</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="ID_UNCO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idYpunco</attribute-name>
+					<field table="KPS6_YPOE_EPILEKSIMES" name="ID_YPUNCO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>YEP_ID_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOE_EPILEKSIMES.YEP_ID"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOE_EPILEKSIMES"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6YpoeKatanomh</class>
+			<alias>KPS6_YPOE_KATANOMH</alias>
+			<primary-key>
+				<field table="KPS6_YPOE_KATANOMH" name="YKA_ID" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying/>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<read-only>true</read-only>
+					<properties>
+						<property name="fkPlaceholder">
+							<value>true</value>
+						</property>
+					</properties>
+					<field table="KPS6_YPOE_KATANOMH" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>ykaId</attribute-name>
+					<field table="KPS6_YPOE_KATANOMH" name="YKA_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>etos</attribute-name>
+					<field table="KPS6_YPOE_KATANOMH" name="ETOS" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoDdA</attribute-name>
+					<field table="KPS6_YPOE_KATANOMH" name="POSO_DD_A" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoDdEpilA</attribute-name>
+					<field table="KPS6_YPOE_KATANOMH" name="POSO_DD_EPIL_A" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoDdB</attribute-name>
+					<field table="KPS6_YPOE_KATANOMH" name="POSO_DD_B" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>posoDdEpilB</attribute-name>
+					<field table="KPS6_YPOE_KATANOMH" name="POSO_DD_EPIL_B" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>YKA_ID_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOE_KATANOMH.YKA_ID"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOE_KATANOMH"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+		<class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+			<class>TDY_Write.Kps6YpoeXorothethseis</class>
+			<alias>KPS6_YPOE_XOROTHETHSEIS</alias>
+			<primary-key>
+				<field table="KPS6_YPOE_XOROTHETHSEIS" name="YXO_ID" xsi:type="column"/>
+			</primary-key>
+			<events/>
+			<querying/>
+			<attribute-mappings>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>tdyId</attribute-name>
+					<read-only>true</read-only>
+					<properties>
+						<property name="fkPlaceholder">
+							<value>true</value>
+						</property>
+					</properties>
+					<field table="KPS6_YPOE_XOROTHETHSEIS" name="TDY_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>yxoId</attribute-name>
+					<field table="KPS6_YPOE_XOROTHETHSEIS" name="YXO_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>aaXorothethshs</attribute-name>
+					<field table="KPS6_YPOE_XOROTHETHSEIS" name="AA_XOROTHETHSHS" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>poso</attribute-name>
+					<field table="KPS6_YPOE_XOROTHETHSEIS" name="POSO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>pososto</attribute-name>
+					<field table="KPS6_YPOE_XOROTHETHSEIS" name="POSOSTO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idTk</attribute-name>
+					<field table="KPS6_YPOE_XOROTHETHSEIS" name="ID_TK" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>idGeo</attribute-name>
+					<field table="KPS6_YPOE_XOROTHETHSEIS" name="ID_GEO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+			</attribute-mappings>
+			<descriptor-type>independent</descriptor-type>
+			<sequencing>
+				<sequence-name>YXO_ID_SEQ</sequence-name>
+				<sequence-field name="KPS6_YPOE_XOROTHETHSEIS.YXO_ID"/>
+			</sequencing>
+			<caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+				<always-refresh>true</always-refresh>
+			</caching>
+			<remote-caching>
+				<cache-type>weak-reference</cache-type>
+				<cache-size>-1</cache-size>
+			</remote-caching>
+			<instantiation/>
+			<copying xsi:type="instantiation-copy-policy"/>
+			<tables>
+				<table name="KPS6_YPOE_XOROTHETHSEIS"/>
+			</tables>
+			<structure>structureName</structure>
+		</class-mapping-descriptor>
+	</class-mapping-descriptors>
+	<login xsi:type="database-login">
+		<platform-class>org.eclipse.persistence.platform.database.oracle.Oracle9Platform</platform-class>
+		<connection-url/>
+	</login>
+</object-persistence>

@@ -1,0 +1,29 @@
+<wsdl:definitions
+     name="TDYWriteService"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/TDYWriteService"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/TDY/TDYWriteService"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDYWriteService"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="TDYWriteService_plt" >
+    <plt:role name="TDYWriteService_role" >
+      <plt:portType name="tns:TDYWriteService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDYWriteService"
+                schemaLocation="../../ADAPTERS/TDYWriteService/TDYWriteService_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="Kps6YpoergaCollection_msg">
+        <wsdl:part name="Kps6YpoergaCollection" element="top:Kps6YpoergaCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="TDYWriteService_ptt">
+        <wsdl:operation name="merge">
+            <wsdl:input message="tns:Kps6YpoergaCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>
