@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<adapter-config name="write_Anadoxoi" adapter="db" wsdlLocation="../../WSDL/ANADOXOIWriteService/ANADOXOIWriteService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+   <connection-factory UIConnectionName="SBYTEN" location="eis/mis_master6DS"/>
+   <endpoint-interaction portType="write_Anadoxoi_ptt" operation="insert">
+      <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+         <property name="DescriptorName" value="write_Anadoxoi.KpsAnadoxoi"/>
+         <property name="DmlType" value="insert"/>
+         <property name="MappingsMetaDataURL" value="write_Anadoxoi-or-mappings.xml"/>
+         <property name="OutputCompletedXml" value="true"/>
+         <property name="GetActiveUnitOfWork" value="false"/>
+         <property name="DetectOmissions" value="false"/>
+         <property name="OptimizeMerge" value="true"/>
+      </interaction-spec>
+   </endpoint-interaction>
+   <endpoint-interaction portType="write_Anadoxoi_ptt" operation="merge">
+      <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+         <property name="DescriptorName" value="write_Anadoxoi.KpsAnadoxoi"/>
+         <property name="DmlType" value="merge"/>
+         <property name="OutputCompletedXml" value="true"/>
+         <property name="MappingsMetaDataURL" value="write_Anadoxoi-or-mappings.xml"/>
+         <property name="OptimizeMerge" value="true"/>
+         <property name="DetectOmissions" value="false"/>
+         <property name="GetActiveUnitOfWork" value="false"/>
+      </interaction-spec>
+   </endpoint-interaction>
+</adapter-config>

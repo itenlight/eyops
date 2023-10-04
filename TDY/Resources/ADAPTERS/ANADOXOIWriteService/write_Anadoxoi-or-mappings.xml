@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.4.v20160829-44060b6">
+   <name>write_Anadoxoi-OR</name>
+   <class-mapping-descriptors>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>write_Anadoxoi.KpsAnadoxoi</class>
+         <alias>KPS_ANADOXOI</alias>
+         <primary-key>
+            <field table="KPS_ANADOXOI" name="AFM" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying>
+            <queries>
+               <query name="write_AnadoxoiSelect" xsi:type="read-all-query">
+                  <reference-class>write_Anadoxoi.KpsAnadoxoi</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>java.util.Vector</collection-type>
+                  </container>
+               </query>
+            </queries>
+         </querying>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>afm</attribute-name>
+               <field table="KPS_ANADOXOI" name="AFM" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>doy</attribute-name>
+               <field table="KPS_ANADOXOI" name="DOY" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>eponymia</attribute-name>
+               <field table="KPS_ANADOXOI" name="EPONYMIA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>xrhsthsEisag</attribute-name>
+               <field table="KPS_ANADOXOI" name="XRHSTHS_EISAG" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>hmeromEisag</attribute-name>
+               <field table="KPS_ANADOXOI" name="HMEROM_EISAG" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>xrhsthsEnhm</attribute-name>
+               <field table="KPS_ANADOXOI" name="XRHSTHS_ENHM" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>hmeromEnhm</attribute-name>
+               <field table="KPS_ANADOXOI" name="HMEROM_ENHM" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>elegxos</attribute-name>
+               <field table="KPS_ANADOXOI" name="ELEGXOS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>afmTemp</attribute-name>
+               <field table="KPS_ANADOXOI" name="AFM_TEMP" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dieythynsh</attribute-name>
+               <field table="KPS_ANADOXOI" name="DIEYTHYNSH" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>fax</attribute-name>
+               <field table="KPS_ANADOXOI" name="FAX" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>polh</attribute-name>
+               <field table="KPS_ANADOXOI" name="POLH" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>tk</attribute-name>
+               <field table="KPS_ANADOXOI" name="TK" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>email</attribute-name>
+               <field table="KPS_ANADOXOI" name="EMAIL" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>diakritosTitlos</attribute-name>
+               <field table="KPS_ANADOXOI" name="DIAKRITOS_TITLOS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>enisxEpix</attribute-name>
+               <field table="KPS_ANADOXOI" name="ENISX_EPIX" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>anadDhmsymb</attribute-name>
+               <field table="KPS_ANADOXOI" name="ANAD_DHMSYMB" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>egkyro</attribute-name>
+               <field table="KPS_ANADOXOI" name="EGKYRO" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>prosopo</attribute-name>
+               <field table="KPS_ANADOXOI" name="PROSOPO" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>xenoAfm</attribute-name>
+               <field table="KPS_ANADOXOI" name="XENO_AFM" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>enlYpologosFlg</attribute-name>
+               <field table="KPS_ANADOXOI" name="ENL_YPOLOGOS_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>enlDikaioyxFlg</attribute-name>
+               <field table="KPS_ANADOXOI" name="ENL_DIKAIOYX_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>thl</attribute-name>
+               <field table="KPS_ANADOXOI" name="THL" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosDoy</attribute-name>
+               <field table="KPS_ANADOXOI" name="KODIKOS_DOY" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>megethosEpixeirhshs</attribute-name>
+               <field table="KPS_ANADOXOI" name="MEGETHOS_EPIXEIRHSHS" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>afmt</attribute-name>
+               <field table="KPS_ANADOXOI" name="AFMT" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>flagFylo</attribute-name>
+               <field table="KPS_ANADOXOI" name="FLAG_FYLO" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idGeo</attribute-name>
+               <field table="KPS_ANADOXOI" name="ID_GEO" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>axtMainDesc</attribute-name>
+               <field table="KPS_ANADOXOI" name="AXT_MAIN_DESC" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>enarxh</attribute-name>
+               <field table="KPS_ANADOXOI" name="ENARXH" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>diakoph</attribute-name>
+               <field table="KPS_ANADOXOI" name="DIAKOPH" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="KPS_ANADOXOI"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+   </class-mapping-descriptors>
+   <login xsi:type="database-login">
+      <platform-class>org.eclipse.persistence.platform.database.oracle.Oracle9Platform</platform-class>
+      <connection-url/>
+   </login>
+</object-persistence>
