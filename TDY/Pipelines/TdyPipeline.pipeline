@@ -169,7 +169,7 @@
                                         <con1:xqueryText>'[]'</con1:xqueryText>
                                     </con2:expr>
                                 </con2:replace>
-                                <con1:reply>
+                                <con1:reply isError="false">
                                     <con1:id>_ActionId-7f000101.66cb5836.0.18ab33a24fb.N7f54</con1:id>
                                 </con1:reply>
                             </con2:actions>
@@ -855,8 +855,599 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N53f39d3b.0.18afc867123.N7fcf">
+            <con:stage id="_StageId-7f000101.2c5fee98.0.18b0092c041.N7d16" name="Transform and validate">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2c5fee98.0.18b0092c041.N7d0b</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_insert_update"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYRequest</con2:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con2:nxsdTranslation>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.N53f39d3b.0.18afc867123.N7fcc" name="TDY Assets Stage">
+                <con:context>
+                    <con1:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:wsCallout>
+                        <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7f56</con1:id>
+                        <con2:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:operation>CheckUpdateStatus</con2:operation>
+                        <con2:request>
+                            <con2:body wrapped="false">RequestPayload</con2:body>
+                        </con2:request>
+                        <con2:response>
+                            <con2:body wrapped="false">ResponsePayload</con2:body>
+                        </con2:response>
+                        <con2:requestTransform>
+                            <con2:assign varName="RequestPayload">
+                                <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7e48</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<com:UpdateStatusIn xmlns:com="http://espa.gr/v6/common">
+    <com:username>{lib:get-user($inbound)}</com:username>
+    <com:lang>{lib:get-lang($inbound)}</com:lang>
+    <com:objectId>{fn:data($body//tdy:KPS6_YPOERGA/tdy:TDY_ID)}</com:objectId>
+    <com:categoryId>103</com:categoryId>
+    <com:actionyId>{fn:data($body//tdy:actionUi)}</com:actionyId>
+</com:UpdateStatusIn>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:assign>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7f53</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con2:requestTransform>
+                        <con2:responseTransform>
+                            <con2:ifThenElse>
+                                <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7e07</con1:id>
+                                <con2:case id="_BranchId-7f000101.4301e084.0.18afe8bbb58.N7e06">
+                                    <con2:condition>
+                                        <con1:xqueryText>$ResponsePayload//*:errorCode=0</con1:xqueryText>
+                                    </con2:condition>
+                                    <con2:actions/>
+                                </con2:case>
+                                <con2:default>
+                                    <con2:replace varName="body" contents-only="true">
+                                        <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7e14</con1:id>
+                                        <con2:expr>
+                                            <con1:xqueryText><![CDATA[<tdy:TDYResponse>
+ <tdy:ERROR_CODE>{fn:data($ResponsePayload//*:errorCode)}</tdy:ERROR_CODE>
+ <tdy:ERROR_MESSAGE>{fn:data($ResponsePayload//*:errorMessage)}</tdy:ERROR_MESSAGE>
+</tdy:TDYResponse>]]></con1:xqueryText>
+                                        </con2:expr>
+                                    </con2:replace>
+                                    <con2:nxsdTranslation>
+                                        <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7e11</con1:id>
+                                        <con2:type>XML-To-Native</con2:type>
+                                        <con2:sourceExpr>
+                                            <con1:xqueryText>$body/*:TDYResponse</con1:xqueryText>
+                                        </con2:sourceExpr>
+                                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_generic_response"/>
+                                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYResponse</con2:schemaElement>
+                                        <con2:replace-body-content/>
+                                    </con2:nxsdTranslation>
+                                    <con1:reply isError="true">
+                                        <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7e0e</con1:id>
+                                    </con1:reply>
+                                </con2:default>
+                            </con2:ifThenElse>
+                        </con2:responseTransform>
+                    </con2:wsCallout>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.N53f39d3b.0.18afc867123.N7f60</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.N53f39d3b.0.18afc867123.N7f5f</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.N53f39d3b.0.18afc867123.N7f5e</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.2c5fee98.0.18b0092c041.N7df2</con1:id>
+                        <con4:service ref="TDY/BusinessServices/TDYWriteService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>merge</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7ffe</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>lib:map-update-request-to-db($body/tdy:TDYRequest)</con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.2c5fee98.0.18b0092c041.N7df0</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.N53f39d3b.0.18afc867123.N7d80</con1:id>
+                        <con4:service ref="TDY/BusinessServices/ANADOXOIWriteService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>merge</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7dfb</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<anad:KpsAnadoxoiCollection xmlns:anad="http://xmlns.oracle.com/pcbpel/adapter/db/top/ANADOXOIWriteService">
+ {for $Anadoxos in $body//*:KPS6_ANADOXOI return
+    <anad:KpsAnadoxoi>
+      <anad:afm>{fn:data($Anadoxos/*:AFM)}</anad:afm>
+      <anad:doy>{if ($Anadoxos/*:ID_GEO=1 and fn:not($Anadoxos/*:DOY)) then 'Εξωτερικού' else fn:data($Anadoxos/*:DOY)}</anad:doy>
+      <anad:eponymia>{fn:data($Anadoxos/*:EPONYMIA)}</anad:eponymia>
+      <anad:xrhsthsEisag>{fn:data($Anadoxos/*:XRHSTHS_EISAG)}</anad:xrhsthsEisag>
+      <anad:hmeromEisag>{fn:data($Anadoxos/*:HMEROM_EISAG)}</anad:hmeromEisag>
+      <anad:xrhsthsEnhm>{fn:data($Anadoxos//*:Root-Element/*:USERNAME)}</anad:xrhsthsEnhm>
+      <anad:hmeromEnhm>{fn:current-dateTime()}</anad:hmeromEnhm>
+      <anad:elegxos>{fn:data($Anadoxos/*:ELEGXOS)}</anad:elegxos>
+      <anad:afmTemp>{fn:data($Anadoxos/*:AFM_TEMP)}</anad:afmTemp>
+      <anad:dieythynsh>{fn:data($Anadoxos/*:DIEYTHYNSH)}</anad:dieythynsh>
+      <anad:fax>{fn:data($Anadoxos/*:FAX)}</anad:fax>
+      <anad:polh>{fn:data($Anadoxos/*:POLH)}</anad:polh>
+      <anad:tk>{fn:data($Anadoxos/*:TK)}</anad:tk>
+      <anad:email>{fn:data($Anadoxos/*:EMAIL)}</anad:email>
+      <anad:diakritosTitlos>{fn:data($Anadoxos/*:DIAKRITOS_TITLOS)}</anad:diakritosTitlos>
+      <anad:enisxEpix>{fn:data($Anadoxos/*:ENISX_EPIX)}</anad:enisxEpix>
+      <anad:anadDhmsymb>{fn:data($Anadoxos/*:ANAD_DHM_SYMB)}</anad:anadDhmsymb>
+      <anad:egkyro>{fn:data($Anadoxos/*:EGKYRO)}</anad:egkyro>
+      <anad:prosopo>{fn:data($Anadoxos/*:PROSOPO)}</anad:prosopo>
+      <anad:xenoAfm>{fn:data($Anadoxos/*:XENO_AFM)}</anad:xenoAfm>
+      <anad:enlYpologosFlg>{fn:data($Anadoxos/*:ENLYPOLOGOS_FLG)}</anad:enlYpologosFlg>
+      <anad:enlDikaioyxFlg>{fn:data($Anadoxos/*:ENL_DIKAIOYX_FLG)}</anad:enlDikaioyxFlg>
+      <anad:thl>{fn:data($Anadoxos/*:THL)}</anad:thl>
+      <anad:kodikosDoy>{if ($Anadoxos/*:ID_GEO=1 and fn:not($Anadoxos/*:DOY)) then '0000' else fn:data($Anadoxos/*:KODIKOS_DOY)}</anad:kodikosDoy>
+      <anad:afmt>{fn:data($Anadoxos/*:AFM_T)}</anad:afmt>
+      <anad:flagFylo>{fn:data($Anadoxos/*:FLAG_FYLO)}</anad:flagFylo>
+      <anad:idGeo>{fn:data($Anadoxos/*:ID_GEO)}</anad:idGeo>
+      <anad:axtMainDesc>{fn:data($Anadoxos/*:AXT_MAIN_DESC)}</anad:axtMainDesc>
+      <anad:enarxh>{fn:data($Anadoxos/*:ENARXH)}</anad:enarxh>
+      <anad:diakoph>{fn:data($Anadoxos/*:DIAKOPH)}</anad:diakoph>
+    </anad:KpsAnadoxoi>
+ }
+</anad:KpsAnadoxoiCollection>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.N1b094f9c.0.18aff9fe446.N7ffe</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.N53f39d3b.0.18afc867123.N7d7d</con1:id>
+                        <con4:service ref="TDY/BusinessServices/EROTIMATAService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>merge</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.N1b094f9c.0.18aff9fe446.N7ffb</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<erot:Kps6DeltioErothmataCollection xmlns:erot="http://xmlns.oracle.com/pcbpel/adapter/db/top/EROTIMATAService">
+{for $Erotima in $body//tdy:Kps6DeltioErothmata return
+  <erot:Kps6DeltioErothmata>
+    <erot:idDeler>{fn:data($Erotima/tdy:idDeler)}</erot:idDeler>
+    <erot:objectCategoryId>{fn:data($Erotima/tdy:objectCategoryId)}</erot:objectCategoryId>
+    <erot:parentId>{fn:data($Erotima/tdy:parentId)}</erot:parentId>
+    <erot:checklistType>{fn:data($Erotima/tdy:checklistType)}</erot:checklistType>
+    <erot:idErothma>{fn:data($Erotima/tdy:idErothma)}</erot:idErothma>
+    <erot:apanthshValue>{fn:data($Erotima/tdy:apanthshValue)}</erot:apanthshValue>
+    <erot:apanthshDate>{fn:data($Erotima/tdy:apanthshDate)}</erot:apanthshDate>
+    <erot:statusId>{fn:data($Erotima/tdy:statusId)}</erot:statusId>
+    <erot:isxysFlg>{fn:data($Erotima/tdy:isxysFlg)}</erot:isxysFlg>
+    <erot:isxysDate>{fn:data($Erotima/tdy:isxysDate)}</erot:isxysDate>
+    <erot:objectId>{fn:data($Erotima/tdy:objectId)}</erot:objectId>
+    <erot:sxoliaYops>{fn:data($Erotima/tdy:sxoliaYops)}</erot:sxoliaYops>
+    <erot:parathrhseis>{fn:data($Erotima/tdy:parathrhseis)}</erot:parathrhseis>
+    <erot:alloKeimeno>{fn:data($Erotima/tdy:alloKeimeno)}</erot:alloKeimeno>
+  </erot:Kps6DeltioErothmata>
+}    
+</erot:Kps6DeltioErothmataCollection>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.N1b094f9c.0.18aff9fe446.N7ff8</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N53f39d3b.0.18afc867123.N7fce">
+            <con:stage id="_StageId-7f000101.2c5fee98.0.18b0092c041.N7d50" name="Log Action Stage">
+                <con:context>
+                    <con1:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:wsCallout>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7dc8</con1:id>
+                        <con2:service ref="TDY/BusinessServices/STATUSService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:operation>STATUSService</con2:operation>
+                        <con2:request>
+                            <con2:body wrapped="false">RequestPayload</con2:body>
+                        </con2:request>
+                        <con2:response>
+                            <con2:body wrapped="false">ResponsePayload</con2:body>
+                        </con2:response>
+                        <con2:requestTransform>
+                            <con2:replace varName="RequestPayload" contents-only="true">
+                                <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N7ade</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<stat:InputParameters xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService">
+    <stat:USERNAME>{lib:get-user($inbound)}</stat:USERNAME>
+    <stat:PLANG>
+    {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
+            'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 103) as STOXOS3 from dual',
+            xs:unsignedInt($TDYID))//*:STOXOS3)=1) 
+    then 'EN'    
+    else fn:upper-case(lib:get-lang($inbound))}</stat:PLANG>
+    <stat:COMBINECHECKS>{fn:data($body//tdy:combineChecks)}</stat:COMBINECHECKS>
+    <stat:OBJECTID>{fn:data($body//tdy:KPS6_YPOERGA/tdy:TDY_ID)}</stat:OBJECTID>
+    <stat:CATEGORYID>103</stat:CATEGORYID>    
+    <stat:ACTIONUI>{fn:data($body//tdy:actionUi)}</stat:ACTIONUI>
+    <stat:COMMENTSSTATUS>{fn:data($body//tdy:comments)}</stat:COMMENTSSTATUS>    
+    <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
+    <stat:OBJECTPARENTID>{fn:data($body//tdy:KPS6_YPOERGA/tdy:KODIKOS_YPOERGOY)}</stat:OBJECTPARENTID>
+</stat:InputParameters>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                        </con2:requestTransform>
+                        <con2:responseTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7d90</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<tdy:TDYResponse>
+ <tdy:ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</tdy:ERROR_CODE>
+ <tdy:ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</tdy:ERROR_MESSAGE>
+</tdy:TDYResponse>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                        </con2:responseTransform>
+                    </con2:wsCallout>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.1aa60c4e.0.18b060d445b.N7d07" name="Prepare Response Stage">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N7d06</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:TDYResponse</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_generic_response"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYResponse</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N7d05</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.4301e084.0.18afe8bbb58.N7f90">
+            <con:stage id="_StageId-7f000101.4301e084.0.18afe8bbb58.N7f8f" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7f8e</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>tdy:GetMis($inbound)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.4301e084.0.18afe8bbb58.N7f8d">
+            <con:stage id="_StageId-7f000101.4301e084.0.18afe8bbb58.N7f8c" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7f8b</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:ListaMis</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_listamis"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:ListaMis</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7f8a</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.6c411a46.0.18b03e60963.N7b64">
+            <con:stage id="_StageId-7f000101.6c411a46.0.18b03e60963.N7b63" name="Transform and validate">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b62</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_insert_update"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYRequest</con2:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con2:nxsdTranslation>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.6c411a46.0.18b03e60963.N7b61" name="TDY Assets Stage">
+                <con:context>
+                    <con1:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b58</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b57</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b56</con1:id>
+                                <con2:qualityOfService>best-effort</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b55</con1:id>
+                        <con4:service ref="TDY/BusinessServices/TDYWriteService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>merge</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b54</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>lib:map-insert-request-to-db($body/tdy:TDYRequest)</con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b53</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                    <con2:assign varName="TDYID">
+                        <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N7ddc</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('TDY-ID'),
+               'Select Max(TDY_ID) TDY_ID From Kps6_Ypoerga')//*:TDY_ID)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:assign>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b52</con1:id>
+                        <con4:service ref="TDY/BusinessServices/ANADOXOIWriteService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>merge</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b51</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<anad:KpsAnadoxoiCollection xmlns:anad="http://xmlns.oracle.com/pcbpel/adapter/db/top/ANADOXOIWriteService">
+ {for $Anadoxos in $body//*:KPS6_ANADOXOI return
+    <anad:KpsAnadoxoi>
+      <anad:afm>{fn:data($Anadoxos/*:AFM)}</anad:afm>
+      <anad:doy>{if ($Anadoxos/*:ID_GEO=1 and fn:not($Anadoxos/*:DOY)) then 'Εξωτερικού' else fn:data($Anadoxos/*:DOY)}</anad:doy>
+      <anad:eponymia>{fn:data($Anadoxos/*:EPONYMIA)}</anad:eponymia>
+      <anad:xrhsthsEisag>{fn:data($Anadoxos/*:XRHSTHS_EISAG)}</anad:xrhsthsEisag>
+      <anad:hmeromEisag>{fn:data($Anadoxos/*:HMEROM_EISAG)}</anad:hmeromEisag>
+      <anad:xrhsthsEnhm>{fn:data($Anadoxos//*:Root-Element/*:USERNAME)}</anad:xrhsthsEnhm>
+      <anad:hmeromEnhm>{fn:current-dateTime()}</anad:hmeromEnhm>
+      <anad:elegxos>{fn:data($Anadoxos/*:ELEGXOS)}</anad:elegxos>
+      <anad:afmTemp>{fn:data($Anadoxos/*:AFM_TEMP)}</anad:afmTemp>
+      <anad:dieythynsh>{fn:data($Anadoxos/*:DIEYTHYNSH)}</anad:dieythynsh>
+      <anad:fax>{fn:data($Anadoxos/*:FAX)}</anad:fax>
+      <anad:polh>{fn:data($Anadoxos/*:POLH)}</anad:polh>
+      <anad:tk>{fn:data($Anadoxos/*:TK)}</anad:tk>
+      <anad:email>{fn:data($Anadoxos/*:EMAIL)}</anad:email>
+      <anad:diakritosTitlos>{fn:data($Anadoxos/*:DIAKRITOS_TITLOS)}</anad:diakritosTitlos>
+      <anad:enisxEpix>{fn:data($Anadoxos/*:ENISX_EPIX)}</anad:enisxEpix>
+      <anad:anadDhmsymb>{fn:data($Anadoxos/*:ANAD_DHM_SYMB)}</anad:anadDhmsymb>
+      <anad:egkyro>{fn:data($Anadoxos/*:EGKYRO)}</anad:egkyro>
+      <anad:prosopo>{fn:data($Anadoxos/*:PROSOPO)}</anad:prosopo>
+      <anad:xenoAfm>{fn:data($Anadoxos/*:XENO_AFM)}</anad:xenoAfm>
+      <anad:enlYpologosFlg>{fn:data($Anadoxos/*:ENLYPOLOGOS_FLG)}</anad:enlYpologosFlg>
+      <anad:enlDikaioyxFlg>{fn:data($Anadoxos/*:ENL_DIKAIOYX_FLG)}</anad:enlDikaioyxFlg>
+      <anad:thl>{fn:data($Anadoxos/*:THL)}</anad:thl>
+      <anad:kodikosDoy>{if ($Anadoxos/*:ID_GEO=1 and fn:not($Anadoxos/*:DOY)) then '0000' else fn:data($Anadoxos/*:KODIKOS_DOY)}</anad:kodikosDoy>
+      <anad:afmt>{fn:data($Anadoxos/*:AFM_T)}</anad:afmt>
+      <anad:flagFylo>{fn:data($Anadoxos/*:FLAG_FYLO)}</anad:flagFylo>
+      <anad:idGeo>{fn:data($Anadoxos/*:ID_GEO)}</anad:idGeo>
+      <anad:axtMainDesc>{fn:data($Anadoxos/*:AXT_MAIN_DESC)}</anad:axtMainDesc>
+      <anad:enarxh>{fn:data($Anadoxos/*:ENARXH)}</anad:enarxh>
+      <anad:diakoph>{fn:data($Anadoxos/*:DIAKOPH)}</anad:diakoph>
+    </anad:KpsAnadoxoi>
+ }
+</anad:KpsAnadoxoiCollection>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b50</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b4f</con1:id>
+                        <con4:service ref="TDY/BusinessServices/EROTIMATAService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>merge</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b4e</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<erot:Kps6DeltioErothmataCollection xmlns:erot="http://xmlns.oracle.com/pcbpel/adapter/db/top/EROTIMATAService">
+{for $Erotima in $body//tdy:Kps6DeltioErothmata return
+  <erot:Kps6DeltioErothmata>
+    <erot:idDeler>{fn:data($Erotima/tdy:idDeler)}</erot:idDeler>
+    <erot:objectCategoryId>{fn:data($Erotima/tdy:objectCategoryId)}</erot:objectCategoryId>
+    <erot:parentId>{fn:data($Erotima/tdy:parentId)}</erot:parentId>
+    <erot:checklistType>{fn:data($Erotima/tdy:checklistType)}</erot:checklistType>
+    <erot:idErothma>{fn:data($Erotima/tdy:idErothma)}</erot:idErothma>
+    <erot:apanthshValue>{fn:data($Erotima/tdy:apanthshValue)}</erot:apanthshValue>
+    <erot:apanthshDate>{fn:data($Erotima/tdy:apanthshDate)}</erot:apanthshDate>
+    <erot:statusId>{fn:data($Erotima/tdy:statusId)}</erot:statusId>
+    <erot:isxysFlg>{fn:data($Erotima/tdy:isxysFlg)}</erot:isxysFlg>
+    <erot:isxysDate>{fn:data($Erotima/tdy:isxysDate)}</erot:isxysDate>
+    <erot:objectId>{fn:data($Erotima/tdy:objectId)}</erot:objectId>
+    <erot:sxoliaYops>{fn:data($Erotima/tdy:sxoliaYops)}</erot:sxoliaYops>
+    <erot:parathrhseis>{fn:data($Erotima/tdy:parathrhseis)}</erot:parathrhseis>
+    <erot:alloKeimeno>{fn:data($Erotima/tdy:alloKeimeno)}</erot:alloKeimeno>
+  </erot:Kps6DeltioErothmata>
+}    
+</erot:Kps6DeltioErothmataCollection>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b4d</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.6c411a46.0.18b03e60963.N7b4c">
+            <con:stage id="_StageId-7f000101.6c411a46.0.18b03e60963.N7b4b" name="Log Action Stage">
+                <con:context>
+                    <con1:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:wsCallout>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b46</con1:id>
+                        <con2:service ref="TDY/BusinessServices/STATUSService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:operation>STATUSService</con2:operation>
+                        <con2:request>
+                            <con2:body wrapped="false">RequestPayload</con2:body>
+                        </con2:request>
+                        <con2:response>
+                            <con2:body wrapped="false">ResponsePayload</con2:body>
+                        </con2:response>
+                        <con2:requestTransform>
+                            <con2:replace contents-only="false" varName="RequestPayload">
+                                <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N7ae1</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<stat:InputParameters xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService">
+    <stat:USERNAME>{lib:get-user($inbound)}</stat:USERNAME>
+    <stat:PLANG>
+    {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
+            'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 103) as STOXOS3 from dual',
+            xs:unsignedInt($TDYID))//*:STOXOS3)=1) 
+    then 'EN'    
+    else fn:upper-case(lib:get-lang($inbound))}
+    </stat:PLANG>
+    <stat:COMBINECHECKS>{fn:data($body//tdy:combineChecks)}</stat:COMBINECHECKS>
+    <stat:OBJECTID>{xs:unsignedInt($TDYID)}</stat:OBJECTID>
+    <stat:CATEGORYID>103</stat:CATEGORYID>    
+    <stat:ACTIONUI>{fn:data($body//tdy:actionUi)}</stat:ACTIONUI>
+    <stat:COMMENTSSTATUS>{fn:data($body//tdy:comments)}</stat:COMMENTSSTATUS>    
+    <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
+    <stat:OBJECTPARENTID>{fn:data($body//tdy:KPS6_YPOERGA/tdy:KODIKOS_YPOERGOY)}</stat:OBJECTPARENTID>
+</stat:InputParameters>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                        </con2:requestTransform>
+                        <con2:responseTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b44</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<tdy:TDYResponse>
+ <tdy:ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</tdy:ERROR_CODE>
+ <tdy:ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</tdy:ERROR_MESSAGE>
+ <tdy:DATA>
+  <tdy:KPS6_YPOERGA>
+   <tdy:TDY_ID>{$TDYID}</tdy:TDY_ID>
+  </tdy:KPS6_YPOERGA>
+ </tdy:DATA>
+</tdy:TDYResponse>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                        </con2:responseTransform>
+                    </con2:wsCallout>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.1aa60c4e.0.18b060d445b.N7da8" name="Prepare Response Stage">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b43</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/tdy:TDYResponse</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_generic_response"/>
+                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYResponse</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers>
+                        <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b42</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
-            <con:branch-node type="operation" id="_FlowId-7f000101.356a7db8.0.18a9ebcc3c5.N7e1c" name="BranchNode1">
+            <con:branch-node type="operation" id="_FlowId-7f000101.356a7db8.0.18a9ebcc3c5.N7e1c" name="TDY Rest Branches">
                 <con:context/>
                 <con:branch-table>
                     <con:branch name="GetOtherVersionList">
@@ -1036,6 +1627,16 @@
                             <con:pipeline-node name="Pipeline Pair Node18">
                                 <con:request>request-7f000101.414dfeb7.0.18abe42ae57.N797c</con:request>
                                 <con:response>response-7f000101.414dfeb7.0.18abe42ae57.N7979</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetListaMis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get Lista MIS Pipeline">
+                                <con:request>request-7f000101.4301e084.0.18afe8bbb58.N7f90</con:request>
+                                <con:response>response-7f000101.4301e084.0.18afe8bbb58.N7f8d</con:response>
                             </con:pipeline-node>
                         </con:flow>
                     </con:branch>
@@ -1286,7 +1887,7 @@
                         <con:operator>equals</con:operator>
                         <con:value/>
                         <con:flow>
-                            <con:route-node name="RouteNode1">
+                            <con:route-node name="Delete TDY Route">
                                 <con:context>
                                     <con1:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library"/>
                                     <con1:userNsDecl prefix="tdy" namespace="https://espa.gr/v6/tdy"/>
@@ -1331,7 +1932,7 @@
                                             <con2:assign varName="vObjectID">
                                                 <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f49</con1:id>
                                                 <con2:expr>
-                                                    <con1:xqueryText>$body//tdy:TDY_ID</con1:xqueryText>
+                                                    <con1:xqueryText>fn:data($body//*:TDY_ID)</con1:xqueryText>
                                                 </con2:expr>
                                             </con2:assign>
                                             <con2:replace varName="body" contents-only="true">
@@ -1339,14 +1940,14 @@
                                                 <con2:expr>
                                                     <con1:xqueryText><![CDATA[<stat:InputParameters xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService">
     <stat:USERNAME>{lib:get-user($inbound)}</stat:USERNAME>
-    <stat:PLANG>{lib:get-user($inbound)}</stat:PLANG>
-    <stat:COMBINECHECKS>{fn:data($body//tdy:combineChecks)}</stat:COMBINECHECKS>
-    <stat:OBJECTID>{fn:data($body//tdy:TDY_ID)}</stat:OBJECTID>
+    <stat:PLANG>{lib:get-lang($inbound)}</stat:PLANG>
+    <stat:COMBINECHECKS>{fn:data($body//*:combineChecks)}</stat:COMBINECHECKS>
+    <stat:OBJECTID>{fn:data($body//*:TDY_ID)}</stat:OBJECTID>
     <stat:CATEGORYID>103</stat:CATEGORYID>
-    <stat:ACTIONUI>{fn:data($body//tdy:actionCode)}</stat:ACTIONUI>
-    <stat:COMMENTSSTATUS>{fn:data($body//tdy:comments)}</stat:COMMENTSSTATUS>
+    <stat:ACTIONUI>{fn:data($body//*:actionCode)}</stat:ACTIONUI>
+    <stat:COMMENTSSTATUS>{fn:data($body//*:comments)}</stat:COMMENTSSTATUS>
     <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
-    <stat:OBJECTPARENTID>{fn:data($body//tdy:KODIKOS_YPOERGOY)}</stat:OBJECTPARENTID>
+    <stat:OBJECTPARENTID>{fn:data($body//*:KODIKOS_YPOERGOY)}</stat:OBJECTPARENTID>
 </stat:InputParameters>]]></con1:xqueryText>
                                                 </con2:expr>
                                             </con2:replace>
@@ -1360,13 +1961,9 @@
                                                 <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f4c</con1:id>
                                                 <con2:expr>
                                                     <con1:xqueryText><![CDATA[<tdy:TDYResponse>
- <tdy:ERROR_CODE></tdy:ERROR_CODE>
- <tdy:ERROR_MESSAGE></tdy:ERROR_MESSAGE>
- <tdy:DATA>
-  <tdy:KPS6_YPOERGA>
-   <tdy:TDY_ID>{fn:data($vObjectID)}</tdy:TDY_ID>
-  </tdy:KPS6_YPOERGA>
- </tdy:DATA>
+ <tdy:ERROR_CODE>{fn:data($body//*:ERRORCODE)}</tdy:ERROR_CODE>
+ <tdy:ERROR_MESSAGE>{fn:data($body//*:ERRORMESSAGE)}</tdy:ERROR_MESSAGE>
+ <tdy:DATA/>
 </tdy:TDYResponse>]]></con1:xqueryText>
                                                 </con2:expr>
                                             </con2:replace>
@@ -1380,10 +1977,37 @@
                                                 <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYResponse</con2:schemaElement>
                                                 <con2:replace-body-content/>
                                             </con2:nxsdTranslation>
+                                            <con2:transport-headers>
+                                                <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N7c9e</con1:id>
+                                                <con2:header-set>inbound-response</con2:header-set>
+                                                <con2:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText>'application/json'</con1:xqueryText>
+                                                </con2:header>
+                                            </con2:transport-headers>
                                         </con3:responseTransform>
                                     </con3:route>
                                 </con:actions>
                             </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="UpdateTDY">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Update TDY Pipeline">
+                                <con:request>request-7f000101.N53f39d3b.0.18afc867123.N7fcf</con:request>
+                                <con:response>response-7f000101.N53f39d3b.0.18afc867123.N7fce</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="InsertTDY">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Insert TDY Pipeline">
+                                <con:request>request-7f000101.6c411a46.0.18b03e60963.N7b64</con:request>
+                                <con:response>response-7f000101.6c411a46.0.18b03e60963.N7b4c</con:response>
+                            </con:pipeline-node>
                         </con:flow>
                     </con:branch>
                     <con:default-branch>

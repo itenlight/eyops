@@ -9,11 +9,14 @@ declare namespace http="http://www.bea.com/wli/sb/transports/http";
 declare namespace tp="http://www.bea.com/wli/sb/transports";
 declare namespace error="urn:espa:v6:library:error";
 
-(: Δηλώσεις namespaces ΤΔΥ :)
+(: Namespaces ΤΔΥ :)
 declare namespace tdy-db="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read";
 (:: import schema at "ADAPTERS/TDYReadService/TDYReadService_table.xsd" ::)
 declare namespace tdy-response="http://espa.gr/v6/tdy";
 (:: import schema at "XSD/nxsd_getdy_response.xsd" ::)
+declare namespace tdy-db-update="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDYWriteService";
+(:: import schema at "ADAPTERS/TDYWriteService/TDYWriteService_table.xsd" ::)
+
 
 declare function tdy:if-empty( $arg as item()? ,$value as item()* )  as item()* {
   if (string($arg) != '') then 
@@ -679,7 +682,7 @@ declare function tdy:GetListesTimon($mis as xs:unsignedInt , $aa as xs:unsignedI
 declare function tdy:GetTitloYpoergoy($inbound as element()) as element(){
   <TitlosYpoergoy xmlns="http://espa.gr/v6/tdy">
     <title>
-      {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('title'),
+      {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Title'),
               'select titlos_ypoergoy 
               from kps6_tdp_ypoerga a  
                where a.kodikos_mis = ? 
@@ -695,7 +698,7 @@ declare function tdy:GetTitloYpoergoy($inbound as element()) as element(){
 
 declare function tdy:GetProsklisis() as element(){
 <ListaProskliseon xmlns="http://espa.gr/v6/tdy">
-  {let $Listaproskliseon := fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('YPOERGO'),
+  {let $Listaproskliseon := fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Prosklisi'),
                'select distinct kodikos_proskl_forea, id_prosklhshs, kodikos_prosklhshs, titlos, titlos_en from
                 kps6_prosklhseis')
    return
@@ -704,23 +707,65 @@ declare function tdy:GetProsklisis() as element(){
     else 
    for $Prosklisi in $Listaproskliseon return 
     <Prosklisi>
-      <dateTo/>
+      <kodikosProsklhshs>{fn:data($Prosklisi//*:KODIKOS_PROSKLHSHS)}</kodikosProsklhshs>
+      <titlos>{fn:data($Prosklisi//*:TITLOS)}</titlos>
       <ekdosh/>
       <epKodikos/>
-      <flagMicrodata>0</flagMicrodata>
-      <foreasKodikos/>
-      <idProsklhshs>{fn:data($Prosklisi//*:ID_PROSKLHSHS)}</idProsklhshs>
-      <kodikosProsklForea>{fn:data($Prosklisi//*:KODIKOS_PROSKL_FOREA)}</kodikosProsklForea>
-      <kodikosProsklhshs>{fn:data($Prosklisi//*:KODIKOS_PROSKLHSHS)}</kodikosProsklhshs>
-      <metroKodikos/>
-      <perigrafhForeaProsklhshs/>
-      <titlos>{fn:data($Prosklisi//*:TITLOS)}</titlos>
-      <userPermissionsMap/>
       <ypoprKodikos/>
+      <metroKodikos/>
+      <foreasKodikos/>
+      <perigrafhForeaProsklhshs/>
+      <kodikosProsklForea>{fn:data($Prosklisi//*:KODIKOS_PROSKL_FOREA)}</kodikosProsklForea>
+      <idProsklhshs>{fn:data($Prosklisi//*:ID_PROSKLHSHS)}</idProsklhshs>
+      <flagMicrodata>0</flagMicrodata>
+      <dateTo/>
+      <userPermissionsMap/>
     </Prosklisi>
   }
   </ListaProskliseon>
 };
+
+
+
+
+declare function tdy:GetMis($inbound as element()) as element(){
+ <ListaMis xmlns="http://espa.gr/v6/tdy">
+  {let $ListaMis := fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Mis'),
+               'SELECT t.kodikos_mis, t.titlos,t.titlos_ksenos,  
+                (select   (to_char( kps6_core.get_obj_status_date(t.KODIKOS_MIS ,1, 205) , ''dd/mm/rrrr''))  
+                from dual) DATE_EntaksHS,   
+                t.TDP_EKDOSH || ''.'' || t.tdp_ypoekdosh ekdosh_TDP 
+                FROM KPS6_TDP t  
+                WHERE  t.tdp_ekdosh>0 
+                and lpad(t.tdp_ekdosh,2,''0'' )|| ''.'' || lpad(t.tdp_ypoekdosh,2,''0'') =
+                (select max(lpad(ttt.tdp_ekdosh,2,''0'') || ''.'' || lpad(ttt.tdp_ypoekdosh,2,''0'')) 
+                 from kps6_tdp ttt 
+                 where ttt.kodikos_mis=t.kodikos_mis  
+                   and ttt.obj_status_id not in (300,306,309,310)   
+                   and  ttt.tdp_ekdosh>0  
+                   and (select kps6_core.get_obj_status( t.kodikos_mis, 1) from dual) = 205) 
+                   and  t.epixeirimatikotita != 5243 
+                   and NVL (?, t.kodikos_mis) = t.kodikos_mis 
+                order by 1',xs:unsignedInt($inbound/ctx:transport/ctx:request/http:query-parameters/http:parameter[@name="kodikosMis"]/@value))
+   return
+    if (fn:not($ListaMis/node())) then
+      fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
+    else 
+   for $Mis in $ListaMis return 
+    <Mis>
+      <kodikosMis>{fn:data($Mis//*:KODIKOS_MIS)}</kodikosMis>
+      <titlos>{fn:data($Mis//*:TITLOS)}</titlos>
+      <ekdosh/>
+      <ypoEkdosh/>
+      <titlosKsenos>{fn:data($Mis//*:TITLOS_KSENOS)}</titlosKsenos>
+      <ekdosiTdp>{fn:data($Mis//*:EKDOSH_TDP)}</ekdosiTdp>
+      <dateEntaksis>{fn:data($Mis//*:DATE_ENTAKSHS)}</dateEntaksis>
+      <flagAmkaAfm/>
+    </Mis>
+  }
+  </ListaMis>
+};
+
 
 declare function tdy:map-db-to-get-response($db-response as element()) 
 as element()(:: schema-element(tdy-response:TDYGetResponse)::) {
@@ -987,4 +1032,463 @@ as element()(:: schema-element(tdy-response:TDYGetResponse)::) {
     <combineChecks>1</combineChecks>)   
     else ()}
  </TDYGetResponse>
+};
+
+declare function tdy:map-update-request-to-db($request as element()) 
+ as element()(:: schema-element(tdy-db-update:Kps6YpoergaCollection) ::)
+{
+ let $EpilesimesDapanes := for $EpileksimiDapani in $request//tdy:KPS6_YPOE_EPILEKSIMES return
+              <KPS6_YPOE_EPILEKSIMES>
+              {$EpileksimiDapani/*:ID_YPUNCO/preceding-sibling::*}
+              {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
+                   'select flag_aplopoihmeno_kostos as Flag_Kostos  
+                    from KPS6_EPILEKSIMES_DAPANES where ID_KATHGORIA_DAPANHS = ?',
+                    xs:unsignedInt($EpileksimiDapani/*:ID_KATHGORIA_DAPANHS))//*:FLAG_KOSTOS)=(0,1) 
+                    and fn:not($EpileksimiDapani/*:ID_YPUNCO/text()))
+               then fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Id_Ypunco',
+                    'Select ID_YPUNCO_SEQ.NEXTVAL from Dual')//*:NEXTVAL)
+               else ()
+              }
+              {$EpileksimiDapani/*:ID_YPUNCO/following-sibling::*}
+              </KPS6_YPOE_EPILEKSIMES>
+  return              
+  <tns:Kps6YpoergaCollection xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDYWriteService">
+    <Kps6Ypoerga>
+      <tdyId>{fn:data($request//*:KPS6_YPOERGA/*:TDY_ID)}</tdyId>
+      <kodikosMis>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_MIS)}</kodikosMis>
+      <kodikosYpoergoy>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_YPOERGOY)}</kodikosYpoergoy>
+      <aaTdy>{fn:data($request//*:KPS6_YPOERGA/*:AA_TDY)}</aaTdy>
+      <aaYpoekdosh>{fn:data($request//*:KPS6_YPOERGA/*:AA_YPOEKDOSH)}</aaYpoekdosh>
+      <kathgoriaEkdoshs>{fn:data($request//*:KPS6_YPOERGA/*:KATHGORIA_EKDOSHS)}</kathgoriaEkdoshs>
+      <titlosYpoergoy>{fn:data($request//*:KPS6_YPOERGA/*:TITLOS_YPOERGOY)}</titlosYpoergoy>
+      <kodikosProeg>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_PROEG)}</kodikosProeg>
+      <texnikhPerigrafh>{fn:data($request//*:KPS6_YPOERGA/*:TEXNIKH_PERIGRAFH)}</texnikhPerigrafh>
+      <arProtokDa>{fn:data($request//*:KPS6_YPOERGA/*:AR_PROTOK_DA)}</arProtokDa>
+      <dateYpovolis>{fn:data($request//*:KPS6_YPOERGA/*:DATE_YPOVOLIS)}</dateYpovolis>
+      <dateEpileksimothtas>{fn:data($request//*:KPS6_YPOERGA/*:DATE_EPILEKSIMOTHTAS)}</dateEpileksimothtas>
+      <dateAnalhpshs>{fn:data($request//*:KPS6_YPOERGA/*:DATE_ANALHPSHS)}</dateAnalhpshs>
+      <dateLhkshs>{fn:data($request//*:KPS6_YPOERGA/*:DATE_LHKSHS)}</dateLhkshs>
+      <dateTropop>{fn:data($request//*:KPS6_YPOERGA/*:DATE_TROPOP)}</dateTropop>
+      <kodikosEpivlepoysas>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_EPIVLEPOYSAS)}</kodikosEpivlepoysas>
+      <parathrhseisKataxorTdy>{fn:data($request//*:KPS6_YPOERGA/*:PARATHRHSEIS_KATAXOR_TDY)}</parathrhseisKataxorTdy>
+      <parathrhseisKataxorTdyDik>{fn:data($request//*:KPS6_YPOERGA/*:PARATHRHSEIS_KATAXOR_TDY_DIK)}</parathrhseisKataxorTdyDik>
+      <eidosAnatheshs>
+       {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Anathesis',
+             'select count(PT.KODIKOS_DIAD_ANATHESHS) as ANATHESIS 
+              from KPS6_PROEG_YPOERGA py 
+              inner join KPS6_PROEG_TROPOP pt on PT.ID_PROEG = PY.ID_PROEG 
+              where PY.KODIKOS_MIS = ?  
+                and PY.KODIKOS_YPOERGOY = ?  
+                and PT.ID_PROEG_TROPOP = (select max(id_proeg_tropop) 
+                                          from KPS6_PROEG_TROPOP p1 
+                                          where P1.ID_PROEG = PT.ID_PROEG)',
+              xs:unsignedInt($request//*:KPS6_YPOERGA/*:KODIKOS_MIS),
+              xs:unsignedInt($request//*:KPS6_YPOERGA/*:KODIKOS_MIS))//*:ANATHESIS)>1) then
+       fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Diadikasia',
+            'select PT.KODIKOS_DIAD_ANATHESHS 
+             from KPS6_PROEG_YPOERGA py 
+             inner join KPS6_PROEG_TROPOP pt on PT.ID_PROEG = PY.ID_PROEG 
+             where PY.KODIKOS_MIS = ? 
+               and PY.KODIKOS_YPOERGOY = ?
+               and PT.ID_PROEG_TROPOP = (select max(id_proeg_tropop) 
+                                         from KPS6_PROEG_TROPOP p1 
+                                         where P1.ID_PROEG = PT.ID_PROEG)',
+            xs:unsignedInt($request//*:KPS6_YPOERGA/*:KODIKOS_MIS),
+            xs:unsignedInt($request//*:KPS6_YPOERGA/*:KODIKOS_MIS))//*:KODIKOS_DIAD_ANATHESHS)
+                                         
+       else
+        fn:data($request//*:KPS6_YPOERGA/*:EIDOS_ANATHESHS)         
+      }
+      </eidosAnatheshs>
+      <kodikosDikaioyxos>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_DIKAIOYXOS)}</kodikosDikaioyxos>
+      <elegxosAatdp>{fn:data($request//*:KPS6_YPOERGA/*:ELEGXOS_AATDP)}</elegxosAatdp>
+      <onomaYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:ONOMA_YPEYTHINOY)}</onomaYpeythinoy>
+      <theshYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:THESH_YPEYTHINOY)}</theshYpeythinoy>
+      <specialityYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:SPECIALITY_YPEYTHINOY)}</specialityYpeythinoy>
+      <dieythynshYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:DIEYTHYNSH_YPEYTHINOY)}</dieythynshYpeythinoy>
+      <thlYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:THL_YPEYTHINOY)}</thlYpeythinoy>
+      <faxYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:FAX_YPEYTHINOY)}</faxYpeythinoy>
+      <emailYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:EMAIL_YPEYTHINOY)}</emailYpeythinoy>
+      <idTdySymplhromatikhs>{fn:data($request//*:KPS6_YPOERGA/*:ID_TDY_SYMPLHROMATIKHS)}</idTdySymplhromatikhs>
+      <typosTdy>{fn:data($request//*:KPS6_YPOERGA/*:TYPOS_TDY)}</typosTdy>
+      <aitiologiaYpoekdoshs>{fn:data($request//*:KPS6_YPOERGA/*:AITIOLOGIA_YPOEKDOSHS)}</aitiologiaYpoekdoshs>
+      <flagTropTimetable>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_TIMETABLE)}</flagTropTimetable>
+      <flagTropOik>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_OIK)}</flagTropOik>
+      <flagTropFys>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_FYS)}</flagTropFys>
+      <flagTropAllo>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_ALLO)}</flagTropAllo>
+      <kodikosOikonomikhs>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_OIKONOMIKHS)}</kodikosOikonomikhs>
+      <perigrafhOikonomikhs>{fn:data($request//*:KPS6_YPOERGA/*:PERIGRAFH_OIKONOMIKHS)}</perigrafhOikonomikhs>
+      <onomaYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:ONOMA_YPEYTHINOY_OIK)}</onomaYpeythinoyOik>
+      <theshYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:THESH_YPEYTHINOY_OIK)}</theshYpeythinoyOik>
+      <dieythynshYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:DIEYTHYNSH_YPEYTHINOY_OIK)}</dieythynshYpeythinoyOik>
+      <thlYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:THL_YPEYTHINOY_OIK)}</thlYpeythinoyOik>
+      <emailYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:EMAIL_YPEYTHINOY_OIK)}</emailYpeythinoyOik>
+      <posoMhEnisxyomenh>{fn:data($request//*:KPS6_YPOERGA/*:POSO_MH_ENISXYOMENH)}</posoMhEnisxyomenh>
+      <posoIdiot>{fn:data($request//*:KPS6_YPOERGA/*:POSO_IDIOT)}</posoIdiot>
+      <periorismoiMeep>
+       {if (fn:data($request//*:KPS6_YPOERGA/*:PERIORISMOI_MEEP)) then 
+        fn:data($request//*:KPS6_YPOERGA/*:PERIORISMOI_MEEP)
+        else 65000
+       }
+      </periorismoiMeep>
+      <dateMeep>{fn:data($request//*:KPS6_YPOERGA/*:DATE_MEEP)}</dateMeep>
+      <perigrafhEpivlepousas>{fn:data($request//*:KPS6_YPOERGA/*:PERIGRAFH_EPIVLEPOYSAS)}</perigrafhEpivlepousas>
+      <proelefshDeltio>{fn:data($request//*:KPS6_YPOERGA/*:PROELEYSH_DELTIO)}</proelefshDeltio>
+      <daText>{fn:data($request//*:KPS6_YPOERGA/*:DA_TEXT)}</daText>
+      <flagAytomatiEkgkrishTdy>
+        {if ($request//*:KPS6_YPOERGA/*:FLAG_AYTOMATI_EKGKRISH_TDY/text()) 
+         then  fn:data( $request//*:KPS6_YPOERGA/*:FLAG_AYTOMATI_EKGKRISH_TDY) 
+         else  0 }
+      </flagAytomatiEkgkrishTdy>
+      <!--<flagEksairesiProe>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_EKSAIRESI_PROE)}</flagEksairesiProe>-->
+      <kps6YpoergaMonadiaiaKosthCollection>
+       {for $EpileksimiDapani in $EpilesimesDapanes return 
+        if ($EpileksimiDapani/node() and 
+             fn:not(fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
+                   'select flag_aplopoihmeno_kostos as Flag_Kostos  
+                    from KPS6_EPILEKSIMES_DAPANES where ID_KATHGORIA_DAPANHS = ?',
+                    xs:unsignedInt($EpileksimiDapani/*:ID_KATHGORIA_DAPANHS))//*:FLAG_KOSTOS)=(0,1)) )
+        then
+            <Kps6YpoergaMonadiaiaKosth>
+              <idYpunco>{fn:data($EpileksimiDapani/*:ID_YPUNCO)}</idYpunco>
+               <idUnco>
+                {if ($EpileksimiDapani/*:ID_UNCO/text()) then  fn:data($EpileksimiDapani/*:ID_UNCO)  else  99 }
+               </idUnco>
+               <timhMonadas>{fn:data($EpileksimiDapani/*:KOSTOS_MONADAS)}</timhMonadas>
+               <posothta>
+                {if ($EpileksimiDapani/*:ARITHMOS_MONADON/text()) then  fn:data($EpileksimiDapani/*:ARITHMOS_MONADON)  else  1 }
+                </posothta>
+               <posothtaSynolikh>
+                 {if ($EpileksimiDapani/*:APOSOTHTA_SYNOLIKH /text()) then  fn:data($EpileksimiDapani/*:POSOTHTA_SYNOLIKH)  else  1 }
+               </posothtaSynolikh>
+              </Kps6YpoergaMonadiaiaKosth>
+        else ()
+       }
+     </kps6YpoergaMonadiaiaKosthCollection>     
+     <kps6YpoeAnadoxoiCollection>
+     {for $Anadoxos in  $request//*:KPS6_YPOE_ANADOXOI
+      return         
+       <Kps6YpoeAnadoxoi>
+        <yanId>
+          {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Id_Ypunco','Select YAN_ID_SEQ.NEXTVAL from Dual')//*:NEXTVAL)}
+        </yanId>
+        <afm>{fn:data($Anadoxos/*:AFM)}</afm>
+        <adamSymvashs>{fn:data($Anadoxos/*:ADAM_SYMVASHS)}</adamSymvashs>
+        <rolosAnadoxou>{fn:data($Anadoxos/*:ROLOS_ANADOXOU)}</rolosAnadoxou>
+        <energosAnadoxos>{fn:data($Anadoxos/*:ENERGOS_ANADOXOS)}</energosAnadoxos>
+        <aitiologiaAnenergoy>{fn:data($Anadoxos/*:AITIOLOGIA_ANENERGOY)}</aitiologiaAnenergoy>
+        <posoDd>{fn:data($Anadoxos/*:POSO_DD)}</posoDd>
+        <parathrhseisKataxorTdyAna>{fn:data($Anadoxos/*:PARATHRHSEIS_KATAXOR_TDY_ANA)}</parathrhseisKataxorTdyAna>
+        <!--<dateSymbashs>{fn:data($Anadoxos/*:DATE_SYMBASHS)}</dateSymbashs>-->
+      </Kps6YpoeAnadoxoi>
+     }
+     </kps6YpoeAnadoxoiCollection>
+     <kps6YpoeDiakritaCollection>
+     {for $Diakrito in $request//*:KPS6_YPOE_DIAKRITA return
+       <Kps6YpoeDiakrita>
+          <ydiId>{fn:data($Diakrito/*:YDI_ID)}</ydiId>
+          <aaDiakritoy>{fn:data($Diakrito/*:AA_DIAKRITOY)}</aaDiakritoy>
+          <onomaDiakritoy>{fn:data($Diakrito/*:ONOMA_DIAKRITOY)}</onomaDiakritoy>
+          <proypologismos>{fn:data($Diakrito/*:PROYPOLOGISMOS)}</proypologismos>
+          <dateMilestone>{fn:data($Diakrito/*:DATE_MILESTONE)}</dateMilestone>
+          <energeiesFape>{fn:data($Diakrito/*:ENERGEIES_FAPE)}</energeiesFape>
+          <paradoteaFape>{fn:data($Diakrito/*:PARADOTEA_FAPE)}</paradoteaFape>
+          <proypologismosEpil>{fn:data($Diakrito/*:PROYPOLOGISMOS_EPIL)}</proypologismosEpil>
+          <dateStart>{fn:data($Diakrito/*:DATE_START)}</dateStart>
+       </Kps6YpoeDiakrita>
+     }
+     </kps6YpoeDiakritaCollection>
+     <kps6YpoeEpileksimesCollection>
+      {for $Dapani in $EpilesimesDapanes return
+        <Kps6YpoeEpileksimes>
+          <yepId>{fn:data($Dapani/*:YEP_ID)}</yepId>
+          <posoDdNofpa>{fn:data($Dapani/*:POSO_DD_NOFPA)}</posoDdNofpa>
+          <posoFpaDd>
+            {if (fn:data($Dapani/*:POSO_FPA_DD)) then fn:data($Dapani/*:POSO_FPA_DD)  else  0 }
+          </posoFpaDd>
+          <posoDdEpil>{fn:data($Dapani/*:POSO_DD_EPIL)}</posoDdEpil>
+          <idKathgoriaDapanhs>{fn:data($Dapani/*:ID_KATHGORIA_DAPANHS)}</idKathgoriaDapanhs>
+          <posoFpaEpileksimhDd>
+            {if (fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD)) then  fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD) else  0 }
+          </posoFpaEpileksimhDd>
+          <perigrafhKatDapanhs/>
+          <pososto>{fn:data($Dapani/*:POSOSTO)}</pososto>
+          <kostosMonadas>
+           {if (fn:data($Dapani/*:ID_KATHGORIA_DAPANHS) != 10) then fn:data($Dapani/*:KOSTOS_MONADAS) else () }
+           </kostosMonadas>
+          <monadaMetrhshs>
+           {if (fn:data($Dapani/*:ID_KATHGORIA_DAPANHS) != 10) then fn:data($Dapani/*:MONADA_METRHSHS) else () }
+           </monadaMetrhshs>
+          <perigrafhMonadas>
+           {if (fn:data($Dapani/*:ID_KATHGORIA_DAPANHS) != 10) then fn:data($Dapani/*:PERIGRAFH_MONADAS) else ()}
+           </perigrafhMonadas>
+          <arithmosMonadon>
+           {if (fn:data($Dapani/*:ID_KATHGORIA_DAPANHS) != 10) then  fn:data($Dapani/*:ARITHMOS_MONADON) else ()}
+          </arithmosMonadon>
+          <kathgMhEpileksimothtas/>
+          <aitiologhshMhEpileksimothtas>{fn:data($Dapani/*:AITIOLOGHSH_MH_EPILEKSIMOTHTAS)}</aitiologhshMhEpileksimothtas>
+          <idUnco>{fn:data($Dapani/*:ID_UNCO)}</idUnco>
+          <idYpunco>{fn:data($Dapani/*:ID_YPUNCO)}</idYpunco>
+        </Kps6YpoeEpileksimes>
+      }
+     </kps6YpoeEpileksimesCollection> 
+     <kps6YpoeKatanomhCollection>
+      {for $Katanomi in $request//*:KPS6_YPOE_KATANOMH return
+       <Kps6YpoeKatanomh>
+        <ykaId>{fn:data($Katanomi/*:YKA_ID)}</ykaId>
+        <etos>{fn:data($Katanomi/*:ETOS)}</etos>
+        <posoDdA>{fn:data($Katanomi/*:POSO_DD_A)}</posoDdA>
+        <posoDdEpilA>{fn:data($Katanomi/*:POSO_DD_EPIL_A)}</posoDdEpilA>
+       </Kps6YpoeKatanomh>
+     }
+     </kps6YpoeKatanomhCollection>
+     <kps6YpoeXorothethseisCollection>
+     {for $Xorothetisi in $request//*:KPS6_YPOE_XOROTHETHSEIS return
+       <Kps6YpoeXorothethseis>
+          <yxoId>{fn:data($Xorothetisi/*:YXO_ID)}</yxoId>
+          <aaXorothethshs>{fn:data($Xorothetisi/*:AA_XOROTHETHSHS)}</aaXorothethshs>
+          <poso/>
+          <pososto>{fn:data($Xorothetisi/*:POSOSTO)}</pososto>
+          <idTk>{fn:data($Xorothetisi/*:ID_TK)}</idTk>
+          <idGeo>{fn:data($Xorothetisi/*:ID_GEO)}</idGeo>
+       </Kps6YpoeXorothethseis>
+     }
+     </kps6YpoeXorothethseisCollection>
+     <kps6YpoeDeiktesCollection>
+      {for $Deiktis in $request//*:KPS6_YPOE_DEIKTES return
+       <Kps6YpoeDeiktes>
+          <ydeId>{fn:data($Deiktis/*:YDE_ID)}</ydeId>
+          <kodikosDeikths>{fn:data($Deiktis/*:KODIKOS_DEIKTHS)}</kodikosDeikths>
+          <timhStoxos>{fn:data($Deiktis/*:TIMH_STOXOS)}</timhStoxos>
+       </Kps6YpoeDeiktes>
+      }
+     </kps6YpoeDeiktesCollection>
+   </Kps6Ypoerga>    
+  </tns:Kps6YpoergaCollection>
+};
+
+declare function tdy:map-insert-request-to-db($request as element()) as element() (:: schema-element(tdy-db-update:Kps6YpoergaCollection) ::)
+{let $EpilesimesDapanes := for $EpileksimiDapani in $request//*:KPS6_YPOE_EPILEKSIMES return
+              <KPS6_YPOE_EPILEKSIMES>
+              {$EpileksimiDapani/*:ID_YPUNCO/preceding-sibling::*}
+              {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
+                   'select flag_aplopoihmeno_kostos as Flag_Kostos  
+                    from KPS6_EPILEKSIMES_DAPANES where ID_KATHGORIA_DAPANHS = ?',
+                    xs:unsignedInt($EpileksimiDapani/*:ID_KATHGORIA_DAPANHS))//*:FLAG_KOSTOS)=(0,1) 
+                    and fn:not($EpileksimiDapani/*:ID_YPUNCO/text()))
+               then fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Id_Ypunco',
+                    'Select ID_YPUNCO_SEQ.NEXTVAL from Dual')//*:NEXTVAL)
+               else ()
+              }
+              {$EpileksimiDapani/*:ID_YPUNCO/following-sibling::*}
+              </KPS6_YPOE_EPILEKSIMES>
+  return        
+  <tns:Kps6YpoergaCollection xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDYWriteService">
+    <Kps6Ypoerga>
+      <tdyId>{fn:data($request//*:KPS6_YPOERGA/*:TDY_ID)}</tdyId>
+      <kodikosMis>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_MIS)}</kodikosMis>
+      <kodikosYpoergoy>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_YPOERGOY)}</kodikosYpoergoy>
+      <aaTdy>{fn:data($request//*:KPS6_YPOERGA/*:AA_TDY)}</aaTdy>
+      <aaYpoekdosh>{fn:data($request//*:KPS6_YPOERGA/*:AA_YPOEKDOSH)}</aaYpoekdosh>
+      <kathgoriaEkdoshs>{fn:data($request//*:KPS6_YPOERGA/*:KATHGORIA_EKDOSHS)}</kathgoriaEkdoshs>
+      <titlosYpoergoy>{fn:data($request//*:KPS6_YPOERGA/*:TITLOS_YPOERGOY)}</titlosYpoergoy>
+      <kodikosProeg>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_PROEG)}</kodikosProeg>
+      <texnikhPerigrafh>{fn:data($request//*:KPS6_YPOERGA/*:TEXNIKH_PERIGRAFH)}</texnikhPerigrafh>
+      <arProtokDa>{fn:data($request//*:KPS6_YPOERGA/*:AR_PROTOK_DA)}</arProtokDa>
+      <dateYpovolis>{fn:data($request//*:KPS6_YPOERGA/*:DATE_YPOVOLIS)}</dateYpovolis>
+      <dateEpileksimothtas>{fn:data($request//*:KPS6_YPOERGA/*:DATE_EPILEKSIMOTHTAS)}</dateEpileksimothtas>
+      <dateAnalhpshs>{fn:data($request//*:KPS6_YPOERGA/*:DATE_ANALHPSHS)}</dateAnalhpshs>
+      <dateLhkshs>{fn:data($request//*:KPS6_YPOERGA/*:DATE_LHKSHS)}</dateLhkshs>
+      <dateTropop>{fn:data($request//*:KPS6_YPOERGA/*:DATE_TROPOP)}</dateTropop>
+      <kodikosEpivlepoysas>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_EPIVLEPOYSAS)}</kodikosEpivlepoysas>
+      <parathrhseisKataxorTdy>{fn:data($request//*:KPS6_YPOERGA/*:PARATHRHSEIS_KATAXOR_TDY)}</parathrhseisKataxorTdy>
+      <parathrhseisKataxorTdyDik>{fn:data($request//*:KPS6_YPOERGA/*:PARATHRHSEIS_KATAXOR_TDY_DIK)}</parathrhseisKataxorTdyDik>
+      <eidosAnatheshs>{fn:data($request//*:KPS6_YPOERGA/*:EIDOS_ANATHESHS)}</eidosAnatheshs>
+      <kodikosDikaioyxos>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_DIKAIOYXOS)}</kodikosDikaioyxos>
+      <elegxosAatdp>{fn:data($request//*:KPS6_YPOERGA/*:ELEGXOS_AATDP)}</elegxosAatdp>
+      <onomaYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:ONOMA_YPEYTHINOY)}</onomaYpeythinoy>
+      <theshYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:THESH_YPEYTHINOY)}</theshYpeythinoy>
+      <specialityYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:SPECIALITY_YPEYTHINOY)}</specialityYpeythinoy>
+      <dieythynshYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:DIEYTHYNSH_YPEYTHINOY)}</dieythynshYpeythinoy>
+      <thlYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:THL_YPEYTHINOY)}</thlYpeythinoy>
+      <faxYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:FAX_YPEYTHINOY)}</faxYpeythinoy>
+      <emailYpeythinoy>{fn:data($request//*:KPS6_YPOERGA/*:EMAIL_YPEYTHINOY)}</emailYpeythinoy>
+      <idTdySymplhromatikhs>{fn:data($request//*:KPS6_YPOERGA/*:ID_TDY_SYMPLHROMATIKHS)}</idTdySymplhromatikhs>
+      <typosTdy>{fn:data($request//*:KPS6_YPOERGA/*:TYPOS_TDY)}</typosTdy>
+      <aitiologiaYpoekdoshs>{fn:data($request//*:KPS6_YPOERGA/*:AITIOLOGIA_YPOEKDOSHS)}</aitiologiaYpoekdoshs>
+      <flagTropTimetable>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_TIMETABLE)}</flagTropTimetable>
+      <flagTropOik>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_OIK)}</flagTropOik>
+      <flagTropFys>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_FYS)}</flagTropFys>
+      <flagTropAllo>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_TROP_ALLO)}</flagTropAllo>
+      <kodikosOikonomikhs>{fn:data($request//*:KPS6_YPOERGA/*:KODIKOS_OIKONOMIKHS)}</kodikosOikonomikhs>
+      <perigrafhOikonomikhs>{fn:data($request//*:KPS6_YPOERGA/*:PERIGRAFH_OIKONOMIKHS)}</perigrafhOikonomikhs>
+      <onomaYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:ONOMA_YPEYTHINOY_OIK)}</onomaYpeythinoyOik>
+      <theshYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:THESH_YPEYTHINOY_OIK)}</theshYpeythinoyOik>
+      <dieythynshYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:DIEYTHYNSH_YPEYTHINOY_OIK)}</dieythynshYpeythinoyOik>
+      <thlYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:THL_YPEYTHINOY_OIK)}</thlYpeythinoyOik>
+      <emailYpeythinoyOik>{fn:data($request//*:KPS6_YPOERGA/*:EMAIL_YPEYTHINOY_OIK)}</emailYpeythinoyOik>
+      <posoMhEnisxyomenh>{fn:data($request//*:KPS6_YPOERGA/*:POSO_MH_ENISXYOMENH)}</posoMhEnisxyomenh>
+      <posoIdiot>{fn:data($request//*:KPS6_YPOERGA/*:POSO_IDIOT)}</posoIdiot>
+      <periorismoiMeep>{fn:data($request//*:KPS6_YPOERGA/*:PERIORISMOI_MEEP)}</periorismoiMeep>
+      <dateMeep>{fn:data($request//*:KPS6_YPOERGA/*:DATE_MEEP)}</dateMeep>
+      <perigrafhEpivlepousas>{fn:data($request//*:KPS6_YPOERGA/*:PERIGRAFH_EPIVLEPOYSAS)}</perigrafhEpivlepousas>
+      <proelefshDeltio>{fn:data($request//*:KPS6_YPOERGA/*:PROELEYSH_DELTIO)}</proelefshDeltio>
+      <daText>{fn:data($request//*:KPS6_YPOERGA/*:DA_TEXT)}</daText>
+      <flagAytomatiEkgkrishTdy>
+        {if ($request//*:KPS6_YPOERGA/*:FLAG_AYTOMATI_EKGKRISH_TDY/text()) 
+         then  fn:data( $request//*:KPS6_YPOERGA/*:FLAG_AYTOMATI_EKGKRISH_TDY) 
+         else  0 }
+      </flagAytomatiEkgkrishTdy>
+      <!--<flagEksairesiProe>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_EKSAIRESI_PROE)}</flagEksairesiProe>-->
+            <kps6YpoergaMonadiaiaKosthCollection>
+       {for $EpileksimiDapani in $EpilesimesDapanes return 
+        if ($EpileksimiDapani/node() and 
+             fn:not(fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
+                   'select flag_aplopoihmeno_kostos as Flag_Kostos  
+                    from KPS6_EPILEKSIMES_DAPANES where ID_KATHGORIA_DAPANHS = ?',
+                    xs:unsignedInt($EpileksimiDapani/*:ID_KATHGORIA_DAPANHS))//*:FLAG_KOSTOS)=(0,1)) )
+        then
+            <Kps6YpoergaMonadiaiaKosth>
+              <idYpunco>{fn:data($EpileksimiDapani/*:ID_YPUNCO)}</idYpunco>
+               <idUnco>
+                {if ($EpileksimiDapani/*:ID_UNCO/text()) then  fn:data($EpileksimiDapani/*:ID_UNCO)  else  99 }
+               </idUnco>
+               <timhMonadas>{fn:data($EpileksimiDapani/*:KOSTOS_MONADAS)}</timhMonadas>
+               <posothta>
+                {if ($EpileksimiDapani/*:ARITHMOS_MONADON/text()) then  fn:data($EpileksimiDapani/*:ARITHMOS_MONADON)  else  1 }
+                </posothta>
+               <posothtaSynolikh>
+                 {if ($EpileksimiDapani/*:APOSOTHTA_SYNOLIKH /text()) then  fn:data($EpileksimiDapani/*:POSOTHTA_SYNOLIKH)  else  1 }
+               </posothtaSynolikh>
+              </Kps6YpoergaMonadiaiaKosth>
+        else ()
+       }
+     </kps6YpoergaMonadiaiaKosthCollection> 
+      <kps6YpoeAnadoxoiCollection>
+     {for $Anadoxos in  $request//*:KPS6_YPOE_ANADOXOI 
+      let $ergoEES := fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Stoxos',
+                'select KPS6_ERGORAMA_TDP.IS_RECORD_STOXOS_3((select KPS6_CORE.GET_ISXYON_TDP(?) Stoxos From Dual',
+                xs:unsignedInt($request//*:KPS6_YPOERGA/*:KODIKOS_MIS))//*:STOXOS)
+      let $ExistsAFM := fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
+                'select count(*) As cnt from kps6_ypoe_anadoxoi where tdy_id =?',
+                xs:unsignedInt($request//*:KPS6_YPOERGA/*:TDY_ID))//*:CNT)               
+     return
+      if ((fn:not(fn:data($Anadoxos/*:YAN_ID)) and (($ergoEES=1 and $ExistsAFM= 0) or $ergoEES=0)) or 
+           fn:data($Anadoxos/*:YAN_ID)>0 ) then      
+       <Kps6YpoeAnadoxoi>
+        <yanId>
+          {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Id_Ypunco','Select YAN_ID_SEQ.NEXTVAL from Dual')//*:NEXTVAL)}
+        </yanId>
+        <afm>{fn:data($Anadoxos/*:AFM)}</afm>
+        <adamSymvashs>{fn:data($Anadoxos/*:ADAM_SYMVASHS)}</adamSymvashs>
+        <rolosAnadoxou>{fn:data($Anadoxos/*:ROLOS_ANADOXOU)}</rolosAnadoxou>
+        <energosAnadoxos>{fn:data($Anadoxos/*:ENERGOS_ANADOXOS)}</energosAnadoxos>
+        <aitiologiaAnenergoy>{fn:data($Anadoxos/*:AITIOLOGIA_ANENERGOY)}</aitiologiaAnenergoy>
+        <posoDd>{fn:data($Anadoxos/*:POSO_DD)}</posoDd>
+        <parathrhseisKataxorTdyAna>{fn:data($Anadoxos/*:PARATHRHSEIS_KATAXOR_TDY_ANA)}</parathrhseisKataxorTdyAna>
+        <!--<dateSymbashs>{fn:data($Anadoxos/*:DATE_SYMBASHS)}</dateSymbashs>-->
+      </Kps6YpoeAnadoxoi>
+     else ()
+     }
+     </kps6YpoeAnadoxoiCollection>
+     <kps6YpoeDiakritaCollection>
+     {for $Diakrito in $request//*:KPS6_YPOE_DIAKRITA return
+       <Kps6YpoeDiakrita>
+          <ydiId>{fn:data($Diakrito/*:YDI_ID)}</ydiId>
+          <aaDiakritoy>{fn:data($Diakrito/*:AA_DIAKRITOY)}</aaDiakritoy>
+          <onomaDiakritoy>{fn:data($Diakrito/*:ONOMA_DIAKRITOY)}</onomaDiakritoy>
+          <proypologismos>{fn:data($Diakrito/*:PROYPOLOGISMOS)}</proypologismos>
+          <dateMilestone>{fn:data($Diakrito/*:DATE_MILESTONE)}</dateMilestone>
+          <energeiesFape>{fn:data($Diakrito/*:ENERGEIES_FAPE)}</energeiesFape>
+          <paradoteaFape>{fn:data($Diakrito/*:PARADOTEA_FAPE)}</paradoteaFape>
+          <proypologismosEpil>{fn:data($Diakrito/*:PROYPOLOGISMOS_EPIL)}</proypologismosEpil>
+          <dateStart>{fn:data($Diakrito/*:DATE_START)}</dateStart>
+       </Kps6YpoeDiakrita>
+     }
+     </kps6YpoeDiakritaCollection>
+          <kps6YpoeEpileksimesCollection>
+      {for $Dapani in $EpilesimesDapanes return
+        <Kps6YpoeEpileksimes>
+          <yepId>{fn:data($Dapani/*:YEP_ID)}</yepId>
+          <posoDdNofpa>{fn:data($Dapani/*:POSO_DD_NOFPA)}</posoDdNofpa>
+          <posoFpaDd>
+            {if (fn:data($Dapani/*:POSO_FPA_DD)) then fn:data($Dapani/*:POSO_FPA_DD)  else  0 }
+          </posoFpaDd>
+          <posoDdEpil>{fn:data($Dapani/*:POSO_DD_EPIL)}</posoDdEpil>
+          <idKathgoriaDapanhs>{fn:data($Dapani/*:ID_KATHGORIA_DAPANHS)}</idKathgoriaDapanhs>
+          <posoFpaEpileksimhDd>
+            {if (fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD)) then  fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD) else  0 }
+          </posoFpaEpileksimhDd>
+          <perigrafhKatDapanhs/>
+          <pososto>{fn:data($Dapani/*:POSOSTO)}</pososto>
+          <kostosMonadas>{fn:data($Dapani/*:KOSTOS_MONADAS)}</kostosMonadas>
+          <monadaMetrhshs>{fn:data($Dapani/*:MONADA_METRHSHS)}</monadaMetrhshs>
+          <perigrafhMonadas>{fn:data($Dapani/*:PERIGRAFH_MONADAS)}</perigrafhMonadas>
+          <arithmosMonadon>{fn:data($Dapani/*:ARITHMOS_MONADON)}</arithmosMonadon>
+          <kathgMhEpileksimothtas/>
+          <aitiologhshMhEpileksimothtas>{fn:data($Dapani/*:AITIOLOGHSH_MH_EPILEKSIMOTHTAS)}</aitiologhshMhEpileksimothtas>
+          <idUnco>{fn:data($Dapani/*:ID_UNCO)}</idUnco>
+          <idYpunco>{fn:data($Dapani/*:ID_YPUNCO)}</idYpunco>
+        </Kps6YpoeEpileksimes>
+      }
+     </kps6YpoeEpileksimesCollection> 
+     <kps6YpoeEpileksimesCollection>
+      {for $Dapani in $EpilesimesDapanes return
+        <Kps6YpoeEpileksimes>
+          <yepId>{fn:data($Dapani/*:YEP_ID)}</yepId>
+          <posoDdNofpa>{fn:data($Dapani/*:POSO_DD_NOFPA)}</posoDdNofpa>
+          <posoFpaDd>
+            {if (fn:data($Dapani/*:POSO_FPA_DD)) then fn:data($Dapani/*:POSO_FPA_DD)  else  0 }
+          </posoFpaDd>
+          <posoDdEpil>{fn:data($Dapani/*:POSO_DD_EPIL)}</posoDdEpil>
+          <idKathgoriaDapanhs>{fn:data($Dapani/*:ID_KATHGORIA_DAPANHS)}</idKathgoriaDapanhs>
+          <posoFpaEpileksimhDd>
+            {if (fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD)) then  fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD) else  0 }
+          </posoFpaEpileksimhDd>
+          <perigrafhKatDapanhs/>
+          <pososto>{fn:data($Dapani/*:POSOSTO)}</pososto>
+          <kostosMonadas>{fn:data($Dapani/*:KOSTOS_MONADAS)}</kostosMonadas>
+          <monadaMetrhshs>{fn:data($Dapani/*:MONADA_METRHSHS)}</monadaMetrhshs>
+          <perigrafhMonadas>{fn:data($Dapani/*:PERIGRAFH_MONADAS)}</perigrafhMonadas>
+          <arithmosMonadon>{fn:data($Dapani/*:ARITHMOS_MONADON)}</arithmosMonadon>
+          <kathgMhEpileksimothtas/>
+          <aitiologhshMhEpileksimothtas>{fn:data($Dapani/*:AITIOLOGHSH_MH_EPILEKSIMOTHTAS)}</aitiologhshMhEpileksimothtas>
+          <idUnco>{fn:data($Dapani/*:ID_UNCO)}</idUnco>
+          <idYpunco>{fn:data($Dapani/*:ID_YPUNCO)}</idYpunco>
+        </Kps6YpoeEpileksimes>
+      }
+     </kps6YpoeEpileksimesCollection> 
+     <kps6YpoeKatanomhCollection>
+      {for $Katanomi in $request//*:KPS6_YPOE_KATANOMH return
+       <Kps6YpoeKatanomh>
+        <ykaId>{fn:data($Katanomi/*:YKA_ID)}</ykaId>
+        <etos>{fn:data($Katanomi/*:ETOS)}</etos>
+        <posoDdA>{fn:data($Katanomi/*:POSO_DD_A)}</posoDdA>
+        <posoDdEpilA>{fn:data($Katanomi/*:POSO_DD_EPIL_A)}</posoDdEpilA>
+       </Kps6YpoeKatanomh>
+     }
+     </kps6YpoeKatanomhCollection>
+     <kps6YpoeXorothethseisCollection>
+     {for $Xorothetisi in $request//*:KPS6_YPOE_XOROTHETHSEIS return
+       <Kps6YpoeXorothethseis>
+          <yxoId>{fn:data($Xorothetisi/*:YXO_ID)}</yxoId>
+          <aaXorothethshs>{fn:data($Xorothetisi/*:AA_XOROTHETHSHS)}</aaXorothethshs>
+          <poso/>
+          <pososto>{fn:data($Xorothetisi/*:POSOSTO)}</pososto>
+          <idTk>{fn:data($Xorothetisi/*:ID_TK)}</idTk>
+          <idGeo>{fn:data($Xorothetisi/*:ID_GEO)}</idGeo>
+       </Kps6YpoeXorothethseis>
+     }
+     </kps6YpoeXorothethseisCollection>
+     <kps6YpoeDeiktesCollection>
+      {for $Deiktis in $request//*:KPS6_YPOE_DEIKTES return
+       <Kps6YpoeDeiktes>
+          <ydeId>{fn:data($Deiktis/*:YDE_ID)}</ydeId>
+          <kodikosDeikths>{fn:data($Deiktis/*:KODIKOS_DEIKTHS)}</kodikosDeikths>
+          <timhStoxos>{fn:data($Deiktis/*:TIMH_STOXOS)}</timhStoxos>
+       </Kps6YpoeDeiktes>
+      }
+     </kps6YpoeDeiktesCollection>
+    </Kps6Ypoerga>
+  </tns:Kps6YpoergaCollection>
 };

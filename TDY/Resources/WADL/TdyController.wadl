@@ -254,10 +254,60 @@
             </response>
          </method>
       </resource>
-      <resource path="/del">
+      <resource path="/deleteBulletin">
          <method name="POST" soa:name="DeleteTdy">
             <request>
                <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/update">
+         <method name="POST" soa:name="UpdateTDY">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/tdyW">
+         <method name="POST" soa:name="InsertTDY">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/search/mis">
+         <method name="GET" soa:name="GetListaMis">
+            <request>
+               <param name="kodikosMis" style="query" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/search/aaYpoergo">
+         <method name="GET" soa:name="GetYpoergaGiaSearchKaiDimiourgia">
+            <request>
+               <param name="kodikosMis" style="query" type="xsd:string"/>
             </request>
             <response status="200">
                <representation mediaType="application/json"/>

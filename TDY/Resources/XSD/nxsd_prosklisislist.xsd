@@ -12,17 +12,21 @@
                      <xsd:element name="epKodikos"/>
                      <xsd:element name="ypoprKodikos"/>
                      <xsd:element name="metroKodikos"/>
-                     <xsd:element name="foreasKodikos" type="xsd:string"/>
-                     <xsd:element name="perigrafhForeaProsklhshs" type="xsd:string"/>
+                     <xsd:element name="foreasKodikos"/>
+                     <xsd:element name="perigrafhForeaProsklhshs"/>
                      <xsd:element name="kodikosProsklForea" type="xsd:integer"/>
                      <xsd:element name="idProsklhshs" type="xsd:integer"/>
-                     <xsd:element name="flagMicrodata" type="xsd:unsignedByte"/>                     
+                     <xsd:element name="flagMicrodata" type="xsd:integer"/>
                      <xsd:element name="dateTo"/>
-                     <xsd:element name="userPermissionsMap"/>                     
+                     <xsd:element name="userPermissionsMap"/>
                   </xsd:sequence>
                </xsd:complexType>
             </xsd:element>
          </xsd:sequence>
       </xsd:complexType>
    </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
 </xsd:schema>

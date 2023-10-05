@@ -1,6 +1,6 @@
 <adapter-config name="Erotimata_write" adapter="db" wsdlLocation="../../WSDL/EROTIMATAService/EROTIMATAService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
-  <connection-factory UIConnectionName="6pp" location="eis/mis_master6DS"/>
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
   <endpoint-interaction portType="Erotimata_write_ptt" operation="merge">
     <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
       <property name="DescriptorName" value="Erotimata_write.Kps6DeltioErothmata"/>

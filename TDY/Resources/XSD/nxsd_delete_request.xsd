@@ -11,9 +11,9 @@
                   </xsd:sequence>
                </xsd:complexType>
             </xsd:element>
-            <xsd:element name="actionCode" type="xsd:integer"/>
-            <xsd:element name="comments"/>
-            <xsd:element name="combineChecks" type="xsd:integer"/>
+            <xsd:element name="actionCode" type="xsd:string"/>
+            <xsd:element name="comments" type="xsd:string"/>
+            <xsd:element name="combineChecks" type="xsd:unsignedByte"/>
          </xsd:sequence>
       </xsd:complexType>
    </xsd:element>

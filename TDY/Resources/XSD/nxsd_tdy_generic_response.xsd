@@ -4,7 +4,7 @@
    <xsd:element name="TDYResponse">
       <xsd:complexType>
          <xsd:sequence>
-            <xsd:element name="ERROR_CODE" type="xsd:integer"/>
+            <xsd:element name="ERROR_CODE" type="xsd:string"/>
             <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
             <xsd:element name="DATA">
                <xsd:complexType>

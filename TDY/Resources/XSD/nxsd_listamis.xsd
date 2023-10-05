@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy" targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="ListaMis">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="Mis" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="kodikosMis" type="xsd:unsignedInt"/>
+                     <xsd:element name="titlos" type="xsd:string"/>
+                     <xsd:element name="ekdosh"  type="xsd:string"/>
+                     <xsd:element name="ypoEkdosh"  type="xsd:string"/>
+                     <xsd:element name="titlosKsenos" type="xsd:string"/>
+                     <xsd:element name="ekdosiTdp" type="xsd:string"/>
+                     <xsd:element name="dateEntaksis"  type="xsd:string"/>
+                     <xsd:element name="flagAmkaAfm"  type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+</xsd:schema>
