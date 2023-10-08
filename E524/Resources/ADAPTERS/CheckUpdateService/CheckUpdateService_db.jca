@@ -1,0 +1,13 @@
+<adapter-config name="CheckUpdateService" adapter="db" wsdlLocation="CheckUpdateService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="CheckUpdateService_ptt" operation="CheckUpdateService">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="MASTER6"/>
+      <property name="PackageName" value="KPS6_ERGORAMA_FAPLEP"/>
+      <property name="ProcedureName" value="CHECK_FOR_UPDATE"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>
