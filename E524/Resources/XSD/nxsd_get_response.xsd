@@ -1,0 +1,187 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/e524"
+            targetNamespace="http://espa.gr/v6/e524" elementFormDefault="qualified"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+  <xsd:element name="E524Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ERROR_CODE" type="xsd:string"/>
+        <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
+        <xsd:element name="DATA">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Kps6ChecklistsDeltioy">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="idChecklist" type="xsd:integer"/>
+                    <xsd:element name="checklistEkdosh" type="xsd:integer"/>
+                    <xsd:element name="checklistYpoekdosh" type="xsd:integer"/>
+                    <xsd:element name="checklistType" type="xsd:integer"/>
+                    <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                    <xsd:element name="checklistDate" type="xsd:string"/>
+                    <xsd:element name="eishghsh" type="xsd:integer"/>
+                    <xsd:element name="bathmologia" type="xsd:decimal" nillable="true"/>
+                    <xsd:element name="bathmologisiFlag" type="xsd:decimal" nillable="true"/>
+                    <xsd:element name="parathrhseis" type="xsd:string"/>
+                    <xsd:element name="keimeno" type="xsd:string"/>
+                    <xsd:element name="katastash" type="xsd:string"/>
+                    <xsd:element name="protokolloArithmos" type="xsd:string"/>
+                    <xsd:element name="protokolloDate" type="xsd:string"/>
+                    <xsd:element name="sxoliaEyd" type="xsd:string"/>
+                    <xsd:element name="sxoliaYops" type="xsd:string"/>
+                    <xsd:element name="kodikosChecklistDeltioy" type="xsd:integer"/>
+                    <xsd:element name="kodikosMis" type="xsd:integer"/>
+                    <xsd:element name="deadlineDate" type="xsd:string"/>
+                    <xsd:element name="dikaioyxosTexnikaErga" type="xsd:integer"/>
+                    <xsd:element name="dikaioyxosPromYpiresies" type="xsd:integer"/>
+                    <xsd:element name="dikaioyxosIdiaMesa" type="xsd:integer"/>
+                    <xsd:element name="sxoliaAksiolDioik" type="xsd:string"/>
+                    <xsd:element name="epanypobolhTdpFlg" type="xsd:integer"/>
+                    <xsd:element name="listValueName" type="xsd:string"/>
+                    <xsd:element name="katastashMis" type="xsd:string"/>
+                    <xsd:element name="aaProsklhshs" type="xsd:string"/>
+                    <xsd:element name="foreasEgkrishs" type="xsd:string"/>
+                    <xsd:element name="kathgoriaEkdoshs" type="xsd:integer"/>
+                    <xsd:element name="ekdoshSxolia" type="xsd:string"/>
+                    <xsd:element name="ekdDiorthoshFlg" type="xsd:integer"/>
+                    <xsd:element name="ekdEpanypoboliFlg" type="xsd:integer"/>
+                    <xsd:element name="ekdEpistrofiFlg" type="xsd:integer"/>
+                    <xsd:element name="ekdForeasFlg" type="xsd:integer"/>
+                    <xsd:element name="objectCategoryDeltiou" type="xsd:integer"/>
+                    <xsd:element name="flagAksiologhsh" type="xsd:integer"/>
+                    <xsd:element name="isActive" type="xsd:integer"/>
+                    <xsd:element name="Kps6ChecklistsDeltioyUsers" maxOccurs="unbounded">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="idChecklistUsers" type="xsd:integer"/>
+                          <xsd:element name="userName" type="xsd:string"/>
+                          <xsd:element name="typeUserFlag" type="xsd:integer"/>
+                          <xsd:element name="onoma" type="xsd:string"/>
+                          <xsd:element name="epitheto" type="xsd:string"/>
+                          <xsd:element name="perigrafh" type="xsd:string"/>
+                          <xsd:element name="email" type="xsd:string"/>
+                          <xsd:element name="telephone" type="xsd:string"/>
+                          <xsd:element name="kodikosForea" type="xsd:string"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="kps6Tdp">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="idTdp" type="xsd:integer"/>
+                          <xsd:element name="titlos" type="xsd:string"/>
+                          <xsd:element name="dateAithshsEyd" type="xsd:string"/>
+                          <xsd:element name="ekdoshTdp" type="xsd:string"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="kps6GenerateDocReport">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="idDocReport" type="xsd:integer"/>
+                          <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                          <xsd:element name="objectId" type="xsd:integer"/>
+                          <xsd:element name="apostoleas" type="xsd:string"/>
+                          <xsd:element name="dieythynsh" type="xsd:string"/>
+                          <xsd:element name="synhmmena" type="xsd:string"/>
+                          <xsd:element name="koinopoihsh" type="xsd:string"/>
+                          <xsd:element name="esotDianomh" type="xsd:string"/>
+                          <xsd:element name="apodekths" type="xsd:string"/>
+                          <xsd:element name="theshTelYpogr" type="xsd:string"/>
+                          <xsd:element name="nameTelYpogr" type="xsd:string"/>
+                          <xsd:element name="idLogo" type="xsd:integer"/>
+                          <xsd:element name="polh" type="xsd:string"/>
+                          <xsd:element name="pros" type="xsd:string"/>
+                          <xsd:element name="manualChange" type="xsd:integer"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="Kps6ChecklistsEparkeia" maxOccurs="unbounded">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="idChecklistEparkeia" type="xsd:integer"/>
+                          <xsd:element name="kodikosForea" type="xsd:decimal"/>
+                          <xsd:element name="dikaioyxosTexnikaErga" type="xsd:decimal"/>
+                          <xsd:element name="dikaioyxosPromYpiresies" type="xsd:decimal"/>
+                          <xsd:element name="dikaioyxosIdiaMesa" type="xsd:decimal"/>
+                          <xsd:element name="dikaioyxosAllo" type="xsd:decimal"/>
+                          <xsd:element name="eparkeiaFlag" type="xsd:decimal"/>
+                          <xsd:element name="sxoliaForea" type="xsd:string"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="Kps6DeltioErothmata" minOccurs="0" maxOccurs="unbounded">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="idDeler" type="xsd:integer"/>
+                          <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                          <xsd:element name="parentId" type="xsd:integer"/>
+                          <xsd:element name="checklistType" type="xsd:integer"/>
+                          <xsd:element name="idErothma" type="xsd:integer"/>
+                          <xsd:element name="apanthshValue" type="xsd:integer"/>
+                          <xsd:element name="apanthshDate" type="xsd:string"/>
+                          <xsd:element name="statusId" type="xsd:integer"/>
+                          <xsd:element name="isxysFlg" type="xsd:int"/>
+                          <xsd:element name="isxysDate" type="xsd:string"/>
+                          <xsd:element name="objectId" type="xsd:integer"/>
+                          <xsd:element name="sxoliaYops" type="xsd:string"/>
+                          <xsd:element name="parathrhseis" type="xsd:string"/>
+                          <xsd:element name="alloKeimeno" type="xsd:string"/>
+                          <xsd:element name="V6DeltioErothmataInfo" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                                <xsd:element name="parentId" type="xsd:integer"/>
+                                <xsd:element name="checklistType" type="xsd:integer"/>
+                                <xsd:element name="checklistTypeDescr" type="xsd:string"/>
+                                <xsd:element name="idErothma" type="xsd:integer"/>
+                                <xsd:element name="erothmaAa" type="xsd:string"/>
+                                <xsd:element name="erothma" type="xsd:string"/>
+                                <xsd:element name="apanthshValue" type="xsd:integer"/>
+                                <xsd:element name="apanthshValueDescr" type="xsd:string"/>
+                                <xsd:element name="apanthshDate" type="xsd:string"/>
+                                <xsd:element name="statusId" type="xsd:integer"/>
+                                <xsd:element name="isxysFlg" type="xsd:int"/>
+                                <xsd:element name="isxysFlgDescr" type="xsd:string"/>
+                                <xsd:element name="isxysDate" type="xsd:string"/>
+                                <xsd:element name="objectId" type="xsd:string"/>
+                                <xsd:element name="sxoliaYops" type="xsd:string"/>
+                                <xsd:element name="parathrhseis" type="xsd:string"/>
+                                <xsd:element name="alloKeimeno" type="xsd:string"/>
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="InputChangeStatus">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="actionUi" type="xsd:integer"/>
+              <xsd:element name="commentsStatus" type="xsd:string"/>
+              <xsd:element name="combineChecks" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="OutputChangeStatus">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="ERRORCODE" type="xsd:integer"/>
+              <xsd:element name="ERRORMESSAGE" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>

@@ -16,7 +16,68 @@
          </method>
       </resource>
       <resource path="/search">
-         <method name="POST" soa:name="Search">
+         <method name="POST" soa:name="SearchCriteria">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/e524c">
+         <method name="GET" soa:name="CreateEmptyDeltio">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+         <method name="POST" soa:name="InsertDeltio">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/e524d">
+         <method name="POST" soa:name="SearchDeltio">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/e524w">
+         <method name="POST" soa:name="UpdateDeltio">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/deleteBulletin">
+         <method name="POST" soa:name="DeleteDeltio">
             <request>
                <representation mediaType="application/json"/>
             </request>
