@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/E524"
+            targetNamespace="http://espa.gr/v6/E524" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="E524SeachRequest">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="pPraksi" type="xsd:unsignedInt"/>
+            <xsd:element name="pAaProsklsh" type="xsd:unsignedInt"/>
+            <xsd:element name="pKodikosForea" type="xsd:unsignedInt"/>
+            <xsd:element name="pAxanIdEp" type="xsd:unsignedInt"/>
+            <xsd:element name="pKodikosAxona" type="xsd:string"/>
+            <xsd:element name="pIdChecklist" type="xsd:unsignedShort"/>
+            <xsd:element name="pTitlos" type="xsd:string"/>
+            <xsd:element name="pEkdoshypoekdosh" type="xsd:string"/>
+            <xsd:element name="pKatastdeltioy" type="xsd:unsignedShort"/>
+            <xsd:element name="pIsxyon" type="xsd:unsignedInt"/>
+            <xsd:element name="pStadioAksiol" type="xsd:unsignedShort"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

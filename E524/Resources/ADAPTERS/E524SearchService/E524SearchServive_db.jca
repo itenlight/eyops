@@ -1,0 +1,12 @@
+<adapter-config name="E524SearchServive" adapter="db" wsdlLocation="../../WSDL/E524SearchService/E524SearchServive.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="E524SearchServive_ptt" operation="E524SearchServive">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="MASTER6"/>
+      <property name="ProcedureName" value="AKSIOLOGHSH_PROTASEON_L"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

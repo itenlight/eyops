@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/E524SearchServive" name="E524SearchServive-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="E524SearchServive.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/E524SearchServive"/>
+    <wsdl:binding name="E524SearchServive_ptt-binding" type="e52:E524SearchServive_ptt" xmlns:e52="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/E524SearchServive">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="E524SearchServive">
+            <soap:operation soapAction="E524SearchServive"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

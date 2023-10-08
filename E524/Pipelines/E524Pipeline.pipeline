@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config">
+    <con:coreEntry>
+        <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
+            <con:wadl ref="E524/Resources/WADL/E524Controller"/>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000101.1aa60c4e.0.18b060d445b.N76ac">
+            <con:stage id="_StageId-7f000101.129b71ba.0.18b0fc5d511.N7ffa" name="Stage2">
+                <con:context/>
+                <con:actions>
+                    <con3:Error>
+                        <con1:id>_ActionId-7f000101.129b71ba.0.18b0fc5d511.N7ff9</con1:id>
+                        <con3:errCode>ΕΣΠΑ-999</con3:errCode>
+                        <con3:message>Αυτό το endpoint δεν έχει υλοποιηθεί</con3:message>
+                    </con3:Error>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.1aa60c4e.0.18b060d445b.N76ab">
+            <con:stage id="_StageId-7f000101.1aa60c4e.0.18b060d445b.N76a9" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-7f000101.1aa60c4e.0.18b060d445b.N7c6c" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="GetMisCreateVersion">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow/>
+                    </con:branch>
+                    <con:branch name="Search">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="RouteNode1">
+                                <con:context>
+                                    <con1:userNsDecl prefix="e524-sp" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/E524SearchServive"/>
+                                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/E524"/>
+                                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                                    <con1:dependencies>
+                                        <con1:importModule ref="E524/Resources/library"/>
+                                    </con1:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N7940</con1:id>
+                                        <con2:service ref="E524/BusinessServices/E524SearchServive" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>E524SearchServive</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N77e2</con1:id>
+                                                <con3:type>Native-To-XML</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body/text()</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_search_request"/>
+                                                <con3:schemaElement xmlns:e524="http://espa.gr/v6/E524">e524:E524SeachRequest</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                                <con3:enforceSchemaOrder>true</con3:enforceSchemaOrder>
+                                            </con3:nxsdTranslation>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.N50984595.0.18b0e9551f6.N7ff7</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryText><![CDATA[<e52:InputParameters xmlns:e52="http://xmlns.oracle.com/pcbpel/adapter/db/sp/E524SearchServive">
+    <e52:P_USER>{e524-lib:get-user($inbound)}</e52:P_USER>
+    <e52:P_LANG>{e524-lib:get-lang($inbound)}</e52:P_LANG>
+    <e52:P_PRAKSI>{fn:data($body//*:pPraksi)}</e52:P_PRAKSI>
+    <e52:P_AA_PROSKLSH>{fn:data($body//*:pAaProsklsh)}</e52:P_AA_PROSKLSH>
+    <e52:P_AXAN_ID_EP>{fn:data($body//*:pAxanIdEp)}</e52:P_AXAN_ID_EP>
+    <e52:P_KODIKOS_FOREA>{fn:data($body//*:pKodikosForea)}</e52:P_KODIKOS_FOREA>
+    <e52:P_KODIKOS_AXONA>{fn:data($body//*:pKodikosAxona)}</e52:P_KODIKOS_AXONA>
+    <e52:P_ID_CHECKLIST>{fn:data($body//*:pIdChecklist)}</e52:P_ID_CHECKLIST>
+    <e52:P_TITLOS>{fn:data($body//*:pTitlos)}</e52:P_TITLOS>
+    <e52:P_EKDOSHYPOEKDOSH>{fn:data($body//*:pEkdoshypoekdosh)}</e52:P_EKDOSHYPOEKDOSH>
+    <e52:P_KATASTDELTIOY>{fn:data($body//*:pPraksi)}</e52:P_KATASTDELTIOY>
+    <e52:P_ISXYON>{fn:data($body//*:pIsxyon)}</e52:P_ISXYON>
+    <e52:P_STADIOAKSIOL>{fn:data($body//*:pStadioAksiol)}</e52:P_STADIOAKSIOL>
+</e52:InputParameters>]]></con1:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.129b71ba.0.18b0fc5d511.N7ffe</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryText><![CDATA[<E524SearchResponse xmlns="http://espa.gr/v6/E524">
+ <ERROR_CODE></ERROR_CODE>
+ <ERROR_MESSAGE></ERROR_MESSAGE> 
+ {if (fn:not($body//e524-sp:Row)) then
+  <DATA/>
+  else
+  for $row in $body//e524-sp:Row return
+  <DATA>
+  <idChecklist>{fn:data($row/e524-sp:Column[@name="ID_CHECKLIST"])}</idChecklist>
+  <idTdp>{fn:data($row/e524-sp:Column[@name="ID_TDP"])}</idTdp>
+  <eidos>{fn:data($row/e524-sp:Column[@name="EIDOS"])}</eidos>
+  <titlos>{fn:data($row/e524-sp:Column[@name="TITLOS"])}</titlos>
+  <katastashPerig>{fn:data($row/e524-sp:Column[@name="KATASTASH_PERIG"])}</katastashPerig>  
+  <eishdhsh>{fn:data($row/e524-sp:Column[@name="KATASTASH_PERIG"])}</eishdhsh> 
+  <checklistEkdosh>{fn:data($row/e524-sp:Column[@name="CHECKLIST_EKDOSH"])}</checklistEkdosh> 
+  <checklistYpoekdosh>{fn:data($row/e524-sp:Column[@name="CHECKLIST_YPOEKDOSH"])}</checklistYpoekdosh>                      
+  <aaProsklhshs>{fn:data($row/e524-sp:Column[@name="AA_PROSKLHSHS"])}</aaProsklhshs>
+  <idEp>{fn:data($row/e524-sp:Column[@name="ID_EP"])}</idEp>
+  <titlosEp>{fn:data($row/e524-sp:Column[@name="TITLOS_EP"])}</titlosEp>
+  <kodikosAxona>{fn:data($row/e524-sp:Column[@name="KODIKOS_AXONA"])}</kodikosAxona>
+  <titlosAxona>{fn:data($row/e524-sp:Column[@name="TITLOS_AXONA"])}</titlosAxona>
+  <kodikosForea>{fn:data($row/e524-sp:Column[@name="KODIKOS_FOREA"])}</kodikosForea>
+  <perigrafh>{fn:data($row/e524-sp:Column[@name="PERIGRAFH"])}</perigrafh>
+  <katastashDeltioy>{fn:data($row/e524-sp:Column[@name="KATASTASH_DELTIOY"])}</katastashDeltioy>
+  <ypoballwn>{fn:data($row/e524-sp:Column[@name="YPOBALLWN"])}</ypoballwn>
+  <dateEisag>{fn:data($row/e524-sp:Column[@name="DATE_EISAG"])}</dateEisag>
+  <createdBy>{fn:data($row/e524-sp:Column[@name="CREATED_BY"])}</createdBy> 
+  <isxyonFlg>{fn:data($row/e524-sp:Column[@name="ISXYON_FLG"])}</isxyonFlg> 
+  <dateLastModified>{fn:data($row/e524-sp:Column[@name="DATE_LAST_MODIFIED"])}</dateLastModified> 
+  <bathmologia>{fn:data($row/e524-sp:Column[@name="BATHMOLOGIA"])}</bathmologia> 
+  <dikaioyxos>{fn:data($row/e524-sp:Column[@name="DIKAIOYXOS"])}</dikaioyxos> 
+  <kodikosMis>{fn:data($row/e524-sp:Column[@name="KODIKOS_MIS"])}</kodikosMis>  
+  <tdpEkdosh>{fn:data($row/e524-sp:Column[@name="TDP_EKDOSH"])}</tdpEkdosh>  
+  <tdpYpoekdosh>{fn:data($row/e524-sp:Column[@name="TDP_YPOEKDOSH"])}</tdpYpoekdosh>  
+  <deltioType>{fn:data($row/e524-sp:Column[@name="DELTIO_TYPE"])}</deltioType>  
+ </DATA>}
+</E524SearchResponse>]]></con1:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.1aa60c4e.0.18b060d445b.N77a8</con1:id>
+                                                <con3:type>XML-To-Native</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body/e524:E524SearchResponse</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_search_response"/>
+                                                <con3:schemaElement xmlns:e524="http://espa.gr/v6/E524">e524:E524SearchResponse</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                            </con3:nxsdTranslation>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node1">
+                                <con:request>request-7f000101.1aa60c4e.0.18b060d445b.N76ac</con:request>
+                                <con:response>response-7f000101.1aa60c4e.0.18b060d445b.N76ab</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

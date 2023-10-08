@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/E524" targetNamespace="http://espa.gr/v6/E524" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="E524SearchResponse">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="ERROR_CODE" type="xsd:integer"/>
+            <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
+            <xsd:element name="DATA" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="idChecklist" type="xsd:integer"/>
+                     <xsd:element name="idTdp" type="xsd:unsignedInt"/>
+                     <xsd:element name="eidos" type="xsd:string"/>
+                     <xsd:element name="titlos" type="xsd:string"/>
+                     <xsd:element name="katastashPerig" type="xsd:string"/>
+                     <xsd:element name="eishdhsh" type="xsd:string"/>
+                     <xsd:element name="checklistEkdosh" type="xsd:integer"/>
+                     <xsd:element name="checklistYpoekdosh" type="xsd:integer"/>
+                     <xsd:element name="aaProsklhshs" type="xsd:integer"/>
+                     <xsd:element name="idEp" type="xsd:string"/>
+                     <xsd:element name="titlosEp" type="xsd:string"/>
+                     <xsd:element name="kodikosAxona" type="xsd:string"/>
+                     <xsd:element name="titlosAxona" type="xsd:string"/>
+                     <xsd:element name="kodikosForea" type="xsd:integer"/>
+                     <xsd:element name="perigrafh" type="xsd:string"/>
+                     <xsd:element name="katastashDeltioy" type="xsd:integer"/>
+                     <xsd:element name="ypoballwn" type="xsd:string"/>
+                     <xsd:element name="dateEisag" type="xsd:string"/>
+                     <xsd:element name="createdBy" type="xsd:string"/>
+                     <xsd:element name="isxyonFlg" type="xsd:integer"/>
+                     <xsd:element name="dateLastModified" type="xsd:string"/>
+                     <xsd:element name="eishghsh" type="xsd:string"/>
+                     <xsd:element name="bathmologia" type="xsd:integer"/>
+                     <xsd:element name="dikaioyxos" type="xsd:integer"/>
+                     <xsd:element name="kodikosMis" type="xsd:unsignedInt"/>
+                     <xsd:element name="tdpEkdosh" type="xsd:integer"/>
+                     <xsd:element name="tdpYpoekdosh" type="xsd:integer"/>
+                     <xsd:element name="deltioType" type="xsd:integer"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>
