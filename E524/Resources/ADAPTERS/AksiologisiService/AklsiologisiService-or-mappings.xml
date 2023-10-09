@@ -1,0 +1,407 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.1.v20150916-55dc7c3">
+   <name>AksiologhshProtaseon_WRITE-OR</name>
+   <class-mapping-descriptors>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioy</class>
+         <alias>KPS6_CHECKLISTS_DELTIOY</alias>
+         <primary-key>
+            <field table="KPS6_CHECKLISTS_DELTIOY" name="ID_CHECKLIST" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying>
+            <queries>
+               <query name="AksiologhshProtaseon_WRITESelect" xsi:type="read-all-query">
+                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioy</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>java.util.Vector</collection-type>
+                  </container>
+               </query>
+            </queries>
+         </querying>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idChecklist</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="ID_CHECKLIST" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>checklistEkdosh</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="CHECKLIST_EKDOSH" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>checklistYpoekdosh</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="CHECKLIST_YPOEKDOSH" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>checklistType</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="CHECKLIST_TYPE" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>objectCategoryId</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="OBJECT_CATEGORY_ID" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idObject</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="ID_OBJECT" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>checklistDate</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="CHECKLIST_DATE" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>eishghsh</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EISHGHSH" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>bathmologia</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="BATHMOLOGIA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>parathrhseis</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="PARATHRHSEIS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>keimeno</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="KEIMENO" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>protokolloArithmos</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="PROTOKOLLO_ARITHMOS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>protokolloDate</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="PROTOKOLLO_DATE" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>sxoliaEyd</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="SXOLIA_EYD" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>sxoliaYops</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="SXOLIA_YOPS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosChecklistDeltioy</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="KODIKOS_CHECKLIST_DELTIOY" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosMis</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="KODIKOS_MIS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>deadlineDate</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="DEADLINE_DATE" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dikaioyxosTexnikaErga</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="DIKAIOYXOS_TEXNIKA_ERGA" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dikaioyxosPromYpiresies</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="DIKAIOYXOS_PROM_YPIRESIES" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dikaioyxosIdiaMesa</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="DIKAIOYXOS_IDIA_MESA" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>sxoliaAksiolDioik</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="SXOLIA_AKSIOL_DIOIK" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>epanypobolhTdpFlg</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EPANYPOBOLH_TDP_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kathgoriaEkdoshs</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="KATHGORIA_EKDOSHS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ekdDiorthoshFlg</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EKD_DIORTHOSH_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ekdEpanypovolhFlg</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EKD_EPANYPOVOLH_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ekdEpistrofiFlg</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EKD_EPISTROFI_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ekdForeasFlg</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EKD_FOREAS_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ekdLoipaFlg</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EKD_LOIPA_FLG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ekdoshSxolia</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="EKDOSH_SXOLIA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>flagBathmologisi</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY" name="FLAG_BATHMOLOGISI" xsi:type="column"/>
+               <attribute-classification>java.lang.Long</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="one-to-many-mapping">
+               <attribute-name>kps6ChecklistsEparkeiaCollection</attribute-name>
+               <properties>
+                  <property name="enabled">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</reference-class>
+               <private-owned>true</private-owned>
+               <target-foreign-key>
+                  <field-reference>
+                     <source-field table="KPS6_CHECKLISTS_EPARKEIA" name="ID_CHECKLIST" xsi:type="column"/>
+                     <target-field table="KPS6_CHECKLISTS_DELTIOY" name="ID_CHECKLIST" xsi:type="column"/>
+                  </field-reference>
+               </target-foreign-key>
+               <batch-reading>true</batch-reading>
+               <container xsi:type="list-container-policy">
+                  <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+               </container>
+               <indirection xsi:type="value-holder-indirection-policy"/>
+               <selection-query xsi:type="read-all-query">
+                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+                  </container>
+               </selection-query>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="one-to-many-mapping">
+               <attribute-name>kps6ChecklistsDeltioyUsersCollection</attribute-name>
+               <properties>
+                  <property name="enabled">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioyUsers</reference-class>
+               <private-owned>true</private-owned>
+               <target-foreign-key>
+                  <field-reference>
+                     <source-field table="KPS6_CHECKLISTS_DELTIOY_USERS" name="ID_CHECKLIST" xsi:type="column"/>
+                     <target-field table="KPS6_CHECKLISTS_DELTIOY" name="ID_CHECKLIST" xsi:type="column"/>
+                  </field-reference>
+               </target-foreign-key>
+               <batch-reading>true</batch-reading>
+               <container xsi:type="list-container-policy">
+                  <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+               </container>
+               <indirection xsi:type="value-holder-indirection-policy"/>
+               <selection-query xsi:type="read-all-query">
+                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioyUsers</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+                  </container>
+               </selection-query>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <sequencing>
+            <sequence-name>KPS6_CHECKLISTS_DELT_SEQ</sequence-name>
+            <sequence-field name="KPS6_CHECKLISTS_DELTIOY.ID_CHECKLIST"/>
+         </sequencing>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="KPS6_CHECKLISTS_DELTIOY"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioyUsers</class>
+         <alias>KPS6_CHECKLISTS_DELTIOY_USERS</alias>
+         <primary-key>
+            <field table="KPS6_CHECKLISTS_DELTIOY_USERS" name="ID_CHECKLIST_USERS" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying/>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idChecklistUsers</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY_USERS" name="ID_CHECKLIST_USERS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idChecklist</attribute-name>
+               <read-only>true</read-only>
+               <properties>
+                  <property name="fkPlaceholder">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <field table="KPS6_CHECKLISTS_DELTIOY_USERS" name="ID_CHECKLIST" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idXeiristh</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY_USERS" name="ID_XEIRISTH" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>typeUserFlag</attribute-name>
+               <field table="KPS6_CHECKLISTS_DELTIOY_USERS" name="TYPE_USER_FLAG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <sequencing>
+            <sequence-name>KPS6_CHECKLISTS_USERS_SEQ</sequence-name>
+            <sequence-field name="KPS6_CHECKLISTS_DELTIOY_USERS.ID_CHECKLIST_USERS"/>
+         </sequencing>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="KPS6_CHECKLISTS_DELTIOY_USERS"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</class>
+         <alias>KPS6_CHECKLISTS_EPARKEIA</alias>
+         <primary-key>
+            <field table="KPS6_CHECKLISTS_EPARKEIA" name="ID_CHECKLIST_EPARK" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying>
+            <queries>
+               <query name="AksiologhshProtaseon_WRITESelect" xsi:type="read-all-query">
+                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>java.util.Vector</collection-type>
+                  </container>
+               </query>
+            </queries>
+         </querying>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idChecklist</attribute-name>
+               <read-only>true</read-only>
+               <properties>
+                  <property name="fkPlaceholder">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="ID_CHECKLIST" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idChecklistEpark</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="ID_CHECKLIST_EPARK" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosForea</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="KODIKOS_FOREA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dikaioyxosTexnikaErga</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="DIKAIOYXOS_TEXNIKA_ERGA" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dikaioyxosPromYpiresies</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="DIKAIOYXOS_PROM_YPIRESIES" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dikaioyxosIdiaMesa</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="DIKAIOYXOS_IDIA_MESA" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dikaioyxosAllo</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="DIKAIOYXOS_ALLO" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>eparkeiaFlag</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="EPARKEIA_FLAG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>sxoliaForea</attribute-name>
+               <field table="KPS6_CHECKLISTS_EPARKEIA" name="SXOLIA_FOREA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <sequencing>
+            <sequence-name>ID_CHECKLIST_EPARK_SEQ</sequence-name>
+            <sequence-field name="KPS6_CHECKLISTS_EPARKEIA.ID_CHECKLIST_EPARK"/>
+         </sequencing>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="KPS6_CHECKLISTS_EPARKEIA"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+   </class-mapping-descriptors>
+   <login xsi:type="database-login">
+      <platform-class>org.eclipse.persistence.platform.database.oracle.Oracle9Platform</platform-class>
+      <connection-url/>
+   </login>
+</object-persistence>

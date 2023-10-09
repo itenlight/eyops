@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/AklsiologisiService"
+           xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/AklsiologisiService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Kps6ChecklistsDeltioyCollection" type="Kps6ChecklistsDeltioyCollection"/>
+   <xs:complexType name="Kps6ChecklistsDeltioyCollection">
+      <xs:sequence>
+         <xs:element name="Kps6ChecklistsDeltioy" type="Kps6ChecklistsDeltioy" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6ChecklistsDeltioy">
+      <xs:sequence>
+         <xs:element name="idChecklist" type="xs:decimal" nillable="true"/>
+         <xs:element name="checklistEkdosh" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="checklistYpoekdosh" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="checklistType" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="objectCategoryId" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idObject" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="checklistDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="eishghsh" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="bathmologia" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="parathrhseis" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="keimeno" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="protokolloArithmos" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="protokolloDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="sxoliaEyd" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="sxoliaYops" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="kodikosChecklistDeltioy" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="kodikosMis" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="deadlineDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="dikaioyxosTexnikaErga" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dikaioyxosPromYpiresies" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dikaioyxosIdiaMesa" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="sxoliaAksiolDioik" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="epanypobolhTdpFlg" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="kathgoriaEkdoshs" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="ekdDiorthoshFlg" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="ekdEpanypovolhFlg" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="ekdEpistrofiFlg" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="ekdForeasFlg" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="ekdLoipaFlg" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="ekdoshSxolia" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="flagBathmologisi" type="xs:long" minOccurs="0" nillable="true"/>
+         <xs:element name="kps6ChecklistsEparkeiaCollection" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Kps6ChecklistsEparkeia" type="Kps6ChecklistsEparkeia" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="kps6ChecklistsDeltioyUsersCollection" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Kps6ChecklistsDeltioyUsers" type="Kps6ChecklistsDeltioyUsers" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6ChecklistsEparkeia">
+      <xs:sequence>
+         <xs:element name="idChecklistEpark" type="xs:decimal" nillable="true"/>
+         <xs:element name="kodikosForea" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="dikaioyxosTexnikaErga" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dikaioyxosPromYpiresies" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dikaioyxosIdiaMesa" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dikaioyxosAllo" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="eparkeiaFlag" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="sxoliaForea" type="xs:string" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6ChecklistsDeltioyUsers">
+      <xs:sequence>
+         <xs:element name="idChecklistUsers" type="xs:decimal" nillable="true"/>
+         <xs:element name="idXeiristh" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="typeUserFlag" type="xs:int" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

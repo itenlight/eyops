@@ -235,6 +235,59 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2332b11c.0.18b11bc78a2.N7e4d">
+            <con:stage id="_StageId-7f000101.2332b11c.0.18b11bc78a2.N7e16" name="Transform and validate" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7e15</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con6:nxsd ref="E524/Resources/XSD/nxsd_insert_update_request"/>
+                        <con6:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con6:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con2:nxsdTranslation>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.2332b11c.0.18b11bc78a2.N7e4b" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7daa</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7da9</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7da8</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2332b11c.0.18b11bc78a2.N7e4c">
+            <con:stage id="_StageId-7f000101.2332b11c.0.18b11bc78a2.N7e4a" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
             <con:branch-node type="operation" id="_FlowId-7f000101.1aa60c4e.0.18b060d445b.N7c6c" name="E524 Branch">
                 <con:context/>
@@ -384,7 +437,12 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     <con:branch name="InsertDeltio">
                         <con:operator>equals</con:operator>
                         <con:value/>
-                        <con:flow/>
+                        <con:flow>
+                            <con:pipeline-node name="Insert Pipeline">
+                                <con:request>request-7f000101.2332b11c.0.18b11bc78a2.N7e4d</con:request>
+                                <con:response>response-7f000101.2332b11c.0.18b11bc78a2.N7e4c</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
                     </con:branch>
                     <con:branch name="UpdateDeltio">
                         <con:operator>equals</con:operator>
