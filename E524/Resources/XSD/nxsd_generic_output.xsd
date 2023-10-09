@@ -12,7 +12,7 @@
                         <xsd:complexType>
                            <xsd:sequence>
                               <xsd:element name="idObject" type="xsd:integer"/>
-                              <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                              <xsd:element name="objectCategoryId" type="xsd:integer" minOccurs="0"/>
                            </xsd:sequence>
                         </xsd:complexType>
                      </xsd:element>

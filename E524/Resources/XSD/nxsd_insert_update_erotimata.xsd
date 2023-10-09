@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/e524"
+            targetNamespace="http://espa.gr/v6/e524" elementFormDefault="qualified"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+  <xsd:element name="ErotimataRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="USERNAME" type="xsd:string"/>
+        <xsd:element name="PASSWORD" type="xsd:string"/>
+        <xsd:element name="LANG" type="xsd:string"/>
+        <xsd:element name="DATA">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Kps6DeltioErothmata" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="idDeler" type="xsd:integer"/>
+                    <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                    <xsd:element name="parentId" type="xsd:integer"/>
+                    <xsd:element name="checklistType" type="xsd:integer"/>
+                    <xsd:element name="idErothma" type="xsd:integer"/>
+                    <xsd:element name="apanthshValue" type="xsd:integer"/>
+                    <xsd:element name="apanthshDate" type="xsd:string"/>
+                    <xsd:element name="statusId" type="xsd:integer"/>
+                    <xsd:element name="isxysFlg" type="xsd:int"/>
+                    <xsd:element name="isxysDate" type="xsd:string"/>
+                    <xsd:element name="objectId" type="xsd:integer"/>
+                    <xsd:element name="sxoliaYops" type="xsd:string"/>
+                    <xsd:element name="parathrhseis" type="xsd:string"/>
+                    <xsd:element name="alloKeimeno" type="xsd:string"/>
+                    <xsd:element name="V6DeltioErothmataInfo" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                          <xsd:element name="parentId" type="xsd:integer"/>
+                          <xsd:element name="checklistType" type="xsd:integer"/>
+                          <xsd:element name="checklistTypeDescr" type="xsd:string"/>
+                          <xsd:element name="idErothma" type="xsd:integer"/>
+                          <xsd:element name="erothmaAa" type="xsd:string"/>
+                          <xsd:element name="erothma" type="xsd:string"/>
+                          <xsd:element name="apanthshValue" type="xsd:integer"/>
+                          <xsd:element name="apanthshValueDescr" type="xsd:string"/>
+                          <xsd:element name="apanthshDate" type="xsd:string"/>
+                          <xsd:element name="statusId" type="xsd:integer"/>
+                          <xsd:element name="isxysFlg" type="xsd:int"/>
+                          <xsd:element name="isxysFlgDescr" type="xsd:string"/>
+                          <xsd:element name="isxysDate" type="xsd:string"/>
+                          <xsd:element name="objectId" type="xsd:string"/>
+                          <xsd:element name="sxoliaYops" type="xsd:string"/>
+                          <xsd:element name="parathrhseis" type="xsd:string"/>
+                          <xsd:element name="alloKeimeno" type="xsd:string"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="InputChangeStatus" minOccurs="0">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="actionUi" type="xsd:integer"/>
+              <xsd:element name="commentsStatus" type="xsd:string"/>
+              <xsd:element name="combineChecks" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="OutputChangeStatus" minOccurs="0">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="ERRORCODE" type="xsd:integer"/>
+              <xsd:element name="ERRORMESSAGE" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>

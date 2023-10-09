@@ -308,3 +308,92 @@ declare function  e524-lib:search-deltio($id as xs:unsignedInt, $username as xs:
     </DATA>
    </E524Response>
 };
+
+declare function e524-lib:extract-erotimata($payload as element()) as element() {
+  <ErotimataRequest xmlns="http://espa.gr/v6/e524">
+   <USERNAME/>
+   <LANG/>
+   <DATA>
+   {for $Erotima in $payload/*:Kps6DeltioErothmata return
+    <Kps6DeltioErothmata>
+       <idDeler>{fn:data($Erotima/*:idDeler)}</idDeler>
+       <objectCategoryId>{fn:data($Erotima/*:objectCategoryId)}</objectCategoryId>
+       <parentId>{fn:data($Erotima/*:parentId)}</parentId>
+       <checklistType>{fn:data($Erotima/*:checklistType)}</checklistType>
+       <idErothma>{fn:data($Erotima/*:idErothma)}</idErothma>
+       <apanthshValue>{fn:data($Erotima/*:apanthshValue)}</apanthshValue>
+       <apanthshDate>{fn:data($Erotima/*:apanthshDate)}</apanthshDate>
+       <statusId>{fn:data($Erotima/*:statusId)}</statusId>
+       <isxysFlg>{fn:data($Erotima/*:isxysFlg)}</isxysFlg>
+       <isxysDate>{fn:data($Erotima/*:isxysDate)}</isxysDate>
+       <objectId>{fn:data($Erotima/*:objectId)}</objectId>
+       <sxoliaYops>{fn:data($Erotima/*:sxoliaYops)}</sxoliaYops>
+       <parathrhseis>{fn:data($Erotima/*:parathrhseis)}</parathrhseis>
+       <alloKeimeno>{fn:data($Erotima/*:alloKeimeno)}</alloKeimeno>
+    </Kps6DeltioErothmata>}
+   </DATA>    
+  </ErotimataRequest>  
+};
+
+declare function e524-lib:prepare-input($payload as element()) as element(){
+ 
+ <Kps6ChecklistsDeltioyCollection xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/AklsiologisiService">
+  <Kps6ChecklistsDeltioy>
+    <idChecklist>{fn:data($payload/*:idChecklist)}</idChecklist>
+    <checklistEkdosh>{fn:data($payload/*:checklistEkdosh)}</checklistEkdosh>
+    <checklistYpoekdosh>{fn:data($payload/*:checklistYpoekdosh)}</checklistYpoekdosh>
+    <checklistType>{fn:data($payload/*:checklistType)}</checklistType>
+    <objectCategoryId>101</objectCategoryId>
+    <idObject>{fn:data($payload/*:kps6Tdp/*:idTdp)}</idObject>
+    <checklistDate>{fn:data($payload/*:checklistDate)}</checklistDate>
+    <eishghsh>{fn:data($payload/*:eishghsh)}</eishghsh>
+    <bathmologia>{fn:data($payload/*:bathmologia)}</bathmologia>
+    <parathrhseis>{fn:data($payload/*:parathrhseis)}</parathrhseis>
+    <keimeno>{fn:data($payload/*:keimeno)}</keimeno>
+    <protokolloArithmos>{fn:data($payload/*:protokolloArithmos)}</protokolloArithmos>
+    <protokolloDate>{fn:data($payload/*:protokolloDate)}</protokolloDate>
+    <sxoliaEyd>{fn:data($payload/*:sxoliaEyd)}</sxoliaEyd>
+    <sxoliaYops>{fn:data($payload/*:sxoliaYops)}</sxoliaYops>
+    <kodikosChecklistDeltioy>{fn:data($payload/*:kodikosChecklistDeltioy)}</kodikosChecklistDeltioy>
+    <kodikosMis>{fn:data($payload/*:kodikosMis)}</kodikosMis>
+    <deadlineDate>{fn:data($payload/*:deadlineDate)}</deadlineDate>
+    <dikaioyxosTexnikaErga>{fn:data($payload/*:dikaioyxosTexnikaErga)}</dikaioyxosTexnikaErga>
+    <dikaioyxosPromYpiresies>{fn:data($payload/*:dikaioyxosPromYpiresies)}</dikaioyxosPromYpiresies>
+    <dikaioyxosIdiaMesa>{fn:data($payload/*:dikaioyxosIdiaMesa)}</dikaioyxosIdiaMesa>
+    <sxoliaAksiolDioik>{fn:data($payload/*:sxoliaAksiolDioik)}</sxoliaAksiolDioik>
+    <epanypobolhTdpFlg>{fn:data($payload/*:epanypobolhTdpFlg)}</epanypobolhTdpFlg>
+    <kathgoriaEkdoshs>{fn:data($payload/*:kathgoriaEkdoshs)}</kathgoriaEkdoshs>
+    <ekdDiorthoshFlg>{fn:data($payload/*:ekdDiorthoshFlg)}</ekdDiorthoshFlg>
+    <ekdEpanypovolhFlg>{fn:data($payload/*:ekdEpanypoboliFlg)}</ekdEpanypovolhFlg>
+    <ekdEpistrofiFlg>{fn:data($payload/*:ekdEpistrofiFlg)}</ekdEpistrofiFlg>
+    <ekdForeasFlg>{fn:data($payload/*:ekdForeasFlg)}</ekdForeasFlg>
+    <ekdoshSxolia>{fn:data($payload/*:ekdoshSxolia)}</ekdoshSxolia>
+    <flagBathmologisi>{fn:data($payload/*:bathmologisiFlag)}</flagBathmologisi>
+    <kps6ChecklistsEparkeiaCollection>
+    </kps6ChecklistsEparkeiaCollection>
+    {for $Eparkeia in $payload/*:Kps6ChecklistsEparkeia return
+     <Kps6ChecklistsEparkeia>
+       <idChecklistEpark>{fn:data($Eparkeia/*:idChecklistEparkeia)}</idChecklistEpark>
+       <kodikosForea>{fn:data($Eparkeia/*:kodikosForea)}</kodikosForea>
+       <dikaioyxosTexnikaErga>{fn:data($Eparkeia/*:dikaioyxosTexnikaErga)}</dikaioyxosTexnikaErga>
+       <dikaioyxosPromYpiresies>{fn:data($Eparkeia/*:dikaioyxosPromYpiresies)}</dikaioyxosPromYpiresies>
+       <dikaioyxosIdiaMesa>{fn:data($Eparkeia/*:dikaioyxosIdiaMesa)}</dikaioyxosIdiaMesa>
+       <dikaioyxosAllo>{fn:data($Eparkeia/*:dikaioyxosAllo)}</dikaioyxosAllo>
+       <eparkeiaFlag>{fn:data($Eparkeia/*:eparkeiaFlag)}</eparkeiaFlag>
+       <sxoliaForea>{fn:data($Eparkeia/*:sxoliaForea)}</sxoliaForea>
+     </Kps6ChecklistsEparkeia>
+    }
+    <kps6ChecklistsDeltioyUsersCollection>
+    {for $User in $payload/*:Kps6ChecklistsDeltioyUsers return
+     <Kps6ChecklistsDeltioyUsers>
+      <idChecklistUsers>{fn:data($User/*:idChecklistUsers)}</idChecklistUsers>
+      <idXeiristh>{fn:data($User/*:userName)}</idXeiristh>
+      <typeUserFlag>{fn:data($User/*:typeUserFlag)}</typeUserFlag>
+     </Kps6ChecklistsDeltioyUsers>
+    }
+    </kps6ChecklistsDeltioyUsersCollection>
+   </Kps6ChecklistsDeltioy>
+ </Kps6ChecklistsDeltioyCollection>
+ 
+
+};
