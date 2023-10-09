@@ -4,9 +4,15 @@
    <resources>
       <resource path="/">
          <method name="GET" soa:name="GetErotimara">
-            <request/>
+            <request>
+               <param name="USERNAME" style="query" type="xsd:string"/>
+               <param name="LANG" style="query" type="xsd:string"/>
+               <param name="idObject" style="query" type="xsd:string"/>
+               <param name="objectCategoryId" style="query" type="xsd:string"/>
+            </request>
             <response>
                <representation mediaType="application/json"/>
+               <representation mediaType="application/xml"/>
             </response>
             <response>
                <representation mediaType="application/json"/>

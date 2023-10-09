@@ -1914,7 +1914,7 @@
                                                     </con2:replace>
                                                     <con2:routing-options>
                                                         <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f95</con1:id>
-                                                        <con2:qualityOfService>best-effort</con2:qualityOfService>
+                                                        <con2:qualityOfService>exactly-once</con2:qualityOfService>
                                                     </con2:routing-options>
                                                 </con4:outboundTransform>
                                             </con4:route>
@@ -1951,10 +1951,6 @@
 </stat:InputParameters>]]></con1:xqueryText>
                                                 </con2:expr>
                                             </con2:replace>
-                                            <con2:routing-options>
-                                                <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7f41</con1:id>
-                                                <con2:qualityOfService>best-effort</con2:qualityOfService>
-                                            </con2:routing-options>
                                         </con3:outboundTransform>
                                         <con3:responseTransform>
                                             <con2:replace varName="body" contents-only="true">
