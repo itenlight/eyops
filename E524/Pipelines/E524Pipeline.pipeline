@@ -73,6 +73,32 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="error" name="error-7f000101.d9fbf3f.0.18b10ef2cad.N7fcf">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7a90" name="Error Handler Stager" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:comment>This is a workaround for a bug in OSB 12c v12.2.1.0</con:comment>
+                <con:context/>
+                <con:actions>
+                    <con2:ifThenElse xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a8f</con1:id>
+                        <con2:case id="_BranchId-7f000101.N483b0112.0.18b16270d2e.N7a8e">
+                            <con2:condition>
+                                <con1:xqueryText>fn:contains($fault//ctx:reason,'empty list')</con1:xqueryText>
+                            </con2:condition>
+                            <con2:actions>
+                                <con2:replace varName="body" contents-only="true">
+                                    <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a8d</con1:id>
+                                    <con2:expr>
+                                        <con1:xqueryText>'[]'</con1:xqueryText>
+                                    </con2:expr>
+                                </con2:replace>
+                                <con1:reply isError="false">
+                                    <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a8c</con1:id>
+                                </con1:reply>
+                            </con2:actions>
+                        </con2:case>
+                        <con2:default/>
+                    </con2:ifThenElse>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.d9fbf3f.0.18b10ef2cad.N7fce" name="Stage1">
                 <con:context/>
                 <con:disabled>true</con:disabled>
@@ -210,7 +236,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="response" name="response-7f000101.d9fbf3f.0.18b10ef2cad.N7ec1">
-            <con:stage id="_StageId-7f000101.d9fbf3f.0.18b10ef2cad.N7ebf" name="Stage1">
+            <con:stage id="_StageId-7f000101.d9fbf3f.0.18b10ef2cad.N7ebf" name="Prepare Response">
                 <con:context>
                     <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
                 </con:context>
@@ -254,6 +280,43 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     </con6:nxsdTranslation>
                 </con:actions>
             </con:stage>
+            <con:stage id="_StageId-7f000101.N4b4cf426.0.18b2477cfcd.N8000" name="Check For Update">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:wsCallout>
+                        <con1:id>_ActionId-7f000101.N4b4cf426.0.18b2477cfcd.N7fcd</con1:id>
+                        <con3:service ref="E524/BusinessServices/CheckUpdateService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con3:operation>CheckUpdateService</con3:operation>
+                        <con3:request>
+                            <con3:body wrapped="false">RequestPayload</con3:body>
+                        </con3:request>
+                        <con3:response>
+                            <con3:body wrapped="false">ResponsePayload</con3:body>
+                        </con3:response>
+                        <con3:requestTransform>
+                            <con3:assign varName="RequestPayload">
+                                <con1:id>_ActionId-7f000101.N4b4cf426.0.18b2477cfcd.N7fca</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText><![CDATA[<chec:InputParameters xmlns:chec="http://xmlns.oracle.com/pcbpel/adapter/db/sp/CheckUpdateService">
+    <chec:PLANG>{e524-lib:get-lang($inbound)}</chec:PLANG>
+    <chec:PI_USERNAME>{e524-lib:get-user($inbound)}</chec:PI_USERNAME>
+    <chec:PI_OBJECTID>{fn:data($body//e524:idChecklist)}</chec:PI_OBJECTID>
+    <chec:PI_CATEGORYID>{e524-lib:right-trim(fn:translate(xs:string(fn:contains(fn:data($body//e524:checklistType),'57001')),'tfrueals','89      '))}</chec:PI_CATEGORYID>
+    <chec:PI_ACTIONID>{fn:data($body//e524:actionUi)}</chec:PI_ACTIONID>
+</chec:InputParameters>]]></con1:xqueryText>
+                                </con3:expr>
+                            </con3:assign>
+                        </con3:requestTransform>
+                        <con3:responseTransform/>
+                    </con3:wsCallout>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2332b11c.0.18b11bc78a2.N7e4b" name="Prepare payload">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -280,6 +343,37 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                             </con2:routing-options>
                         </con4:outboundTransform>
                     </con6:route>
+                    <con3:ifThenElse>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cc3</con1:id>
+                        <con3:case id="_BranchId-7f000101.N483b0112.0.18b16270d2e.N7cc2">
+                            <con3:condition>
+                                <con1:xqueryText>$body//e524:Kps6DeltioErothmata</con1:xqueryText>
+                            </con3:condition>
+                            <con3:actions>
+                                <con3:wsCallout>
+                                    <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cca</con1:id>
+                                    <con3:service ref="E524/BusinessServices/ErotimataService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                    <con3:operation>UpdateErotimata</con3:operation>
+                                    <con3:request>
+                                        <con3:payload wrapped="false">RequestPayload</con3:payload>
+                                    </con3:request>
+                                    <con3:response>
+                                        <con3:payload wrapped="false">ResponsePayload</con3:payload>
+                                    </con3:response>
+                                    <con3:requestTransform>
+                                        <con3:assign varName="RequestPayload">
+                                            <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cbe</con1:id>
+                                            <con3:expr>
+                                                <con1:xqueryText>e524-lib:extract-erotimata($body//e524:kps6ChecklistsDeltioy)</con1:xqueryText>
+                                            </con3:expr>
+                                        </con3:assign>
+                                    </con3:requestTransform>
+                                    <con3:responseTransform/>
+                                </con3:wsCallout>
+                            </con3:actions>
+                        </con3:case>
+                        <con3:default/>
+                    </con3:ifThenElse>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7e52</con1:id>
                         <con5:service ref="E524/BusinessServices/AklsiologisiService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
@@ -297,13 +391,6 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                             </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
-                    <con6:assign varName="IDCHECKLIST" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
-                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7ef7</con1:id>
-                        <con2:expr>
-                            <con1:xqueryText>fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('CHECKLIST-ID'),
-               'Select Max(ID_CHECKLIST) ID_CHECKLIST From KPS6_CHECKLISTS_DELTIOY')//*:ID_CHECKLIST)</con1:xqueryText>
-                        </con2:expr>
-                    </con6:assign>
                 </con:actions>
             </con:stage>
         </con:pipeline>
@@ -339,7 +426,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
     then 'EN'    
     else fn:upper-case(e524-lib:get-lang($inbound))}</PLANG>
   <COMBINECHECKS>-{fn:data($body//e524:combineChecks)}</COMBINECHECKS>
-  <OBJECTID>{xs:unsignedInt($IDCHECKLIST)}</OBJECTID>
+  <OBJECTID>{fn:data($body//e524:idChecklist)}</OBJECTID>
   <CATEGORYID>149</CATEGORYID>
   <ACTIONUI>{fn:data($body//e524:actionUi)}</ACTIONUI>
   <COMMENTSSTATUS>{fn:data($body//e524:comments)}</COMMENTSSTATUS>
@@ -393,15 +480,1145 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7deb">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7d82" name="Transform and validate" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy"/>
+                </con:context>
+                <con:actions>
+                    <con6:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d81</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con6:nxsd ref="E524/Resources/XSD/nxsd_insert_update_request"/>
+                        <con6:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con6:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con6:nxsdTranslation>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7d05" name="Prepare payload">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con6:route xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d04</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d03</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d02</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con6:route>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d01</con1:id>
+                        <con5:service ref="E524/BusinessServices/AklsiologisiService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>insert</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d00</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>e524-lib:prepare-input($body//e524:Kps6ChecklistsDeltioy)</con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cff</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                    <con6:assign varName="IDCHECKLIST" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cfe</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText>fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('CHECKLIST-ID'),
+               'Select Max(ID_CHECKLIST) ID_CHECKLIST From KPS6_CHECKLISTS_DELTIOY')//*:ID_CHECKLIST)</con1:xqueryText>
+                        </con2:expr>
+                    </con6:assign>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N483b0112.0.18b16270d2e.N7dea">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7c16" name="Log Status">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:wsCallout>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7c15</con1:id>
+                        <con3:service ref="E524/BusinessServices/StatusService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con3:operation>StatusService</con3:operation>
+                        <con3:request>
+                            <con3:body wrapped="false">RequestPayload</con3:body>
+                        </con3:request>
+                        <con3:response>
+                            <con3:body wrapped="false">ResponsePayload</con3:body>
+                        </con3:response>
+                        <con3:requestTransform>
+                            <con3:assign varName="RequestPayload">
+                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7c14</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText><![CDATA[<InputParameters xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/sp/StatusService">
+  <USERNAME>{e524-lib:get-user($inbound)}</USERNAME>
+  <PLANG>{if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
+            'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 103) as STOXOS3 from dual',
+            xs:unsignedInt($TDYID))//*:STOXOS3)=1) 
+    then 'EN'    
+    else fn:upper-case(e524-lib:get-lang($inbound))}</PLANG>
+  <COMBINECHECKS>-{fn:data($body//e524:combineChecks)}</COMBINECHECKS>
+  <OBJECTID>{xs:unsignedInt($IDCHECKLIST)}</OBJECTID>
+  <CATEGORYID>149</CATEGORYID>
+  <ACTIONUI>{fn:data($body//e524:actionUi)}</ACTIONUI>
+  <COMMENTSSTATUS>{fn:data($body//e524:comments)}</COMMENTSSTATUS>
+  <DATEACTION>{fn:current-dateTime()}</DATEACTION>
+  <OBJECTPARENTID>{fn:data($body//e524:kodikosMis)}</OBJECTPARENTID>
+</InputParameters>]]></con1:xqueryText>
+                                </con3:expr>
+                            </con3:assign>
+                        </con3:requestTransform>
+                        <con3:responseTransform>
+                            <con6:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7c13</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText><![CDATA[<e524:E524Response>
+ <e524:ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</e524:ERROR_CODE>
+ <e524:ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</e524:ERROR_MESSAGE>
+ <e524:DATA>
+  <e524:Kps6DeltioErothmata>
+    <e524:idObject>{xs:unsignedLong($IDCHECKLIST)}</e524:idObject>
+  </e524:Kps6DeltioErothmata>
+ </e524:DATA>
+</e524:E524Response>]]></con1:xqueryText>
+                                </con2:expr>
+                            </con6:replace>
+                        </con3:responseTransform>
+                    </con3:wsCallout>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7baa" name="Prepare Response" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7ba9</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con6:nxsd ref="E524/Resources/XSD/nxsd_generic_output"/>
+                        <con6:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con6:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7ba8</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7b76">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7b74" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7b39</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listamis_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7b70</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetKodikosMisList(
+  $body//e524:kodikos_mis, 
+  $body//e524:checklist, 
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N483b0112.0.18b16270d2e.N7b75">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7b73" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a89</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listamis_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7b3c</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7a0c">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7a0b" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a0a</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_misforview_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a09</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetMisListForView(
+  $body//e524:kodikosMis,
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N483b0112.0.18b16270d2e.N7a08">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7a07" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a06</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listamis_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7a05</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7990">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N798f" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N798e</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_tdpviewforfaplep"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N798d</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetTdpListForFap(
+  $body//e524:praksi,
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N483b0112.0.18b16270d2e.N798c">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N798b" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N798a</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listamis_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7989</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7914">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7913" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7912</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_tdpviewforfaplep"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7911</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetTdpListForFap(
+  $body//e524:praksi,
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N483b0112.0.18b16270d2e.N7910">
+            <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N790f" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N790e</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listamis_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N790d</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N3f60f8fb.0.18b1f7abaae.N7f57">
+            <con:stage id="_StageId-7f000101.N3f60f8fb.0.18b1f7abaae.N7f56" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7f55</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_eisigisiview_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7f54</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetEisigisiList(
+  $body//e524:checklist,
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N3f60f8fb.0.18b1f7abaae.N7f53">
+            <con:stage id="_StageId-7f000101.N3f60f8fb.0.18b1f7abaae.N7f52" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7f51</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_eigisiview_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7f50</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N3f60f8fb.0.18b1f7abaae.N7eaa">
+            <con:stage id="_StageId-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea9" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea8</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listaproskliseon_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea7</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetListProskliseon(
+  $body//e524:idDeltiou,
+  $body//e524:checklist,
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea6">
+            <con:stage id="_StageId-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea5" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea4</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listaproskliseon_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea3</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7f8c">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7f8b" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f8a</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_newfaplepversion_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f89</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetNewFapVersion
+($body//e524:idChecklist, 
+$body//e524:kathgoria_ekdoshs)</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.5993581f.0.18b252842bd.N7f88">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7f87" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f86</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_newfaplepversion_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f85</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7f10">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7f0f" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f0e</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_newfaplepversion_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f0d</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetNewLepVersion
+($body//e524:idChecklist, 
+$body//e524:kathgoria_ekdoshs)</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.5993581f.0.18b252842bd.N7f0c">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7f0b" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f0a</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_newfaplepversion_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7f09</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7e94">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7e93" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7e92</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_kodkoiforeon_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7e91</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetKodkousForeon(
+  $body//e524:tdpId,
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.5993581f.0.18b252842bd.N7e90">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7e8f" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7e8e</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_kodikoiforeon_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7e8d</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7e15">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7e14" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7e12</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetErotimata(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.5993581f.0.18b252842bd.N7e11">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7e10" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7e0f</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_erotimata_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7e0e</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7d95">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7d94" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7d93</con1:id>
+                        <con3:type>Native-To-XML</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_aplist_request"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7d92</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetApList(
+  $body//e524:idEp,
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.5993581f.0.18b252842bd.N7d91">
+            <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7d90" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7d8f</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_aplist_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.5993581f.0.18b252842bd.N7d8e</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7f57">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7f56" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7f54</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetForeisEgrisiList(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7f53">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7f52" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7f51</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_listamis_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7f50</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7edc">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7edb" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7eda</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetEPList(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7ed9">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7ed8" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7ed7</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_eplist_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7ed6</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7e65">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7e64" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7e63</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetMis(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7e62">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7e61" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7e60</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_foreisegkrisis_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7e5f</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7dee">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7ded" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7dec</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetVersionList(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7deb">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7dea" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7de9</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_viewversionlist"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7de8</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7d00">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7cff" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7cfe</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetAllAxiologitesList(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7cfd">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7cfc" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7cfb</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_getlepaxiologites_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7cfa</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7c89">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7c88" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7c87</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetLepAxiologitesList(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7c86">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7c85" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7c84</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_getlepaxiologites_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7c83</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7be1">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7be0" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7bdf</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:GetExoterikoipAxiologitesList()</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7bde">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7bdd" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7bdc</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_getexoaliologites_response"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7bdb</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7b6a">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7b69" name="Run Native Query">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b68</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>e524-lib:LoadEnergeiaOpsOptions(e524-lib:get-lang($inbound))</con1:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.2ddade37.0.18b29e7b3c0.N7b67">
+            <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7b66" name="Prepare Response">
+                <con:context>
+                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b65</con1:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E524/Resources/XSD/nxsd_getoptionslist"/>
+                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b64</con1:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
             <con:branch-node type="operation" id="_FlowId-7f000101.1aa60c4e.0.18b060d445b.N7c6c" name="E524 Branch">
                 <con:context/>
                 <con:branch-table>
-                    <con:branch name="GetMisCreateVersion">
-                        <con:operator>equals</con:operator>
-                        <con:value/>
-                        <con:flow/>
-                    </con:branch>
                     <con:branch name="CreateEmptyDeltio">
                         <con:operator>equals</con:operator>
                         <con:value/>
@@ -542,13 +1759,18 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     <con:branch name="InsertDeltio">
                         <con:operator>equals</con:operator>
                         <con:value/>
-                        <con:flow></con:flow>
+                        <con:flow>
+                            <con:pipeline-node name="InsertPipeline">
+                                <con:request>request-7f000101.N483b0112.0.18b16270d2e.N7deb</con:request>
+                                <con:response>response-7f000101.N483b0112.0.18b16270d2e.N7dea</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
                     </con:branch>
                     <con:branch name="UpdateDeltio">
                         <con:operator>equals</con:operator>
                         <con:value/>
                         <con:flow>
-                            <con:pipeline-node name="Insert Pipeline">
+                            <con:pipeline-node name="Update Pipeline">
                                 <con:request>request-7f000101.2332b11c.0.18b11bc78a2.N7e4d</con:request>
                                 <con:response>response-7f000101.2332b11c.0.18b11bc78a2.N7e4c</con:response>
                             </con:pipeline-node>
@@ -653,6 +1875,196 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     </con3:route>
                                 </con:actions>
                             </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetKodikosMisList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetMisCreateVersion Pipeline">
+                                <con:request>request-7f000101.N483b0112.0.18b16270d2e.N7b76</con:request>
+                                <con:response>response-7f000101.N483b0112.0.18b16270d2e.N7b75</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetMisForView">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetMisForView Pipeline">
+                                <con:request>request-7f000101.N483b0112.0.18b16270d2e.N7a0c</con:request>
+                                <con:response>response-7f000101.N483b0112.0.18b16270d2e.N7a08</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetTdpListForFap">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetTdpListForFap">
+                                <con:request>request-7f000101.N483b0112.0.18b16270d2e.N7990</con:request>
+                                <con:response>response-7f000101.N483b0112.0.18b16270d2e.N798c</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetTdpListForLep">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetTdpListForLep">
+                                <con:request>request-7f000101.N483b0112.0.18b16270d2e.N7914</con:request>
+                                <con:response>response-7f000101.N483b0112.0.18b16270d2e.N7910</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetEsigisiLista">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get Eisigisi Pipeline">
+                                <con:request>request-7f000101.N3f60f8fb.0.18b1f7abaae.N7f57</con:request>
+                                <con:response>response-7f000101.N3f60f8fb.0.18b1f7abaae.N7f53</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="ListaProskliseonListForCreateNewVersion">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Lista Proskliseon Pipeline">
+                                <con:request>request-7f000101.N3f60f8fb.0.18b1f7abaae.N7eaa</con:request>
+                                <con:response>response-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea6</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="NewFapVersion">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="NewFapVersion Pipeline">
+                                <con:request>request-7f000101.5993581f.0.18b252842bd.N7f8c</con:request>
+                                <con:response>response-7f000101.5993581f.0.18b252842bd.N7f88</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="NewLepVersion">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="NewLepVersion Pipeline ">
+                                <con:request>request-7f000101.5993581f.0.18b252842bd.N7f10</con:request>
+                                <con:response>response-7f000101.5993581f.0.18b252842bd.N7f0c</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetKodikousForeon">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Kodikoiforeon Pipeline">
+                                <con:request>request-7f000101.5993581f.0.18b252842bd.N7e94</con:request>
+                                <con:response>response-7f000101.5993581f.0.18b252842bd.N7e90</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetErotimata">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get Erotimata Pipeline">
+                                <con:request>request-7f000101.5993581f.0.18b252842bd.N7e15</con:request>
+                                <con:response>response-7f000101.5993581f.0.18b252842bd.N7e11</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetAPList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get AP Pipeline">
+                                <con:request>request-7f000101.5993581f.0.18b252842bd.N7d95</con:request>
+                                <con:response>response-7f000101.5993581f.0.18b252842bd.N7d91</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetEPList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get EP Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7edc</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7ed9</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetForeisEgkrisis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get Foreis Egkrisis Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7f57</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7f53</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetMis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get MIS Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7e65</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7e62</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetVersionCategoriesList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get Version List Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7dee</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7deb</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetLepEydEfAllAxiologitesList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get All Axiologites Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7d00</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7cfd</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetLepEydEfAxiologitesList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get LEP Axiologites Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7c89</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7c86</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetLepEkswterikoiAxiologitesList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get LEP Exo Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7be1</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7bde</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="LoadEnergeiaOpsOptions">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get Options Pipeline">
+                                <con:request>request-7f000101.2ddade37.0.18b29e7b3c0.N7b6a</con:request>
+                                <con:response>response-7f000101.2ddade37.0.18b29e7b3c0.N7b67</con:response>
+                            </con:pipeline-node>
                         </con:flow>
                     </con:branch>
                     <con:default-branch>

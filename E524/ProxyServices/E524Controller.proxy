@@ -26,6 +26,7 @@
         <tran:inbound-properties/>
         <tran:provider-specific xsi:type="http:HttpEndPointConfiguration" xmlns:http="http://www.bea.com/wli/sb/transports/http">
             <http:inbound-properties/>
+            <http:response-encoding>utf-8</http:response-encoding>
             <http:compression>
                 <http:compression-support>false</http:compression-support>
             </http:compression>

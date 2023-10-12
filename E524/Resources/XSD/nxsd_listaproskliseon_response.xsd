@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/e524" targetNamespace="http://espa.gr/v6/e524" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="E524Response">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="Row" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="idCheckList" type="xsd:unsignedLong"/>
+                     <xsd:element name="kodikosMis" type="xsd:unsignedLong"/>
+                     <xsd:element name="tdpEkd" type="xsd:string"/>
+                     <xsd:element name="stadio" type="xsd:string"/>
+                     <xsd:element name="checkListType" type="xsd:unsignedLong"/>
+                     <xsd:element name="checkListEkdosi" type="xsd:unsignedLong"/>
+                     <xsd:element name="ekdosiYpoekdosi" type="xsd:string"/>
+                     <xsd:element name="katastasi" type="xsd:unsignedShort"/>
+                     <xsd:element name="katastasiDesc" type="xsd:string"/>
+                     <xsd:element name="newEkdosi" type="xsd:unsignedByte"/>
+                     <xsd:element name="newYpoekdosi" type="xsd:unsignedByte"/>
+                     <xsd:element name="maxEkd" type="xsd:string"/>
+                     <xsd:element name="countEkremeis" type="xsd:unsignedShort"/>
+                     <xsd:element name="actionType" type="xsd:integer"/>
+                     <xsd:element name="typeNewEkd" type="xsd:unsignedShort"/>
+                     <xsd:element name="isxys" type="xsd:unsignedByte"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>
