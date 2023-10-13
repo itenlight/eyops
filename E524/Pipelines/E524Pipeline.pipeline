@@ -2067,6 +2067,144 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                             </con:pipeline-node>
                         </con:flow>
                     </con:branch>
+                    <con:branch name="CheckDeltioFap">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="FAP RunChecks Route">
+                                <con:context>
+                                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                                    <con1:userNsDecl prefix="e524" namespace="http://epsa.gr/v6/e524"/>
+                                    <con1:dependencies>
+                                        <con1:importModule ref="E524/Resources/library"/>
+                                    </con1:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b5e</con1:id>
+                                        <con2:service ref="E524/BusinessServices/RunChecksService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>Operation1</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b5b</con1:id>
+                                                <con3:type>Native-To-XML</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body/text()</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runckecks_request"/>
+                                                <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                                <con3:enforceSchemaOrder>true</con3:enforceSchemaOrder>
+                                            </con3:nxsdTranslation>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b58</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryText><![CDATA[<Root-Element 
+  xmlns="http://TargetNamespace.com/RestService_E_210_L_Operation1_request" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xsi:schemaLocation="http://TargetNamespace.com/RestService_E_210_L_Operation1_request schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <USERNAME>{e524-lib:get-user($inbound)}</USERNAME>
+  <PASSWORD/>
+  <LANG>{e524-lib:get-lang($inbound)}</LANG>
+  <DATA>
+    <POBJECTID>{fn:data($body//e524:POBJECTID)}</POBJECTID>
+    <PCATEGORYID>149</PCATEGORYID>
+  </DATA>
+</Root-Element>]]></con1:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b55</con1:id>
+                                                <con3:type>XML-To-Native</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body//*:Root-Element</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runcheckssoa_response"/>
+                                                <con3:schemaElement xmlns:res="http://TargetNamespace.com/RestService_E_210_L_Operation1_response">res:Root-Element</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                            </con3:nxsdTranslation>
+                                            <con3:transport-headers>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7b52</con1:id>
+                                                <con3:header-set>inbound-response</con3:header-set>
+                                                <con3:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText>'application/json'</con1:xqueryText>
+                                                </con3:header>
+                                            </con3:transport-headers>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="CheckDeltioLep">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="LEP RunChecks Route">
+                                <con:context>
+                                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                                    <con1:userNsDecl prefix="e524" namespace="http://epsa.gr/v6/e524"/>
+                                    <con1:dependencies>
+                                        <con1:importModule ref="E524/Resources/library"/>
+                                    </con1:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7adc</con1:id>
+                                        <con2:service ref="E524/BusinessServices/RunChecksService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>Operation1</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7adb</con1:id>
+                                                <con3:type>Native-To-XML</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body/text()</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runckecks_request"/>
+                                                <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                                <con3:enforceSchemaOrder>true</con3:enforceSchemaOrder>
+                                            </con3:nxsdTranslation>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7ada</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryText><![CDATA[<Root-Element 
+  xmlns="http://TargetNamespace.com/RestService_E_210_L_Operation1_request" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xsi:schemaLocation="http://TargetNamespace.com/RestService_E_210_L_Operation1_request schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <USERNAME>{e524-lib:get-user($inbound)}</USERNAME>
+  <PASSWORD/>
+  <LANG>{e524-lib:get-lang($inbound)}</LANG>
+  <DATA>
+    <POBJECTID>{fn:data($body//e524:POBJECTID)}</POBJECTID>
+    <PCATEGORYID>148</PCATEGORYID>
+  </DATA>
+</Root-Element>]]></con1:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7ad9</con1:id>
+                                                <con3:type>XML-To-Native</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body//*:Root-Element</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runcheckssoa_response"/>
+                                                <con3:schemaElement xmlns:res="http://TargetNamespace.com/RestService_E_210_L_Operation1_response">res:Root-Element</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                            </con3:nxsdTranslation>
+                                            <con3:transport-headers>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7ad8</con1:id>
+                                                <con3:header-set>inbound-response</con3:header-set>
+                                                <con3:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText>'application/json'</con1:xqueryText>
+                                                </con3:header>
+                                            </con3:transport-headers>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
                     <con:default-branch>
                         <con:flow>
                             <con:pipeline-node name="Default Pipeline">

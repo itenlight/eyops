@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/RestService_E_210_L_Operation1_response" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" targetNamespace="http://TargetNamespace.com/RestService_E_210_L_Operation1_response" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="Root-Element">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="ERROR_CODE" type="xsd:unsignedShort"/>
+            <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
+            <xsd:element name="DATA" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="RCODE" type="xsd:unsignedInt"/>
+                     <xsd:element name="RSTRING" type="xsd:string"/>
+                     <xsd:element name="PIDECHECKRESULTS" type="xsd:unsignedShort"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>
