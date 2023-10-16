@@ -1,56 +1,47 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
-   <doc title="ErotimataService">RestReference</doc>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_request" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="ErotimataService">RestService</doc>
+   <grammars>
+      <xsd:schema>
+            <xsd:import namespace="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_request" schemaLocation="../XSD/DeltioErotimaton_retrieve_request.xsd"/>
+        </xsd:schema>
+      <xsd:schema>
+            <xsd:import namespace="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_response" schemaLocation="../XSD/DeltioErotimaton_retrieve_response.xsd"/>
+        </xsd:schema>
+      <xsd:schema>
+            <xsd:import namespace="http://TargetNamespace.com/DeltioErotimatonv6RestService_PUTPOST_request" schemaLocation="../XSD/DeltioErotimaton_request.xsd"/>
+        </xsd:schema>
+      <xsd:schema>
+            <xsd:import namespace="http://TargetNamespace.com/DeltioErotimatonv6RestService_Delete_Operation_response" schemaLocation="../XSD/DeltioErotimaton_response.xsd"/>
+        </xsd:schema>
+   </grammars>
    <resources>
       <resource path="/">
-         <method name="GET" soa:name="GetErotimara">
-            <request>
-               <param name="USERNAME" style="query" type="xsd:string"/>
-               <param name="LANG" style="query" type="xsd:string"/>
-               <param name="idObject" style="query" type="xsd:string"/>
-               <param name="objectCategoryId" style="query" type="xsd:string"/>
+         <method name="GET" soa:wsdlOperation="GetErotimata">
+            <request soa:paramElement="pns:Root-Element" xmlns:pns="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_request">
+               <param name="USERNAME" style="query" soa:expression="$msg.request/ns0:USERNAME" type="xsd:string"/>
+               <param name="PASSWORD" style="query" soa:expression="$msg.request/ns0:PASSWORD" type="xsd:string"/>
+               <param name="LANG" style="query" soa:expression="$msg.request/ns0:LANG" type="xsd:string"/>
+               <param name="idObject" style="query" soa:expression="$msg.request/ns0:DATA/ns0:idObject" type="xsd:integer"/>
+               <param name="objectCategoryId" style="query" soa:expression="$msg.request/ns0:DATA/ns0:objectCategoryId" type="xsd:integer"/>
             </request>
-            <response>
-               <representation mediaType="application/json"/>
-               <representation mediaType="application/xml"/>
-            </response>
-            <response>
-               <representation mediaType="application/json"/>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_response"/>
             </response>
          </method>
-         <method name="PUT" soa:name="InsertErotimata">
+         <method name="PUT" soa:wsdlOperation="UpdateErotimata">
             <request>
-               <representation mediaType="application/json"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/DeltioErotimatonv6RestService_PUTPOST_request"/>
             </request>
-            <response>
-               <representation mediaType="application/json"/>
-            </response>
-            <response>
-               <representation mediaType="application/json"/>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/DeltioErotimatonv6RestService_Delete_Operation_response"/>
             </response>
          </method>
-         <method name="POST" soa:name="UpdateErotimata">
+         <method name="POST" soa:wsdlOperation="InsertErotimata">
             <request>
-               <representation mediaType="application/json"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/DeltioErotimatonv6RestService_PUTPOST_request"/>
             </request>
-            <response>
-               <representation mediaType="application/json"/>
-            </response>
-            <response>
-               <representation mediaType="application/json"/>
-            </response>
-         </method>
-      </resource>
-      <resource path="/del">
-         <method name="POST" soa:name="DeleteRotimata">
-            <request>
-               <representation mediaType="application/json"/>
-            </request>
-            <response>
-               <representation mediaType="application/json"/>
-            </response>
-            <response>
-               <representation mediaType="application/json"/>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/DeltioErotimatonv6RestService_Delete_Operation_response"/>
             </response>
          </method>
       </resource>

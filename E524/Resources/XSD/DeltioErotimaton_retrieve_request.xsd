@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_request" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" targetNamespace="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_request" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="Root-Element">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="USERNAME" type="xsd:string"/>
+            <xsd:element name="PASSWORD" type="xsd:string"/>
+            <xsd:element name="LANG" type="xsd:string"/>
+            <xsd:element name="DATA">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="idObject" type="xsd:integer"/>
+                     <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

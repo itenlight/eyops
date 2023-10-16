@@ -163,7 +163,7 @@
         <xsd:element name="InputChangeStatus">
           <xsd:complexType>
             <xsd:sequence>
-              <xsd:element name="actionUi" type="xsd:integer"/>
+              <xsd:element name="actionCode" type="xsd:integer"/>
               <xsd:element name="commentsStatus" type="xsd:string"/>
               <xsd:element name="combineChecks" type="xsd:integer"/>
             </xsd:sequence>

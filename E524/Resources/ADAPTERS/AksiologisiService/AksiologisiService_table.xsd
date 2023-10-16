@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/AklsiologisiService"
-           xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/AklsiologisiService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/AksiologisiService"
+           xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/AksiologisiService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
    <xs:element name="Kps6ChecklistsDeltioyCollection" type="Kps6ChecklistsDeltioyCollection"/>
    <xs:complexType name="Kps6ChecklistsDeltioyCollection">
       <xs:sequence>

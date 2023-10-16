@@ -1,0 +1,23 @@
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="RunChecks2Service">RestService</doc>
+   <grammars>
+      <xsd:schema>
+            <xsd:import namespace="http://TargetNamespace.com/RestService_E_210_L_Operation1_request" schemaLocation="../XSD/nxsd_runchecks2soa_request.xsd"/>
+        </xsd:schema>
+      <xsd:schema>
+            <xsd:import namespace="http://TargetNamespace.com/RestService_E_210_L_Operation1_response" schemaLocation="../XSD/nxsd_runchecks2soa_response.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/">
+         <method name="POST" soa:wsdlOperation="RunChecks">
+            <request>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/RestService_E_210_L_Operation1_request"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/RestService_E_210_L_Operation1_response"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

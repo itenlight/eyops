@@ -2,10 +2,10 @@
 <ser:businessServiceEntry xmlns:ser="http://xmlns.oracle.com/servicebus/business/config" xmlns:svc="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:jca="http://www.bea.com/wli/sb/transports/jca" xmlns:ops="http://xmlns.oracle.com/servicebus/business/operations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ser:coreEntry>
         <ser:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
-            <con:wsdl ref="E524/Resources/WSDL/AksiologisiService/AklsiologisiService-concrete"/>
+            <con:wsdl ref="E524/Resources/WSDL/AksiologisiService/AksiologisiService-concrete"/>
             <con:binding>
-                <con:name>AklsiologisiService_ptt-binding</con:name>
-                <con:namespace>http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AklsiologisiService</con:namespace>
+                <con:name>AksiologisiService_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AksiologisiService</con:namespace>
             </con:binding>
         </ser:binding>
         <ops:operations enabled="true">
@@ -32,9 +32,10 @@
         </tran:outbound-properties>
         <tran:all-headers>false</tran:all-headers>
         <tran:provider-specific xsi:type="jca:JCAEndPointConfiguration">
-            <jca:jca-file ref="E524/Resources/ADAPTERS/AksiologisiService/AklsiologisiService_db"/>
-            <jca:adapter-name>AklsiologisiService</jca:adapter-name>
-            <jca:adapter-type>DB</jca:adapter-type>
+            <jca:jca-file ref="E524/Resources/ADAPTERS/AksiologisiService/AksiologisiService_db"/>
+            <jca:adapter-name>Database Adapter</jca:adapter-name>
+            <jca:adapter-type>db</jca:adapter-type>
+            <jca:dispatch-policy>SBDefaultResponseWorkManager</jca:dispatch-policy>
             <jca:always-use-wsdl>true</jca:always-use-wsdl>
             <jca:connection-mode>managed</jca:connection-mode>
             <jca:outbound-properties>
@@ -42,28 +43,28 @@
                     <jca:operation-name>merge</jca:operation-name>
                     <jca:spec-properties>
                         <jca:property>
-                            <jca:name>DescriptorName</jca:name>
-                            <jca:value>AklsiologisiService.Kps6ChecklistsDeltioy</jca:value>
+                            <jca:name>DetectOmissions</jca:name>
+                            <jca:value>true</jca:value>
                         </jca:property>
                         <jca:property>
-                            <jca:name>DmlType</jca:name>
-                            <jca:value>merge</jca:value>
+                            <jca:name>DescriptorName</jca:name>
+                            <jca:value>AksiologisiService.Kps6ChecklistsDeltioy</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>MappingsMetaDataURL</jca:name>
-                            <jca:value>AklsiologisiService-or-mappings.xml</jca:value>
-                        </jca:property>
-                        <jca:property>
-                            <jca:name>GetActiveUnitOfWork</jca:name>
-                            <jca:value>false</jca:value>
+                            <jca:value>servicebus:/E524/Resources/ADAPTERS/AksiologisiService/AksiologisiService-or-mappings.xml</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>OptimizeMerge</jca:name>
                             <jca:value>true</jca:value>
                         </jca:property>
                         <jca:property>
-                            <jca:name>DetectOmissions</jca:name>
-                            <jca:value>true</jca:value>
+                            <jca:name>DmlType</jca:name>
+                            <jca:value>merge</jca:value>
+                        </jca:property>
+                        <jca:property>
+                            <jca:name>GetActiveUnitOfWork</jca:name>
+                            <jca:value>false</jca:value>
                         </jca:property>
                     </jca:spec-properties>
                 </jca:operation-properties>
@@ -71,24 +72,24 @@
                     <jca:operation-name>insert</jca:operation-name>
                     <jca:spec-properties>
                         <jca:property>
-                            <jca:name>DescriptorName</jca:name>
-                            <jca:value>AklsiologisiService.Kps6ChecklistsDeltioy</jca:value>
+                            <jca:name>DetectOmissions</jca:name>
+                            <jca:value>true</jca:value>
                         </jca:property>
                         <jca:property>
-                            <jca:name>DmlType</jca:name>
-                            <jca:value>insert</jca:value>
+                            <jca:name>DescriptorName</jca:name>
+                            <jca:value>AksiologisiService.Kps6ChecklistsDeltioy</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>MappingsMetaDataURL</jca:name>
-                            <jca:value>AklsiologisiService-or-mappings.xml</jca:value>
+                            <jca:value>servicebus:/E524/Resources/ADAPTERS/AksiologisiService/AksiologisiService-or-mappings.xml</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>OptimizeMerge</jca:name>
                             <jca:value>true</jca:value>
                         </jca:property>
                         <jca:property>
-                            <jca:name>DetectOmissions</jca:name>
-                            <jca:value>true</jca:value>
+                            <jca:name>DmlType</jca:name>
+                            <jca:value>insert</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>GetActiveUnitOfWork</jca:name>
@@ -101,19 +102,19 @@
                     <jca:spec-properties>
                         <jca:property>
                             <jca:name>DescriptorName</jca:name>
-                            <jca:value>AklsiologisiService.Kps6ChecklistsDeltioy</jca:value>
-                        </jca:property>
-                        <jca:property>
-                            <jca:name>DmlType</jca:name>
-                            <jca:value>delete</jca:value>
+                            <jca:value>AksiologisiService.Kps6ChecklistsDeltioy</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>MappingsMetaDataURL</jca:name>
-                            <jca:value>AklsiologisiService-or-mappings.xml</jca:value>
+                            <jca:value>servicebus:/E524/Resources/ADAPTERS/AksiologisiService/AksiologisiService-or-mappings.xml</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>OptimizeMerge</jca:name>
                             <jca:value>true</jca:value>
+                        </jca:property>
+                        <jca:property>
+                            <jca:name>DmlType</jca:name>
+                            <jca:value>delete</jca:value>
                         </jca:property>
                         <jca:property>
                             <jca:name>GetActiveUnitOfWork</jca:name>

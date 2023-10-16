@@ -1,4 +1,4 @@
-<adapter-config name="CheckUpdateService" adapter="db" wsdlLocation="CheckUpdateService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+<adapter-config name="CheckUpdateService" adapter="db" wsdlLocation="../../WSDL/CheckUpdateService/CheckUpdateService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
   <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
   <endpoint-interaction portType="CheckUpdateService_ptt" operation="CheckUpdateService">

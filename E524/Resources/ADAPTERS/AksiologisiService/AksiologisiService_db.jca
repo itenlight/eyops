@@ -1,33 +1,33 @@
-<adapter-config name="AklsiologisiService" adapter="db" wsdlLocation="../../WSDL/AksiologisiService/AklsiologisiService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+<adapter-config name="AksiologisiService" adapter="db" wsdlLocation="../../WSDL/AksiologisiService/AksiologisiService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
   <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
-  <endpoint-interaction portType="AklsiologisiService_ptt" operation="merge">
+  <endpoint-interaction portType="AksiologisiService_ptt" operation="merge">
     <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
-      <property name="DescriptorName" value="AklsiologisiService.Kps6ChecklistsDeltioy"/>
+      <property name="DescriptorName" value="AksiologisiService.Kps6ChecklistsDeltioy"/>
       <property name="DmlType" value="merge"/>
-      <property name="MappingsMetaDataURL" value="AklsiologisiService-or-mappings.xml"/>
+      <property name="MappingsMetaDataURL" value="AksiologisiService-or-mappings.xml"/>
       <property name="GetActiveUnitOfWork" value="false"/>
       <property name="OptimizeMerge" value="true"/>
       <property name="DetectOmissions" value="true"/>
     </interaction-spec>
   </endpoint-interaction>
 
-  <endpoint-interaction portType="AklsiologisiService_ptt" operation="insert">
+  <endpoint-interaction portType="AksiologisiService_ptt" operation="insert">
     <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
-      <property name="DescriptorName" value="AklsiologisiService.Kps6ChecklistsDeltioy"/>
+      <property name="DescriptorName" value="AksiologisiService.Kps6ChecklistsDeltioy"/>
       <property name="DmlType" value="insert"/>
-      <property name="MappingsMetaDataURL" value="AklsiologisiService-or-mappings.xml"/>
+      <property name="MappingsMetaDataURL" value="AksiologisiService-or-mappings.xml"/>
       <property name="OptimizeMerge" value="true"/>
       <property name="DetectOmissions" value="true"/>
       <property name="GetActiveUnitOfWork" value="false"/>
     </interaction-spec>
   </endpoint-interaction>
 
-  <endpoint-interaction portType="AklsiologisiService_ptt" operation="delete">
+  <endpoint-interaction portType="AksiologisiService_ptt" operation="delete">
     <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
-      <property name="DescriptorName" value="AklsiologisiService.Kps6ChecklistsDeltioy"/>
+      <property name="DescriptorName" value="AksiologisiService.Kps6ChecklistsDeltioy"/>
       <property name="DmlType" value="delete"/>
-      <property name="MappingsMetaDataURL" value="AklsiologisiService-or-mappings.xml"/>
+      <property name="MappingsMetaDataURL" value="AksiologisiService-or-mappings.xml"/>
       <property name="OptimizeMerge" value="true"/>
       <property name="GetActiveUnitOfWork" value="false"/>
     </interaction-spec>

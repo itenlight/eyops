@@ -36,7 +36,7 @@
             <tran:retry-interval>30</tran:retry-interval>
             <tran:retry-application-errors>false</tran:retry-application-errors>
         </tran:outbound-properties>
-        <tran:provider-specific>
+        <tran:provider-specific xsi:type="http:HttpEndPointConfiguration">
             <http:outbound-properties>
                 <http:timeout>0</http:timeout>
                 <http:connection-timeout>0</http:connection-timeout>
@@ -45,6 +45,8 @@
                 <http:session-sctikiness enabled="false" session-id-name="JSESSIONID"/>
             </http:outbound-properties>
             <http:dispatch-policy>SBDefaultResponseWorkManager</http:dispatch-policy>
+            <http:request-encoding>utf-8</http:request-encoding>
+            <http:response-encoding>utf-8</http:response-encoding>
             <http:compression>
                 <http:compression-support>false</http:compression-support>
             </http:compression>

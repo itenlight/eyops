@@ -6,7 +6,7 @@
   </plt:partnerLinkType>
     <wsdl:types>
      <schema xmlns="http://www.w3.org/2001/XMLSchema">
-       <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/CheckUpdateService" schemaLocation="CheckUpdateService_sp.xsd"/>
+       <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/CheckUpdateService" schemaLocation="../../ADAPTERS/CheckUpdateService/CheckUpdateService_sp.xsd"/>
      </schema>
     </wsdl:types>
     <wsdl:message name="args_in_msg">

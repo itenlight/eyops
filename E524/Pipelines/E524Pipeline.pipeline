@@ -174,50 +174,30 @@
                     <con3:wsCallout>
                         <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7ffe</con1:id>
                         <con3:service ref="E524/BusinessServices/ErotimataService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-                        <con3:operation>GetErotimara</con3:operation>
+                        <con3:operation>GetErotimata</con3:operation>
                         <con3:request>
-                            <con3:payload wrapped="false">RequestPayload</con3:payload>
+                            <con3:body wrapped="false">ErotimataRequest</con3:body>
                         </con3:request>
                         <con3:response>
-                            <con3:payload wrapped="false">ResponsePayload</con3:payload>
+                            <con3:body wrapped="false">ErotimataResponse</con3:body>
                         </con3:response>
                         <con3:requestTransform>
-                            <con1:insert varName="outbound" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
-                                <con2:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7fc7</con2:id>
-                                <con1:location>
-                                    <con2:xpathText>./ctx:transport/ctx:request</con2:xpathText>
-                                </con1:location>
-                                <con1:where>last-child</con1:where>
-                                <con1:expr>
-                                    <con2:xqueryText><![CDATA[(<http:http-method>GET</http:http-method>,
-<http:query-parameters>
- <http:parameter name="USERNAME" value="{e524-lib:get-user($inbound)}"/>
- <http:parameter name="LANG" value="{e524-lib:get-lang($inbound)}"/>
- <http:parameter name="idObject" value="{fn:data($body//*:Kps6ChecklistsDeltioy/*:idChecklist)}"/>
- <http:parameter name="objectCategoryId" value="{fn:data($body//*:Kps6ChecklistsDeltioy/*:objectCategoryDeltiou)}"/>
-</http:query-parameters>)]]></con2:xqueryText>
-                                </con1:expr>
-                            </con1:insert>
-                            <con1:transport-headers copy-all="false" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
-                                <con2:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7f93</con2:id>
-                                <con1:header-set>outbound-request</con1:header-set>
-                                <con1:header value="expression" name="Accept">
-                                    <con2:xqueryText>'application/json'</con2:xqueryText>
-                                </con1:header>
-                            </con1:transport-headers>
+                            <con3:assign varName="ErotimataRequest">
+                                <con1:id>_ActionId-7f000101.24455c7c.0.18b2f7408c9.N7ee1</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText><![CDATA[<Root-Element xmlns="http://TargetNamespace.com/DeltioErotimatonv6RestService_GET_request">
+  <USERNAME>{e524-lib:get-user($inbound)}</USERNAME>
+  <PASSWORD/>
+  <LANG>{e524-lib:get-lang($inbound)}</LANG>
+  <DATA>
+    <idObject>{fn:data($body//*:Kps6ChecklistsDeltioy/*:idChecklist)}</idObject>
+    <objectCategoryId>{fn:data($body//*:Kps6ChecklistsDeltioy/*:objectCategoryDeltiou)}</objectCategoryId>
+  </DATA>
+</Root-Element>]]></con1:xqueryText>
+                                </con3:expr>
+                            </con3:assign>
                         </con3:requestTransform>
                         <con3:responseTransform>
-                            <con3:nxsdTranslation>
-                                <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7f89</con1:id>
-                                <con3:type>Native-To-XML</con3:type>
-                                <con3:sourceExpr>
-                                    <con1:xqueryText>$ResponsePayload</con1:xqueryText>
-                                </con3:sourceExpr>
-                                <con3:nxsd ref="E524/Resources/XSD/nxsd_get_erotimata_response"/>
-                                <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:ErotimataResponse</con3:schemaElement>
-                                <con3:assign-variable>ResponsePayload</con3:assign-variable>
-                                <con3:enforceSchemaOrder>true</con3:enforceSchemaOrder>
-                            </con3:nxsdTranslation>
                             <con3:insert varName="body">
                                 <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7f86</con1:id>
                                 <con3:location>
@@ -225,8 +205,8 @@
                                 </con3:location>
                                 <con3:where>last-child</con3:where>
                                 <con3:expr>
-                                    <con1:xqueryText>if ($ResponsePayload//e524:Kps6DeltioErothmata/node()) 
-then $ResponsePayload//e524:Kps6DeltioErothmata 
+                                    <con1:xqueryText>if ($ErotimataResponse//*:Kps6DeltioErothmata/node()) 
+then $ErotimataResponse//*:Kps6DeltioErothmata 
 else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                 </con3:expr>
                             </con3:insert>
@@ -307,13 +287,48 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
     <chec:PLANG>{e524-lib:get-lang($inbound)}</chec:PLANG>
     <chec:PI_USERNAME>{e524-lib:get-user($inbound)}</chec:PI_USERNAME>
     <chec:PI_OBJECTID>{fn:data($body//e524:idChecklist)}</chec:PI_OBJECTID>
-    <chec:PI_CATEGORYID>{e524-lib:right-trim(fn:translate(xs:string(fn:contains(fn:data($body//e524:checklistType),'57001')),'tfrueals','89      '))}</chec:PI_CATEGORYID>
+    <chec:PI_CATEGORYID>{e524-lib:right-trim(fn:concat('14',fn:translate(xs:string(fn:contains($body//e524:Kps6ChecklistsDeltioy/e524:checklistType,'57001')),'tfrueals','89      ')))}</chec:PI_CATEGORYID>
     <chec:PI_ACTIONID>{fn:data($body//e524:actionUi)}</chec:PI_ACTIONID>
 </chec:InputParameters>]]></con1:xqueryText>
                                 </con3:expr>
                             </con3:assign>
                         </con3:requestTransform>
-                        <con3:responseTransform/>
+                        <con3:responseTransform>
+                            <con3:ifThenElse>
+                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7985</con1:id>
+                                <con3:case id="_BranchId-7f000101.2ddade37.0.18b29e7b3c0.N7984">
+                                    <con3:condition>
+                                        <con1:xqueryText>fn:data($ResponsePayload//*:ERRORCODE)=0</con1:xqueryText>
+                                    </con3:condition>
+                                    <con3:actions/>
+                                </con3:case>
+                                <con3:default>
+                                    <con3:replace varName="body" contents-only="true">
+                                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N797e</con1:id>
+                                        <con3:expr>
+                                            <con1:xqueryText><![CDATA[<E524Response xmlns="http://espa.gr/v6/e524">
+ <ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</ERROR_CODE>
+ <ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</ERROR_MESSAGE>
+ <DATA/>
+</E524Response>]]></con1:xqueryText>
+                                        </con3:expr>
+                                    </con3:replace>
+                                    <con3:nxsdTranslation>
+                                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N797b</con1:id>
+                                        <con3:type>XML-To-Native</con3:type>
+                                        <con3:sourceExpr>
+                                            <con1:xqueryText>$body/e524:E524Response</con1:xqueryText>
+                                        </con3:sourceExpr>
+                                        <con3:nxsd ref="E524/Resources/XSD/nxsd_generic_output"/>
+                                        <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Response</con3:schemaElement>
+                                        <con3:replace-body-content/>
+                                    </con3:nxsdTranslation>
+                                    <con1:reply isError="true">
+                                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7981</con1:id>
+                                    </con1:reply>
+                                </con3:default>
+                            </con3:ifThenElse>
+                        </con3:responseTransform>
                     </con3:wsCallout>
                 </con:actions>
             </con:stage>
@@ -343,41 +358,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                             </con2:routing-options>
                         </con4:outboundTransform>
                     </con6:route>
-                    <con3:ifThenElse>
-                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cc3</con1:id>
-                        <con3:case id="_BranchId-7f000101.N483b0112.0.18b16270d2e.N7cc2">
-                            <con3:condition>
-                                <con1:xqueryText>$body//e524:Kps6DeltioErothmata</con1:xqueryText>
-                            </con3:condition>
-                            <con3:actions>
-                                <con3:wsCallout>
-                                    <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cca</con1:id>
-                                    <con3:service ref="E524/BusinessServices/ErotimataService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-                                    <con3:operation>UpdateErotimata</con3:operation>
-                                    <con3:request>
-                                        <con3:payload wrapped="false">RequestPayload</con3:payload>
-                                    </con3:request>
-                                    <con3:response>
-                                        <con3:payload wrapped="false">ResponsePayload</con3:payload>
-                                    </con3:response>
-                                    <con3:requestTransform>
-                                        <con3:assign varName="RequestPayload">
-                                            <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cbe</con1:id>
-                                            <con3:expr>
-                                                <con1:xqueryText>e524-lib:extract-erotimata($body//e524:kps6ChecklistsDeltioy)</con1:xqueryText>
-                                            </con3:expr>
-                                        </con3:assign>
-                                    </con3:requestTransform>
-                                    <con3:responseTransform/>
-                                </con3:wsCallout>
-                            </con3:actions>
-                        </con3:case>
-                        <con3:default/>
-                    </con3:ifThenElse>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7e52</con1:id>
-                        <con5:service ref="E524/BusinessServices/AklsiologisiService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-                        <con5:operation>insert</con5:operation>
+                        <con5:service ref="E524/BusinessServices/AksiologisiService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>merge</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
                                 <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7ffe</con1:id>
@@ -391,6 +375,75 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                             </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
+                    <con3:ifThenElse>
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cc3</con1:id>
+                        <con1:disabled>true</con1:disabled>
+                        <con3:case id="_BranchId-7f000101.N483b0112.0.18b16270d2e.N7cc2">
+                            <con3:condition>
+                                <con1:xqueryText>$body//e524:Kps6DeltioErothmata</con1:xqueryText>
+                            </con3:condition>
+                            <con3:actions>
+                                <con3:wsCallout>
+                                    <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cca</con1:id>
+                                    <con3:service ref="E524/BusinessServices/ErotimataService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                    <con3:operation>UpdateErotimata</con3:operation>
+                                    <con3:request>
+                                        <con3:body wrapped="false">ErotimataRequest</con3:body>
+                                    </con3:request>
+                                    <con3:response>
+                                        <con3:body wrapped="false">ErotimataResponse</con3:body>
+                                    </con3:response>
+                                    <con3:requestTransform>
+                                        <con3:assign varName="ErotimataPayload">
+                                            <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cbe</con1:id>
+                                            <con1:disabled>true</con1:disabled>
+                                            <con3:expr>
+                                                <con1:xqueryText>e524-lib:extract-erotimata($body//e524:kps6ChecklistsDeltioy)</con1:xqueryText>
+                                            </con3:expr>
+                                        </con3:assign>
+                                        <con3:nxsdTranslation>
+                                            <con1:id>_ActionId-7f000101.24455c7c.0.18b2f7408c9.N7f20</con1:id>
+                                            <con1:disabled>true</con1:disabled>
+                                            <con3:type>XML-To-Native</con3:type>
+                                            <con3:sourceExpr>
+                                                <con1:xqueryText>e524-lib:extract-erotimata($body//e524:Kps6ChecklistsDeltioy)</con1:xqueryText>
+                                            </con3:sourceExpr>
+                                            <con3:nxsd ref="E524/Resources/XSD/nxsd_erotimataservice_request"/>
+                                            <con3:schemaElement xmlns:del="http://TargetNamespace.com/DeltioErotimatonv6RestService_PUTPOST_request">del:Root-Element</con3:schemaElement>
+                                            <con3:assign-variable>ErotimataRequest</con3:assign-variable>
+                                        </con3:nxsdTranslation>
+                                        <con3:assign varName="ErotimataRequest">
+                                            <con1:id>_ActionId-7f000101.24455c7c.0.18b2f7408c9.N7ede</con1:id>
+                                            <con3:expr>
+                                                <con1:xqueryText>e524-lib:extract-erotimata(
+  $body//e524:Kps6ChecklistsDeltioy,
+  e524-lib:get-user($inbound),
+  e524-lib:get-lang($inbound))</con1:xqueryText>
+                                            </con3:expr>
+                                        </con3:assign>
+                                        <con4:log>
+                                            <con1:id>_ActionId-7f000101.24455c7c.0.18b2f7408c9.N7ed0</con1:id>
+                                            <con4:logLevel>debug</con4:logLevel>
+                                        </con4:log>
+                                    </con3:requestTransform>
+                                    <con3:responseTransform>
+                                        <con3:nxsdTranslation>
+                                            <con1:id>_ActionId-7f000101.24455c7c.0.18b2f7408c9.N7f1d</con1:id>
+                                            <con1:disabled>true</con1:disabled>
+                                            <con3:type>Native-To-XML</con3:type>
+                                            <con3:sourceExpr>
+                                                <con1:xqueryText>$ErotimataResponse</con1:xqueryText>
+                                            </con3:sourceExpr>
+                                            <con3:nxsd ref="E524/Resources/XSD/nxsd_erotimataservice_response"/>
+                                            <con3:schemaElement xmlns:del="http://TargetNamespace.com/DeltioErotimatonv6RestService_Delete_Operation_response">del:Root-Element</con3:schemaElement>
+                                            <con3:assign-variable>ErotimataResponse</con3:assign-variable>
+                                        </con3:nxsdTranslation>
+                                    </con3:responseTransform>
+                                </con3:wsCallout>
+                            </con3:actions>
+                        </con3:case>
+                        <con3:default/>
+                    </con3:ifThenElse>
                 </con:actions>
             </con:stage>
         </con:pipeline>
@@ -415,26 +468,26 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                             <con3:body wrapped="false">ResponsePayload</con3:body>
                         </con3:response>
                         <con3:requestTransform>
-                            <con3:assign varName="RequestPayload">
-                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7efd</con1:id>
+                            <con3:replace varName="RequestPayload" contents-only="true">
+                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N798c</con1:id>
                                 <con3:expr>
                                     <con1:xqueryText><![CDATA[<InputParameters xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/sp/StatusService">
   <USERNAME>{e524-lib:get-user($inbound)}</USERNAME>
   <PLANG>{if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
             'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 103) as STOXOS3 from dual',
-            xs:unsignedInt($TDYID))//*:STOXOS3)=1) 
+            xs:unsignedLong($body//e524:idChecklist))//*:STOXOS3)=1) 
     then 'EN'    
     else fn:upper-case(e524-lib:get-lang($inbound))}</PLANG>
   <COMBINECHECKS>-{fn:data($body//e524:combineChecks)}</COMBINECHECKS>
   <OBJECTID>{fn:data($body//e524:idChecklist)}</OBJECTID>
-  <CATEGORYID>149</CATEGORYID>
-  <ACTIONUI>{fn:data($body//e524:actionUi)}</ACTIONUI>
+  <CATEGORYID>{e524-lib:right-trim(fn:concat('14',fn:translate(xs:string(fn:contains($body//e524:Kps6ChecklistsDeltioy/e524:checklistType,'57001')),'tfrueals','89      ')))}</CATEGORYID>
+  <ACTIONUI>{fn:data($body//e524:actionCode)}</ACTIONUI>
   <COMMENTSSTATUS>{fn:data($body//e524:comments)}</COMMENTSSTATUS>
   <DATEACTION>{fn:current-dateTime()}</DATEACTION>
   <OBJECTPARENTID>{fn:data($body//e524:kodikosMis)}</OBJECTPARENTID>
 </InputParameters>]]></con1:xqueryText>
                                 </con3:expr>
-                            </con3:assign>
+                            </con3:replace>
                         </con3:requestTransform>
                         <con3:responseTransform>
                             <con6:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
@@ -527,7 +580,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     </con6:route>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d01</con1:id>
-                        <con5:service ref="E524/BusinessServices/AklsiologisiService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="E524/BusinessServices/AksiologisiService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>insert</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -545,7 +598,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     <con6:assign varName="IDCHECKLIST" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cfe</con1:id>
                         <con2:expr>
-                            <con1:xqueryText>fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('CHECKLIST-ID'),
+                            <con1:xqueryText>xs:unsignedLong(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('CHECKLIST-ID'),
                'Select Max(ID_CHECKLIST) ID_CHECKLIST From KPS6_CHECKLISTS_DELTIOY')//*:ID_CHECKLIST)</con1:xqueryText>
                         </con2:expr>
                     </con6:assign>
@@ -580,13 +633,13 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
   <USERNAME>{e524-lib:get-user($inbound)}</USERNAME>
   <PLANG>{if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
             'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 103) as STOXOS3 from dual',
-            xs:unsignedInt($TDYID))//*:STOXOS3)=1) 
+            xs:unsignedLong($IDCHECKLIST))//*:STOXOS3)=1) 
     then 'EN'    
     else fn:upper-case(e524-lib:get-lang($inbound))}</PLANG>
   <COMBINECHECKS>-{fn:data($body//e524:combineChecks)}</COMBINECHECKS>
   <OBJECTID>{xs:unsignedInt($IDCHECKLIST)}</OBJECTID>
-  <CATEGORYID>149</CATEGORYID>
-  <ACTIONUI>{fn:data($body//e524:actionUi)}</ACTIONUI>
+  <CATEGORYID>{e524-lib:right-trim(fn:concat('14',fn:translate(xs:string(fn:contains($body//e524:Kps6ChecklistsDeltioy/e524:checklistType,'57001')),'tfrueals','89      ')))}</CATEGORYID>
+  <ACTIONUI>{fn:data($body//e524:actionCode)}</ACTIONUI>
   <COMMENTSSTATUS>{fn:data($body//e524:comments)}</COMMENTSSTATUS>
   <DATEACTION>{fn:current-dateTime()}</DATEACTION>
   <OBJECTPARENTID>{fn:data($body//e524:kodikosMis)}</OBJECTPARENTID>
@@ -1817,8 +1870,8 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                                 <con2:sourceExpr>
                                                     <con1:xqueryText>$body/text()</con1:xqueryText>
                                                 </con2:sourceExpr>
-                                                <con6:nxsd ref="E524/Resources/XSD/nxsd_delete_request"/>
-                                                <con6:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Rquest</con6:schemaElement>
+                                                <con6:nxsd ref="E524/Resources/XSD/nxsd_insert_update_request"/>
+                                                <con6:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con6:schemaElement>
                                                 <con2:replace-body-content/>
                                                 <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
                                             </con2:nxsdTranslation>
@@ -1829,9 +1882,13 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
     <stat:USERNAME>{e524-lib:get-user($inbound)}</stat:USERNAME>
     <stat:PLANG>{e524-lib:get-lang($inbound)}</stat:PLANG>
     <stat:COMBINECHECKS>{fn:data($body//*:combineChecks)}</stat:COMBINECHECKS>
-    <stat:OBJECTID>{fn:data($body//*:idChecklist)}</stat:OBJECTID>
-    <stat:CATEGORYID>{e524-lib:right-trim(fn:concat("14",fn:translate(xs:string(fn:contains($body//*:idChecklist,'57001')),'tfrueals','89      ')))}</stat:CATEGORYID>
-    <stat:ACTIONUI>6</stat:ACTIONUI>
+    <stat:OBJECTID>{fn:data($body//*:idChecklist)}</stat:OBJECTID>    
+     <stat:CATEGORYID>{if (fn:data($body//*:checklistType)='57001') 
+        then 148 
+        else 149
+        }
+    </stat:CATEGORYID>
+    <stat:ACTIONUI>{fn:data($body//*:actionCode)}</stat:ACTIONUI>
     <stat:COMMENTSSTATUS>{fn:data($body//*:comments)}</stat:COMMENTSSTATUS>
     <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
     <stat:OBJECTPARENTID>{fn:data($body//*:kodikosMis)}</stat:OBJECTPARENTID>
@@ -1867,10 +1924,6 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                                     <con1:xqueryText>'application/json'</con1:xqueryText>
                                                 </con2:header>
                                             </con2:transport-headers>
-                                            <con6:Error xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
-                                                <con1:id>_ActionId-7f000101.d9fbf3f.0.18b10ef2cad.N7ec3</con1:id>
-                                                <con6:errCode>ΕΣΠΑ-9999</con6:errCode>
-                                            </con6:Error>
                                         </con3:responseTransform>
                                     </con3:route>
                                 </con:actions>
@@ -2074,7 +2127,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                             <con:route-node name="FAP RunChecks Route">
                                 <con:context>
                                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
-                                    <con1:userNsDecl prefix="e524" namespace="http://epsa.gr/v6/e524"/>
+                                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
                                     <con1:dependencies>
                                         <con1:importModule ref="E524/Resources/library"/>
                                     </con1:dependencies>
@@ -2143,7 +2196,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                             <con:route-node name="LEP RunChecks Route">
                                 <con:context>
                                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
-                                    <con1:userNsDecl prefix="e524" namespace="http://epsa.gr/v6/e524"/>
+                                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
                                     <con1:dependencies>
                                         <con1:importModule ref="E524/Resources/library"/>
                                     </con1:dependencies>
@@ -2194,6 +2247,75 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                             </con3:nxsdTranslation>
                                             <con3:transport-headers>
                                                 <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N7ad8</con1:id>
+                                                <con3:header-set>inbound-response</con3:header-set>
+                                                <con3:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText>'application/json'</con1:xqueryText>
+                                                </con3:header>
+                                            </con3:transport-headers>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="CheckDeltio_2">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="Run Checks_2 Route">
+                                <con:context>
+                                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                                    <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
+                                    <con1:dependencies>
+                                        <con1:importModule ref="E524/Resources/library"/>
+                                    </con1:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N79f5</con1:id>
+                                        <con2:service ref="E524/BusinessServices/RunChecks2Service" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>RunChecks</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N79f4</con1:id>
+                                                <con3:type>Native-To-XML</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body/text()</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runckecks_request"/>
+                                                <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                                <con3:enforceSchemaOrder>true</con3:enforceSchemaOrder>
+                                            </con3:nxsdTranslation>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N79f3</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryText><![CDATA[<Root-Element 
+  xmlns="http://TargetNamespace.com/RestService_E_210_L_Operation1_request" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xsi:schemaLocation="http://TargetNamespace.com/RestService_E_210_L_Operation1_request schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <USERNAME>{e524-lib:get-user($inbound)}</USERNAME>
+  <PASSWORD/>
+  <LANG>{e524-lib:get-lang($inbound)}</LANG>
+  <DATA>
+    <POBJECTID>{fn:data($body//e524:POBJECTID)}</POBJECTID>
+    <PCATEGORYID>149</PCATEGORYID>
+  </DATA>
+</Root-Element>]]></con1:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:nxsdTranslation>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N79f2</con1:id>
+                                                <con3:type>XML-To-Native</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText>$body//*:Root-Element</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runchecks2soa_response"/>
+                                                <con3:schemaElement xmlns:res="http://TargetNamespace.com/RestService_E_210_L_Operation1_response">res:Root-Element</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                            </con3:nxsdTranslation>
+                                            <con3:transport-headers>
+                                                <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N79f1</con1:id>
                                                 <con3:header-set>inbound-response</con3:header-set>
                                                 <con3:header value="expression" name="Content-Type">
                                                     <con1:xqueryText>'application/json'</con1:xqueryText>

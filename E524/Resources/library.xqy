@@ -309,15 +309,21 @@ declare function  e524-lib:search-deltio($id as xs:unsignedInt, $username as xs:
    </E524Response>
 };
 
-declare function e524-lib:extract-erotimata($payload as element()) as element() {
-  <ErotimataRequest xmlns="http://espa.gr/v6/e524">
-   <USERNAME/>
-   <LANG/>
+declare function e524-lib:extract-erotimata($payload as element(), $username as xs:string, $lang as xs:string) 
+  as element() {
+  <Root-Element xmlns="http://TargetNamespace.com/DeltioErotimatonv6RestService_PUTPOST_request">
+   <USERNAME>{$username}</USERNAME>
+   <PASSWOR/>
+   <LANG>{$lang}</LANG>
    <DATA>
-   {for $Erotima in $payload/*:Kps6DeltioErothmata return
+   {for $Erotima in $payload/*:Kps6DeltioErothmata return    
     <Kps6DeltioErothmata>
        <idDeler>{fn:data($Erotima/*:idDeler)}</idDeler>
-       <objectCategoryId>{fn:data($Erotima/*:objectCategoryId)}</objectCategoryId>
+       <objectCategoryId>{
+        if (fn:data($payload/*:checklistType)='57001') 
+        then 148 
+        else 149
+        }</objectCategoryId>
        <parentId>{fn:data($Erotima/*:parentId)}</parentId>
        <checklistType>{fn:data($Erotima/*:checklistType)}</checklistType>
        <idErothma>{fn:data($Erotima/*:idErothma)}</idErothma>
@@ -326,18 +332,22 @@ declare function e524-lib:extract-erotimata($payload as element()) as element() 
        <statusId>{fn:data($Erotima/*:statusId)}</statusId>
        <isxysFlg>{fn:data($Erotima/*:isxysFlg)}</isxysFlg>
        <isxysDate>{fn:data($Erotima/*:isxysDate)}</isxysDate>
-       <objectId>{fn:data($Erotima/*:objectId)}</objectId>
+       <objectId>
+       {if (fn:data($Erotima/*:idDeler))
+        then fn:data($Erotima/*:objectId)
+        else fn:data($payload/*:idChecklist)}
+        </objectId>
        <sxoliaYops>{fn:data($Erotima/*:sxoliaYops)}</sxoliaYops>
        <parathrhseis>{fn:data($Erotima/*:parathrhseis)}</parathrhseis>
        <alloKeimeno>{fn:data($Erotima/*:alloKeimeno)}</alloKeimeno>
     </Kps6DeltioErothmata>}
    </DATA>    
-  </ErotimataRequest>  
+  </Root-Element>  
 };
 
 declare function e524-lib:prepare-input($payload as element()) as element(){
  
- <Kps6ChecklistsDeltioyCollection xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/AklsiologisiService">
+ <Kps6ChecklistsDeltioyCollection xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/AksiologisiService">
   <Kps6ChecklistsDeltioy>
     <idChecklist>{fn:data($payload/*:idChecklist)}</idChecklist>
     <checklistEkdosh>{fn:data($payload/*:checklistEkdosh)}</checklistEkdosh>
@@ -370,7 +380,6 @@ declare function e524-lib:prepare-input($payload as element()) as element(){
     <ekdoshSxolia>{fn:data($payload/*:ekdoshSxolia)}</ekdoshSxolia>
     <flagBathmologisi>{fn:data($payload/*:bathmologisiFlag)}</flagBathmologisi>
     <kps6ChecklistsEparkeiaCollection>
-    </kps6ChecklistsEparkeiaCollection>
     {for $Eparkeia in $payload/*:Kps6ChecklistsEparkeia return
      <Kps6ChecklistsEparkeia> 
        <idChecklistEpark>{fn:data($Eparkeia/*:idChecklistEparkeia)}</idChecklistEpark>
@@ -383,6 +392,7 @@ declare function e524-lib:prepare-input($payload as element()) as element(){
        <sxoliaForea>{fn:data($Eparkeia/*:sxoliaForea)}</sxoliaForea>
      </Kps6ChecklistsEparkeia>
     }
+    </kps6ChecklistsEparkeiaCollection>
     <kps6ChecklistsDeltioyUsersCollection>
     {for $User in $payload/*:Kps6ChecklistsDeltioyUsers return
      <Kps6ChecklistsDeltioyUsers>

@@ -3,12 +3,12 @@
     <con:coreEntry>
         <con:description>This service was created by the REST adapter</con:description>
         <con1:binding type="REST" xsi:type="con:RestBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config" xmlns:con1="http://xmlns.oracle.com/servicebus/business/config">
-            <con:wsdl ref="E524/Resources/WSDL/ErotimataService/ErotimataService"/>
+            <con:wsdl ref="E524/Resources/WSDL/RunChecks2Service/RunChecks2Service"/>
             <con:binding>
-                <con:name>ErotimataService_ptt-binding</con:name>
-                <con:namespace>http://xmlns.oracle.com/EnlightIT/E524/ErotimataService</con:namespace>
+                <con:name>RunChecks2Service_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/EnlightIT/E524/RunChecks2Service</con:namespace>
             </con:binding>
-            <con:wadl ref="E524/Resources/WADL/ErotimataService"/>
+            <con:wadl ref="E524/Resources/WADL/RunChecks2Service"/>
         </con1:binding>
         <oper:operations enabled="true">
             <oper:throttling enabled="false"/>
@@ -28,7 +28,7 @@
         <tran:provider-id>http</tran:provider-id>
         <tran:inbound>false</tran:inbound>
         <tran:URI>
-            <env:value>http://bpm0.ops2017.mnec.local:7004/soa-infra/resources/6PP/DeltioErotimatonv6!1.0/DeltioErotimatav6</env:value>
+            <env:value>http://bpm0.ops2017.mnec.local:7004/soa-infra/resources/6PP/runChecksv6!1.0/RestService_Run_Checks</env:value>
         </tran:URI>
         <tran:outbound-properties>
             <tran:load-balancing-algorithm>round-robin</tran:load-balancing-algorithm>

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.1.v20150916-55dc7c3">
-   <name>AksiologhshProtaseon_WRITE-OR</name>
+   <name>AksiologisiService-OR</name>
    <class-mapping-descriptors>
       <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
-         <class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioy</class>
+         <class>AksiologisiService.Kps6ChecklistsDeltioy</class>
          <alias>KPS6_CHECKLISTS_DELTIOY</alias>
          <primary-key>
             <field table="KPS6_CHECKLISTS_DELTIOY" name="ID_CHECKLIST" xsi:type="column"/>
@@ -11,8 +11,8 @@
          <events/>
          <querying>
             <queries>
-               <query name="AksiologhshProtaseon_WRITESelect" xsi:type="read-all-query">
-                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioy</reference-class>
+               <query name="AksiologisiServiceSelect" xsi:type="read-all-query">
+                  <reference-class>AksiologisiService.Kps6ChecklistsDeltioy</reference-class>
                   <container xsi:type="list-container-policy">
                      <collection-type>java.util.Vector</collection-type>
                   </container>
@@ -182,7 +182,7 @@
                      <value>true</value>
                   </property>
                </properties>
-               <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</reference-class>
+               <reference-class>AksiologisiService.Kps6ChecklistsEparkeia</reference-class>
                <private-owned>true</private-owned>
                <target-foreign-key>
                   <field-reference>
@@ -196,7 +196,7 @@
                </container>
                <indirection xsi:type="value-holder-indirection-policy"/>
                <selection-query xsi:type="read-all-query">
-                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</reference-class>
+                  <reference-class>AksiologisiService.Kps6ChecklistsEparkeia</reference-class>
                   <container xsi:type="list-container-policy">
                      <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
                   </container>
@@ -209,7 +209,7 @@
                      <value>true</value>
                   </property>
                </properties>
-               <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioyUsers</reference-class>
+               <reference-class>AksiologisiService.Kps6ChecklistsDeltioyUsers</reference-class>
                <private-owned>true</private-owned>
                <target-foreign-key>
                   <field-reference>
@@ -223,7 +223,7 @@
                </container>
                <indirection xsi:type="value-holder-indirection-policy"/>
                <selection-query xsi:type="read-all-query">
-                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioyUsers</reference-class>
+                  <reference-class>AksiologisiService.Kps6ChecklistsDeltioyUsers</reference-class>
                   <container xsi:type="list-container-policy">
                      <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
                   </container>
@@ -252,7 +252,7 @@
          <structure>structureName</structure>
       </class-mapping-descriptor>
       <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
-         <class>AksiologhshProtaseon_WRITE.Kps6ChecklistsDeltioyUsers</class>
+         <class>AksiologisiService.Kps6ChecklistsDeltioyUsers</class>
          <alias>KPS6_CHECKLISTS_DELTIOY_USERS</alias>
          <primary-key>
             <field table="KPS6_CHECKLISTS_DELTIOY_USERS" name="ID_CHECKLIST_USERS" xsi:type="column"/>
@@ -309,7 +309,7 @@
          <structure>structureName</structure>
       </class-mapping-descriptor>
       <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
-         <class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</class>
+         <class>AksiologisiService.Kps6ChecklistsEparkeia</class>
          <alias>KPS6_CHECKLISTS_EPARKEIA</alias>
          <primary-key>
             <field table="KPS6_CHECKLISTS_EPARKEIA" name="ID_CHECKLIST_EPARK" xsi:type="column"/>
@@ -317,8 +317,8 @@
          <events/>
          <querying>
             <queries>
-               <query name="AksiologhshProtaseon_WRITESelect" xsi:type="read-all-query">
-                  <reference-class>AksiologhshProtaseon_WRITE.Kps6ChecklistsEparkeia</reference-class>
+               <query name="AksiologisiServiceSelect" xsi:type="read-all-query">
+                  <reference-class>AksiologisiService.Kps6ChecklistsEparkeia</reference-class>
                   <container xsi:type="list-container-policy">
                      <collection-type>java.util.Vector</collection-type>
                   </container>

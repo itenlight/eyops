@@ -1,6 +1,6 @@
-<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AklsiologisiService" name="AklsiologisiService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
-    <wsdl:import location="AklsiologisiService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AklsiologisiService"/>
-    <wsdl:binding name="AklsiologisiService_ptt-binding" type="akl:AklsiologisiService_ptt" xmlns:akl="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AklsiologisiService">
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AksiologisiService" name="AksiologisiService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="AksiologisiService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AksiologisiService"/>
+    <wsdl:binding name="AksiologisiService_ptt-binding" type="akl:AksiologisiService_ptt" xmlns:akl="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E524/AksiologisiService">
         <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
         <wsdl:operation name="merge">
             <soap:operation soapAction="merge"/>
