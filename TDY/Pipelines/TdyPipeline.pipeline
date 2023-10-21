@@ -11,6 +11,33 @@
     </con:coreEntry>
     <con:router errorHandler="error-7f000101.66cb5836.0.18ab33a24fb.N7f9c">
         <con:pipeline type="request" name="request-7f000101.356a7db8.0.18a9ebcc3c5.N7dea">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7fcf" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7fcc</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7fc9</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7fc5</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.356a7db8.0.18a9ebcc3c5.N7de8" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -58,6 +85,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.356a7db8.0.18a9ebcc3c5.N7cd4">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7f57" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f56</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f55</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f54</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.356a7db8.0.18a9ebcc3c5.N7cd3" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -105,6 +159,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.356a7db8.0.18a9ebcc3c5.N7c5d">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7f1a" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f19</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f18</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f17</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.356a7db8.0.18a9ebcc3c5.N7c5c" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -180,6 +261,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.66cb5836.0.18ab33a24fb.N7ee1">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7edd" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7edc</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7edb</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7eda</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.66cb5836.0.18ab33a24fb.N7ee0" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -227,6 +335,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.66cb5836.0.18ab33a24fb.N7e6a">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7ea0" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e9f</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e9e</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e9d</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.66cb5836.0.18ab33a24fb.N7e69" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -274,6 +409,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.66cb5836.0.18ab33a24fb.N7df3">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7e63" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e62</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e61</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e60</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.66cb5836.0.18ab33a24fb.N7df2" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -321,6 +483,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.66cb5836.0.18ab33a24fb.N7d7c">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7e26" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e25</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e24</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e23</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.66cb5836.0.18ab33a24fb.N7d7b" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -367,12 +556,7 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
-        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7ffd">
-            <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ffb" name="Stage1">
-                <con:context/>
-                <con:actions/>
-            </con:stage>
-        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7ffd"></con:pipeline>
         <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7ffc">
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ffa" name="Stage1">
                 <con:context/>
@@ -380,7 +564,8 @@
                     <con2:replace varName="body" contents-only="true">
                         <con1:id>_ActionId-7f000101.414dfeb7.0.18abe42ae57.N7ff7</con1:id>
                         <con2:expr>
-                            <con1:xqueryText>'{"TDY_ID":null,"KODIKOS_MIS":null,"KODIKOS_YPOERGOY":null,"AA_YPOERGOY":null,"AA_TDY":null,"AA_YPOEKDOSH":null,"KATHGORIA_EKDOSHS":null,"TITLOS_YPOERGOY":null,"KODIKOS_PROEG":null,"TEXNIKH_PERIGRAFH":null,"AR_PROTOK_DA":null,"DATE_CREATION":null,"DATE_MET_YPOVOLHS":null,"DATE_YPOVOLIS":null,"DATE_EPILEKSIMOTHTAS":null,"DATE_ANALHPSHS":null,"DATE_LHKSHS":null,"DATE_TROPOP":null,"KODIKOS_EPIVLEPOYSAS":null,"PARATHRHSEIS_KATAXOR_TDY":null,"EIDOS_ANATHESHS":null,"KODIKOS_DIKAIOYXOS":null,"ELEGXOS_AATDP":null,"ONOMA_YPEYTHINOY":null,"THESH_YPEYTHINOY":null,"DIEYTHYNSH_YPEYTHINOY":null,"SPECIALITY_YPEYTHINOY":null,"THL_YPEYTHINOY":null,"FAX_YPEYTHINOY":null,"EMAIL_YPEYTHINOY":null,"PARATHRHSEIS_KATAXOR_TDY_DIK":null,"TITLOS_FOREA":null,"ELEGXOS":null,"KATASTASH_DELTIOY":null,"KATASTASH_DELTIOY_DESCR":null,"DATE_ELEGXOY":null,"ID_TDY_SYMPLHROMATIKHS":null,"TYPOS_TDY":null,"AITIOLOGIA_YPOEKDOSHS":null,"FLAG_TROP_TIMETABLE":null,"FLAG_TROP_OIK":null,"FLAG_TROP_FYS":null,"FLAG_TROP_ALLO":null,"KODIKOS_OIKONOMIKHS":null,"PERIGRAFH_OIKONOMIKHS":null,"ONOMA_YPEYTHINOY_OIK":null,"THESH_YPEYTHINOY_OIK":null,"DIEYTHYNSH_YPEYTHINOY_OIK":null,"THL_YPEYTHINOY_OIK":null,"EMAIL_YPEYTHINOY_OIK":null,"POSO_MH_ENISXYOMENH":null,"YPOE_ARXAIOLOGIA_FLAG":null,"YPOE_ENISXYSH_FLAG":null,"FPA_ANAKTHSIMOS_FLAG":null,"PERIORISMOI_MEEP":null,"DATE_MEEP":null,"POSO_IDIOT":null,"PROEG_AA":null,"EKDOSH_PROEG":null,"TITLOS_PROEG":null,"DIKAIOYXOS_YPOERGOY":null,"FOREAS_PARAKOLOYTHISHS":null,"TDP_ID_ATP":null,"RHTRA":null,"PERIGRAFH_EPIVLEPOYSAS":null,"PROELEYSH_DELTIO":null,"DA_TEXT":null,"FLAG_AYTOMATI_EKGKRISH_TDY":null,"KPS_KATALOGOS_ERGON":null,"KPS6_YPOE_ANADOXOI":[],"KPS6_YPOE_KATANOMH":[],"KPS6_YPOE_EPILEKSIMES":[],"KPS6_YPOE_DEIKTES":[],"KPS6_YPOE_DIAKRITA":[],"KPS6_YPOE_XOROTHETHSEIS":[],"Kps6DeltioErothmata":[],"KRISIMO_YE":null,"FLAG_TMHMATOPOIHMENO":null,"THESMIKO_PLAISIO":null,"FLAG_EKSAIRESI_PROE":null}'</con1:xqueryText>
+                            <con1:xqueryText>'{"TDY_ID":null,
+  "KODIKOS_MIS":null,"KODIKOS_YPOERGOY":null,"AA_YPOERGOY":null,"AA_TDY":null,"AA_YPOEKDOSH":null,"KATHGORIA_EKDOSHS":null,"TITLOS_YPOERGOY":null,"KODIKOS_PROEG":null,"TEXNIKH_PERIGRAFH":null,"AR_PROTOK_DA":null,"DATE_CREATION":null,"DATE_MET_YPOVOLHS":null,"DATE_YPOVOLIS":null,"DATE_EPILEKSIMOTHTAS":null,"DATE_ANALHPSHS":null,"DATE_LHKSHS":null,"DATE_TROPOP":null,"KODIKOS_EPIVLEPOYSAS":null,"PARATHRHSEIS_KATAXOR_TDY":null,"EIDOS_ANATHESHS":null,"KODIKOS_DIKAIOYXOS":null,"ELEGXOS_AATDP":null,"ONOMA_YPEYTHINOY":null,"THESH_YPEYTHINOY":null,"DIEYTHYNSH_YPEYTHINOY":null,"SPECIALITY_YPEYTHINOY":null,"THL_YPEYTHINOY":null,"FAX_YPEYTHINOY":null,"EMAIL_YPEYTHINOY":null,"PARATHRHSEIS_KATAXOR_TDY_DIK":null,"TITLOS_FOREA":null,"ELEGXOS":null,"KATASTASH_DELTIOY":null,"KATASTASH_DELTIOY_DESCR":null,"DATE_ELEGXOY":null,"ID_TDY_SYMPLHROMATIKHS":null,"TYPOS_TDY":null,"AITIOLOGIA_YPOEKDOSHS":null,"FLAG_TROP_TIMETABLE":null,"FLAG_TROP_OIK":null,"FLAG_TROP_FYS":null,"FLAG_TROP_ALLO":null,"KODIKOS_OIKONOMIKHS":null,"PERIGRAFH_OIKONOMIKHS":null,"ONOMA_YPEYTHINOY_OIK":null,"THESH_YPEYTHINOY_OIK":null,"DIEYTHYNSH_YPEYTHINOY_OIK":null,"THL_YPEYTHINOY_OIK":null,"EMAIL_YPEYTHINOY_OIK":null,"POSO_MH_ENISXYOMENH":null,"YPOE_ARXAIOLOGIA_FLAG":null,"YPOE_ENISXYSH_FLAG":null,"FPA_ANAKTHSIMOS_FLAG":null,"PERIORISMOI_MEEP":null,"DATE_MEEP":null,"POSO_IDIOT":null,"PROEG_AA":null,"EKDOSH_PROEG":null,"TITLOS_PROEG":null,"DIKAIOYXOS_YPOERGOY":null,"FOREAS_PARAKOLOYTHISHS":null,"TDP_ID_ATP":null,"RHTRA":null,"PERIGRAFH_EPIVLEPOYSAS":null,"PROELEYSH_DELTIO":null,"DA_TEXT":null,"FLAG_AYTOMATI_EKGKRISH_TDY":null,"KPS_KATALOGOS_ERGON":null,"KPS6_YPOE_ANADOXOI":[],"KPS6_YPOE_KATANOMH":[],"KPS6_YPOE_EPILEKSIMES":[],"KPS6_YPOE_DEIKTES":[],"KPS6_YPOE_DIAKRITA":[],"KPS6_YPOE_XOROTHETHSEIS":[],"Kps6DeltioErothmata":[],"KRISIMO_YE":null,"FLAG_TMHMATOPOIHMENO":null,"THESMIKO_PLAISIO":null,"FLAG_EKSAIRESI_PROE":null}'</con1:xqueryText>
                         </con2:expr>
                     </con2:replace>
                     <con2:transport-headers>
@@ -394,6 +579,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7e7b">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7d7b" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d7a</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d79</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d78</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7e7a" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -438,6 +650,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7e01">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7d0d" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d0c</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d0b</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d0a</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7e00" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -482,6 +721,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7d8a">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7cd0" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ccf</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7cce</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ccd</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7d89" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -526,6 +792,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7d10">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7c93" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c92</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c91</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c90</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7d0f" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -570,6 +863,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7c68">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7be8" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7be7</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7be6</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7be5</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7c67" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -614,6 +934,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7bf1">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7c56" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c55</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c54</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c53</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7bf0" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -659,6 +1006,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7b49">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7bab" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7baa</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ba9</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ba8</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7b48" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -703,6 +1077,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7ad2">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7b6e" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b6d</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b6c</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b6b</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ad1" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -758,6 +1159,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N79f3">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7b31" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b30</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b2f</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b2e</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N79f2" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -802,6 +1230,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N797c">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7af4" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7af3</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7af2</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7af1</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N797b" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
@@ -1155,6 +1610,33 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.4301e084.0.18afe8bbb58.N7f90">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7ab7" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ab6</con1:id>
+                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>SetUserContext</con4:operation>
+                        <con4:outboundTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ab5</con1:id>
+                                <con2:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{tdy:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                            <con2:routing-options>
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ab4</con1:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con4:outboundTransform>
+                    </con4:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.4301e084.0.18afe8bbb58.N7f8f" name="Stage1">
                 <con:context>
                     <con1:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy/library"/>
