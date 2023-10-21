@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/StatusService" name="StatusService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="STATUSService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/StatusService"/>
+    <wsdl:binding name="StatusService_ptt-binding" type="stat:StatusService_ptt" xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/StatusService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="StatusService">
+            <soap:operation soapAction="StatusService"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

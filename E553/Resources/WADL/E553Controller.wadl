@@ -13,5 +13,29 @@
             </response>
          </method>
       </resource>
+      <resource path="/getDeltiaForFilter">
+         <method name="GET" soa:name="GetDeltia">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/search">
+         <method name="POST" soa:name="Search">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
    </resources>
 </application>

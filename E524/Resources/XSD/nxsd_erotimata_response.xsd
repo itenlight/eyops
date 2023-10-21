@@ -6,10 +6,11 @@
             <xsd:element name="Row" maxOccurs="unbounded">
                <xsd:complexType>
                   <xsd:sequence>
-                     <xsd:element name="idErotList" type="xsd:integer"/>
-                     <xsd:element name="idErothma" type="xsd:integer"/>
-                     <xsd:element name="listValueId" type="xsd:integer"/>
+                     <xsd:element name="idErotList" type="xsd:string"/>
+                     <xsd:element name="idErothma" type="xsd:string"/>
+                     <xsd:element name="listValueId" type="xsd:string"/>
                      <xsd:element name="listValueName" type="xsd:string"/>
+                     <xsd:element name="listValueAa" type="xsd:string"/>
                   </xsd:sequence>
                </xsd:complexType>
             </xsd:element>

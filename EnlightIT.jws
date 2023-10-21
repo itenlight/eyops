@@ -2,6 +2,8 @@
 <jws:workspace xmlns:jws="http://xmlns.oracle.com/ide/project">
    <hash n="adrs-workspace-properties">
       <value n="adrs-instance-binding" v="DefaultServer"/>
+      <value n="deploy-timeout" v="0"/>
+      <value n="runtime-application-name" v="EnlightIT"/>
    </hash>
    <value n="application-package-prefix" v="com.enlightit"/>
    <value n="appTemplateId" v="sbApplicationAndProjectTemplate"/>
@@ -28,9 +30,10 @@
       <string v="oracle.jdeveloper.model.PathsConfiguration/ResourceBundlesContentSet"/>
    </list>
    <list n="listOfChildren">
-      <hash><url n="URL" path="Common/Common.jpr"/></hash>
+      <hash><url n="URL" path="CommonEnlightIT/CommonEnlightIT.jpr"/></hash>
       <hash><url n="URL" path="E524/E524.jpr"/></hash>
       <hash><url n="URL" path="E553/E553.jpr"/></hash>
+      <hash><url n="URL" path="E555/E555.jpr"/></hash>
       <hash><url n="URL" path="TDY/TDY.jpr"/></hash>
    </list>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
@@ -39,9 +42,14 @@
             <value n="profileClass" v="SbAppDeployProfile"/>
             <value n="profileName" v="EnlightIT"/>
          </hash>
+         <hash n="ServiceBus1">
+            <value n="profileClass" v="SbAppDeployProfile"/>
+            <value n="profileName" v="ServiceBus1"/>
+         </hash>
       </hash>
       <list n="profileList">
          <string v="EnlightIT"/>
+         <string v="ServiceBus1"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
@@ -49,7 +57,20 @@
          <url n="pomfileURL" path="pom.xml"/>
       </hash>
    </hash>
+   <hash n="oracle.jdeveloper.model.PathsConfiguration">
+      <hash n="ApplicationSrcContentSet">
+         <list n="pattern-filters">
+            <string v="+**"/>
+         </list>
+         <list n="url-path">
+            <url path="src/"/>
+         </list>
+      </hash>
+   </hash>
    <hash n="oracle.sb.tooling.ide.core.internal.application.SbApplication">
-      <value n="configContextSessionName" v="OSB-IDE_build_1697836687401"/>
+      <value n="configContextSessionName" v="OSB-IDE_build_1714147797243"/>
+      <value n="customizationFile"/>
+      <value n="keystorefile"/>
+      <value n="keystorepassword" v=""/>
    </hash>
 </jws:workspace>

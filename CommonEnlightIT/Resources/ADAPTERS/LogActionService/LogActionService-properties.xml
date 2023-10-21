@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_ID:db_column_scale">0</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.ACTION_CATEGORY_ID:db_column_precision">38</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.COMMENTS_ACTION:db_column_not_null">false</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.DATE_ACTION:db_column_type">DATE</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.ACTION_CATEGORY_ID:db_column_scale">0</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.COMMENTS_ACTION:db_column_size">100</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_CATEGORY_ID:db_column_type">NUMBER</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_CATEGORY_ID:db_column_not_null">true</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.USER_NAME:db_column_type">VARCHAR2</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_column_6">COMMENTS_ACTION</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_column_5">DATE_ACTION</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.DATE_ACTION:db_column_not_null">false</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_column_4">USER_NAME</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_ID:db_column_not_null">true</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_column_3">ACTION_CATEGORY_ID</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.LOG_USER_ACTION_ID:db_column_precision">38</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_column_2">OBJECT_ID</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_column_1">OBJECT_CATEGORY_ID</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.LOG_USER_ACTION_ID:db_column_scale">0</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.ACTION_CATEGORY_ID:db_column_type">NUMBER</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_column_0">LOG_USER_ACTION_ID</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.USER_NAME:db_column_size">30</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.LOG_USER_ACTION_ID:db_column_type">NUMBER</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.ACTION_CATEGORY_ID:db_column_not_null">true</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_ID:db_column_precision">38</entry>
+   <entry key="root_descriptor_alias">KPS6_LOG_USER_ACTIONS</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.USER_NAME:db_column_not_null">false</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.LOG_USER_ACTION_ID:db_column_not_null">true</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_ID:db_column_type">NUMBER</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.COMMENTS_ACTION:db_column_type">VARCHAR2</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_CATEGORY_ID:db_column_precision">38</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS.OBJECT_CATEGORY_ID:db_column_scale">0</entry>
+   <entry key="KPS6_LOG_USER_ACTIONS:db_table_type">TABLE</entry>
+</properties>

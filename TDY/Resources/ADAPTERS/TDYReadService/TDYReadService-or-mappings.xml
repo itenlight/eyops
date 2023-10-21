@@ -78,6 +78,11 @@
 					<field table="KPS6_YPOE_ANADOXOI" name="PARATHRHSEIS_KATAXOR_TDY_ANA" xsi:type="column"/>
 					<attribute-classification>java.lang.String</attribute-classification>
 				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>dateSymbashs</attribute-name>
+					<field table="KPS6_YPOE_ANADOXOI" name="DATE_SYMBASHS" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
 				<attribute-mapping xsi:type="one-to-one-mapping">
 					<attribute-name>kpsAnadoxoi</attribute-name>
 					<properties>
@@ -397,6 +402,41 @@
 				<attribute-mapping xsi:type="direct-mapping">
 					<attribute-name>flagAytomatiEkgkrishTdy</attribute-name>
 					<field table="KPS6_YPOERGA" name="FLAG_AYTOMATI_EKGKRISH_TDY" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>apanthshEpde</attribute-name>
+					<field table="KPS6_YPOERGA" name="APANTHSH_EPDE" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>apanthshEpdeErrorCode</attribute-name>
+					<field table="KPS6_YPOERGA" name="APANTHSH_EPDE_ERROR_CODE" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>objStatusId</attribute-name>
+					<field table="KPS6_YPOERGA" name="OBJ_STATUS_ID" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>objStatusDate</attribute-name>
+					<field table="KPS6_YPOERGA" name="OBJ_STATUS_DATE" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>objIsxys</attribute-name>
+					<field table="KPS6_YPOERGA" name="OBJ_ISXYS" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>objIsxysDate</attribute-name>
+					<field table="KPS6_YPOERGA" name="OBJ_ISXYS_DATE" xsi:type="column"/>
+					<attribute-classification>java.sql.Timestamp</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagEksairesiProe</attribute-name>
+					<field table="KPS6_YPOERGA" name="FLAG_EKSAIRESI_PROE" xsi:type="column"/>
 					<attribute-classification>java.lang.Integer</attribute-classification>
 				</attribute-mapping>
 				<attribute-mapping xsi:type="one-to-many-mapping">
@@ -1285,7 +1325,7 @@
 				<attribute-mapping xsi:type="direct-mapping">
 					<attribute-name>foreasParakol</attribute-name>
 					<field table="VS6_TDY_KATALOGOS_ERGON_INFO" name="FOREAS_PARAKOL" xsi:type="column"/>
-					<attribute-classification>java.math.BigDecimal</attribute-classification>
+					<attribute-classification>java.lang.String</attribute-classification>
 				</attribute-mapping>
 				<attribute-mapping xsi:type="direct-mapping">
 					<attribute-name>ypoeEnisxyshFlag</attribute-name>
@@ -1657,7 +1697,12 @@
 				</attribute-mapping>
 				<attribute-mapping xsi:type="direct-mapping">
 					<attribute-name>idYpunco</attribute-name>
-					<field table="VS6_TDY_EPILEKSIMES_INFO" name="ID_YPUNCO" xsi:type="column"/>
+					<field name="ID_YPUNCO" xsi:type="column"/>
+					<attribute-classification>java.math.BigDecimal</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagAplopoihmenoKostos</attribute-name>
+					<field table="VS6_TDY_EPILEKSIMES_INFO" name="FLAG_APLOPOIHMENO_KOSTOS" xsi:type="column"/>
 					<attribute-classification>java.math.BigDecimal</attribute-classification>
 				</attribute-mapping>
 			</attribute-mappings>
@@ -2079,6 +2124,26 @@
 					<attribute-name>parathrhseisKataxorTdy</attribute-name>
 					<field table="VS6_TDY_INFO" name="PARATHRHSEIS_KATAXOR_TDY" xsi:type="column"/>
 					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>thesmikoPlaisio</attribute-name>
+					<field table="VS6_TDY_INFO" name="THESMIKO_PLAISIO" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>thesmikoPlaisioEn</attribute-name>
+					<field table="VS6_TDY_INFO" name="THESMIKO_PLAISIO_EN" xsi:type="column"/>
+					<attribute-classification>java.lang.String</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>krisimoYe</attribute-name>
+					<field table="VS6_TDY_INFO" name="KRISIMO_YE" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
+				</attribute-mapping>
+				<attribute-mapping xsi:type="direct-mapping">
+					<attribute-name>flagTmhmatopoihmeno</attribute-name>
+					<field table="VS6_TDY_INFO" name="FLAG_TMHMATOPOIHMENO" xsi:type="column"/>
+					<attribute-classification>java.lang.Integer</attribute-classification>
 				</attribute-mapping>
 			</attribute-mappings>
 			<descriptor-type>independent</descriptor-type>

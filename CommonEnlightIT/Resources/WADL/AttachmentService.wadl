@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="DownloadAttachmentController">Download Attachment Controller</doc>
+   <resources>
+      <resource path="/">
+         <method name="GET" soa:name="DownloadAttachment">
+            <request>
+               <param name="attachementDocumentId" style="query" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="*/*"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

@@ -1,0 +1,14 @@
+<adapter-config name="TRADeiktesService" adapter="db" wsdlLocation="../../WSDL/TRADeiktesService/TRADeiktesService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="TRADeiktesService_ptt" operation="update">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="TRADeiktesService.Kps6DelTransmissionDeiktes"/>
+      <property name="DmlType" value="update"/>
+      <property name="MappingsMetaDataURL" value="TRADeiktesService-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+      <property name="DetectOmissions" value="true"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

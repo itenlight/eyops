@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/LogActionService" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/LogActionService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Kps6LogUserActionsCollection" type="Kps6LogUserActionsCollection"/>
+   <xs:complexType name="Kps6LogUserActionsCollection">
+      <xs:sequence>
+         <xs:element name="Kps6LogUserActions" type="Kps6LogUserActions" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6LogUserActions">
+      <xs:sequence>
+         <xs:element name="logUserActionId" type="xs:decimal" nillable="true"/>
+         <xs:element name="objectCategoryId" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="objectId" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="actionCategoryId" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="userName" type="string30" minOccurs="0" nillable="true"/>
+         <xs:element name="dateAction" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="commentsAction" type="string100" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string30">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="30"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string100">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="100"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

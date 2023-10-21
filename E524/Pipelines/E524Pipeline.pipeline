@@ -147,7 +147,7 @@
                 <con:actions>
                     <con4:route xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
                         <con1:id>_ActionId-7f000101.d9fbf3f.0.18b10ef2cad.N7e73</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
@@ -166,7 +166,7 @@
                         <con1:id>_ActionId-7f000101.d9fbf3f.0.18b10ef2cad.N7eb8</con1:id>
                         <con3:expr>
                             <con1:xqueryText>e524-lib:search-deltio(
-  xs:unsignedInt($body//*:idChecklist), 
+  xs:unsignedInt($body//e524:idChecklist), 
   e524-lib:get-user($inbound), 
   e524-lib:get-lang($inbound))</con1:xqueryText>
                         </con3:expr>
@@ -196,6 +196,13 @@
 </Root-Element>]]></con1:xqueryText>
                                 </con3:expr>
                             </con3:assign>
+                            <con4:log>
+                                <con1:id>_ActionId-7f000101.N7bbb672d.0.18ba0c6a8f7.N7fcd</con1:id>
+                                <con4:logLevel>error</con4:logLevel>
+                                <con4:expr>
+                                    <con1:xqueryText>$ErotimataRequest</con1:xqueryText>
+                                </con4:expr>
+                            </con4:log>
                         </con3:requestTransform>
                         <con3:responseTransform>
                             <con3:insert varName="body">
@@ -343,7 +350,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con6:route xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
                         <con1:id>_ActionId-7f000101.2332b11c.0.18b11bc78a2.N7daa</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
@@ -377,7 +384,6 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     </con5:route>
                     <con3:ifThenElse>
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7cc3</con1:id>
-                        <con1:disabled>true</con1:disabled>
                         <con3:case id="_BranchId-7f000101.N483b0112.0.18b16270d2e.N7cc2">
                             <con3:condition>
                                 <con1:xqueryText>$body//e524:Kps6DeltioErothmata</con1:xqueryText>
@@ -489,22 +495,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
                         </con3:requestTransform>
-                        <con3:responseTransform>
-                            <con6:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
-                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7ec3</con1:id>
-                                <con2:expr>
-                                    <con1:xqueryText><![CDATA[<e524:E524Response>
- <e524:ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</e524:ERROR_CODE>
- <e524:ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</e524:ERROR_MESSAGE>
- <e524:DATA>
-  <e524:Kps6DeltioErothmata>
-    <e524:idObject>{xs:unsignedLong($IDCHECKLIST)}</e524:idObject>
-  </e524:Kps6DeltioErothmata>
- </e524:DATA>
-</e524:E524Response>]]></con1:xqueryText>
-                                </con2:expr>
-                            </con6:replace>
-                        </con3:responseTransform>
+                        <con3:responseTransform/>
                     </con3:wsCallout>
                 </con:actions>
             </con:stage>
@@ -513,6 +504,19 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
                 </con:context>
                 <con:actions>
+                    <con6:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7ec3</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText><![CDATA[<e524:E524Response>
+   <e524:Kps6ChecklistsDeltioy>
+    <e524:idChecklist>{fn:data($body//e524:Kps6ChecklistsDeltioy/e524:idChecklist)}</e524:idChecklist>
+  </e524:Kps6ChecklistsDeltioy>
+ <e524:actionCode/>
+ <e524:comments/>
+ <e524:combineChecks>1</e524:combineChecks>
+</e524:E524Response>]]></con1:xqueryText>
+                        </con2:expr>
+                    </con6:replace>
                     <con2:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7e59</con1:id>
                         <con2:type>XML-To-Native</con2:type>
@@ -563,7 +567,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con6:route xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7d04</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
@@ -647,22 +651,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                 </con3:expr>
                             </con3:assign>
                         </con3:requestTransform>
-                        <con3:responseTransform>
-                            <con6:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
-                                <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7c13</con1:id>
-                                <con2:expr>
-                                    <con1:xqueryText><![CDATA[<e524:E524Response>
- <e524:ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</e524:ERROR_CODE>
- <e524:ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</e524:ERROR_MESSAGE>
- <e524:DATA>
-  <e524:Kps6DeltioErothmata>
-    <e524:idObject>{xs:unsignedLong($IDCHECKLIST)}</e524:idObject>
-  </e524:Kps6DeltioErothmata>
- </e524:DATA>
-</e524:E524Response>]]></con1:xqueryText>
-                                </con2:expr>
-                            </con6:replace>
-                        </con3:responseTransform>
+                        <con3:responseTransform/>
                     </con3:wsCallout>
                 </con:actions>
             </con:stage>
@@ -671,6 +660,19 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                     <con1:userNsDecl prefix="e524" namespace="http://espa.gr/v6/e524"/>
                 </con:context>
                 <con:actions>
+                    <con6:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7c13</con1:id>
+                        <con2:expr>
+                            <con1:xqueryText><![CDATA[<e524:E524Response>
+  <e524:Kps6ChecklistsDeltioy>
+    <e524:idChecklist>{xs:unsignedLong($IDCHECKLIST)}</e524:idChecklist>
+  </e524:Kps6ChecklistsDeltioy>
+ <e524:actionCode/>
+ <e524:comments/>
+ <e524:combineChecks>1</e524:combineChecks>
+</e524:E524Response>]]></con1:xqueryText>
+                        </con2:expr>
+                    </con6:replace>
                     <con2:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
                         <con1:id>_ActionId-7f000101.N483b0112.0.18b16270d2e.N7ba9</con1:id>
                         <con2:type>XML-To-Native</con2:type>
@@ -702,7 +704,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N79ed</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -711,6 +713,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f98</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -783,7 +789,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N797f</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -792,6 +798,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f95</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -863,7 +873,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7946</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -872,6 +882,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f93</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -943,7 +957,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N790d</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -952,6 +966,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f91</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1023,7 +1041,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N78d4</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1032,6 +1050,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f8f</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1103,7 +1125,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N789b</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1112,6 +1134,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f8d</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1184,7 +1210,7 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7862</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1193,6 +1219,10 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f8b</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1264,7 +1294,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7829</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1273,6 +1303,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f89</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1344,7 +1378,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N77f0</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1353,6 +1387,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f87</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1424,7 +1462,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N77b7</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1433,6 +1471,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f85</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1492,7 +1534,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N777e</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1501,6 +1543,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.c136d62.0.18caae01513.N7f84</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1572,7 +1618,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N770c</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1581,6 +1627,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f81</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1640,7 +1690,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7745</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1649,6 +1699,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f83</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1708,7 +1762,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N76d3</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1717,6 +1771,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f7f</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1776,7 +1834,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N769a</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1785,6 +1843,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f7d</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1844,7 +1906,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7661</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1853,6 +1915,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f7b</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1912,7 +1978,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7628</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -1921,6 +1987,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f79</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -1970,6 +2040,33 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7be1">
+            <con:stage id="_StageId-7f000101.c136d62.0.18caae01513.N7f15" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.c136d62.0.18caae01513.N7f14</con1:id>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.c136d62.0.18caae01513.N7f13</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.c136d62.0.18caae01513.N7f12</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7be0" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -2025,7 +2122,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                 <con:actions>
                     <con5:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N75ef</con1:id>
-                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con5:operation>SetUserContext</con5:operation>
                         <con5:outboundTransform>
                             <con3:replace varName="body" contents-only="true">
@@ -2034,6 +2131,10 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
                                 </con3:expr>
                             </con3:replace>
+                            <con3:routing-options>
+                                <con1:id>_ActionId-7f000101.3c473a6f.0.18b53f4d933.N7f77</con1:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
                         </con5:outboundTransform>
                     </con5:route>
                 </con:actions>
@@ -2140,7 +2241,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
     <e52:P_ID_CHECKLIST>{fn:data($body//*:pIdChecklist)}</e52:P_ID_CHECKLIST>
     <e52:P_TITLOS>{fn:data($body//*:pTitlos)}</e52:P_TITLOS>
     <e52:P_EKDOSHYPOEKDOSH>{fn:data($body//*:pEkdoshypoekdosh)}</e52:P_EKDOSHYPOEKDOSH>
-    <e52:P_KATASTDELTIOY>{fn:data($body//*:pPraksi)}</e52:P_KATASTDELTIOY>
+    <e52:P_KATASTDELTIOY>{fn:data($body//*:pKatastdeltioy)}</e52:P_KATASTDELTIOY>
     <e52:P_ISXYON>{fn:data($body//*:pIsxyon)}</e52:P_ISXYON>
     <e52:P_STADIOAKSIOL>{fn:data($body//*:pStadioAksiol)}</e52:P_STADIOAKSIOL>
 </e52:InputParameters>]]></con1:xqueryText>
@@ -2263,7 +2364,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                         <con3:outboundTransform>
                                             <con4:route xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
                                                 <con1:id>_ActionId-7f000101.d9fbf3f.0.18b10ef2cad.N7f34</con1:id>
-                                                <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                                <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                                                 <con4:operation>SetUserContext</con4:operation>
                                                 <con4:outboundTransform>
                                                     <con2:replace varName="body" contents-only="true" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
@@ -2688,7 +2789,7 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                     <con2:route>
                                         <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N79f5</con1:id>
                                         <con2:service ref="E524/BusinessServices/RunChecks2Service" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-                                        <con2:operation>RunChecks</con2:operation>
+                                        <con2:operation>RunChecks2</con2:operation>
                                         <con2:outboundTransform>
                                             <con3:nxsdTranslation>
                                                 <con1:id>_ActionId-7f000101.2ddade37.0.18b29e7b3c0.N79f4</con1:id>
@@ -2696,8 +2797,8 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
                                                 <con3:sourceExpr>
                                                     <con1:xqueryText>$body/text()</con1:xqueryText>
                                                 </con3:sourceExpr>
-                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runckecks_request"/>
-                                                <con3:schemaElement xmlns:e524="http://espa.gr/v6/e524">e524:E524Request</con3:schemaElement>
+                                                <con3:nxsd ref="E524/Resources/XSD/nxsd_runchecks2soa_request"/>
+                                                <con3:schemaElement xmlns:res="http://TargetNamespace.com/RestService_E_210_L_Operation1_request">res:Root-Element</con3:schemaElement>
                                                 <con3:replace-body-content/>
                                                 <con3:enforceSchemaOrder>true</con3:enforceSchemaOrder>
                                             </con3:nxsdTranslation>

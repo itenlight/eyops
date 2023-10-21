@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/e553"
+            targetNamespace="http://espa.gr/v6/e553" elementFormDefault="qualified"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" 
+            nxsd:encoding="UTF-8">
+  <xsd:element name="E553Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ERROR_CODE" type="xsd:integer"/>
+        <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
+        <xsd:element name="DATA" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="objectCategoryId" type="xsd:integer"/>
+              <xsd:element name="objectId" type="xsd:integer"/>
+              <xsd:element name="oid" type="xsd:integer"/>
+              <xsd:element name="xreosh" type="xsd:string"/>
+              <xsd:element name="neaXreosh" type="xsd:integer"/>
+              <xsd:element name="protXreoshUserName" type="xsd:string"/>
+              <xsd:element name="protXreoshEpitheto" type="xsd:string"/>
+              <xsd:element name="monadaUserName" type="xsd:string"/>
+              <xsd:element name="monadaEpitheto" type="xsd:string"/>
+              <xsd:element name="dikDa" type="xsd:string"/>
+              <xsd:element name="objectCategoryName" type="xsd:string"/>
+              <xsd:element name="kodikosMis" type="xsd:string"/>
+              <xsd:element name="ekdosh" type="xsd:string"/>
+              <xsd:element name="ypoekdosh" type="xsd:integer"/>
+              <xsd:element name="katastashDeltioy" type="xsd:integer"/>
+              <xsd:element name="katastashDeltioyDescr" type="xsd:string"/>
+              <xsd:element name="titlos" type="xsd:string"/>
+              <xsd:element name="idEp" type="xsd:string"/>
+              <xsd:element name="epDescr" type="xsd:string"/>
+              <xsd:element name="apDescr" type="xsd:string"/>
+              <xsd:element name="neoDeltio" type="xsd:string"/>
+              <xsd:element name="katastPrax" type="xsd:string"/>
+              <xsd:element name="kodikosProsklhshs" type="xsd:string"/>
+              <xsd:element name="kodikosDikaioyxoy" type="xsd:string"/>
+              <xsd:element name="ypoballwn" type="xsd:string"/>
+              <xsd:element name="dateEisag" type="xsd:string"/>
+              <xsd:element name="createdBy" type="xsd:string"/>
+              <xsd:element name="userLastUpdate" type="xsd:string"/>
+              <xsd:element name="dateLastUpdate" type="xsd:string"/>
+              <xsd:element name="dateYpovolhs" type="xsd:string"/>
+              <xsd:element name="dateMetYpovolhs" type="xsd:string"/>
+              <xsd:element name="protokolloDik" type="xsd:string"/>
+              <xsd:element name="protokolloDa" type="xsd:string"/>
+              <xsd:element name="posoDdDapanhs" type="xsd:double"/>
+              <xsd:element name="foreas" type="xsd:string"/>
+              <xsd:element name="efdDikFlg" type="xsd:integer"/>
+              <xsd:element name="prosklhshDescr" type="xsd:string"/>
+              <xsd:element name="dikaioyxosDescr" type="xsd:string"/>
+              <xsd:element name="ypoballwnDescription" type="xsd:string"/>
+              <xsd:element name="aaYpoergoy" type="xsd:string"/>
+              <xsd:element name="proegEidosDescr" type="xsd:string"/>
+              <xsd:element name="eishghshDescr" type="xsd:string"/>
+              <xsd:element name="idProeg" type="xsd:integer"/>
+              <xsd:element name="areActionsValid" type="xsd:integer"/>
+              <xsd:element name="idAxona" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>

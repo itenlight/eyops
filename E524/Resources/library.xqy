@@ -31,67 +31,6 @@ declare function e524-lib:get-user($inbound as element()) as xs:string{
  fn:upper-case(xs:string($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name='OAM_REMOTE_USER']/@value))
 };
 
-
-declare function e524-lib:create-empty() as element(){
- <E524Response xmlns="http://espa.gr/v6/e524">
- 
- <DATA >
-      <Kps6ChecklistsDeltioy>
-         <idChecklist/>
-         <checklistEkdosh/>
-         <checklistYpoekdosh/>
-         <checklistType/>
-         <objectCategoryId/>
-         <checklistDate/>
-         <eishghsh/>
-         <bathmologia/>
-         <bathmologisiFlag/>
-         <flagAksiologhsh/>
-         <parathrhseis/>
-         <keimeno/>
-         <katastash/>
-         <protokolloArithmos/>
-         <protokolloDate/>
-         <sxoliaEyd/>
-         <sxoliaYops/>
-         <kodikosChecklistDeltioy/>
-         <kodikosMis/>
-         <deadlineDate/>
-         <dikaioyxosTexnikaErga/>
-         <dikaioyxosPromYpiresies/>
-         <dikaioyxosIdiaMesa/>
-         <sxoliaAksiolDioik/>
-         <epanypobolhTdpFlg/>
-         <listValueName/>
-         <katastashMis/>
-         <aaProsklhshs/>
-         <foreasEgkrishs/>
-         <kathgoriaEkdoshs/>
-         <ekdoshSxolia/>
-         <ekdDiorthoshFlg/>
-         <ekdEpanypoboliFlg/>
-         <ekdEpistrofiFlg/>
-         <ekdForeasFlg/>
-         <objectCategoryDeltiou/>
-         <flagAksiologhsh/>
-         <Kps6ChecklistsDeltioyUsers/>
-         <kps6Tdp>
-            <idTdp/>
-            <titlos/>
-            <dateAithshsEyd/>
-            <ekdoshTdp/>
-         </kps6Tdp>
-         <kps6GenerateDocReport/>
-         <Kps6ChecklistsEparkeia/>
-         <Kps6DeltioErothmata/>
-      </Kps6ChecklistsDeltioy>
-   </DATA>
-   <actionCode/>
-   <comments/>
-   <combineChecks>1</combineChecks>
-   </E524Response>
-};
-
 declare function  e524-lib:search-deltio($id as xs:unsignedInt, $username as xs:string, $lang as xs:string) as element(){
 
  let $Deltio := fn-bea:execute-sql('jdbc/mis_master6DS', xs:QName('Deltio'),
@@ -309,11 +248,71 @@ declare function  e524-lib:search-deltio($id as xs:unsignedInt, $username as xs:
    </E524Response>
 };
 
+declare function e524-lib:create-empty() as element(){
+ <E524Response xmlns="http://espa.gr/v6/e524">
+ 
+ <DATA >
+      <Kps6ChecklistsDeltioy>
+         <idChecklist/>
+         <checklistEkdosh/>
+         <checklistYpoekdosh/>
+         <checklistType/>
+         <objectCategoryId/>
+         <checklistDate/>
+         <eishghsh/>
+         <bathmologia/>
+         <bathmologisiFlag/>
+         <flagAksiologhsh/>
+         <parathrhseis/>
+         <keimeno/>
+         <katastash/>
+         <protokolloArithmos/>
+         <protokolloDate/>
+         <sxoliaEyd/>
+         <sxoliaYops/>
+         <kodikosChecklistDeltioy/>
+         <kodikosMis/>
+         <deadlineDate/>
+         <dikaioyxosTexnikaErga/>
+         <dikaioyxosPromYpiresies/>
+         <dikaioyxosIdiaMesa/>
+         <sxoliaAksiolDioik/>
+         <epanypobolhTdpFlg/>
+         <listValueName/>
+         <katastashMis/>
+         <aaProsklhshs/>
+         <foreasEgkrishs/>
+         <kathgoriaEkdoshs/>
+         <ekdoshSxolia/>
+         <ekdDiorthoshFlg/>
+         <ekdEpanypoboliFlg/>
+         <ekdEpistrofiFlg/>
+         <ekdForeasFlg/>
+         <objectCategoryDeltiou/>
+         <flagAksiologhsh/>
+         <Kps6ChecklistsDeltioyUsers/>
+         <kps6Tdp>
+            <idTdp/>
+            <titlos/>
+            <dateAithshsEyd/>
+            <ekdoshTdp/>
+         </kps6Tdp>
+         <kps6GenerateDocReport/>
+         <Kps6ChecklistsEparkeia/>
+         <Kps6DeltioErothmata/>
+      </Kps6ChecklistsDeltioy>
+   </DATA>
+   <actionCode/>
+   <comments/>
+   <combineChecks>1</combineChecks>
+   </E524Response>
+};
+
 declare function e524-lib:extract-erotimata($payload as element(), $username as xs:string, $lang as xs:string) 
   as element() {
   <Root-Element xmlns="http://TargetNamespace.com/DeltioErotimatonv6RestService_PUTPOST_request">
    <USERNAME>{$username}</USERNAME>
-   <PASSWOR/>
+   <PASSWORD/>
    <LANG>{$lang}</LANG>
    <DATA>
    {for $Erotima in $payload/*:Kps6DeltioErothmata return    
@@ -380,7 +379,9 @@ declare function e524-lib:prepare-input($payload as element()) as element(){
     <ekdoshSxolia>{fn:data($payload/*:ekdoshSxolia)}</ekdoshSxolia>
     <flagBathmologisi>{fn:data($payload/*:bathmologisiFlag)}</flagBathmologisi>
     <kps6ChecklistsEparkeiaCollection>
-    {for $Eparkeia in $payload/*:Kps6ChecklistsEparkeia return
+    {for $Eparkeia in $payload/*:Kps6ChecklistsEparkeia
+     where $Eparkeia/node() 
+     return
      <Kps6ChecklistsEparkeia> 
        <idChecklistEpark>{fn:data($Eparkeia/*:idChecklistEparkeia)}</idChecklistEpark>
        <kodikosForea>{fn:data($Eparkeia/*:kodikosForea)}</kodikosForea>
@@ -394,7 +395,9 @@ declare function e524-lib:prepare-input($payload as element()) as element(){
     }
     </kps6ChecklistsEparkeiaCollection>
     <kps6ChecklistsDeltioyUsersCollection>
-    {for $User in $payload/*:Kps6ChecklistsDeltioyUsers return
+    {for $User in $payload/*:Kps6ChecklistsDeltioyUsers 
+     where $User/node()
+     return
      <Kps6ChecklistsDeltioyUsers>
       <idChecklistUsers>{fn:data($User/*:idChecklistUsers)}</idChecklistUsers>
       <idXeiristh>{fn:data($User/*:userName)}</idXeiristh>
@@ -471,8 +474,8 @@ declare function e524-lib:GetKodikosMisList($KodikosMis as element()?,
   else
   for $Row in $ListakodikonMis  return            
   <Row>
-    <kodikosMis>{fn:data($Row//*:ID_TDP)}</kodikosMis>
-    <idTdp>{fn:data($Row//*:KODIKOS_MIS)}</idTdp>
+    <kodikosMis>{fn:data($Row//*:KODIKOS_MIS)}</kodikosMis>
+    <idTdp>{fn:data($Row//*:ID_TDP)}</idTdp>
     <ekdoshTdp>{fn:data($Row//*:EKDOSH_TDP)}</ekdoshTdp>
     <titlos>{fn:data($Row//*:TITLOS)}</titlos>
     <katastashPerig>{fn:data($Row//*:KATASTASH)}</katastashPerig>
@@ -506,9 +509,10 @@ declare function e524-lib:GetMisListForView($KodikosMis as xs:unsignedInt,$Lang 
   return
   if ($ListaKodikonMis/node()) then
   for $Row in $ListaKodikonMis return
-   <Row>
-    <kodikosMis>{fn:data($Row//*:ID_TDP)}</kodikosMis>
-    <idTdp>{fn:data($Row//*:KODIKOS_MIS)}</idTdp>
+   <Row>    
+    <idTdp>{fn:data($Row//*:ID_TDP)}</idTdp>
+    <kodikosMis>{fn:data($Row//*:KODIKOS_MIS)}</kodikosMis>
+    <titlos>{fn:data($Row//*:TITLOS)}</titlos>   
     <ekdoshTdp>{fn:data($Row/*:EKDOSH)}</ekdoshTdp>
     <titlos>{fn:data($Row//*:TITLOS)}</titlos>
     <katastashPerig>{fn:data($Row//*:KATASTASH_PERIG)}</katastashPerig>
@@ -516,6 +520,8 @@ declare function e524-lib:GetMisListForView($KodikosMis as xs:unsignedInt,$Lang 
     <aaProsklhshs>{fn:data($Row//*:AA_PROSKLHSHS)}</aaProsklhshs>
     <kodikosForea>{fn:data($Row//*:KODIKOS_FOREA)}</kodikosForea>    
     <flagAksiologhsh>{fn:data($Row//*:FLAG_AKSIOLOGHSH)}</flagAksiologhsh>
+    <katastashKod>{fn:data($Row//*:KATASTASH_KOD)}</katastashKod>
+    <katastashPerig>{fn:data($Row//*:KATASTASH_PERIG)}</katastashPerig>
   </Row>
   else fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
   
@@ -539,12 +545,12 @@ declare function e524-lib:GetTdpListForFap($KodikosMis as xs:unsignedInt,$Lang a
   if ($TdpListaForFap/node()) then
   for $Row in $TdpListaForFap return
    <Row>
-    <kodikosMis>{fn:data($Row//*:ID_TDP)}</kodikosMis>
-    <idTdp>{fn:data($Row//*:KODIKOS_MIS)}</idTdp>
-    <ekdoshTdp>{fn:data($Row/*:EKDOSH)}</ekdoshTdp>
+    <kodikosMis>{fn:data($Row//*:KODIKOS_MIS)}</kodikosMis>
+    <idTdp>{fn:data($Row//*:ID_TDP)}</idTdp>
+    <ekdoshTdp>{fn:data($Row/*:EKDOSH)}</ekdoshTdp>    
     <titlos>{fn:data($Row//*:TITLOS)}</titlos>
     <katastashKod/>
-    <katastashPerig>{fn:data($Row//*:KATASTASH_PERIG)}</katastashPerig>
+    <katastashPerig>{fn:data($Row//*:KATASTASH)}</katastashPerig>
     <dateAithshsEyd>{fn:data($Row//*:DATE_AITHSHS_EYD)}</dateAithshsEyd>    
   </Row>
   else fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
@@ -579,8 +585,10 @@ declare function e524-lib:GetListProskliseon($KodikosDeltiou as element()?,
                                              $ChecklistID as xs:unsignedInt,  
                                              $Lang as xs:string) as element() {
   <E524Response xmlns="http://espa.gr/v6/e524">
-  {let $Predicate   := xs:string(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('QueryPredcate'),
-                              'select rls7_security.fgetaccesskps6_kodikos_mis(''I'', 148, 0) from dual'))
+  {let $Predicate   := fn:replace(xs:string(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('QueryPredcate'),
+                                          'select rls7_security.fgetaccesskps6_kodikos_mis(''I'', 148, 0) from dual')),
+                                          '\(KODIKOS_MIS',
+                                          '(t.KODIKOS_MIS')
    let $ListaProskliseon := if ($KodikosDeltiou) then
      fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Lista-proskliseon'),
      fn:concat('with ekd as 
@@ -751,7 +759,7 @@ declare function e524-lib:GetErotimata($Lang as xs:string) as element(){
        from KPS6_CHECKLISTS_TEMPLATE b, KPS6_LIST_CATEGORIES_VALUES a  
        where a.list_category_id = b.list_category_id 
          and b.checklist_type in  (57148,57149)  
-         and a.is_active = 1',$Lang)
+         and a.is_active = 1 Order By id_erothma ||list_value_id',$Lang)
    return
    if ($ListaErotimaton/node()) then
    for $Row in $ListaErotimaton return 
@@ -760,6 +768,7 @@ declare function e524-lib:GetErotimata($Lang as xs:string) as element(){
     <idErothma>{fn:data($Row/*:ID_EROTHMA)}</idErothma>
     <listValueId>{fn:data($Row/*:LIST_VALUE_ID)}</listValueId>
     <listValueName>{fn:data($Row/*:LIST_VALUE_NAME)}</listValueName>
+    <listValueAa>{fn:data($Row/*:LIST_VALUE_AA)}</listValueAa>
    </Row>
    else fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
    }    
@@ -863,8 +872,8 @@ declare function e524-lib:GetMis($Lang as xs:string) as element(){
    if ($ListMis/node()) then
    for $Row in $ListMis return 
     <Row>
-    <kodikosMis>{fn:data($Row//*:ID_TDP)}</kodikosMis>
-    <idTdp>{fn:data($Row//*:KODIKOS_MIS)}</idTdp>
+    <kodikosMis>{fn:data($Row//*:KODIKOS_MIS)}</kodikosMis>
+    <idTdp>{fn:data($Row//*:ID_TDP)}</idTdp>
     <ekdoshTdp>{fn:data($Row/*:EKDOSH)}</ekdoshTdp>
     <titlos>{fn:data($Row//*:TITLOS)}</titlos>
     <katastashKod>{fn:data($Row//*:KATASTASH_KOD)}</katastashKod>

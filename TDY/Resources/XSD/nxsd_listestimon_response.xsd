@@ -6,10 +6,10 @@
             <xsd:element name="Timi" maxOccurs="unbounded">
                <xsd:complexType>
                   <xsd:sequence>
-                     <xsd:element name="list_value_id" type="xsd:integer"/>
-                     <xsd:element name="list_value_name" type="xsd:integer"/>
-                     <xsd:element name="list_value_kodikos_display" type="xsd:integer"/>
-                     <xsd:element name="is_active" type="xsd:integer"/>
+                     <xsd:element name="list_value_id" type="xsd:string"/>
+                     <xsd:element name="list_value_name" type="xsd:string"/>
+                     <xsd:element name="list_value_kodikos_display" type="xsd:string"/>
+                     <xsd:element name="is_active" type="xsd:boolean"/>
                   </xsd:sequence>
                </xsd:complexType>
             </xsd:element>

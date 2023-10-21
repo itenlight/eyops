@@ -6,9 +6,19 @@
             <xsd:element name="Ypoergo" maxOccurs="unbounded">
                <xsd:complexType>
                   <xsd:sequence>
-                     <xsd:element name="aaYpoergoy" type="xsd:unsignedInt"/>
-                     <xsd:element name="titlosYpoergoy" type="xsd:string"/>
-                     <xsd:element name="kodikosYpoergoy" type="xsd:unsignedInt"/>
+                     <xsd:element name="kodikos" type="xsd:string"/>
+                     <xsd:element name="perigrafh" type="xsd:string"/>
+                     <xsd:element name="aa" type="xsd:string"/>
+                     <xsd:element name="misCode" type="xsd:string"/>
+                     <xsd:element name="eidosYpoergou" type="xsd:unsignedInt"/>
+                     <xsd:element name="thesmikoPlaisio" type="xsd:string"/>
+                     <xsd:element name="ypoekdosh" type="xsd:string"/>
+                     <xsd:element name="aaYpoergoy" type="xsd:string"/>
+                     <xsd:element name="idTdpYpoerga" type="xsd:unsignedInt"/>
+                     <xsd:element name="hasSelect" type="xsd:unsignedByte"/>
+                     <xsd:element name="hasInsertt" type="xsd:unsignedByte"/>
+                     <xsd:element name="hasUpdate" type="xsd:unsignedByte"/>
+                     <xsd:element name="hasDelete" type="xsd:unsignedByte"/>
                   </xsd:sequence>
                </xsd:complexType>
             </xsd:element>

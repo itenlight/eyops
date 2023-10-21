@@ -6,10 +6,10 @@
             <xsd:element name="ElegxosNomimotitas">
                <xsd:complexType>
                   <xsd:sequence>
-                     <xsd:element name="aaProegrisis" type="xsd:integer"/>
+                     <xsd:element name="aaProegrisis" type="xsd:string"/>
                      <xsd:element name="titlos" type="xsd:string"/>
-                     <xsd:element name="aa" type="xsd:integer"/>
-                     <xsd:element name="idProegTropop" type="xsd:integer"/>
+                     <xsd:element name="aa" type="xsd:string"/>
+                     <xsd:element name="idProegTropop" type="xsd:string"/>
                   </xsd:sequence>
                </xsd:complexType>
             </xsd:element>

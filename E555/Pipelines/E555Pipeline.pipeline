@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con5="http://www.bea.com/wli/sb/stages/publish/config">
+    <con:coreEntry>
+        <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
+            <con:wadl ref="E555/Resources/WADL/E555Controller"/>
+        </con:binding>
+        <con:transactions isRequired="true" sameTxForResponse="true"/>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000101.7c4aadc4.0.18efc161860.N7f7d" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:stage id="_StageId-7f000101.7c4aadc4.0.18efc161860.N7f7c" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con1:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7f7b</con6:id>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7f7a</con6:id>
+                                <con3:expr>
+                                    <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                            <con3:routing-options>
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7f79</con6:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.7c4aadc4.0.18efc161860.N7f78" name="Run Native Query">
+                <con:context>
+                    <con6:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con6:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con1:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                        <con1:importModule ref="E555/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7f76</con6:id>
+                        <con3:expr>
+                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">e555-lib:GetTrasmittionList(
+  xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="traAa"]/@value), 
+  xs:unsignedShort($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="idEp"]/@value))</con6:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.7c4aadc4.0.18efc161860.N7f75" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:stage id="_StageId-7f000101.7c4aadc4.0.18efc161860.N7f74" name="Prepare Response">
+                <con:context>
+                    <con6:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7f73</con6:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body/e555:E555Response</con6:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E555/Resources/XSD/nxsd_TraList_response"/>
+                        <con3:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7f72</con6:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.7c4aadc4.0.18efc161860.N7e8c" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:stage id="_StageId-7f000101.7c4aadc4.0.18efc161860.N7e8b" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con1:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7e8a</con6:id>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7e89</con6:id>
+                                <con3:expr>
+                                    <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                            <con3:routing-options>
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7e88</con6:id>
+                                <con3:qualityOfService>exactly-once</con3:qualityOfService>
+                            </con3:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.7c4aadc4.0.18efc161860.N7e87" name="Run Native Query">
+                <con:context>
+                    <con6:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con6:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con1:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                        <con1:importModule ref="E555/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con3:replace varName="body" contents-only="true">
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7e86</con6:id>
+                        <con3:expr>
+                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">e555-lib:GetPeriodosAnaforasList()</con6:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.7c4aadc4.0.18efc161860.N7e85" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:stage id="_StageId-7f000101.7c4aadc4.0.18efc161860.N7e84" name="Prepare Response">
+                <con:context>
+                    <con6:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+                <con:actions>
+                    <con3:nxsdTranslation>
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7e83</con6:id>
+                        <con3:type>XML-To-Native</con3:type>
+                        <con3:sourceExpr>
+                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body/e555:E555Response</con6:xqueryText>
+                        </con3:sourceExpr>
+                        <con3:nxsd ref="E555/Resources/XSD/nxsd_PeriodosAnaforas_response"/>
+                        <con3:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con3:schemaElement>
+                        <con3:replace-body-content/>
+                    </con3:nxsdTranslation>
+                    <con3:transport-headers>
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.7c4aadc4.0.18efc161860.N7e82</con6:id>
+                        <con3:header-set>inbound-response</con3:header-set>
+                        <con3:header value="expression" name="Content-Type">
+                            <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">'application/json'</con1:xqueryText>
+                        </con3:header>
+                    </con3:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.N2487300b.0.18f10ae46d5.N7fe4">
+            <con:stage id="_StageId-7f000101.N2487300b.0.18f10ae46d5.N7fe2" name="Translate Stage">
+                <con:context/>
+                <con:actions>
+                    <con4:nxsdTranslation>
+                        <con2:id>_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7ff4</con2:id>
+                        <con4:type>Native-To-XML</con4:type>
+                        <con4:sourceExpr>
+                            <con2:xqueryText>$body/text()</con2:xqueryText>
+                        </con4:sourceExpr>
+                        <con4:nxsd ref="E555/Resources/XSD/nxsd_UpdateDeiktes_request"/>
+                        <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Request</con4:schemaElement>
+                        <con4:replace-body-content/>
+                        <con4:enforceSchemaOrder>true</con4:enforceSchemaOrder>
+                    </con4:nxsdTranslation>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.N2487300b.0.18f10ae46d5.N7fdf" name="Prepare Paylod Stage">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7fa4</con6:id>
+                        <con2:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:operation>CheckUpdateStatus</con2:operation>
+                        <con2:request>
+                            <con2:body wrapped="false">RequestPayload</con2:body>
+                        </con2:request>
+                        <con2:response>
+                            <con2:body wrapped="false">ResponsePayload</con2:body>
+                        </con2:response>
+                        <con2:requestTransform>
+                            <con2:assign varName="RequestPayload">
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7fa3</con6:id>
+                                <con2:expr>
+                                    <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<com:UpdateStatusIn xmlns:com="http://espa.gr/v6/common">
+    <com:username>{e555-lib:get-user($inbound)}</com:username>
+    <com:lang>{e555-lib:get-lang($inbound)}</com:lang>
+    <com:objectId>{fn:data($body//e555:idTra)}</com:objectId>
+    <com:categoryId>10</com:categoryId>
+    <com:actionyId>{fn:data($body//e555:actionCode)}</com:actionyId>
+</com:UpdateStatusIn>]]></con6:xqueryText>
+                                </con2:expr>
+                            </con2:assign>
+                            <con2:routing-options>
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7fa2</con6:id>
+                                <con2:qualityOfService>exactly-once</con2:qualityOfService>
+                            </con2:routing-options>
+                        </con2:requestTransform>
+                        <con2:responseTransform>
+                            <con2:ifThenElse>
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7fa1</con6:id>
+                                <con2:case id="_BranchId-7f000101.N65bb5d9b.0.18f0eca0453.N7fa0">
+                                    <con2:condition>
+                                        <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$ResponsePayload//*:errorCode=0</con1:xqueryText>
+                                    </con2:condition>
+                                    <con2:actions/>
+                                </con2:case>
+                                <con2:default>
+                                    <con2:replace varName="body" contents-only="true">
+                                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7f9f</con6:id>
+                                        <con2:expr>
+                                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<e555:TDYResponse>
+ <e555:ERROR_CODE>{fn:data($ResponsePayload//*:errorCode)}</e555:ERROR_CODE>
+ <e555:ERROR_MESSAGE>{fn:data($ResponsePayload//*:errorMessage)}</e555:ERROR_MESSAGE>
+</e555:TDYResponse>]]></con6:xqueryText>
+                                        </con2:expr>
+                                    </con2:replace>
+                                    <con2:nxsdTranslation>
+                                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7f9e</con6:id>
+                                        <con2:type>XML-To-Native</con2:type>
+                                        <con2:sourceExpr>
+                                            <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body/*:TDYResponse</con1:xqueryText>
+                                        </con2:sourceExpr>
+                                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_generic_response"/>
+                                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYResponse</con2:schemaElement>
+                                        <con2:replace-body-content/>
+                                    </con2:nxsdTranslation>
+                                    <con1:reply isError="true" xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                                        <con6:id>_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7f9d</con6:id>
+                                    </con1:reply>
+                                </con2:default>
+                            </con2:ifThenElse>
+                        </con2:responseTransform>
+                    </con2:wsCallout>
+                    <con4:assign varName="IDTra">
+                        <con2:id>_ActionId-7f000101.N2487300b.0.18f10ae46d5.N7ff4</con2:id>
+                        <con4:expr>
+                            <con2:xqueryText>$body//e555:idTra</con2:xqueryText>
+                        </con4:expr>
+                    </con4:assign>
+                    <con5:route>
+                        <con2:id>_ActionId-7f000101.N2487300b.0.18f10ae46d5.N7f60</con2:id>
+                        <con5:service ref="E555/BusinessServices/TRADeiktesService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>update</con5:operation>
+                        <con5:outboundTransform>
+                            <con4:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7ffa</con2:id>
+                                <con4:expr>
+                                    <con2:xqueryText><![CDATA[<tradeiktes:Kps6DelTransmissionDeiktesCollection xmlns:tradeiktes="http://xmlns.oracle.com/pcbpel/adapter/db/top/TRADeiktesService">
+{for $DelTraRow in $body//e555:Kps6DelTransmissionDeiktes
+ return
+    <tradeiktes:Kps6DelTransmissionDeiktes>
+        <tradeiktes:idTrdeik>{fn:data($DelTraRow/e555:idTrdeik)}</tradeiktes:idTrdeik>
+        <tradeiktes:timhYlopMis>{fn:data($DelTraRow/e555:timhYlopMis)}</tradeiktes:timhYlopMis>
+        <tradeiktes:timhYlopMen>{fn:data($DelTraRow/e555:timhYlopMen)}</tradeiktes:timhYlopMen>
+        <tradeiktes:timhYlopWomen>{fn:data($DelTraRow/e555:timhYlopWomen)}</tradeiktes:timhYlopWomen>
+    </tradeiktes:Kps6DelTransmissionDeiktes>
+  }
+</tradeiktes:Kps6DelTransmissionDeiktesCollection>]]></con2:xqueryText>
+                                </con4:expr>
+                            </con4:replace>
+                            <con4:routing-options>
+                                <con2:id>_ActionId-7f000101.N2487300b.0.18f10ae46d5.N7f5c</con2:id>
+                                <con4:qualityOfService>exactly-once</con4:qualityOfService>
+                            </con4:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N2487300b.0.18f10ae46d5.N7fe3">
+            <con:stage id="_StageId-7f000101.N7a4803e5.0.18f18faa62a.N7f25" name="Log Action Stage" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con6:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con6:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con6:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con1:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                        <con1:importModule ref="TDY/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con2:wsCallout>
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N7a4803e5.0.18f18faa62a.N7f24</con6:id>
+                        <con2:service ref="E555/BusinessServices/STATUSService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:operation>StatusService</con2:operation>
+                        <con2:request>
+                            <con2:body wrapped="false">RequestPayload</con2:body>
+                        </con2:request>
+                        <con2:response>
+                            <con2:body wrapped="false">ResponsePayload</con2:body>
+                        </con2:response>
+                        <con2:requestTransform>
+                            <con2:replace varName="RequestPayload" contents-only="true">
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N7a4803e5.0.18f18faa62a.N7f23</con6:id>
+                                <con2:expr>
+                                    <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<stat:InputParameters xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService">
+    <stat:USERNAME>{lib:get-user($inbound)}</stat:USERNAME>
+    <stat:PLANG>
+    {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
+            'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 10) as STOXOS3 from dual',
+            xs:unsignedInt($body//tdy:KPS6_YPOERGA/tdy:TDY_ID))//*:STOXOS3)=1) 
+    then 'EN'    
+    else fn:upper-case(lib:get-lang($inbound))}</stat:PLANG>
+    <stat:COMBINECHECKS>{fn:data($body//e555:combineChecks)}</stat:COMBINECHECKS>
+    <stat:OBJECTID>{fn:data($body//e555:idTra)}</stat:OBJECTID>
+    <stat:CATEGORYID>10</stat:CATEGORYID>    
+    <stat:ACTIONUI>{fn:data($body//e555:actionCode)}</stat:ACTIONUI>
+    <stat:COMMENTSSTATUS>{fn:data($body//e555:comments)}</stat:COMMENTSSTATUS>    
+    <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
+    <stat:OBJECTPARENTID>{fn:data($body//e555:traAa)}</stat:OBJECTPARENTID>
+</stat:InputParameters>]]></con6:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                        </con2:requestTransform>
+                        <con2:responseTransform>
+                            <con2:replace varName="body" contents-only="true">
+                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N7a4803e5.0.18f18faa62a.N7f20</con6:id>
+                                <con2:expr>
+                                    <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<e555:E555Response>
+ <e555:ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</e555:ERROR_CODE>
+ <e555:ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</e555:ERROR_MESSAGE>
+ <e555:DATA>
+  <e555:Kps6DeltioTransmission>
+    <e555:idTra>{fn:data($body//e555:Kps6DeltioTransmission/e555:idTra)}</e555:idTra>
+  </e555:Kps6DeltioTransmission>
+ </e555:DATA>
+ <e555:actionCode/>
+ <e555:comments/>
+ <e555:combineChecks>1</e555:combineChecks>
+</e555:E555Response>]]></con6:xqueryText>
+                                </con2:expr>
+                            </con2:replace>
+                        </con2:responseTransform>
+                    </con2:wsCallout>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000101.N2487300b.0.18f10ae46d5.N7fe1" name="Response Stage">
+                <con:context>
+                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                </con:context>
+                <con:actions>
+                    <con4:nxsdTranslation>
+                        <con2:id>_ActionId-7f000101.N2487300b.0.18f10ae46d5.N7f9b</con2:id>
+                        <con4:type>XML-To-Native</con4:type>
+                        <con4:sourceExpr>
+                            <con2:xqueryText>$body/e555:E555Response</con2:xqueryText>
+                        </con4:sourceExpr>
+                        <con4:nxsd ref="E555/Resources/XSD/nxsd_UpdateDeiktes_response"/>
+                        <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con4:schemaElement>
+                        <con4:replace-body-content/>
+                    </con4:nxsdTranslation>
+                    <con4:transport-headers>
+                        <con2:id>_ActionId-7f000101.N2487300b.0.18f10ae46d5.N7f98</con2:id>
+                        <con4:header-set>inbound-response</con4:header-set>
+                        <con4:header value="expression" name="Content-Type">
+                            <con2:xqueryText>'application/json'</con2:xqueryText>
+                        </con4:header>
+                    </con4:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-7f000101.N141edb78.0.18ecc2416f6.N7fcf" name="E555Branch">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="SearchCriteria">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="SearchRoute">
+                                <con:context>
+                                    <con2:userNsDecl prefix="e555-sp" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/E555SearchService"/>
+                                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                                    <con2:dependencies>
+                                        <con2:importModule ref="E555/Resources/library"/>
+                                    </con2:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con1:route>
+                                        <con2:id>_ActionId-7f000101.1cad1807.0.18eeb391301.N7e2c</con2:id>
+                                        <con1:service ref="E555/BusinessServices/E555SearchService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>E555SearchService</con1:operation>
+                                        <con1:outboundTransform>
+                                            <con3:nxsdTranslation xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.1cad1807.0.18eeb391301.N7df8</con6:id>
+                                                <con3:type>Native-To-XML</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body/text()</con1:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E555/Resources/XSD/nxsd_Search_request"/>
+                                                <con3:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555SeachRequest</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                                <con3:enforceSchemaOrder>false</con3:enforceSchemaOrder>
+                                            </con3:nxsdTranslation>
+                                            <con3:replace varName="body" contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.1cad1807.0.18eeb391301.N7df5</con6:id>
+                                                <con3:expr>
+                                                    <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<e555-sp:InputParameters xmlns:e555-sp="http://xmlns.oracle.com/pcbpel/adapter/db/sp/E599SearchServive">
+    <e555-sp:P_USER>{e555-lib:get-user($inbound)}</e555-sp:P_USER>
+    <e555-sp:P_LANG>{e555-lib:get-lang($inbound)}</e555-sp:P_LANG>
+    <e555-sp:P_ID_TRA>{fn:data($body//e555:idTra)}</e555-sp:P_ID_TRA>
+    <e555-sp:P_TRA_AA>{fn:data($body//e555:traAA)}</e555-sp:P_TRA_AA>
+    <e555-sp:P_ID_EP>{fn:data($body//e555:idEp)}</e555-sp:P_ID_EP>
+    <e555-sp:P_ETOS>{fn:data($body//e555:etos)}</e555-sp:P_ETOS>
+    <e555-sp:P_ANAFORA_PERIOD_DESCR>{fn:data($body//e555:anaforaPeriodDescr)}</e555-sp:P_ANAFORA_PERIOD_DESCR>
+    <e555-sp:KATASTASH>{fn:data($body//e555:katastasH)}</e555-sp:KATASTASH>
+    <e555-sp:ISXYON>{fn:data($body//e555:isxys)}</e555-sp:ISXYON>
+</e555-sp:InputParameters>]]></con6:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con3:replace varName="body" contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.1cad1807.0.18eeb391301.N7dc1</con6:id>
+                                                <con3:expr>
+                                                    <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<E555SearchResponse xmlns="http://espa.gr/v6/e555">
+ <ERROR_CODE></ERROR_CODE>
+ <ERROR_MESSAGE></ERROR_MESSAGE> 
+ {if (fn:not($body//e555-sp:Row)) then
+  <DATA/>
+  else
+  for $row in $body//e555-sp:Row return
+  <DATA>
+  <idTra>{fn:data($row/e555-sp:Column[@name="ID_TRA"])}</idTra>
+  <traAA>{fn:data($row/e555-sp:Column[@name="TRA_AA"])}</traAA>
+  <traEkdosh>{fn:data($row/e555-sp:Column[@name="TRA_EKDOSH"])}</traEkdosh>
+  <etos>{fn:data($row/e555-sp:Column[@name="ETOS"])}</etos>
+  <idEp>{fn:data($row/e555-sp:Column[@name="ID_EP"])}</idEp>  
+  <epDescr>{fn:data($row/e555-sp:Column[@name="EP_DESCR"])}</epDescr>   
+  <katastashDeltioy>{fn:data($row/e555-sp:Column[@name="KATASTASH_DELTIOY"])}</katastashDeltioy> 
+  <katastashDescr>{fn:data($row/e555-sp:Column[@name="KATASTASH_DESCR"])}</katastashDescr> 
+  <isxys>{fn:data($row/e555-sp:Column[@name="ISXYS"])}</isxys>
+  <anaforaPeriodDescr>{fn:data($row/e555-sp:Column[@name="ANAFORA_PERIOD"])}</anaforaPeriodDescr>
+  <keimeno>{fn:data($row/e555-sp:Column[@name="KEIMENO"])}</keimeno>
+ </DATA>}
+</E555SearchResponse>]]></con6:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                            <con3:nxsdTranslation xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.1cad1807.0.18eeb391301.N7dbe</con6:id>
+                                                <con3:type>XML-To-Native</con3:type>
+                                                <con3:sourceExpr>
+                                                    <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body/e555:E555SearchResponse</con6:xqueryText>
+                                                </con3:sourceExpr>
+                                                <con3:nxsd ref="E555/Resources/XSD/nxsd_Search_response"/>
+                                                <con3:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555SearchResponse</con3:schemaElement>
+                                                <con3:replace-body-content/>
+                                            </con3:nxsdTranslation>
+                                            <con3:transport-headers xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.1cad1807.0.18eeb391301.N7dbb</con6:id>
+                                                <con3:header-set>inbound-response</con3:header-set>
+                                                <con3:header value="expression" name="Content-Type">
+                                                    <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">'application/json'</con1:xqueryText>
+                                                </con3:header>
+                                            </con3:transport-headers>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="UpdateDeiktes">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="UpdateDeiktes Pipeline">
+                                <con:request>request-7f000101.N2487300b.0.18f10ae46d5.N7fe4</con:request>
+                                <con:response>response-7f000101.N2487300b.0.18f10ae46d5.N7fe3</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetTraList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetTraList Pipeline" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con:request>request-7f000101.7c4aadc4.0.18efc161860.N7f7d</con:request>
+                                <con:response>response-7f000101.7c4aadc4.0.18efc161860.N7f75</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetPeriodoAnaforasList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="PeriodosAnaforas Pipeline" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con:request>request-7f000101.7c4aadc4.0.18efc161860.N7e8c</con:request>
+                                <con:response>response-7f000101.7c4aadc4.0.18efc161860.N7e85</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

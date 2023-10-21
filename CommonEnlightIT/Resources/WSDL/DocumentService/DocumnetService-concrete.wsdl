@@ -1,0 +1,33 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/DocumnetService" name="DocumnetService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="DocumnetService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/DocumnetService"/>
+    <wsdl:binding name="DocumnetService_ptt-binding" type="doc:DocumnetService_ptt" xmlns:doc="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/DocumnetService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="merge">
+            <soap:operation soapAction="merge"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="insert">
+            <soap:operation soapAction="insert"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <soap:operation soapAction="delete"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="DocumnetServiceSelect">
+            <soap:operation soapAction="DocumnetServiceSelect"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

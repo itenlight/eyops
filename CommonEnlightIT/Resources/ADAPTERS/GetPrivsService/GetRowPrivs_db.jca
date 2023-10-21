@@ -1,0 +1,12 @@
+<adapter-config name="GetRowPrivs" adapter="db" wsdlLocation="../../WSDL/GetPrivsService/GetRowPrivs.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="GetRowPrivs_ptt" operation="GetRowPrivs">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="MASTER6"/>
+      <property name="ProcedureName" value="GET_ROW_PRIV"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

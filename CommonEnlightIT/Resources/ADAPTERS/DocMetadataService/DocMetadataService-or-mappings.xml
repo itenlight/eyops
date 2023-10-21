@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.4.v20160829-44060b6">
+   <name>DocMetadataService-OR</name>
+   <class-mapping-descriptors>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>DocMetadataService.Com6DocMetadata</class>
+         <alias>COM6_DOC_METADATA</alias>
+         <primary-key>
+            <field table="COM6_DOC_METADATA" name="ID_DOCUMENT" xsi:type="column"/>
+            <field table="COM6_DOC_METADATA" name="ID_OBJECT" xsi:type="column"/>
+            <field table="COM6_DOC_METADATA" name="OBJECT_CATEGORY_ID" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying>
+            <queries>
+               <query name="DocMetadataServiceSelect" xsi:type="read-all-query">
+                  <reference-class>DocMetadataService.Com6DocMetadata</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>java.util.Vector</collection-type>
+                  </container>
+               </query>
+            </queries>
+         </querying>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idDocument</attribute-name>
+               <field table="COM6_DOC_METADATA" name="ID_DOCUMENT" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idObject</attribute-name>
+               <field table="COM6_DOC_METADATA" name="ID_OBJECT" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>objectCategoryId</attribute-name>
+               <field table="COM6_DOC_METADATA" name="OBJECT_CATEGORY_ID" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docNum</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_NUM" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docEidosEggrafoy</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_EIDOS_EGGRAFOY" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docFilename</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_FILENAME" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docDescr</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_DESCR" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docForeas</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_FOREAS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docSyntakths</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_SYNTAKTHS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docSxolia</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_SXOLIA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docDateEggrafoy</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_DATE_EGGRAFOY" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docUri</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_URI" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docLang</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_LANG" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docSource</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_SOURCE" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docEgkyro</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_EGKYRO" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docFakelosFlag</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_FAKELOS_FLAG" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idObjectProeleysh</attribute-name>
+               <field table="COM6_DOC_METADATA" name="ID_OBJECT_PROELEYSH" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>objectCatProeleysh</attribute-name>
+               <field table="COM6_DOC_METADATA" name="OBJECT_CAT_PROELEYSH" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dilosi</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DILOSI" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>typosArxeioy</attribute-name>
+               <field table="COM6_DOC_METADATA" name="TYPOS_ARXEIOY" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>codDikEpark</attribute-name>
+               <properties>
+                  <property name="enabled">
+                     <value>false</value>
+                  </property>
+               </properties>
+               <field table="COM6_DOC_METADATA" name="COD_DIK_EPARK" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>systhma</attribute-name>
+               <properties>
+                  <property name="enabled">
+                     <value>false</value>
+                  </property>
+               </properties>
+               <field table="COM6_DOC_METADATA" name="SYSTHMA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>docAnaptyxi</attribute-name>
+               <field table="COM6_DOC_METADATA" name="DOC_ANAPTYXI" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosSysthmatosExt</attribute-name>
+               <field table="COM6_DOC_METADATA" name="KODIKOS_SYSTHMATOS_EXT" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>eidosTaytopoihshs</attribute-name>
+               <field table="COM6_DOC_METADATA" name="EIDOS_TAYTOPOIHSHS" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>flagEpd</attribute-name>
+               <field table="COM6_DOC_METADATA" name="FLAG_EPD" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>flagEncryption</attribute-name>
+               <field table="COM6_DOC_METADATA" name="FLAG_ENCRYPTION" xsi:type="column"/>
+               <attribute-classification>java.lang.Integer</attribute-classification>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="COM6_DOC_METADATA"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+   </class-mapping-descriptors>
+   <login xsi:type="database-login">
+      <platform-class>org.eclipse.persistence.platform.database.oracle.Oracle9Platform</platform-class>
+      <connection-url></connection-url>
+   </login>
+</object-persistence>

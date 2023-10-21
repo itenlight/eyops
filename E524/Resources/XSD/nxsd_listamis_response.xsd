@@ -5,17 +5,17 @@
          <xsd:sequence>
             <xsd:element name="Row" maxOccurs="unbounded">
                <xsd:complexType>
-                  <xsd:sequence>
-                     <xsd:element name="kodikosMis" type="xsd:integer"/>
+                  <xsd:sequence>                     
                      <xsd:element name="idTdp" type="xsd:integer"/>
-                     <xsd:element name="ekdoshTdp" type="xsd:string"/>
+                     <xsd:element name="kodikosMis" type="xsd:integer"/>
                      <xsd:element name="titlos" type="xsd:string"/>
-                     <xsd:element name="katastashKod" type="xsd:unsignedShort"/>
-                     <xsd:element name="katastashPerig" type="xsd:string"/>
+                     <xsd:element name="ekdoshTdp" type="xsd:string"/> 
                      <xsd:element name="dateAithshsEyd" type="xsd:string"/>
                      <xsd:element name="aaProsklhshs" type="xsd:string"/>
                      <xsd:element name="kodikosForea" type="xsd:string"/>
                      <xsd:element name="flagAksiologhsh" type="xsd:string"/>
+                     <xsd:element name="katastashKod" type="xsd:unsignedShort"/>
+                     <xsd:element name="katastashPerig" type="xsd:string"/>                     
                   </xsd:sequence>
                </xsd:complexType>
             </xsd:element>

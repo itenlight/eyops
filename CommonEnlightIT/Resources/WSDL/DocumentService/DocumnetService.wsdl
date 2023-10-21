@@ -1,0 +1,33 @@
+<wsdl:definitions name="DocumnetService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/DocumnetService" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/DocumnetService" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocumnetService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plt:partnerLinkType name="DocumnetService_plt">
+    <plt:role name="DocumnetService_role">
+      <plt:portType name="tns:DocumnetService_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocumnetService" schemaLocation="../../ADAPTERS/DocumentService/DocumnetService_table.xsd"/>
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="DocumnetServiceSelect_inputParameters">
+        <wsdl:part name="DocumnetServiceSelect_inputParameters" element="top:DocumnetServiceSelect_ID_DocumentInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="Com6DocumentsCollection_msg">
+        <wsdl:part name="Com6DocumentsCollection" element="top:Com6DocumentsCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="DocumnetService_ptt">
+        <wsdl:operation name="merge">
+            <wsdl:input message="tns:Com6DocumentsCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:Com6DocumentsCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <wsdl:input message="tns:Com6DocumentsCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="DocumnetServiceSelect">
+            <wsdl:input message="tns:DocumnetServiceSelect_inputParameters"/>
+            <wsdl:output message="tns:Com6DocumentsCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

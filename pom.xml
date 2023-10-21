@@ -14,6 +14,39 @@
         <module>TDY</module>
         <module>E524</module>
         <module>E553</module>
+        <module>E524PrN</module>
+        <module>CommonEnlightIT</module>
+        <module>E999</module>
     </modules>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.oracle.adf.plugin</groupId>
+                <artifactId>ojdeploy</artifactId>
+                <version>12.2.1-2-0</version>
+                <configuration>
+                    <ojdeploy>
+                        ${oracleHome}/jdeveloper/jdev/bin/ojdeploy
+                    </ojdeploy>
+                    <workspace>
+                        ${basedir}/EnlightIT.jws
+                    </workspace>
+                    <profile>
+                        EnlightIT
+                    </profile>
+                    <outputfile>
+                        ${project.build.directory}/${project.build.finalName}.${project.packaging}
+                    </outputfile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

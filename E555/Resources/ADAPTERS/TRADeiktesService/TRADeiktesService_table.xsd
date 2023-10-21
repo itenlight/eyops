@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/TRADeiktesService" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/TRADeiktesService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Kps6DelTransmissionDeiktesCollection" type="Kps6DelTransmissionDeiktesCollection"/>
+   <xs:complexType name="Kps6DelTransmissionDeiktesCollection">
+      <xs:sequence>
+         <xs:element name="Kps6DelTransmissionDeiktes" type="Kps6DelTransmissionDeiktes" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6DelTransmissionDeiktes">
+      <xs:sequence>
+         <xs:element name="idTrdeik" type="xs:decimal"/>
+         <xs:element name="timhYlopMis" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopMen" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopWomen" type="xs:decimal" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

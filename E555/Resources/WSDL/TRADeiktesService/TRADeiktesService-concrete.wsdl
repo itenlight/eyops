@@ -1,0 +1,12 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/TRADeiktesService" name="TRADeiktesService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="TRADeiktesService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/TRADeiktesService"/>
+    <wsdl:binding name="TRADeiktesService_ptt-binding" type="trad:TRADeiktesService_ptt" xmlns:trad="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/TRADeiktesService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="update">
+            <soap:operation soapAction="update"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

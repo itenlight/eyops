@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:espa:v6:history" targetNamespace="urn:espa:v6:history" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="HistoryResponse">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="Change" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>                     
+                     <xsd:element name="statusName" type="xsd:string"/>
+                     <xsd:element name="statusDate" type="xsd:string"/>
+                     <xsd:element name="userName" type="xsd:string"/>
+                     <xsd:element name="commentsStatus" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

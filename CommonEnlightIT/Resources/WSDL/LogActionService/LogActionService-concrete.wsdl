@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/LogActionService" name="LogActionService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="LogActionService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/LogActionService"/>
+    <wsdl:binding name="LogActionService_ptt-binding" type="log:LogActionService_ptt" xmlns:log="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/LogActionService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="merge">
+            <soap:operation soapAction="merge"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

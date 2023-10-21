@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocMetadataService" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocMetadataService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Com6DocMetadataCollection" type="Com6DocMetadataCollection"/>
+   <xs:complexType name="Com6DocMetadataCollection">
+      <xs:sequence>
+         <xs:element name="Com6DocMetadata" type="Com6DocMetadata" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Com6DocMetadata">
+      <xs:sequence>
+         <xs:element name="idDocument" type="xs:decimal"/>
+         <xs:element name="idObject" type="xs:decimal"/>
+         <xs:element name="objectCategoryId" type="xs:decimal"/>
+         <xs:element name="docNum" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="docEidosEggrafoy" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="docFilename" type="string200" minOccurs="0" nillable="true"/>
+         <xs:element name="docDescr" type="string250" minOccurs="0" nillable="true"/>
+         <xs:element name="docForeas" type="string250" minOccurs="0" nillable="true"/>
+         <xs:element name="docSyntakths" type="string250" minOccurs="0" nillable="true"/>
+         <xs:element name="docSxolia" type="string2000" minOccurs="0" nillable="true"/>
+         <xs:element name="docDateEggrafoy" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="docUri" type="string250" minOccurs="0" nillable="true"/>
+         <xs:element name="docLang" type="string3" minOccurs="0" nillable="true"/>
+         <xs:element name="docSource" type="string1" minOccurs="0" nillable="true"/>
+         <xs:element name="docEgkyro" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="docFakelosFlag" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="idObjectProeleysh" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="objectCatProeleysh" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="dilosi" type="string500" minOccurs="0" nillable="true"/>
+         <xs:element name="typosArxeioy" type="string50" minOccurs="0" nillable="true"/>
+         <xs:element name="docAnaptyxi" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="kodikosSysthmatosExt" type="string100" minOccurs="0" nillable="true"/>
+         <xs:element name="eidosTaytopoihshs" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="flagEpd" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="flagEncryption" type="xs:int" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string200">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="200"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string250">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="250"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string2000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string3">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="3"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string1">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="1"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string500">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="500"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string50">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="50"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string100">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="100"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

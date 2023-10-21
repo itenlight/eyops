@@ -21,7 +21,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7fcc</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -95,7 +95,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f56</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -169,7 +169,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7f19</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -271,7 +271,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7edc</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -345,7 +345,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e9f</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -419,7 +419,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e62</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -493,7 +493,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7e25</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -556,7 +556,7 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
-        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7ffd"></con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.414dfeb7.0.18abe42ae57.N7ffd"/>
         <con:pipeline type="response" name="response-7f000101.414dfeb7.0.18abe42ae57.N7ffc">
             <con:stage id="_StageId-7f000101.414dfeb7.0.18abe42ae57.N7ffa" name="Stage1">
                 <con:context/>
@@ -589,7 +589,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d7a</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -660,7 +660,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7d0c</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -731,7 +731,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ccf</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -802,7 +802,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c92</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -873,7 +873,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7be7</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -944,7 +944,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7c55</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1016,7 +1016,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7baa</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1087,7 +1087,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b6d</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1169,7 +1169,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7b30</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1240,7 +1240,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7af3</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1340,7 +1340,7 @@
                 <con:actions>
                     <con2:wsCallout>
                         <con1:id>_ActionId-7f000101.4301e084.0.18afe8bbb58.N7f56</con1:id>
-                        <con2:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con2:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con2:operation>CheckUpdateStatus</con2:operation>
                         <con2:request>
                             <con2:body wrapped="false">RequestPayload</con2:body>
@@ -1404,7 +1404,7 @@
                     </con2:wsCallout>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.N53f39d3b.0.18afc867123.N7f60</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1430,6 +1430,13 @@
                                     <con1:xqueryText>lib:map-update-request-to-db($body/tdy:TDYRequest)</con1:xqueryText>
                                 </con2:expr>
                             </con2:replace>
+                            <con5:log>
+                                <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7ffe</con1:id>
+                                <con5:logLevel>error</con5:logLevel>
+                                <con5:expr>
+                                    <con1:xqueryText>$body</con1:xqueryText>
+                                </con5:expr>
+                            </con5:log>
                             <con2:routing-options>
                                 <con1:id>_ActionId-7f000101.2c5fee98.0.18b0092c041.N7df0</con1:id>
                                 <con2:qualityOfService>exactly-once</con2:qualityOfService>
@@ -1497,7 +1504,7 @@
                                 <con1:id>_ActionId-7f000101.N1b094f9c.0.18aff9fe446.N7ffb</con1:id>
                                 <con2:expr>
                                     <con1:xqueryText><![CDATA[<erot:Kps6DeltioErothmataCollection xmlns:erot="http://xmlns.oracle.com/pcbpel/adapter/db/top/EROTIMATAService">
-{for $Erotima in $body//tdy:Kps6DeltioErothmata return
+{for $Erotima in $body//tdy:Kps6DeltioErothmata where $Erotima/node() return
   <erot:Kps6DeltioErothmata>
     <erot:idDeler>{fn:data($Erotima/tdy:idDeler)}</erot:idDeler>
     <erot:objectCategoryId>{fn:data($Erotima/tdy:objectCategoryId)}</erot:objectCategoryId>
@@ -1556,30 +1563,59 @@
     <stat:PLANG>
     {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
             'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 103) as STOXOS3 from dual',
-            xs:unsignedInt($TDYID))//*:STOXOS3)=1) 
+            xs:unsignedInt($body//tdy:KPS6_YPOERGA/tdy:TDY_ID))//*:STOXOS3)=1) 
     then 'EN'    
     else fn:upper-case(lib:get-lang($inbound))}</stat:PLANG>
     <stat:COMBINECHECKS>{fn:data($body//tdy:combineChecks)}</stat:COMBINECHECKS>
     <stat:OBJECTID>{fn:data($body//tdy:KPS6_YPOERGA/tdy:TDY_ID)}</stat:OBJECTID>
     <stat:CATEGORYID>103</stat:CATEGORYID>    
-    <stat:ACTIONUI>{fn:data($body//tdy:actionUi)}</stat:ACTIONUI>
+    <stat:ACTIONUI>{fn:data($body//tdy:actionCode)}</stat:ACTIONUI>
     <stat:COMMENTSSTATUS>{fn:data($body//tdy:comments)}</stat:COMMENTSSTATUS>    
     <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
     <stat:OBJECTPARENTID>{fn:data($body//tdy:KPS6_YPOERGA/tdy:KODIKOS_YPOERGOY)}</stat:OBJECTPARENTID>
 </stat:InputParameters>]]></con1:xqueryText>
                                 </con2:expr>
                             </con2:replace>
+                            <con5:log>
+                                <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7ff4</con1:id>
+                                <con5:logLevel>error</con5:logLevel>
+                                <con5:expr>
+                                    <con1:xqueryText>$RequestPayload</con1:xqueryText>
+                                </con5:expr>
+                            </con5:log>
                         </con2:requestTransform>
                         <con2:responseTransform>
+                            <con5:log>
+                                <con1:id>_ActionId-7f000101.2953831e.0.18b9e62a8ff.N7e2f</con1:id>
+                                <con5:logLevel>error</con5:logLevel>
+                                <con5:expr>
+                                    <con1:xqueryText>$ResponsePayload</con1:xqueryText>
+                                </con5:expr>
+                            </con5:log>
                             <con2:replace varName="body" contents-only="true">
                                 <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7d90</con1:id>
                                 <con2:expr>
                                     <con1:xqueryText><![CDATA[<tdy:TDYResponse>
  <tdy:ERROR_CODE>{fn:data($ResponsePayload//*:ERRORCODE)}</tdy:ERROR_CODE>
  <tdy:ERROR_MESSAGE>{fn:data($ResponsePayload//*:ERRORMESSAGE)}</tdy:ERROR_MESSAGE>
+ <tdy:DATA>
+  <tdy:KPS6_YPOERGA>
+    <tdy:TDY_ID>{fn:data($body//tdy:KPS6_YPOERGA/tdy:TDY_ID)}</tdy:TDY_ID>
+  </tdy:KPS6_YPOERGA>
+ </tdy:DATA>
+ <tdy:actionCode/>
+ <tdy:comments/>
+ <tdy:combineChecks>1</tdy:combineChecks>
 </tdy:TDYResponse>]]></con1:xqueryText>
                                 </con2:expr>
                             </con2:replace>
+                            <con5:log>
+                                <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7ff7</con1:id>
+                                <con5:logLevel>error</con5:logLevel>
+                                <con5:expr>
+                                    <con1:xqueryText>$body</con1:xqueryText>
+                                </con5:expr>
+                            </con5:log>
                         </con2:responseTransform>
                     </con2:wsCallout>
                 </con:actions>
@@ -1620,7 +1656,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7ab6</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1710,7 +1746,7 @@
                 <con:actions>
                     <con4:route>
                         <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b58</con1:id>
-                        <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                         <con4:operation>SetUserContext</con4:operation>
                         <con4:outboundTransform>
                             <con2:replace varName="body" contents-only="true">
@@ -1810,7 +1846,7 @@
                                 <con1:id>_ActionId-7f000101.6c411a46.0.18b03e60963.N7b4e</con1:id>
                                 <con2:expr>
                                     <con1:xqueryText><![CDATA[<erot:Kps6DeltioErothmataCollection xmlns:erot="http://xmlns.oracle.com/pcbpel/adapter/db/top/EROTIMATAService">
-{for $Erotima in $body//tdy:Kps6DeltioErothmata return
+{for $Erotima in $body//tdy:Kps6DeltioErothmata where $Erotima/node() return
   <erot:Kps6DeltioErothmata>
     <erot:idDeler>{fn:data($Erotima/tdy:idDeler)}</erot:idDeler>
     <erot:objectCategoryId>{fn:data($Erotima/tdy:objectCategoryId)}</erot:objectCategoryId>
@@ -1876,7 +1912,7 @@
     <stat:COMBINECHECKS>{fn:data($body//tdy:combineChecks)}</stat:COMBINECHECKS>
     <stat:OBJECTID>{xs:unsignedInt($TDYID)}</stat:OBJECTID>
     <stat:CATEGORYID>103</stat:CATEGORYID>    
-    <stat:ACTIONUI>{fn:data($body//tdy:actionUi)}</stat:ACTIONUI>
+    <stat:ACTIONUI>{fn:data($body//tdy:actionCode)}</stat:ACTIONUI>
     <stat:COMMENTSSTATUS>{fn:data($body//tdy:comments)}</stat:COMMENTSSTATUS>    
     <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
     <stat:OBJECTPARENTID>{fn:data($body//tdy:KPS6_YPOERGA/tdy:KODIKOS_YPOERGOY)}</stat:OBJECTPARENTID>
@@ -1896,6 +1932,9 @@
    <tdy:TDY_ID>{$TDYID}</tdy:TDY_ID>
   </tdy:KPS6_YPOERGA>
  </tdy:DATA>
+  <tdy:actionCode/>
+ <tdy:comments/>
+ <tdy:combineChecks>1</tdy:combineChecks>
 </tdy:TDYResponse>]]></con1:xqueryText>
                                 </con2:expr>
                             </con2:replace>
@@ -2250,7 +2289,7 @@
                                         <con3:outboundTransform>
                                             <con4:route>
                                                 <con1:id>_ActionId-7f000101.57405637.0.18af12ace1f.N7ffb</con1:id>
-                                                <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                                <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                                                 <con4:operation>SetUserContext</con4:operation>
                                                 <con4:outboundTransform>
                                                     <con2:replace varName="body" contents-only="true">
@@ -2273,6 +2312,10 @@
 &lt;/tdydb:Kps6YpoergaPrimaryKey></con1:xqueryText>
                                                 </con2:expr>
                                             </con2:replace>
+                                            <con5:log>
+                                                <con1:id>_ActionId-7f000101.2953831e.0.18b9e62a8ff.N7fc7</con1:id>
+                                                <con5:logLevel>debug</con5:logLevel>
+                                            </con5:log>
                                         </con3:outboundTransform>
                                         <con3:responseTransform>
                                             <con2:replace varName="body" contents-only="true">
@@ -2385,7 +2428,7 @@
                                         <con3:outboundTransform>
                                             <con4:route>
                                                 <con1:id>_ActionId-7f000101.N16f17842.0.18af6fa14d8.N7fc9</con1:id>
-                                                <con4:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                                <con4:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                                                 <con4:operation>SetUserContext</con4:operation>
                                                 <con4:outboundTransform>
                                                     <con2:replace varName="body" contents-only="true">

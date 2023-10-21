@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:espa:v6:documents" targetNamespace="urn:espa:v6:documents" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="AttachmentRequest">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="deltioId" type="xsd:unsignedLong"/>
+            <xsd:element name="deltioTypeId" type="xsd:unsignedShort"/>
+            <xsd:element name="overviewDocument" type="xsd:boolean"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

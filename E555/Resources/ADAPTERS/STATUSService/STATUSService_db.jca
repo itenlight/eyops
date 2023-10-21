@@ -1,0 +1,13 @@
+<adapter-config name="StatusService" adapter="db" wsdlLocation="../../WSDL/STATUSService/STATUSService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="StatusService_ptt" operation="StatusService">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="MASTER6"/>
+      <property name="PackageName" value="KPS6_ERGORAMA"/>
+      <property name="ProcedureName" value="MAIN_LOG_ACTION"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

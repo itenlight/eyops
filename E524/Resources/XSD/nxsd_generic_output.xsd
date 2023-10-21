@@ -1,29 +1,25 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/e524" targetNamespace="http://espa.gr/v6/e524" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
-   <xsd:element name="E524Response">
-      <xsd:complexType>
-         <xsd:sequence>
-            <xsd:element name="ERROR_CODE" type="xsd:integer"/>
-            <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
-            <xsd:element name="DATA">
-               <xsd:complexType>
-                  <xsd:sequence>
-                     <xsd:element name="Kps6DeltioErothmata">
-                        <xsd:complexType>
-                           <xsd:sequence>
-                              <xsd:element name="idObject" type="xsd:integer"/>
-                              <xsd:element name="objectCategoryId" type="xsd:integer" minOccurs="0"/>
-                           </xsd:sequence>
-                        </xsd:complexType>
-                     </xsd:element>
-                  </xsd:sequence>
-               </xsd:complexType>
-            </xsd:element>
-         </xsd:sequence>
-      </xsd:complexType>
-   </xsd:element>
-<xsd:annotation xmlns="">
-      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
-      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
-   </xsd:annotation>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/e524"
+            targetNamespace="http://espa.gr/v6/e524" elementFormDefault="qualified"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+  <xsd:element name="E524Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Kps6ChecklistsDeltioy">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="idChecklist" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="actionCode" type="xsd:unsignedInt"/>
+        <xsd:element name="comments" type="xsd:string"/>
+        <xsd:element name="combineChecks" type="xsd:unsignedByte"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
 </xsd:schema>

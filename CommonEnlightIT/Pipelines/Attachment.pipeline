@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+    <con:coreEntry>
+        <con:binding type="Mixed" xsi:type="con:MixedBindingType">
+            <con:request type="Binary"/>
+            <con:response type="Binary"/>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000101.N7e532799.0.18ec33a6a81.N7ea3">
+            <con:stage id="_StageId-7f000101.N7e532799.0.18ec33a6a81.N7ea1" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.N7e532799.0.18ec33a6a81.N7ea2">
+            <con:stage id="_StageId-7f000101.N7e532799.0.18ec33a6a81.N7e38" name="Stage2">
+                <con:context/>
+                <con:actions>
+                    <con1:delete varName="attachments">
+                        <con2:id>_ActionId-7f000101.N7e532799.0.18ec33a6a81.N7e37</con2:id>
+                        <con1:location>
+                            <con2:xpathText>.</con2:xpathText>
+                        </con1:location>
+                    </con1:delete>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Pipeline Pair Node1">
+                <con:request>request-7f000101.N7e532799.0.18ec33a6a81.N7ea3</con:request>
+                <con:response>response-7f000101.N7e532799.0.18ec33a6a81.N7ea2</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

@@ -1,324 +1,287 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy" targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/tdy"
+            targetNamespace="http://espa.gr/v6/tdy" elementFormDefault="qualified"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
   <xsd:element name="TDYRequest">
     <xsd:complexType>
       <xsd:sequence>
-        <xsd:element name="USERNAME" type="xsd:string"/>
-        <xsd:element name="PASSWORD" type="xsd:string"/>
-        <xsd:element name="LANG" type="xsd:string"/>
-        <xsd:element name="DATA">
+        <xsd:element name="KPS6_YPOERGA">
           <xsd:complexType>
             <xsd:sequence>
-              <xsd:element name="KPS6_YPOERGA">
+              <xsd:element name="TDY_ID" type="xsd:integer"/>
+              <xsd:element name="KODIKOS_MIS" type="xsd:integer"/>
+              <xsd:element name="KODIKOS_YPOERGOY" type="xsd:integer"/>
+              <xsd:element name="AA_YPOERGOY" type="xsd:integer"/>
+              <xsd:element name="AA_TDY" type="xsd:integer"/>
+              <xsd:element name="AA_YPOEKDOSH" type="xsd:integer"/>
+              <xsd:element name="KATHGORIA_EKDOSHS" type="xsd:integer"/>
+              <xsd:element name="TITLOS_YPOERGOY" type="xsd:string"/>
+              <xsd:element name="KODIKOS_PROEG" type="xsd:string"/>
+              <xsd:element name="TEXNIKH_PERIGRAFH" type="xsd:string"/>
+              <xsd:element name="AR_PROTOK_DA" type="xsd:string"/>
+              <xsd:element name="DATE_CREATION" type="xsd:string"/>
+              <xsd:element name="DATE_MET_YPOVOLHS" type="xsd:string"/>
+              <xsd:element name="DATE_YPOVOLIS" type="xsd:string"/>
+              <xsd:element name="DATE_EPILEKSIMOTHTAS" type="xsd:string"/>
+              <xsd:element name="DATE_ANALHPSHS" type="xsd:string"/>
+              <xsd:element name="DATE_LHKSHS" type="xsd:string"/>
+              <xsd:element name="DATE_TROPOP" type="xsd:string"/>
+              <xsd:element name="KODIKOS_EPIVLEPOYSAS" type="xsd:integer"/>
+              <xsd:element name="PARATHRHSEIS_KATAXOR_TDY" type="xsd:string"/>
+              <xsd:element name="EIDOS_ANATHESHS" type="xsd:integer"/>
+              <xsd:element name="KODIKOS_DIKAIOYXOS" type="xsd:integer"/>
+              <xsd:element name="ELEGXOS_AATDP" type="xsd:double"/>
+              <xsd:element name="ONOMA_YPEYTHINOY" type="xsd:string"/>
+              <xsd:element name="THESH_YPEYTHINOY" type="xsd:string"/>
+              <xsd:element name="DIEYTHYNSH_YPEYTHINOY" type="xsd:string"/>
+              <xsd:element name="SPECIALITY_YPEYTHINOY" type="xsd:string"/>
+              <xsd:element name="THL_YPEYTHINOY" type="xsd:string"/>
+              <xsd:element name="FAX_YPEYTHINOY" type="xsd:string"/>
+              <xsd:element name="EMAIL_YPEYTHINOY" type="xsd:string"/>
+              <xsd:element name="PARATHRHSEIS_KATAXOR_TDY_DIK" type="xsd:string"/>
+              <xsd:element name="TITLOS_FOREA" type="xsd:string"/>
+              <xsd:element name="ELEGXOS" type="xsd:integer"/>
+              <xsd:element name="KATASTASH_DELTIOY" type="xsd:integer"/>
+              <xsd:element name="KATASTASH_DELTIOY_DESCR" type="xsd:string"/>
+              <xsd:element name="DATE_ELEGXOY" type="xsd:string"/>
+              <xsd:element name="ID_TDY_SYMPLHROMATIKHS" type="xsd:string"/>
+              <xsd:element name="TYPOS_TDY" type="xsd:integer"/>
+              <xsd:element name="AITIOLOGIA_YPOEKDOSHS" type="xsd:string"/>
+              <xsd:element name="FLAG_TROP_TIMETABLE" type="xsd:integer"/>
+              <xsd:element name="FLAG_TROP_OIK" type="xsd:integer"/>
+              <xsd:element name="FLAG_TROP_FYS" type="xsd:integer"/>
+              <xsd:element name="FLAG_TROP_ALLO" type="xsd:integer"/>
+              <xsd:element name="KODIKOS_OIKONOMIKHS" type="xsd:integer"/>
+              <xsd:element name="PERIGRAFH_OIKONOMIKHS" type="xsd:string"/>
+              <xsd:element name="ONOMA_YPEYTHINOY_OIK" type="xsd:string"/>
+              <xsd:element name="THESH_YPEYTHINOY_OIK" type="xsd:string"/>
+              <xsd:element name="DIEYTHYNSH_YPEYTHINOY_OIK" type="xsd:string"/>
+              <xsd:element name="THL_YPEYTHINOY_OIK" type="xsd:string"/>
+              <xsd:element name="EMAIL_YPEYTHINOY_OIK" type="xsd:string"/>
+              <xsd:element name="POSO_MH_ENISXYOMENH" type="xsd:double"/>
+              <xsd:element name="YPOE_ARXAIOLOGIA_FLAG" type="xsd:string"/>
+              <xsd:element name="YPOE_ENISXYSH_FLAG" type="xsd:string"/>
+              <xsd:element name="FPA_ANAKTHSIMOS_FLAG" type="xsd:string"/>
+              <xsd:element name="PERIORISMOI_MEEP" type="xsd:string"/>
+              <xsd:element name="DATE_MEEP" type="xsd:string"/>
+              <xsd:element name="POSO_IDIOT" type="xsd:double"/>
+              <xsd:element name="ST_FLAG" type="xsd:integer"/>
+              <xsd:element name="PROEG_AA" type="xsd:string"/>
+              <xsd:element name="EKDOSH_PROEG" type="xsd:string"/>
+              <xsd:element name="TITLOS_PROEG" type="xsd:string"/>
+              <xsd:element name="DIKAIOYXOS_YPOERGOY" type="xsd:string"/>
+              <xsd:element name="FOREAS_PARAKOLOYTHISHS" type="xsd:string"/>
+              <xsd:element name="TDP_ID_ATP" type="xsd:integer"/>
+              <xsd:element name="RHTRA" type="xsd:integer"/>
+              <xsd:element name="PERIGRAFH_EPIVLEPOYSAS" type="xsd:string"/>
+              <xsd:element name="PROELEYSH_DELTIO" type="xsd:double"/>
+              <xsd:element name="DA_TEXT" type="xsd:string"/>
+              <xsd:element name="FLAG_AYTOMATI_EKGKRISH_TDY" type="xsd:integer"/>
+              <xsd:element name="KPS_KATALOGOS_ERGON">
                 <xsd:complexType>
                   <xsd:sequence>
-                    <xsd:element name="TDY_ID" type="xsd:double"/>
-                    <xsd:element name="KODIKOS_MIS" type="xsd:double"/>
-                    <xsd:element name="KODIKOS_YPOERGOY" type="xsd:double"/>
-                    <xsd:element name="AA_YPOERGOY" type="xsd:double"/>
-                    <xsd:element name="AA_TDY" type="xsd:double"/>
-                    <xsd:element name="AA_YPOEKDOSH" type="xsd:double"/>
-                    <xsd:element name="KATHGORIA_EKDOSHS" type="xsd:double"/>
-                    <xsd:element name="TITLOS_YPOERGOY" type="xsd:string"/>
-                    <xsd:element name="KODIKOS_PROEG" type="xsd:string"/>
-                    <xsd:element name="TEXNIKH_PERIGRAFH" type="xsd:string"/>
-                    <xsd:element name="AR_PROTOK_DA" type="xsd:string"/>
-                    <xsd:element name="DATE_CREATION" type="xsd:string"/>
-                    <xsd:element name="DATE_MET_YPOVOLHS" type="xsd:string"/>
-                    <xsd:element name="DATE_YPOVOLIS" type="xsd:string"/>
-                    <xsd:element name="DATE_EPILEKSIMOTHTAS" type="xsd:string"/>
-                    <xsd:element name="DATE_ANALHPSHS" type="xsd:string"/>
-                    <xsd:element name="DATE_LHKSHS" type="xsd:string"/>
-                    <xsd:element name="DATE_TROPOP" type="xsd:string"/>
-                    <xsd:element name="KODIKOS_EPIVLEPOYSAS" type="xsd:integer"/>
-                    <xsd:element name="PARATHRHSEIS_KATAXOR_TDY" type="xsd:string"/>
-                    <xsd:element name="EIDOS_ANATHESHS" type="xsd:double"/>
-                    <xsd:element name="KODIKOS_DIKAIOYXOS" type="xsd:integer"/>
-                    <xsd:element name="KODIKOS_PAREMVASIS" type="xsd:string"/>
-                    <xsd:element name="ELEGXOS_AATDP" type="xsd:double"/>
-                    <xsd:element name="ONOMA_YPEYTHINOY" type="xsd:string"/>
-                    <xsd:element name="THESH_YPEYTHINOY" type="xsd:string"/>
-                    <xsd:element name="DIEYTHYNSH_YPEYTHINOY" type="xsd:string"/>
-                    <xsd:element name="SPECIALITY_YPEYTHINOY" type="xsd:string"/>
-                    <xsd:element name="THL_YPEYTHINOY" type="xsd:string"/>
-                    <xsd:element name="FAX_YPEYTHINOY" type="xsd:string"/>
-                    <xsd:element name="EMAIL_YPEYTHINOY" type="xsd:string"/>
-                    <xsd:element name="PARATHRHSEIS_KATAXOR_TDY_DIK" type="xsd:string"/>
-                    <xsd:element name="TITLOS_FOREA" type="xsd:string"/>
-                    <xsd:element name="ELEGXOS" type="xsd:double"/>
-                    <xsd:element name="KATASTASH_DELTIOY" type="xsd:double"/>
-                    <xsd:element name="KATASTASH_DELTIOY_DESCR" type="xsd:string"/>
-                    <xsd:element name="DATE_ELEGXOY" type="xsd:string"/>
-                    <xsd:element name="ID_TDY_SYMPLHROMATIKHS" type="xsd:string"/>
-                    <xsd:element name="TYPOS_TDY" type="xsd:double"/>
-                    <xsd:element name="AITIOLOGIA_YPOEKDOSHS" type="xsd:string"/>
-                    <xsd:element name="FLAG_TROP_TIMETABLE" type="xsd:integer"/>
-                    <xsd:element name="FLAG_TROP_OIK" type="xsd:integer"/>
-                    <xsd:element name="FLAG_TROP_FYS" type="xsd:integer"/>
-                    <xsd:element name="FLAG_TROP_ALLO" type="xsd:integer"/>
-                    <xsd:element name="KODIKOS_OIKONOMIKHS" type="xsd:double"/>
-                    <xsd:element name="PERIGRAFH_OIKONOMIKHS" type="xsd:string"/>
-                    <xsd:element name="ONOMA_YPEYTHINOY_OIK" type="xsd:string"/>
-                    <xsd:element name="THESH_YPEYTHINOY_OIK" type="xsd:string"/>
-                    <xsd:element name="DIEYTHYNSH_YPEYTHINOY_OIK" type="xsd:string"/>
-                    <xsd:element name="THL_YPEYTHINOY_OIK" type="xsd:string"/>
-                    <xsd:element name="EMAIL_YPEYTHINOY_OIK" type="xsd:string"/>
-                    <xsd:element name="POSO_MH_ENISXYOMENH" type="xsd:string"/>
-                    <xsd:element name="YPOE_ARXAIOLOGIA_FLAG" type="xsd:string"/>
-                    <xsd:element name="YPOE_ENISXYSH_FLAG" type="xsd:string"/>
-                    <xsd:element name="TYPOS_YPOERGOY_FLAG" type="xsd:string"/>
-                    <xsd:element name="FPA_ANAKTHSIMOS_FLAG" type="xsd:string"/>
-                    <xsd:element name="PERIORISMOI_MEEP" type="xsd:string"/>
-                    <xsd:element name="DATE_MEEP" type="xsd:string"/>
-                    <xsd:element name="POSO_IDIOT" type="xsd:double"/>
-                    <xsd:element name="ST_FLAG" type="xsd:double"/>
-                    <xsd:element name="DIKAIOYXOS_YPOERGOY" type="xsd:string"/>
-                    <xsd:element name="FOREAS_PARAKOLOYTHISHS" type="xsd:string"/>
-                    <xsd:element name="TDP_ID_ATP" type="xsd:double"/>
-                    <xsd:element name="RHTRA" type="xsd:double"/>
-                    <xsd:element name="PERIGRAFH_EPIVLEPOYSAS" type="xsd:string"/>
-                    <xsd:element name="PROELEYSH_DELTIO" type="xsd:double"/>
-                    <xsd:element name="DA_TEXT" type="xsd:string"/>
-                    <xsd:element name="FLAG_AYTOMATI_EKGKRISH_TDY" type="xsd:integer"/>
-                    <xsd:element name="KPS_KATALOGOS_ERGON" type="kpsKATALOGOSERGON"/>
-                    <xsd:element name="KPS6_YPOE_ANADOXOI" type="KPS6_YPOE_ANADOXOI" maxOccurs="unbounded"/>
-                    <xsd:element name="KPS6_YPOE_KATANOMH" type="KPS6_YPOE_KATANOMH" maxOccurs="unbounded"/>
-                    <xsd:element name="KPS6_YPOE_EPILEKSIMES" type="KPS6_YPOE_EPILEKSIMES" maxOccurs="unbounded"/>
-                    <xsd:element name="KPS6_YPOE_DEIKTES" type="kps6YPOEDEIKTES" minOccurs="0" maxOccurs="unbounded"/>
-                    <xsd:element name="KPS6_YPOE_DIAKRITA" type="KPS6_YPOE_DIAKRITA" maxOccurs="unbounded"/>
-                    <xsd:element name="KPS6_YPOE_XOROTHETHSEIS" type="KPS6_YPOE_XOROTHETHSEIS" maxOccurs="unbounded"/>
-                    <xsd:element name="KPS6_YPOERGA_MONADIAIA_KOSTH" type="KPS6_YPOERGA_MONADIAIA_KOSTH"
-                                maxOccurs="unbounded"/>
-                    <xsd:element name="Kps6DeltioErothmata" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element name="EP_KODIKOS" type="xsd:string"/>
+                    <xsd:element name="EP_TITLOS" type="xsd:string"/>
+                    <xsd:element name="YPOPROGR_KODIKOS" type="xsd:string"/>
+                    <xsd:element name="YPOPROGR_TITLOS" type="xsd:string"/>
+                    <xsd:element name="KATASTASH_PRAKSHS" type="xsd:string"/>
+                    <xsd:element name="TITLOS_MIS" type="xsd:string"/>
+                    <xsd:element name="PROSKLHSH_KODIKOS" type="xsd:string"/>
+                    <xsd:element name="TITLOS_PROSKLHSHS" type="xsd:string"/>
+                    <xsd:element name="EKXOR_KODIKOS" type="xsd:string"/>
+                    <xsd:element name="EIDOS_YPOERGOY" type="xsd:integer"/>
+                    <xsd:element name="EIDOS_YPOERGOY_DESCR" type="xsd:string"/>
+                    <xsd:element name="ORIZONTIO_YPOERGO_FLAG" type="xsd:string"/>
+                    <xsd:element name="FLAG_MEEP_ENABLE" type="xsd:string"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="KPS6_YPOE_ANADOXOI" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="YAN_ID" type="xsd:integer"/>
+                    <xsd:element name="TDY_ID" type="xsd:integer"/>
+                    <xsd:element name="AFM" type="xsd:string"/>
+                    <xsd:element name="ADAM_SYMVASHS" type="xsd:string"/>
+                    <xsd:element name="ROLOS_ANADOXOU" type="xsd:integer"/>
+                    <xsd:element name="ENERGOS_ANADOXOS" type="xsd:string"/>
+                    <xsd:element name="AITIOLOGIA_ANENERGOY" type="xsd:string"/>
+                    <xsd:element name="POSO_DD" type="xsd:double"/>
+                    <xsd:element name="PARATHRHSEIS_KATAXOR_TDY_ANA" type="xsd:string"/>
+                    <xsd:element name="KPS_ANADOXOI" minOccurs="0">
                       <xsd:complexType>
                         <xsd:sequence>
-                          <xsd:element name="idDeler" type="xsd:integer"/>
+                          <xsd:element name="AFM" type="xsd:string"/>
+                          <xsd:element name="DOY" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="EPONYMIA" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="XRHSTHS_EISAG" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="HMEROM_EISAG" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="XRHSTHS_ENHM" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="HMEROM_ENHM" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="ELEGXOS" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="AFM_TEMP" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="DIEYTHYNSH" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="FAX" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="POLH" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="TK" type="xsd:integer" minOccurs="0"/>
+                          <xsd:element name="EMAIL" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="DIAKRITOS_TITLOS" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="ENISX_EPIX" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="ANAD_DHM_SYMB" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="EGKYRO" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="PROSOPO" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="XENO_AFM" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="ENLYPOLOGOS_FLG" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="ENL_DIKAIOYX_FLG" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="THL" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="KODIKOS_DOY" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="MEGETHOS_EPIXEIRHSHS" type="xsd:integer" minOccurs="0"/>
+                          <xsd:element name="AFM_T" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="FLAG_FYLO" type="xsd:integer" minOccurs="0"/>
+                          <xsd:element name="ID_GEO" type="xsd:integer"/>
+                          <xsd:element name="AXT_MAIN_DESC" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="ENARXI" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="DIAKOPI" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="anadoxoiIdGeoDescr" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="ROLOS_ANADOXOU_DESCR" type="xsd:string"/>
+                    <xsd:element name="DATE_SYMBASHS" type="xsd:string"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="KPS6_YPOE_KATANOMH" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="YKA_ID" type="xsd:integer"/>
+                    <xsd:element name="TDY_ID" type="xsd:integer"/>
+                    <xsd:element name="ETOS" type="xsd:integer"/>
+                    <xsd:element name="POSO_DD_A" type="xsd:double"/>
+                    <xsd:element name="POSO_DD_EPIL_A" type="xsd:double"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="KPS6_YPOE_EPILEKSIMES" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="YEP_ID" type="xsd:integer"/>
+                    <xsd:element name="TDY_ID" type="xsd:integer"/>
+                    <xsd:element name="ID_KATHGORIA_DAPANHS" type="xsd:integer"/>
+                    <xsd:element name="ID_XARAKTHRISTIKO_DAPANHS" type="xsd:integer"/>
+                    <xsd:element name="POSO_DD_NOFPA" type="xsd:double"/>
+                    <xsd:element name="POSO_FPA_DD" type="xsd:double"/>
+                    <xsd:element name="POSO_DD_EPIL" type="xsd:double"/>
+                    <xsd:element name="POSO_FPA_EPILEKSIMH_DD" type="xsd:double"/>
+                    <xsd:element name="PERIGRAFH_KAT_DAPANHS" type="xsd:string"/>
+                    <xsd:element name="POSOSTO" type="xsd:double"/>
+                    <xsd:element name="KOSTOS_MONADAS" type="xsd:string"/>
+                    <xsd:element name="MONADA_METRHSHS" type="xsd:string"/>
+                    <xsd:element name="PERIGRAFH_MONADAS" type="xsd:string"/>
+                    <xsd:element name="ARITHMOS_MONADON" type="xsd:string"/>
+                    <xsd:element name="AITIOLOGHSH_MH_EPILEKSIMOTHTAS" type="xsd:string"/>
+                    <xsd:element name="ID_UNCO" type="xsd:string"/>
+                    <xsd:element name="ST_FLAG" type="xsd:string"/>
+                    <xsd:element name="KODIKOS_DAPANHS" type="xsd:string"/>
+                    <xsd:element name="POSOTHTA_SYNOLIKH" type="xsd:string"/>
+                    <xsd:element name="ID_YPUNCO" type="xsd:string"/>
+                    <xsd:element name="FLAG_APLOPOIHMENO_KOSTOS" type="xsd:string"/>
+                    <xsd:element name="kathg_MH_EPILEKSIMOTHTAS" type="xsd:string"/>
+                    <xsd:element name="flag_APLOPOIHMENO_KOSTOS" type="xsd:string"/>
+                    <xsd:element name="KATHG_MH_EPILEKSIMOTHTAS" type="xsd:string"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="KPS6_YPOE_DEIKTES" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+              <xsd:element name="KPS6_YPOE_DIAKRITA" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="YDI_ID" type="xsd:integer"/>
+                    <xsd:element name="TDY_ID" type="xsd:integer"/>
+                    <xsd:element name="AA_DIAKRITOY" type="xsd:string"/>
+                    <xsd:element name="ONOMA_DIAKRITOY" type="xsd:string"/>
+                    <xsd:element name="PROYPOLOGISMOS" type="xsd:double"/>
+                    <xsd:element name="DATE_MILESTONE" type="xsd:string"/>
+                    <xsd:element name="ENERGEIES_FAPE" type="xsd:string"/>
+                    <xsd:element name="PARADOTEA_FAPE" type="xsd:string"/>
+                    <xsd:element name="PROYPOLOGISMOS_EPIL" type="xsd:double"/>
+                    <xsd:element name="DATE_START" type="xsd:string"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="KPS6_YPOE_XOROTHETHSEIS" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="YXO_ID" type="xsd:integer"/>
+                    <xsd:element name="TDY_ID" type="xsd:integer"/>
+                    <xsd:element name="AA_XOROTHETHSHS" type="xsd:integer"/>
+                    <xsd:element name="POSOSTO" type="xsd:double"/>
+                    <xsd:element name="ID_GEO" type="xsd:integer"/>
+                    <xsd:element name="ID_TK" type="xsd:string"/>
+                    <xsd:element name="POSO" type="xsd:double"/>
+                    <xsd:element name="PER_NOM_DESCR" type="xsd:string"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Kps6DeltioErothmata" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="idDeler" type="xsd:integer"/>
+                    <xsd:element name="objectCategoryId" type="xsd:integer"/>
+                    <xsd:element name="parentId" type="xsd:integer"/>
+                    <xsd:element name="checklistType" type="xsd:integer"/>
+                    <xsd:element name="idErothma" type="xsd:integer"/>
+                    <xsd:element name="apanthshValue" type="xsd:integer"/>
+                    <xsd:element name="apanthshDate" type="xsd:string"/>
+                    <xsd:element name="statusId" type="xsd:integer"/>
+                    <xsd:element name="isxysFlg" type="xsd:integer"/>
+                    <xsd:element name="isxysDate" type="xsd:string"/>
+                    <xsd:element name="objectId" type="xsd:integer"/>
+                    <xsd:element name="sxoliaYops" type="xsd:string"/>
+                    <xsd:element name="parathrhseis" type="xsd:string"/>
+                    <xsd:element name="alloKeimeno" type="xsd:string"/>
+                    <xsd:element name="V6DeltioErothmataInfo" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
                           <xsd:element name="objectCategoryId" type="xsd:integer"/>
                           <xsd:element name="parentId" type="xsd:integer"/>
                           <xsd:element name="checklistType" type="xsd:integer"/>
+                          <xsd:element name="checklistTypeDescr" type="xsd:string"/>
                           <xsd:element name="idErothma" type="xsd:integer"/>
+                          <xsd:element name="erothmaAa" type="xsd:string"/>
+                          <xsd:element name="erothma" type="xsd:string"/>
                           <xsd:element name="apanthshValue" type="xsd:integer"/>
+                          <xsd:element name="apanthshValueDescr" type="xsd:string"/>
                           <xsd:element name="apanthshDate" type="xsd:string"/>
                           <xsd:element name="statusId" type="xsd:integer"/>
-                          <xsd:element name="isxysFlg" type="xsd:int"/>
+                          <xsd:element name="isxysFlg" type="xsd:integer"/>
+                          <xsd:element name="isxysFlgDescr" type="xsd:string"/>
                           <xsd:element name="isxysDate" type="xsd:string"/>
                           <xsd:element name="objectId" type="xsd:integer"/>
                           <xsd:element name="sxoliaYops" type="xsd:string"/>
                           <xsd:element name="parathrhseis" type="xsd:string"/>
                           <xsd:element name="alloKeimeno" type="xsd:string"/>
-                          <xsd:element name="V6DeltioErothmataInfo" minOccurs="0">
-                            <xsd:complexType>
-                              <xsd:sequence>
-                                <xsd:element name="objectCategoryId" type="xsd:integer"/>
-                                <xsd:element name="parentId" type="xsd:integer"/>
-                                <xsd:element name="checklistType" type="xsd:integer"/>
-                                <xsd:element name="checklistTypeDescr" type="xsd:string"/>
-                                <xsd:element name="idErothma" type="xsd:integer"/>
-                                <xsd:element name="erothmaAa" type="xsd:string"/>
-                                <xsd:element name="erothma" type="xsd:string"/>
-                                <xsd:element name="apanthshValue" type="xsd:integer"/>
-                                <xsd:element name="apanthshValueDescr" type="xsd:string"/>
-                                <xsd:element name="apanthshDate" type="xsd:string"/>
-                                <xsd:element name="statusId" type="xsd:integer"/>
-                                <xsd:element name="isxysFlg" type="xsd:int"/>
-                                <xsd:element name="isxysFlgDescr" type="xsd:string"/>
-                                <xsd:element name="isxysDate" type="xsd:string"/>
-                                <xsd:element name="objectId" type="xsd:string"/>
-                                <xsd:element name="sxoliaYops" type="xsd:string"/>
-                                <xsd:element name="parathrhseis" type="xsd:string"/>
-                                <xsd:element name="alloKeimeno" type="xsd:string"/>
-                              </xsd:sequence>
-                            </xsd:complexType>
-                          </xsd:element>
                         </xsd:sequence>
                       </xsd:complexType>
                     </xsd:element>
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
+              <xsd:element name="KRISIMO_YE" type="xsd:integer"/>
+              <xsd:element name="FLAG_TMHMATOPOIHMENO" type="xsd:integer"/>
+              <xsd:element name="THESMIKO_PLAISIO" type="xsd:string"/>
+              <xsd:element name="FLAG_EKSAIRESI_PROE" type="xsd:integer"/>
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-        <xsd:element name="InputChangeStatus">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="actionUi" type="xsd:integer"/>
-              <xsd:element name="comments" type="xsd:string"/>
-              <xsd:element name="combineChecks" type="xsd:integer"/>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-        <xsd:element name="OutputChangeStatus">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="ERRORCODE" type="xsd:integer"/>
-              <xsd:element name="ERRORMESSAGE" type="xsd:string"/>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
+        <xsd:element name="actionCode" type="xsd:integer"/>
+        <xsd:element name="comments" type="xsd:string"/>
+        <xsd:element name="combineChecks" type="xsd:integer"/>
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>
-  <xsd:complexType name="kpsKATALOGOSERGON">
-    <xsd:sequence>
-      <xsd:element name="EP_KODIKOS" type="xsd:string"/>
-      <xsd:element name="EP_TITLOS" type="xsd:string"/>
-      <xsd:element name="YPOPROGR_KODIKOS" type="xsd:string"/>
-      <xsd:element name="YPOPROGR_TITLOS" type="xsd:string"/>
-      <xsd:element name="KATASTASH_PRAKSHS" type="xsd:string"/>
-      <xsd:element name="TITLOS_MIS" type="xsd:string"/>
-      <xsd:element name="PROSKLHSH_KODIKOS" type="xsd:string"/>
-      <xsd:element name="TITLOS_PROSKLHSHS" type="xsd:string"/>
-      <xsd:element name="EKXOR_KODIKOS" type="xsd:string"/>
-      <xsd:element name="EIDOS_TDY" type="xsd:string"/>
-      <xsd:element name="EIDOS_TDY_DESCR" type="xsd:string"/>
-      <xsd:element name="EIDOS_YPOERGOY" type="xsd:string"/>
-      <xsd:element name="EIDOS_YPOERGOY_DESCR" type="xsd:string"/>
-      <xsd:element name="SYMPL_XRHMATOD" type="xsd:string"/>
-      <xsd:element name="SYMV_PRO_ENTAKSHS" type="xsd:string"/>
-      <xsd:element name="FOREAS_PARAKOL" type="xsd:string"/>
-      <xsd:element name="ORIZONTIO_YPOERGO_FLAG" type="xsd:string"/>
-      <xsd:element name="FLAG_MEEP_ENABLE" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="KPS6_YPOE_ANADOXOI">
-    <xsd:sequence>
-      <xsd:element name="YAN_ID" type="xsd:double"/>
-      <xsd:element name="TDY_ID" type="xsd:double"/>
-      <xsd:element name="AFM" type="xsd:string"/>
-      <xsd:element name="ADAM_SYMVASHS" type="xsd:string"/>
-      <xsd:element name="ROLOS_ANADOXOU" type="xsd:double"/>
-      <xsd:element name="ENERGOS_ANADOXOS" type="xsd:string"/>
-      <xsd:element name="AITIOLOGIA_ANENERGOY" type="xsd:string"/>
-      <xsd:element name="POSO_DD" type="xsd:double"/>
-      <xsd:element name="PARATHRHSEIS_KATAXOR_TDY_ANA" type="xsd:string"/>
-      <xsd:element name="ROLOS_ANADOXOU_DESCR" type="xsd:string"/>
-      <xsd:element name="KPS_ANADOXOI" minOccurs="0">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="AFM" type="xsd:string"/>
-            <xsd:element name="DOY" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="EPONYMIA" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="XRHSTHS_EISAG" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="HMEROM_EISAG" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="XRHSTHS_ENHM" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="HMEROM_ENHM" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="ELEGXOS" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="AFM_TEMP" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="DIEYTHYNSH" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="FAX" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="POLH" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="TK" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="EMAIL" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="DIAKRITOS_TITLOS" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="ENISX_EPIX" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="ANAD_DHM_SYMB" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="EGKYRO" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="PROSOPO" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="XENO_AFM" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="ENLYPOLOGOS_FLG" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="ENL_DIKAIOYX_FLG" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="THL" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="KODIKOS_DOY" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="MEGETHOS_EPIXEIRHSHS" type="xsd:integer" minOccurs="0"/>
-            <xsd:element name="AFM_T" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="FLAG_FYLO" type="xsd:integer" minOccurs="0"/>
-            <xsd:element name="ID_GEO" type="xsd:double"/>
-            <xsd:element name="AXT_MAIN_DESC" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="ENARXH" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="DIAKOPH" type="xsd:string" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="KPS6_YPOE_DIAKRITA">
-    <xsd:sequence>
-      <xsd:element name="YDI_ID" type="xsd:double"/>
-      <xsd:element name="TDY_ID" type="xsd:double"/>
-      <xsd:element name="AA_DIAKRITOY" type="xsd:string"/>
-      <xsd:element name="ONOMA_DIAKRITOY" type="xsd:string"/>
-      <xsd:element name="PROYPOLOGISMOS" type="xsd:double"/>
-      <xsd:element name="DATE_MILESTONE" type="xsd:string"/>
-      <xsd:element name="ENERGEIES_FAPE" type="xsd:string"/>
-      <xsd:element name="PARADOTEA_FAPE" type="xsd:string"/>
-      <xsd:element name="PROYPOLOGISMOS_EPIL" type="xsd:double"/>
-      <xsd:element name="DATE_START" type="xsd:string"/>
-      <xsd:element name="ST_FLAG" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="KPS6_YPOE_EPILEKSIMES">
-    <xsd:sequence>
-      <xsd:element name="YEP_ID" type="xsd:double"/>
-      <xsd:element name="TDY_ID" type="xsd:double"/>
-      <xsd:element name="ID_KATHGORIA_DAPANHS" type="xsd:double"/>
-      <xsd:element name="ID_XARAKTHRISTIKO_DAPANHS" type="xsd:double"/>
-      <xsd:element name="POSO_DD_NOFPA" type="xsd:double"/>
-      <xsd:element name="POSO_FPA_DD" type="xsd:double"/>
-      <xsd:element name="POSO_DD_EPIL" type="xsd:double"/>
-      <xsd:element name="POSO_FPA_EPILEKSIMH_DD" type="xsd:double"/>
-      <xsd:element name="PERIGRAFH_KAT_DAPANHS" type="xsd:string"/>
-      <xsd:element name="POSOSTO" type="xsd:string"/>
-      <xsd:element name="KOSTOS_MONADAS" type="xsd:string"/>
-      <xsd:element name="MONADA_METRHSHS" type="xsd:string"/>
-      <xsd:element name="PERIGRAFH_MONADAS" type="xsd:string"/>
-      <xsd:element name="ARITHMOS_MONADON" type="xsd:string"/>
-      <xsd:element name="KATHG_MH_EPILEKSIMOTHTAS" type="xsd:string"/>
-      <xsd:element name="AITIOLOGHSH_MH_EPILEKSIMOTHTAS" type="xsd:string"/>
-      <xsd:element name="ID_UNCO" type="xsd:string"/>
-      <xsd:element name="ID_YPUNCO" type="xsd:string"/>
-      <xsd:element name="ST_FLAG" type="xsd:string"/>
-      <xsd:element name="KODIKOS_DAPANHS" type="xsd:string"/>
-      <xsd:element name="POSOTHTA_SYNOLIKH" type="xsd:double"/>
-      <xsd:element name="FLAG_APLOPOIHMENO_KOSTOS" type="xsd:integer"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="KPS6_YPOE_KATANOMH">
-    <xsd:sequence>
-      <xsd:element name="YKA_ID" type="xsd:double"/>
-      <xsd:element name="TDY_ID" type="xsd:double"/>
-      <xsd:element name="ETOS" type="xsd:integer"/>
-      <xsd:element name="POSO_DD_A" type="xsd:double"/>
-      <xsd:element name="POSO_DD_EPIL_A" type="xsd:double"/>
-      <xsd:element name="ST_FLAG" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="KPS6_YPOE_XOROTHETHSEIS">
-    <xsd:sequence>
-      <xsd:element name="YXO_ID" type="xsd:double"/>
-      <xsd:element name="TDY_ID" type="xsd:double"/>
-      <xsd:element name="AA_XOROTHETHSHS" type="xsd:double"/>
-      <xsd:element name="POSOSTO" type="xsd:double"/>
-      <xsd:element name="ID_GEO" type="xsd:double"/>
-      <xsd:element name="ID_TK" type="xsd:string"/>
-      <xsd:element name="POSO" type="xsd:string"/>
-      <xsd:element name="PER_NOM_DESCR" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="KPS6_YPOERGA_MONADIAIA_KOSTH">
-    <xsd:sequence>
-      <xsd:element name="ID_YPUNCO" type="xsd:double"/>
-      <xsd:element name="ID_UNCO" type="xsd:double"/>
-      <xsd:element name="TDY_ID" type="xsd:double"/>
-      <xsd:element name="TIMH_MONADAS" type="xsd:double"/>
-      <xsd:element name="POSOTHTA" type="xsd:double"/>
-      <xsd:element name="ST_FLAG" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="kps6YPOEDEIKTES">
-    <xsd:sequence>
-      <xsd:element name="YDE_ID" type="xsd:string"/>
-      <xsd:element name="TDY_ID" type="xsd:string"/>
-      <xsd:element name="KODIKOS_DEIKTHS" type="xsd:string"/>
-      <xsd:element name="TIMH_STOXOS" type="xsd:string"/>
-      <xsd:element name="EIDOS_DEIKTH" type="xsd:string"/>
-      <xsd:element name="ONOMASIA" type="xsd:string"/>
-      <xsd:element name="MONADA_METRHSHS" type="xsd:string"/>
-      <xsd:element name="ST_FLAG" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-<xsd:annotation xmlns="">
-      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
-      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
-   </xsd:annotation>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
 </xsd:schema>

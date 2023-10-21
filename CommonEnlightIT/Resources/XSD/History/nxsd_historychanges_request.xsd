@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:espa:v6:history" targetNamespace="urn:espa:v6:history" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="HistoryRequest">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="idDeltiou" type="xsd:unsignedInt"/>
+            <xsd:element name="idPraksis" type="xsd:unsignedInt"/>
+            <xsd:element name="idForea" type="xsd:unsignedInt"/>
+            <xsd:element name="deltioTypeId" type="xsd:unsignedShort"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

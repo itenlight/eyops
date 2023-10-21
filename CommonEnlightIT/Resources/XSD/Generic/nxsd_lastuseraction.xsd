@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/generic" targetNamespace="http://espa.gr/v6/generic" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="LastUserAction">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="id" type="xsd:unsignedLong"/>
+            <xsd:element name="objectCategoryId" type="xsd:unsignedShort"/>
+            <xsd:element name="objectId" type="xsd:unsignedLong"/>
+            <xsd:element name="actionCategoryId" type="xsd:unsignedLong"/>
+            <xsd:element name="userName" type="xsd:string"/>
+            <xsd:element name="dateAction" type="xsd:date"/>
+            <xsd:element name="commentsAction" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

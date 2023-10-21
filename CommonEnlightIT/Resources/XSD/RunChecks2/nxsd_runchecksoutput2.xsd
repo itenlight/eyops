@@ -1,0 +1,74 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://TargetNamespace.com/runChecks2v6_Operation1_response"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd"
+            targetNamespace="http://TargetNamespace.com/runChecks2v6_Operation1_response"
+            elementFormDefault="qualified" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+  <xsd:element name="Root-Element">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ERROR_CODE" type="xsd:string"/>
+        <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
+        <xsd:element name="DATA" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Kps6ChecksResults" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="dateCheck" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="duration" type="xsd:double" minOccurs="0"/>
+                    <xsd:element name="idChecksresults" type="xsd:int" minOccurs="0"/>
+                    <xsd:element name="Kps6ChecksResultsDet" minOccurs="0" maxOccurs="unbounded">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="dateStart" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="duration" type="xsd:double" minOccurs="0"/>
+                          <xsd:element name="idCheck" type="xsd:int" minOccurs="0"/>
+                          <xsd:element name="idChecksresultsdet" type="xsd:int" minOccurs="0"/>
+                          <xsd:element name="itemUi" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="kathgEnothta" type="xsd:int" minOccurs="0"/>
+                          <xsd:element name="msgShort" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="objectCategoryId" type="xsd:int" minOccurs="0"/>
+                          <xsd:element name="objectId" type="xsd:int" minOccurs="0"/>
+                          <xsd:element name="resultCode" type="xsd:int" minOccurs="0"/>
+                          <xsd:element name="resultDescr" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="V6ChecksResultsDetInfo" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="idCheck" type="xsd:int" minOccurs="0"/>
+                                <xsd:element name="idChecksresults" type="xsd:int" minOccurs="0"/>
+                                <xsd:element name="kathgEnothtaAa" type="xsd:int" minOccurs="0"/>
+                                <xsd:element name="kathgEnothtaDesc" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="kathgEnothtaDescEn" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="kathgGroupEp" type="xsd:int" minOccurs="0"/>
+                                <xsd:element name="kathgLevelDesc" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="kathgLevelDescEn" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="msgShort" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="objectCategoryId" type="xsd:int" minOccurs="0"/>
+                                <xsd:element name="objectId" type="xsd:int" minOccurs="0"/>
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="objectCategoryId" type="xsd:int" minOccurs="0"/>
+                    <xsd:element name="objectId" type="xsd:int" minOccurs="0"/>
+                    <xsd:element name="resultCode" type="xsd:int" minOccurs="0"/>
+                    <xsd:element name="resultDescr" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="statusUpdatesFk" type="xsd:double" minOccurs="0"/>
+                    <xsd:element name="userName" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>

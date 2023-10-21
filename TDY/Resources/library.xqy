@@ -190,12 +190,15 @@ declare function tdy:GetAaYpoergouListForCopy($inbound as element()) as element(
   if (fn:not($ListaYpoergon/node())) then
       fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
    else for $Ypoergo in $ListaYpoergon return
-   <Ypoergo>      
+   <Ypoergo> 
+      <kodikosMis/>
       <aaYpoergoy>{fn:data($Ypoergo//*:AAYPOERGOY)}</aaYpoergoy>
       <titlosYpoergoy>{fn:data($Ypoergo//*:TITLOSYPOERGOY)}</titlosYpoergoy>
-      <tdyId>{fn:data($Ypoergo//*:IDDELTIOY)}</tdyId>      
-      <neaEkdosh>{fn:data($Ypoergo//*:EKDOSH)}</neaEkdosh>>      
-      <kodikosYpoergoy>{fn:data($Ypoergo//*:KODIKOSYPOERGOY)}</kodikosYpoergoy>
+      <tdyId>{fn:data($Ypoergo//*:IDDELTIOY)}</tdyId>  
+      <typeNewEk/>
+      <neaEkdosh>{fn:data($Ypoergo//*:EKDOSH)}</neaEkdosh>
+      <actionTyp/>
+      <kodikosYpoergoy>{fn:data($Ypoergo//*:KODIKOS_YPOERGOY)}</kodikosYpoergoy>
     </Ypoergo>   
  }   
  </ListYpoergon>
@@ -220,7 +223,7 @@ declare function tdy:GetElegxoiNomimotitasList($inbound as element()) as element
                 (select  kps6_core.get_obj_status(tropop.id_proeg_tropop,135) from dual) = 304 
                  and 1=   case when 1= (select 1 from kps6_ypoerga y where  y.kodikos_ypoergoy= pyp.kodikos_YPOERGOY  AND   y.KODIKOS_MIS= pyp.kodikos_mis and aa_tdy =?  and kathgoria_ekdoshs = 5662)
                  and 0 = (select nvl ((select 1 from kps6_ypoerga y where  y.kodikos_ypoergoy= pyp.kodikos_YPOERGOY  AND   y.KODIKOS_MIS= pyp.kodikos_mis and y.obj_isxys =1 ),0) from dual) then 1
-                 else ?
+                 else To_Number(?)
                  end
                 and
                 tropop.id_proeg_tropop not in (
@@ -248,7 +251,7 @@ declare function tdy:GetElegxoiNomimotitasList($inbound as element()) as element
                 (select  kps6_core.get_obj_status(tropop.id_proeg_tropop,135) from dual) = 304 
                  and 1= case when 1= (select 1 from kps6_ypoerga y where y.kodikos_ypoergoy= pyp.kodikos_YPOERGOY AND  y.KODIKOS_MIS= pyp.kodikos_mis and aa_tdy =?  and kathgoria_ekdoshs = 5662)
                  and 0 = (select nvl ((select 1 from kps6_ypoerga y where y.kodikos_ypoergoy= pyp.kodikos_YPOERGOY  AND   y.KODIKOS_MIS= pyp.kodikos_mis and y.obj_isxys =1),0) from dual) then  1
-                 else ?
+                 else To_Number(?)
                  end
                 and tropop.id_proeg_tropop not in (
                 select distinct
@@ -262,7 +265,7 @@ declare function tdy:GetElegxoiNomimotitasList($inbound as element()) as element
                 KPS6_YPOERGA.AA_TDY != ?
                 and
                 KPS6_YPOERGA.KODIKOS_PROEG is not null
-	        and obj_status_id != 309 ',
+	        and obj_status_id != 309) ',
                 xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosYpoergoy"]/@value),
                 xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosMis"]/@value),
                 xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="aaYpoergoy"]/@value),
@@ -283,12 +286,12 @@ declare function tdy:GetElegxoiNomimotitasList($inbound as element()) as element
       fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
     else 
      for $Elegxos in $ListaElegxnonNomimotitas return
-      <ElegxosNomimotita>
+      <ElegxosNomimotitas>
        <aaProegrisis>{fn:data($Elegxos//*:PROEG_AA)}</aaProegrisis>
        <titlos>{fn:data($Elegxos//*:TITLOS)}</titlos>
        <aa>{fn:data($Elegxos//*:AA)}</aa>
        <idProegTropop>{fn:data($Elegxos//*:ID_PROEG_TROPOP)}</idProegTropop>
-      </ElegxosNomimotita>
+      </ElegxosNomimotitas>
  }
  </ListElegxonNomimotitas>
 };
@@ -320,7 +323,7 @@ declare function tdy:GetMeepCountEkdoseis($inbound as element()) as element(){
                xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosYpoergoy"]/@value),
                xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="aaTdy"]/@value),
                xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="aaTdy"]/@value),
-               xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="aaaYpoekdosh"]/@value))//*:CNT_MEEP_NOT_NULL)
+               xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="aaYpoekdosh"]/@value))//*:CNT_MEEP_NOT_NULL)
   }
   </MeepCount>
 };
@@ -357,13 +360,13 @@ declare function tdy:GetGeoList($inbound as element()) as element(){
     <kodikosNomou>{fn:data($GeoItem//*:PER_NOMOS)}</kodikosNomou>
     <kodikosNuts>{fn:data($GeoItem//*:KODIKOS_NUTS)}</kodikosNuts>
     <kodikosNutsNomou/>
-    <labelPerifereiaNomos/>
+    <labelPerifereiaNomos></labelPerifereiaNomos>
     <idGeo>{fn:data($GeoItem//*:ID_GEO)}</idGeo>
     <idCountry/>
     <idKratid/>
     <idPerif>{fn:data($GeoItem//*:ID_PERIF)}</idPerif>
-    <idNomos>{fn:data($GeoItem//*:ID_NOMOS)}</idNomos>
-    <idDhmos>{fn:data($GeoItem//*:ID_NOMOS)}</idDhmos>
+    <idNomos>{if ($GeoItem//*:ID_NOMOS) then fn:data($GeoItem//*:ID_NOMOS) else 0}</idNomos>
+    <idDhmos>{if ($GeoItem//*:ID_DHMOS) then fn:data($GeoItem//*:ID_DHMOS) else 0}</idDhmos>
     <perigrafhPerifereias>{fn:data($GeoItem//*:PER_PERIF)}</perigrafhPerifereias>
     <perigrafhNomou>{fn:data($GeoItem//*:PER_NOMOS)}</perigrafhNomou>
     <idDhmosPerigrafh/>
@@ -407,20 +410,53 @@ declare function tdy:GetKatastaseisDeltio() as element(){
 declare function tdy:GetYpoerga($inbound as element()) as element(){
   <ListaYpoergon xmlns="http://espa.gr/v6/tdy">
   {let $ListaYpoergon:= fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Ypoergo'),
-              'select aa_ypoergoy , titlos_ypoergoy, KODIKOS_YPOERGOY 
-               from kps6_tdp_ypoerga 
-               where kps6_tdp_ypoerga.id_tdp = kps6_core.get_trexon_deltio(kodikos_mis, 101) 
+              'select aa_ypoergoy , titlos_ypoergoy, KODIKOS_YPOERGOY
+               from kps6_tdp_ypoerga
+               where kps6_tdp_ypoerga.id_tdp = kps6_core.get_trexon_deltio(kodikos_mis, 101)
                  and kodikos_mis=?',
-                 xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosMis"]/@value))
+                 xs:unsignedInt($inbound/ctx:transport/ctx:request/http:query-parameters/http:parameter[@name="kodikosMis"]/@value))
    return
     if (fn:not($ListaYpoergon/node())) then
       fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
-    else 
-   for $Ypoergo in $ListaYpoergon return 
+    else
+   for $Ypoergo in $ListaYpoergon return
+    <Ypoergo>
+      <kodikos>{fn:data($Ypoergo//*:KODIKOS_YPOERGOY)}</kodikos>      
+      <perigrafh>{fn:data($Ypoergo//*:TITLOS_YPOERGOY)}</perigrafh>
+      <aa>{fn:data($Ypoergo//*:AA_YPOERGOY)}</aa>
+      <misCode/>
+      <eidosYpoergou/>
+      <thesmikoPlaisio/>
+      <ypoekdosh/>
+      <aaYpoergoy/>
+      <idTdpYpoerga/>
+      <hasSelect>1</hasSelect>
+      <hasInsert>1</hasInsert>
+      <hasUpdate>1</hasUpdate>
+      <hasDelete>1</hasDelete>
+    </Ypoergo>
+  }
+  </ListaYpoergon>
+};
+
+declare function tdy:GetYpoergaByKodikos($inbound as element()) as element(){
+  <ListaYpoergon xmlns="http://espa.gr/v6/tdy">
+  {let $ListaYpoergon:= fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Ypoergo'),
+              'select aa_ypoergoy , titlos_ypoergoy, KODIKOS_YPOERGOY
+               from kps6_tdp_ypoerga
+               where kps6_tdp_ypoerga.id_tdp = kps6_core.get_trexon_deltio(kodikos_mis, 101)
+                 and kodikos_mis=?',
+                 xs:unsignedInt($inbound/ctx:transport/ctx:request/http:query-parameters/http:parameter[@name="kodikosMis"]/@value))
+   return
+    if (fn:not($ListaYpoergon/node())) then
+      fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
+    else
+   for $Ypoergo in $ListaYpoergon return
     <Ypoergo>
       <aaYpoergoy>{fn:data($Ypoergo//*:AA_YPOERGOY)}</aaYpoergoy>
       <titlosYpoergoy>{fn:data($Ypoergo//*:TITLOS_YPOERGOY)}</titlosYpoergoy>
       <kodikosYpoergoy>{fn:data($Ypoergo//*:KODIKOS_YPOERGOY)}</kodikosYpoergoy>
+      <kodikos>{fn:data($Ypoergo//*:KODIKOS_YPOERGOY)}</kodikos> 
     </Ypoergo>
   }
   </ListaYpoergon>
@@ -456,17 +492,17 @@ declare function tdy:GetKatigoriesDapanis($inbound as element()) as element(){
     else 
    for $KatigoriaDapanis in $ListaKatigorionDapanis return 
     <KatigoriaDapanis>
-      <id_kathgoria_dapanhs>{fn:data($KatigoriaDapanis//*:ID_KATHGORIA_DAPANHS)}</id_kathgoria_dapanhs>
-      <kodikos_dapanhs>{fn:data($KatigoriaDapanis//*:KODIKOS_DAPANHS)}</kodikos_dapanhs>
-      <perigrafh_kathgoria_dapanhs>{fn:data($KatigoriaDapanis//*:PERIGRAFH_KATHGORIA_DAPANHS)}</perigrafh_kathgoria_dapanhs>
+      <idKatigoriaDapanis>{fn:data($KatigoriaDapanis//*:ID_KATHGORIA_DAPANHS)}</idKatigoriaDapanis>
+      <kodikosDapanhs>{fn:data($KatigoriaDapanis//*:KODIKOS_DAPANHS)}</kodikosDapanhs>
+      <perigrafiKatDapanis>{fn:data($KatigoriaDapanis//*:PERIGRAFH_KATHGORIA_DAPANHS)}</perigrafiKatDapanis>
       <pososto>{fn:data($KatigoriaDapanis//*:POSOSTO)}</pososto>
-      <id_unco>{fn:data($KatigoriaDapanis//*:ID_UNCO)}</id_unco>
-      <monadiaio_kostos>{fn:data($KatigoriaDapanis//*:MONADIAIO_KOSTOS)}</monadiaio_kostos>
-      <monada_metrhshs>{fn:data($KatigoriaDapanis//*:MONADA_METRHSHS)}</monada_metrhshs>
-      <perigrafh_monadas>{fn:data($KatigoriaDapanis//*:PERIGRAFH_MONADAS)}</perigrafh_monadas>
-      <oroi_efarmoghs>{fn:data($KatigoriaDapanis//*:OROI_EFARMOGHS)}</oroi_efarmoghs>
+      <idUnco>{fn:data($KatigoriaDapanis//*:ID_UNCO)}</idUnco>
+      <monadiaioKostos>{fn:data($KatigoriaDapanis//*:MONADIAIO_KOSTOS)}</monadiaioKostos>
+      <monadaMetrhshs>{fn:data($KatigoriaDapanis//*:MONADA_METRHSHS)}</monadaMetrhshs>
+      <perigrafiMonadas>{fn:data($KatigoriaDapanis//*:PERIGRAFH_MONADAS)}</perigrafiMonadas>
+      <oroiEfarmogis>{fn:data($KatigoriaDapanis//*:OROI_EFARMOGHS)}</oroiEfarmogis>
       <mis>{fn:data($KatigoriaDapanis//*:MIS)}</mis>
-      <id_xar>{fn:data($KatigoriaDapanis//*:ID_XAR)}</id_xar>
+      <idXaraktiristikoDapanis>{fn:data($KatigoriaDapanis//*:ID_XAR)}</idXaraktiristikoDapanis>
     </KatigoriaDapanis>
   }
   </ListaKatigorionDapanis>
@@ -474,7 +510,7 @@ declare function tdy:GetKatigoriesDapanis($inbound as element()) as element(){
 
 declare function tdy:GetAplopoimenoKostos($inbound as element()) as element(){
 <ListaKatigorionDapanis xmlns="http://espa.gr/v6/tdy">
-  {let $ListaKatigorionDapanis := fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('KatigoriaDapanis'),
+  {let $ListaAplopoimenoKostous := fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('KatigoriaDapanis'),
                'select b.id_kathgoria_dapanhs id,b.kodikos_dapanhs 
                 kodikos_dapanhs,b.perigrafh_kathgoria_dapanhs 
                 perigrafh,B.FLAG_ERGO_YPOERGO flag_ypoergo,B.ID_EIDOS_DAPANHS 
@@ -495,22 +531,22 @@ declare function tdy:GetAplopoimenoKostos($inbound as element()) as element(){
                 and B.ID_EIDOS_DAPANHS=5352 
                 ORDER BY 2',
                 xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="mis"]/@value),
-                xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="mis"]/@value))
+                xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="ypoergo"]/@value))
    return
-    if (fn:not($ListaKatigorionDapanis/node())) then
+    if (fn:not($ListaAplopoimenoKostous/node())) then
       fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
     else 
-   for $KatigoriaDapanis in $ListaKatigorionDapanis return 
+   for $Kostos in $ListaAplopoimenoKostous return 
     <KatigoriaDapanis>
-      <id>{fn:data($KatigoriaDapanis//*:ID)}</id>
-      <kodikosDapanhs>{fn:data($KatigoriaDapanis//*:KODIKOS_DAPANHS)}</kodikosDapanhs>
-      <perigrafh>{fn:data($KatigoriaDapanis//*:PERIGRAFH)}</perigrafh>
-      <flagYpoergo>{fn:data($KatigoriaDapanis//*:FLAG_YPOERGO)}</flagYpoergo>
-      <eidosDapanhs>{fn:data($KatigoriaDapanis//*:EIDOS_DAPANHS)}</eidosDapanhs>
-      <xarakthristikoDapanhs>{fn:data($KatigoriaDapanis//*:XARAKTHRISTIKO_DAPANHS)}</xarakthristikoDapanhs>
-      <plafon>{fn:data($KatigoriaDapanis//*:PLAFON)}</plafon>
-      <flagPerigrafh>{fn:data($KatigoriaDapanis//*:FLAG_PERIGRAFH)}</flagPerigrafh>
-      <flagAplopoiimenoKostos>{fn:data($KatigoriaDapanis//*:FLAG_APLOPOIHMENO_KOSTOS)}</flagAplopoiimenoKostos>
+      <id>{fn:data($Kostos//*:ID)}</id>
+      <kodikosDapanhs>{fn:data($Kostos//*:KODIKOS_DAPANHS)}</kodikosDapanhs>
+      <perigrafh>{fn:data($Kostos//*:PERIGRAFH)}</perigrafh>
+      <flagYpoergo>{fn:data($Kostos//*:FLAG_YPOERGO)}</flagYpoergo>
+      <eidosDapanhs>{fn:data($Kostos//*:EIDOS_DAPANHS)}</eidosDapanhs>
+      <xarakthristikoDapanhs>{fn:data($Kostos//*:XARAKTHRISTIKO_DAPANHS)}</xarakthristikoDapanhs>
+      <plafon>{fn:data($Kostos//*:PLAFON)}</plafon>
+      <flagPerigrafh>{fn:data($Kostos//*:FLAG_PERIGRAFH)}</flagPerigrafh>
+      <flagAplopoiimenoKostos>{fn:data($Kostos//*:FLAG_APLOPOIHMENO_KOSTOS)}</flagAplopoiimenoKostos>
     </KatigoriaDapanis>
   }
   </ListaKatigorionDapanis>
@@ -539,6 +575,28 @@ declare function tdy:GetErotimata() as element(){
     </Erotima>
   }
   </ListaErotimaton>
+};
+
+declare function tdy:GetYpoergoInfo($inbound as element()) as element(){
+<ListaYpoergon xmlns="http://espa.gr/v6/tdy">
+{let $ListaYpoergon := fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('YPOERGO'),
+               'Select aa_ypoergoy , titlos_ypoergoy, KODIKOS_YPOERGOY 
+                from kps6_tdp_ypoerga 
+                where kps6_tdp_ypoerga.id_tdp = kps6_core.get_trexon_deltio(kodikos_mis, 101) and 
+                    kodikos_mis= ?',
+                    xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosMis"]/@value))
+   return
+    if (fn:not($ListaYpoergon/node())) then
+      fn:error(QName('urn:espa:v6:library:error','error'),'empty list')
+    else 
+   for $Ypoergo in $ListaYpoergon return 
+    <Ypoergo>
+      <aaYpoergoy>{fn:data($Ypoergo//*:AA_YPOERGOY)}</aaYpoergoy>
+      <titlosYpoergoy>{fn:data($Ypoergo//*:TITLOS_YPOERGOY)}</titlosYpoergoy>
+      <kodikosYpoergoyY>{fn:data($Ypoergo//*:KODIKOS_YPOERGOY)}</kodikosYpoergoyY>
+    </Ypoergo>
+  }
+</ListaYpoergon>
 };
 
 declare function tdy:GetEti($inbound as element()) as element(){
@@ -673,7 +731,7 @@ declare function tdy:GetListesTimon($mis as xs:unsignedInt , $aa as xs:unsignedI
       <list_value_id>{fn:data($Timi//*:LIST_VALUE_ID)}</list_value_id>
       <list_value_name>{fn:data($Timi//*:LIST_VALUE_NAME)}</list_value_name>
       <list_value_kodikos_display>{fn:data($Timi//*:LIST_VALUE_KODIKOS_DISPLAY)}</list_value_kodikos_display>
-      <is_active>{fn:data($Timi//*:IS_ACTIVE)}</is_active>
+      <is_active>{fn:boolean($Timi//*:IS_ACTIVE)}</is_active>
     </Timi>
   }
   </ListaTimon>
@@ -681,8 +739,7 @@ declare function tdy:GetListesTimon($mis as xs:unsignedInt , $aa as xs:unsignedI
 
 declare function tdy:GetTitloYpoergoy($inbound as element()) as element(){
   <TitlosYpoergoy xmlns="http://espa.gr/v6/tdy">
-    <title>
-      {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Title'),
+      {let $TitlosYpoergou :=fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Title'),
               'select titlos_ypoergoy 
               from kps6_tdp_ypoerga a  
                where a.kodikos_mis = ? 
@@ -690,9 +747,10 @@ declare function tdy:GetTitloYpoergoy($inbound as element()) as element(){
                  and a.kodikos_ypoergoy=?',
               xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosMis"]/@value),
               xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosMis"]/@value),
-              xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosYpoergoy"]/@value))//*:TITLOS_YPOERGOY)
+              xs:unsignedInt($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="kodikosYpoergoy"]/@value))//*:TITLOS_YPOERGOY
+      return
+        <title>{fn:data($TitlosYpoergou)}</title>
       }
-    </title>
   </TitlosYpoergoy>
 };
 
@@ -1034,7 +1092,7 @@ as element()(:: schema-element(tdy-response:TDYGetResponse)::) {
  </TDYGetResponse>
 };
 
-declare function tdy:map-update-request-to-db($request as element()) 
+declare function tdy:map-insert-request-to-db($request as element()) 
  as element()(:: schema-element(tdy-db-update:Kps6YpoergaCollection) ::)
 {
  let $EpilesimesDapanes := for $EpileksimiDapani in $request//tdy:KPS6_YPOE_EPILEKSIMES return
@@ -1142,7 +1200,7 @@ declare function tdy:map-update-request-to-db($request as element())
       </flagAytomatiEkgkrishTdy>
       <!--<flagEksairesiProe>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_EKSAIRESI_PROE)}</flagEksairesiProe>-->
       <kps6YpoergaMonadiaiaKosthCollection>
-       {for $EpileksimiDapani in $EpilesimesDapanes return 
+       {for $EpileksimiDapani in $EpilesimesDapanes where $EpileksimiDapani/node() return 
         if ($EpileksimiDapani/node() and 
              fn:not(fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
                    'select flag_aplopoihmeno_kostos as Flag_Kostos  
@@ -1166,8 +1224,7 @@ declare function tdy:map-update-request-to-db($request as element())
        }
      </kps6YpoergaMonadiaiaKosthCollection>     
      <kps6YpoeAnadoxoiCollection>
-     {for $Anadoxos in  $request//*:KPS6_YPOE_ANADOXOI
-      return         
+     {for $Anadoxos in  $request//*:KPS6_YPOE_ANADOXOI where $Anadoxos/node()  return         
        <Kps6YpoeAnadoxoi>
         <yanId>
           {fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Id_Ypunco','Select YAN_ID_SEQ.NEXTVAL from Dual')//*:NEXTVAL)}
@@ -1183,8 +1240,8 @@ declare function tdy:map-update-request-to-db($request as element())
       </Kps6YpoeAnadoxoi>
      }
      </kps6YpoeAnadoxoiCollection>
-     <kps6YpoeDiakritaCollection>
-     {for $Diakrito in $request//*:KPS6_YPOE_DIAKRITA return
+     <kps6YpoeDiakritaCollection>whee 
+     {for $Diakrito in $request//*:KPS6_YPOE_DIAKRITA where $Diakrito/node() return
        <Kps6YpoeDiakrita>
           <ydiId>{fn:data($Diakrito/*:YDI_ID)}</ydiId>
           <aaDiakritoy>{fn:data($Diakrito/*:AA_DIAKRITOY)}</aaDiakritoy>
@@ -1199,7 +1256,7 @@ declare function tdy:map-update-request-to-db($request as element())
      }
      </kps6YpoeDiakritaCollection>
      <kps6YpoeEpileksimesCollection>
-      {for $Dapani in $EpilesimesDapanes return
+      {for $Dapani in $EpilesimesDapanes where $Dapani/node() return
         <Kps6YpoeEpileksimes>
           <yepId>{fn:data($Dapani/*:YEP_ID)}</yepId>
           <posoDdNofpa>{fn:data($Dapani/*:POSO_DD_NOFPA)}</posoDdNofpa>
@@ -1233,7 +1290,7 @@ declare function tdy:map-update-request-to-db($request as element())
       }
      </kps6YpoeEpileksimesCollection> 
      <kps6YpoeKatanomhCollection>
-      {for $Katanomi in $request//*:KPS6_YPOE_KATANOMH return
+      {for $Katanomi in $request//*:KPS6_YPOE_KATANOMH where $Katanomi/node() return
        <Kps6YpoeKatanomh>
         <ykaId>{fn:data($Katanomi/*:YKA_ID)}</ykaId>
         <etos>{fn:data($Katanomi/*:ETOS)}</etos>
@@ -1243,7 +1300,7 @@ declare function tdy:map-update-request-to-db($request as element())
      }
      </kps6YpoeKatanomhCollection>
      <kps6YpoeXorothethseisCollection>
-     {for $Xorothetisi in $request//*:KPS6_YPOE_XOROTHETHSEIS return
+     {for $Xorothetisi in $request//*:KPS6_YPOE_XOROTHETHSEIS where $Xorothetisi/node() return
        <Kps6YpoeXorothethseis>
           <yxoId>{fn:data($Xorothetisi/*:YXO_ID)}</yxoId>
           <aaXorothethshs>{fn:data($Xorothetisi/*:AA_XOROTHETHSHS)}</aaXorothethshs>
@@ -1255,7 +1312,7 @@ declare function tdy:map-update-request-to-db($request as element())
      }
      </kps6YpoeXorothethseisCollection>
      <kps6YpoeDeiktesCollection>
-      {for $Deiktis in $request//*:KPS6_YPOE_DEIKTES return
+      {for $Deiktis in $request//*:KPS6_YPOE_DEIKTES where $Deiktis/node() return
        <Kps6YpoeDeiktes>
           <ydeId>{fn:data($Deiktis/*:YDE_ID)}</ydeId>
           <kodikosDeikths>{fn:data($Deiktis/*:KODIKOS_DEIKTHS)}</kodikosDeikths>
@@ -1267,19 +1324,21 @@ declare function tdy:map-update-request-to-db($request as element())
   </tns:Kps6YpoergaCollection>
 };
 
-declare function tdy:map-insert-request-to-db($request as element()) as element() (:: schema-element(tdy-db-update:Kps6YpoergaCollection) ::)
+declare function tdy:map-update-request-to-db($request as element()) as element() (:: schema-element(tdy-db-update:Kps6YpoergaCollection) ::)
 {let $EpilesimesDapanes := for $EpileksimiDapani in $request//*:KPS6_YPOE_EPILEKSIMES return
               <KPS6_YPOE_EPILEKSIMES>
               {$EpileksimiDapani/*:ID_YPUNCO/preceding-sibling::*}
-              {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
+              <ID_YPUNCO>
+              {if (fn:not(fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
                    'select flag_aplopoihmeno_kostos as Flag_Kostos  
                     from KPS6_EPILEKSIMES_DAPANES where ID_KATHGORIA_DAPANHS = ?',
-                    xs:unsignedInt($EpileksimiDapani/*:ID_KATHGORIA_DAPANHS))//*:FLAG_KOSTOS)=(0,1) 
+                    xs:unsignedInt($EpileksimiDapani/*:ID_KATHGORIA_DAPANHS))//*:FLAG_KOSTOS)=(0,1)) 
                     and fn:not($EpileksimiDapani/*:ID_YPUNCO/text()))
                then fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Id_Ypunco',
                     'Select ID_YPUNCO_SEQ.NEXTVAL from Dual')//*:NEXTVAL)
-               else ()
+               else fn:data($EpileksimiDapani/*:ID_YPUNCO)
               }
+              </ID_YPUNCO>
               {$EpileksimiDapani/*:ID_YPUNCO/following-sibling::*}
               </KPS6_YPOE_EPILEKSIMES>
   return        
@@ -1338,10 +1397,9 @@ declare function tdy:map-insert-request-to-db($request as element()) as element(
         {if ($request//*:KPS6_YPOERGA/*:FLAG_AYTOMATI_EKGKRISH_TDY/text()) 
          then  fn:data( $request//*:KPS6_YPOERGA/*:FLAG_AYTOMATI_EKGKRISH_TDY) 
          else  0 }
-      </flagAytomatiEkgkrishTdy>
-      <!--<flagEksairesiProe>{fn:data($request//*:KPS6_YPOERGA/*:FLAG_EKSAIRESI_PROE)}</flagEksairesiProe>-->
-            <kps6YpoergaMonadiaiaKosthCollection>
-       {for $EpileksimiDapani in $EpilesimesDapanes return 
+      </flagAytomatiEkgkrishTdy>      
+       <kps6YpoergaMonadiaiaKosthCollection>
+       {for $EpileksimiDapani in $EpilesimesDapanes where $EpileksimiDapani/node() return 
         if ($EpileksimiDapani/node() and 
              fn:not(fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
                    'select flag_aplopoihmeno_kostos as Flag_Kostos  
@@ -1358,20 +1416,21 @@ declare function tdy:map-insert-request-to-db($request as element()) as element(
                 {if ($EpileksimiDapani/*:ARITHMOS_MONADON/text()) then  fn:data($EpileksimiDapani/*:ARITHMOS_MONADON)  else  1 }
                 </posothta>
                <posothtaSynolikh>
-                 {if ($EpileksimiDapani/*:APOSOTHTA_SYNOLIKH /text()) then  fn:data($EpileksimiDapani/*:POSOTHTA_SYNOLIKH)  else  1 }
+                 {if ($EpileksimiDapani/*:POSOTHTA_SYNOLIKH/text()) then  fn:data($EpileksimiDapani/*:POSOTHTA_SYNOLIKH)  else  1 }
                </posothtaSynolikh>
               </Kps6YpoergaMonadiaiaKosth>
         else ()
        }
      </kps6YpoergaMonadiaiaKosthCollection> 
       <kps6YpoeAnadoxoiCollection>
-     {for $Anadoxos in  $request//*:KPS6_YPOE_ANADOXOI 
+     {for $Anadoxos in  $request//*:KPS6_YPOE_ANADOXOI where $Anadoxos/node() return
       let $ergoEES := fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Stoxos',
-                'select KPS6_ERGORAMA_TDP.IS_RECORD_STOXOS_3((select KPS6_CORE.GET_ISXYON_TDP(?) Stoxos From Dual',
+                'select KPS6_ERGORAMA_TDP.IS_RECORD_STOXOS_3(KPS6_CORE.GET_ISXYON_TDP(?)) Stoxos From Dual',
                 xs:unsignedInt($request//*:KPS6_YPOERGA/*:KODIKOS_MIS))//*:STOXOS)
       let $ExistsAFM := fn:data(fn-bea:execute-sql('jdbc/mis_master6DS','Flag_Kostos',
-                'select count(*) As cnt from kps6_ypoe_anadoxoi where tdy_id =?',
-                xs:unsignedInt($request//*:KPS6_YPOERGA/*:TDY_ID))//*:CNT)               
+                'select count(*) As cnt from kps6_ypoe_anadoxoi where tdy_id =? and AFM = ? ',
+                xs:unsignedInt($request//*:KPS6_YPOERGA/*:TDY_ID),
+                xs:string($Anadoxos/*:AFM))//*:CNT)               
      return
       if ((fn:not(fn:data($Anadoxos/*:YAN_ID)) and (($ergoEES=1 and $ExistsAFM= 0) or $ergoEES=0)) or 
            fn:data($Anadoxos/*:YAN_ID)>0 ) then      
@@ -1385,14 +1444,13 @@ declare function tdy:map-insert-request-to-db($request as element()) as element(
         <energosAnadoxos>{fn:data($Anadoxos/*:ENERGOS_ANADOXOS)}</energosAnadoxos>
         <aitiologiaAnenergoy>{fn:data($Anadoxos/*:AITIOLOGIA_ANENERGOY)}</aitiologiaAnenergoy>
         <posoDd>{fn:data($Anadoxos/*:POSO_DD)}</posoDd>
-        <parathrhseisKataxorTdyAna>{fn:data($Anadoxos/*:PARATHRHSEIS_KATAXOR_TDY_ANA)}</parathrhseisKataxorTdyAna>
-        <!--<dateSymbashs>{fn:data($Anadoxos/*:DATE_SYMBASHS)}</dateSymbashs>-->
+        <parathrhseisKataxorTdyAna>{fn:data($Anadoxos/*:PARATHRHSEIS_KATAXOR_TDY_ANA)}</parathrhseisKataxorTdyAna>        
       </Kps6YpoeAnadoxoi>
      else ()
      }
      </kps6YpoeAnadoxoiCollection>
      <kps6YpoeDiakritaCollection>
-     {for $Diakrito in $request//*:KPS6_YPOE_DIAKRITA return
+     {for $Diakrito in $request//*:KPS6_YPOE_DIAKRITA where $Diakrito/node() return
        <Kps6YpoeDiakrita>
           <ydiId>{fn:data($Diakrito/*:YDI_ID)}</ydiId>
           <aaDiakritoy>{fn:data($Diakrito/*:AA_DIAKRITOY)}</aaDiakritoy>
@@ -1405,35 +1463,9 @@ declare function tdy:map-insert-request-to-db($request as element()) as element(
           <dateStart>{fn:data($Diakrito/*:DATE_START)}</dateStart>
        </Kps6YpoeDiakrita>
      }
-     </kps6YpoeDiakritaCollection>
-          <kps6YpoeEpileksimesCollection>
-      {for $Dapani in $EpilesimesDapanes return
-        <Kps6YpoeEpileksimes>
-          <yepId>{fn:data($Dapani/*:YEP_ID)}</yepId>
-          <posoDdNofpa>{fn:data($Dapani/*:POSO_DD_NOFPA)}</posoDdNofpa>
-          <posoFpaDd>
-            {if (fn:data($Dapani/*:POSO_FPA_DD)) then fn:data($Dapani/*:POSO_FPA_DD)  else  0 }
-          </posoFpaDd>
-          <posoDdEpil>{fn:data($Dapani/*:POSO_DD_EPIL)}</posoDdEpil>
-          <idKathgoriaDapanhs>{fn:data($Dapani/*:ID_KATHGORIA_DAPANHS)}</idKathgoriaDapanhs>
-          <posoFpaEpileksimhDd>
-            {if (fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD)) then  fn:data($Dapani/*:POSO_FPA_EPILEKSIMH_DD) else  0 }
-          </posoFpaEpileksimhDd>
-          <perigrafhKatDapanhs/>
-          <pososto>{fn:data($Dapani/*:POSOSTO)}</pososto>
-          <kostosMonadas>{fn:data($Dapani/*:KOSTOS_MONADAS)}</kostosMonadas>
-          <monadaMetrhshs>{fn:data($Dapani/*:MONADA_METRHSHS)}</monadaMetrhshs>
-          <perigrafhMonadas>{fn:data($Dapani/*:PERIGRAFH_MONADAS)}</perigrafhMonadas>
-          <arithmosMonadon>{fn:data($Dapani/*:ARITHMOS_MONADON)}</arithmosMonadon>
-          <kathgMhEpileksimothtas/>
-          <aitiologhshMhEpileksimothtas>{fn:data($Dapani/*:AITIOLOGHSH_MH_EPILEKSIMOTHTAS)}</aitiologhshMhEpileksimothtas>
-          <idUnco>{fn:data($Dapani/*:ID_UNCO)}</idUnco>
-          <idYpunco>{fn:data($Dapani/*:ID_YPUNCO)}</idYpunco>
-        </Kps6YpoeEpileksimes>
-      }
-     </kps6YpoeEpileksimesCollection> 
+     </kps6YpoeDiakritaCollection> 
      <kps6YpoeEpileksimesCollection>
-      {for $Dapani in $EpilesimesDapanes return
+      {for $Dapani in $EpilesimesDapanes where $Dapani/node()return
         <Kps6YpoeEpileksimes>
           <yepId>{fn:data($Dapani/*:YEP_ID)}</yepId>
           <posoDdNofpa>{fn:data($Dapani/*:POSO_DD_NOFPA)}</posoDdNofpa>
@@ -1459,7 +1491,7 @@ declare function tdy:map-insert-request-to-db($request as element()) as element(
       }
      </kps6YpoeEpileksimesCollection> 
      <kps6YpoeKatanomhCollection>
-      {for $Katanomi in $request//*:KPS6_YPOE_KATANOMH return
+      {for $Katanomi in $request//*:KPS6_YPOE_KATANOMH where $Katanomi/node()return
        <Kps6YpoeKatanomh>
         <ykaId>{fn:data($Katanomi/*:YKA_ID)}</ykaId>
         <etos>{fn:data($Katanomi/*:ETOS)}</etos>
@@ -1469,7 +1501,7 @@ declare function tdy:map-insert-request-to-db($request as element()) as element(
      }
      </kps6YpoeKatanomhCollection>
      <kps6YpoeXorothethseisCollection>
-     {for $Xorothetisi in $request//*:KPS6_YPOE_XOROTHETHSEIS return
+     {for $Xorothetisi in $request//*:KPS6_YPOE_XOROTHETHSEIS where $Xorothetisi/node() return
        <Kps6YpoeXorothethseis>
           <yxoId>{fn:data($Xorothetisi/*:YXO_ID)}</yxoId>
           <aaXorothethshs>{fn:data($Xorothetisi/*:AA_XOROTHETHSHS)}</aaXorothethshs>
@@ -1481,7 +1513,7 @@ declare function tdy:map-insert-request-to-db($request as element()) as element(
      }
      </kps6YpoeXorothethseisCollection>
      <kps6YpoeDeiktesCollection>
-      {for $Deiktis in $request//*:KPS6_YPOE_DEIKTES return
+      {for $Deiktis in $request//*:KPS6_YPOE_DEIKTES where $Deiktis/node() return
        <Kps6YpoeDeiktes>
           <ydeId>{fn:data($Deiktis/*:YDE_ID)}</ydeId>
           <kodikosDeikths>{fn:data($Deiktis/*:KODIKOS_DEIKTHS)}</kodikosDeikths>

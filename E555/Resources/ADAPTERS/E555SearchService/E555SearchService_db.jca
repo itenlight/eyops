@@ -1,0 +1,12 @@
+<adapter-config name="E555SearchService" adapter="db" wsdlLocation="../../WSDL/E555SearchService/E555SearchService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="E555SearchService_ptt" operation="E555SearchService">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="MASTER6"/>
+      <property name="ProcedureName" value="TRANSMISSION_L"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

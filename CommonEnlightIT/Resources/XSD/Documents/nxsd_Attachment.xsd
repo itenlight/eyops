@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:espa:v6:documents" targetNamespace="urn:espa:v6:documents" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="Attachment">      
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="attachmentDocumentId" type="xsd:unsignedLong" minOccurs="0"/>
+              <xsd:element name="attachmentSize" type="xsd:unsignedLong" minOccurs="0"/>
+              <xsd:element name="deleteModeOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="dilosi" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="docAnaptyxi" type="xsd:unsignedShort" minOccurs="0"/>
+              <xsd:element name="docEgkyro" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="docFakelosFlag" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="docFileName" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="docLang" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="docNum" type="xsd:unsignedLong"/>
+              <xsd:element name="docProeleusiArxeiou" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="docSource" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="document" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="deltioId" type="xsd:unsignedLong" minOccurs="0"/>
+                    <xsd:element name="deltioTypeId" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="overviewDocument" type="xsd:boolean" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="documentCategory" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="aa" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="id" type="xsd:unsignedLong"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="documentProeleysh" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="id" type="xsd:unsignedLong"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="downloadOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="editModeOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="eidosTaytopoihshs" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="flagEncryption" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="flagEpd" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="foreasDikaioyxoy" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="hmeromEggrafoy" type="xsd:dateTime" minOccurs="0"/>
+              <xsd:element name="idObjectProeleysh" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="insertDate" type="xsd:date" minOccurs="0"/>
+              <xsd:element name="insertUser" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="isDeleteModeOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="isDownloadOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="isEditModeOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="isUpdateMetadataOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="isUploadNewFileOptionAvailable" type="xsd:boolean" minOccurs="0"/>
+              <xsd:element name="kodikosSysthmatosExt" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="objectCatProeleysh" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="relatedFile" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="sxolia" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="syntakths" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="typosArxeioy" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="updateDate" type="xsd:date" minOccurs="0"/>
+              <xsd:element name="updateMetadataOptionAvailable" type="xsd:boolean" minOccurs="0"/>              
+            </xsd:sequence>
+        
+    </xsd:complexType>
+  </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

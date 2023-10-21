@@ -1,0 +1,24 @@
+<wsdl:definitions name="DocMetadataService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/DocMetadataService" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/CommonEnlightIT/DocMetadataService" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocMetadataService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plt:partnerLinkType name="DocMetadataService_plt">
+    <plt:role name="DocMetadataService_role">
+      <plt:portType name="tns:DocMetadataService_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocMetadataService"
+                schemaLocation="../../ADAPTERS/DocMetadataService/DocMetadataService_table.xsd"/>
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="Com6DocMetadataCollection_msg">
+        <wsdl:part name="Com6DocMetadataCollection" element="top:Com6DocMetadataCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="DocMetadataService_ptt">
+        <wsdl:operation name="merge">
+            <wsdl:input message="tns:Com6DocMetadataCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <wsdl:input message="tns:Com6DocMetadataCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

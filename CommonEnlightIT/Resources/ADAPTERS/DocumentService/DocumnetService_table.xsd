@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocumnetService" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocumnetService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Com6DocumentsCollection" type="Com6DocumentsCollection"/>
+   <xs:complexType name="Com6DocumentsCollection">
+      <xs:sequence>
+         <xs:element name="Com6Documents" type="Com6Documents" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Com6Documents">
+      <xs:sequence>
+         <xs:element name="insDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="updUsr" type="string50" minOccurs="0" nillable="true"/>
+         <xs:element name="docContent" type="xs:base64Binary" minOccurs="0" nillable="true"/>
+         <xs:element name="idDocument" type="xs:decimal"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="DocumnetServiceSelect_ID_DocumentInputParameters" type="DocumnetServiceSelect_ID_Document"/>
+   <xs:complexType name="DocumnetServiceSelect_ID_Document">
+      <xs:sequence>
+         <xs:element name="ID_Document" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string50">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="50"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

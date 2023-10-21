@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="Native REST" xsi:type="con:NativeRestBindingType">
+            <con:wadl ref="CommonEnlightIT/Resources/WADL/HistoryService"/>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000101.49244d27.0.18c5a0fb04b.N7bb2">
+            <con:stage id="_StageId-7f000101.49244d27.0.18c5a0fb04b.N7b49" name="Run Native Query " xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con6:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.49244d27.0.18c5a0fb04b.N7a14</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con6:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_historychanges_request"/>
+                        <con6:schemaElement xmlns:urn="urn:espa:v6:history">urn:HistoryRequest</con6:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con6:nxsdTranslation>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.49244d27.0.18c5a0fb04b.N7b48</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>history-lib:GetDeltioHistoryChanges(
+    $body//history:idDeltiou,
+    $body//history:deltioTypeId,
+    history-lib:get-lang($inbound)
+)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.49244d27.0.18c5a0fb04b.N7bb1">
+            <con:stage id="_StageId-7f000101.49244d27.0.18c5a0fb04b.N7aae" name="Prepare Response" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.49244d27.0.18c5a0fb04b.N7aad</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/history:HistoryResponse</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_historychanges_response"/>
+                        <con2:schemaElement xmlns:urn="urn:espa:v6:history">urn:HistoryResponse</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.49244d27.0.18c5a0fb04b.N7aac</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.46b0c3ab.0.18c694926bc.N7f7f">
+            <con:stage id="_StageId-7f000101.46b0c3ab.0.18c694926bc.N7f7e" name="Run Native Query " xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con6:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7f7d</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con6:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_historychanges_request"/>
+                        <con6:schemaElement xmlns:urn="urn:espa:v6:history">urn:HistoryRequest</con6:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con6:nxsdTranslation>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7f7c</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>history-lib:GetAnakinoseis($body//history:idDeltiou)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.46b0c3ab.0.18c694926bc.N7f7b">
+            <con:stage id="_StageId-7f000101.46b0c3ab.0.18c694926bc.N7f7a" name="Prepare Response" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7f79</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/history:HistoryResponse</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_anakikoseis_response"/>
+                        <con2:schemaElement xmlns:his="http://espa.gr/v6/history">his:HistoryResponse</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7f78</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.46b0c3ab.0.18c694926bc.N7ece">
+            <con:stage id="_StageId-7f000101.46b0c3ab.0.18c694926bc.N7ecd" name="Run Native Query " xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con6:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7ecc</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con6:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_historychanges_request"/>
+                        <con6:schemaElement xmlns:urn="urn:espa:v6:history">urn:HistoryRequest</con6:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con6:nxsdTranslation>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7ecb</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>history-lib:GetPraksisChanges(
+    $body//history:idPraksis,
+    $body//history:deltioTypeId,
+    history-lib:get-lang($inbound)
+)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.46b0c3ab.0.18c694926bc.N7eca">
+            <con:stage id="_StageId-7f000101.46b0c3ab.0.18c694926bc.N7ec9" name="Prepare Response" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7ec8</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/history:HistoryResponse</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_praksichanges_response"/>
+                        <con2:schemaElement xmlns:urn="urn:espa:v6:history">urn:HistoryResponse</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7ec7</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000101.46b0c3ab.0.18c694926bc.N7e52">
+            <con:stage id="_StageId-7f000101.46b0c3ab.0.18c694926bc.N7e51" name="Run Native Query " xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con6:nxsdTranslation xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7e50</con1:id>
+                        <con2:type>Native-To-XML</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/text()</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con6:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_historychanges_request"/>
+                        <con6:schemaElement xmlns:urn="urn:espa:v6:history">urn:HistoryRequest</con6:schemaElement>
+                        <con2:replace-body-content/>
+                        <con2:enforceSchemaOrder>true</con2:enforceSchemaOrder>
+                    </con6:nxsdTranslation>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7e4f</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText>history-lib:GetDeltioHistoryChanges(
+    $body//history:idForea,
+    21,
+    history-lib:get-lang($inbound)
+)</con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000101.46b0c3ab.0.18c694926bc.N7e4e">
+            <con:stage id="_StageId-7f000101.46b0c3ab.0.18c694926bc.N7e4d" name="Prepare Response" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+                <con:context>
+                    <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
+                </con:context>
+                <con:actions>
+                    <con2:nxsdTranslation>
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7e4c</con1:id>
+                        <con2:type>XML-To-Native</con2:type>
+                        <con2:sourceExpr>
+                            <con1:xqueryText>$body/history:HistoryResponse</con1:xqueryText>
+                        </con2:sourceExpr>
+                        <con2:nxsd ref="CommonEnlightIT/Resources/XSD/History/nxsd_historychanges_response"/>
+                        <con2:schemaElement xmlns:urn="urn:espa:v6:history">urn:HistoryResponse</con2:schemaElement>
+                        <con2:replace-body-content/>
+                    </con2:nxsdTranslation>
+                    <con2:transport-headers xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con1:id>_ActionId-7f000101.46b0c3ab.0.18c694926bc.N7e4b</con1:id>
+                        <con2:header-set>inbound-response</con2:header-set>
+                        <con2:header value="expression" name="Content-Type">
+                            <con1:xqueryText>'application/json'</con1:xqueryText>
+                        </con2:header>
+                    </con2:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-7f000101.49244d27.0.18c5a0fb04b.N7be4" name="History Branch">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="GetDeltioHistoryChanges">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetDeltioHistoryChanges Pipeline">
+                                <con:request>request-7f000101.49244d27.0.18c5a0fb04b.N7bb2</con:request>
+                                <con:response>response-7f000101.49244d27.0.18c5a0fb04b.N7bb1</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetAnakoinoseis">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetAnakinoseis Pipeline">
+                                <con:request>request-7f000101.46b0c3ab.0.18c694926bc.N7f7f</con:request>
+                                <con:response>response-7f000101.46b0c3ab.0.18c694926bc.N7f7b</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetPraksiChangeList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetPraksiChangeList Pipeline">
+                                <con:request>request-7f000101.46b0c3ab.0.18c694926bc.N7ece</con:request>
+                                <con:response>response-7f000101.46b0c3ab.0.18c694926bc.N7eca</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetKartelaForea">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="GetKartelaForea Pipeline">
+                                <con:request>request-7f000101.46b0c3ab.0.18c694926bc.N7e52</con:request>
+                                <con:response>response-7f000101.46b0c3ab.0.18c694926bc.N7e4e</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

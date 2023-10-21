@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:espa:v6:documents" targetNamespace="urn:espa:v6:documents" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:jsonTopLevelArray="true" nxsd:encoding="UTF-8">
+   <xsd:element name="AttachmentResponse">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="Row" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="docNum" type="xsd:unsignedLong"/>
+                     <xsd:element name="attachmentDocumentId" type="xsd:unsignedLong"/>
+                     <xsd:element name="docFileName" type="xsd:string"/>
+                     <xsd:element name="description" type="xsd:string"/>
+                     <xsd:element name="syntakths" type="xsd:string"/>
+                     <xsd:element name="foreasDikaioyxoy" type="xsd:string"/>
+                     <xsd:element name="sxolia" type="xsd:string"/>
+                     <xsd:element name="docLang" type="xsd:string"/>
+                     <xsd:element name="docSource" type="xsd:integer"/>
+                     <xsd:element name="hmeromEggrafoy" type="xsd:date"/>
+                     <xsd:element name="insertUser" type="xsd:string"/>
+                     <xsd:element name="insertDate" type="xsd:date"/>
+                     <xsd:element name="updateDate" type="xsd:date"/>
+                     <xsd:element name="idObjectProeleysh" type="xsd:string"/>
+                     <xsd:element name="objectCatProeleysh" type="xsd:string"/>
+                     <xsd:element name="dilosi" type="xsd:string"/>
+                     <xsd:element name="kodikosSysthmatosExt" type="xsd:string"/>
+                     <xsd:element name="eidosTaytopoihshs" type="xsd:string"/>
+                     <xsd:element name="docEgkyro" type="xsd:string"/>
+                     <xsd:element name="docFakelosFlag" type="xsd:string"/>
+                     <xsd:element name="flagEpd" type="xsd:string"/>
+                     <xsd:element name="flagEncryption" type="xsd:string"/>
+                     <xsd:element name="typosArxeioy"  type="xsd:string"/>
+                     <xsd:element name="docProeleusiArxeiou" type="xsd:string"/>
+                     <xsd:element name="attachmentSize" type="xsd:double"/>
+                     <xsd:element name="document">
+                        <xsd:complexType>
+                           <xsd:sequence>
+                              <xsd:element name="deltioId" type="xsd:unsignedLong"/>
+                              <xsd:element name="deltioTypeId" type="xsd:unsignedShort"/>
+                              <xsd:element name="overviewDocument" type="xsd:string"/>
+                           </xsd:sequence>
+                        </xsd:complexType>
+                     </xsd:element>
+                     <xsd:element name="documentCategory">
+                        <xsd:complexType>
+                           <xsd:sequence>
+                              <xsd:element name="id" type="xsd:unsignedLong"/>
+                              <xsd:element name="description" type="xsd:string"/>
+                              <xsd:element name="aa" type="xsd:string"/>
+                           </xsd:sequence>
+                        </xsd:complexType>
+                     </xsd:element>
+                     <xsd:element name="documentProeleysh">
+                     <xsd:complexType>
+                           <xsd:sequence>
+                              <xsd:element name="id" type="xsd:unsignedLong"/>
+                              <xsd:element name="description" type="xsd:string"/>
+                           </xsd:sequence>
+                        </xsd:complexType>
+                     </xsd:element>
+                     <xsd:element name="isDownloadOptionAvailable" type="xsd:boolean"/>
+                     <xsd:element name="isEditModeOptionAvailable" type="xsd:boolean"/>
+                     <xsd:element name="isDeleteModeOptionAvailable" type="xsd:boolean"/>
+                     <xsd:element name="isUpdateMetadataOptionAvailable" type="xsd:boolean"/>
+                     <xsd:element name="isUploadNewFileOptionAvailable" type="xsd:boolean"/>
+                     <xsd:element name="docAnaptyxi" type="xsd:integer"/>
+                     <xsd:element name="relatedFile"/>
+                     <xsd:element name="updateMetadataOptionAvailable" type="xsd:string"/>
+                     <xsd:element name="downloadOptionAvailable" type="xsd:string"/>
+                     <xsd:element name="deleteModeOptionAvailable" type="xsd:string"/>
+                     <xsd:element name="editModeOptionAvailable" type="xsd:string"/>
+                     <xsd:element name="uploadNewFileOptionAvailable" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

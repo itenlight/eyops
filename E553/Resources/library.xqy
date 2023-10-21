@@ -34,3 +34,31 @@ declare function e553:getXrewseisCountPerUser($inbound as element()) as element(
   <ekkremotitesCount>{fn:data($Xrewsis//*:EKKR)}</ekkremotitesCount>
  </Xrewsis>
 };
+
+
+declare function e553:GetDeltiaForFilter($inbound as element()) as element(){
+<E553Response xmlns="http://espa.gr/v6/e553">
+ {
+ let $Deltia := fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('SQL-RESULT'),
+                      'SELECT object_category_id, 
+                              Case When Upper(?)=''GR'' Then object_category_name 
+                                   Else  Acronym_EN End object_category_name 
+                      FROM kps6_object_categories 
+                      WHERE object_category_id IN (101, 135, 103, 105, 130, 167, 182) 
+                      UNION 
+                      SELECT 0 AS object_category_id, 
+				Case When Upper(?)=''GR'' then ''Όλα τα δελτία''  Else ''All forms'' End object_category_name 
+                      FROM DUAL 
+                      ORDER BY 1', e553:get-lang($inbound), e553:get-lang($inbound))
+ return 
+ if (fn:not($Deltia/node())) then <Row/>
+ else
+ for $Deltio in $Deltia return
+   <Row>
+    <objectCategoryId>{fn:data($Deltio//*:OBJECT_CATEGORY_ID)}</objectCategoryId>
+    <objectCategoryName>{fn:data($Deltio//*:OBJECT_CATEGORY_NAME)}</objectCategoryName>
+   </Row>
+ }
+ </E553Response>
+};
+

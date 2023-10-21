@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read" elementFormDefault="qualified" attributeFormDefault="qualified">
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/TDY_read" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
 	<xs:element name="Kps6YpoergaCollection" type="Kps6YpoergaCollection"/>
 	<xs:complexType name="Kps6YpoergaCollection">
 		<xs:sequence>
@@ -56,6 +56,13 @@
 			<xs:element name="proelefshDeltio" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="daText" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="flagAytomatiEkgkrishTdy" type="xs:int" nillable="true" minOccurs="0"/>
+			<xs:element name="apanthshEpde" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="apanthshEpdeErrorCode" type="xs:decimal" nillable="true" minOccurs="0"/>
+			<xs:element name="objStatusId" type="xs:decimal" nillable="true" minOccurs="0"/>
+			<xs:element name="objStatusDate" type="xs:dateTime" nillable="true" minOccurs="0"/>
+			<xs:element name="objIsxys" type="xs:int" nillable="true" minOccurs="0"/>
+			<xs:element name="objIsxysDate" type="xs:dateTime" nillable="true" minOccurs="0"/>
+			<xs:element name="flagEksairesiProe" type="xs:int" nillable="true" minOccurs="0"/>
 			<xs:element name="kps6YpoeAnadoxoiCollection" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>
@@ -118,6 +125,7 @@
 			<xs:element name="aitiologiaAnenergoy" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="posoDd" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="parathrhseisKataxorTdyAna" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="dateSymbashs" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="kpsAnadoxoi" type="KpsAnadoxoi" nillable="true" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -266,6 +274,7 @@
 			<xs:element name="stFlag" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="posothtaSynolikh" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="idYpunco" type="xs:decimal" nillable="true" minOccurs="0"/>
+			<xs:element name="flagAplopoihmenoKostos" type="xs:decimal" nillable="true" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="VsTdyKatalogosErgonInfo">
@@ -286,7 +295,7 @@
 			<xs:element name="kodikosYpoergoy" type="xs:decimal" nillable="true"/>
 			<xs:element name="titlosYpoergoy" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="dikaioyxosYpoergoy" type="xs:string" nillable="true" minOccurs="0"/>
-			<xs:element name="foreasParakol" type="xs:decimal" nillable="true" minOccurs="0"/>
+			<xs:element name="foreasParakol" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="ypoeEnisxyshFlag" type="xs:int" nillable="true" minOccurs="0"/>
 			<xs:element name="eidosYpoergoyDescr" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="tdpIdAtp" type="xs:decimal" nillable="true" minOccurs="0"/>
@@ -299,66 +308,69 @@
 	</xs:complexType>
 	<xs:complexType name="Vs6TdyInfo">
 		<xs:sequence>
-			<xs:element name="kodikosMis" type="xs:decimal" minOccurs="0"/>
-			<xs:element name="kodikosYpoergoy" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="kodikosMis" type="xs:decimal" nillable="true" minOccurs="0"/>
+			<xs:element name="kodikosYpoergoy" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="aaYpoergoy" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="aaTdy" type="xs:decimal" minOccurs="0"/>
-			<xs:element name="aaYpoekdosh" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="aaTdy" type="xs:decimal" nillable="true" minOccurs="0"/>
+			<xs:element name="aaYpoekdosh" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="dateCreation" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="dateMetYpovolhs" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="dateElegxoy" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="elegxos" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="katastashDeltioy" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="katastashDeltioyDescr" type="string100" nillable="true" minOccurs="0"/>
+			<xs:element name="katastashDeltioyDescr" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="kathgoriaEkdoshs" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="kathgoriaEkdoshsDescr" type="string222" nillable="true" minOccurs="0"/>
-			<xs:element name="titlosYpoergoy" type="string765" nillable="true" minOccurs="0"/>
+			<xs:element name="kathgoriaEkdoshsDescr" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="titlosYpoergoy" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="toYpoergoAfora" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="toYpoergoAforaDescr" type="string222" nillable="true" minOccurs="0"/>
+			<xs:element name="toYpoergoAforaDescr" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="kodikosProeg" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="proegkrish" type="string627" nillable="true" minOccurs="0"/>
+			<xs:element name="proegkrish" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="proegAa" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="ekdoshProeg" type="string81" nillable="true" minOccurs="0"/>
-			<xs:element name="titlos" type="string627" nillable="true" minOccurs="0"/>
+			<xs:element name="ekdoshProeg" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="titlos" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="dateEpileksimothtas" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="dateAnalhpshs" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="dateLhkshs" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="dateTropop" type="xs:dateTime" nillable="true" minOccurs="0"/>
 			<xs:element name="eidosAnatheshs" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="eidosAnatheshsDescr" type="string222" nillable="true" minOccurs="0"/>
-			<xs:element name="kodikosDikaioyxoy" type="string50" nillable="true" minOccurs="0"/>
-			<xs:element name="dikaioyxosDescr" type="string500" nillable="true" minOccurs="0"/>
+			<xs:element name="eidosAnatheshsDescr" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="kodikosDikaioyxoy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="dikaioyxosDescr" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="idTdySymplhromatikhs" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="aitiologiaYpoekdoshs" type="string4000" nillable="true" minOccurs="0"/>
+			<xs:element name="aitiologiaYpoekdoshs" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="flagTropTimetable" type="xs:int" nillable="true" minOccurs="0"/>
 			<xs:element name="flagTropOik" type="xs:int" nillable="true" minOccurs="0"/>
 			<xs:element name="flagTropFys" type="xs:int" nillable="true" minOccurs="0"/>
 			<xs:element name="flagTropAllo" type="xs:int" nillable="true" minOccurs="0"/>
-			<xs:element name="titlosForea" type="string240" nillable="true" minOccurs="0"/>
+			<xs:element name="titlosForea" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="kodikosEpivlepoysas" type="xs:int" nillable="true" minOccurs="0"/>
-			<xs:element name="onomaYpeythinoy" type="string100" nillable="true" minOccurs="0"/>
-			<xs:element name="theshYpeythinoy" type="string300" nillable="true" minOccurs="0"/>
-			<xs:element name="specialityYpeythinoy" type="string100" nillable="true" minOccurs="0"/>
-			<xs:element name="dieythynshYpeythinoy" type="string300" nillable="true" minOccurs="0"/>
-			<xs:element name="thlYpeythinoy" type="string30" nillable="true" minOccurs="0"/>
-			<xs:element name="faxYpeythinoy" type="string30" nillable="true" minOccurs="0"/>
-			<xs:element name="emailYpeythinoy" type="string50" nillable="true" minOccurs="0"/>
+			<xs:element name="onomaYpeythinoy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="theshYpeythinoy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="specialityYpeythinoy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="dieythynshYpeythinoy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="thlYpeythinoy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="faxYpeythinoy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="emailYpeythinoy" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="kodikosOikonomikhs" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="perigrafhOikonomikhs" type="string300" nillable="true" minOccurs="0"/>
-			<xs:element name="onomaYpeythinoyOik" type="string100" nillable="true" minOccurs="0"/>
-			<xs:element name="theshYpeythinoyOik" type="string100" nillable="true" minOccurs="0"/>
-			<xs:element name="dieythynshYpeythinoyOik" type="string100" nillable="true" minOccurs="0"/>
-			<xs:element name="thlYpeythinoyOik" type="string30" nillable="true" minOccurs="0"/>
-			<xs:element name="emailYpeythinoyOik" type="string50" nillable="true" minOccurs="0"/>
+			<xs:element name="perigrafhOikonomikhs" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="onomaYpeythinoyOik" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="theshYpeythinoyOik" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="dieythynshYpeythinoyOik" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="thlYpeythinoyOik" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="emailYpeythinoyOik" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="periorismoiMeep" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="periorismoiMeepDescr" type="string222" nillable="true" minOccurs="0"/>
+			<xs:element name="periorismoiMeepDescr" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="dateMeep" type="xs:dateTime" nillable="true" minOccurs="0"/>
-			<xs:element name="texnikhPerigrafh" type="string4000" nillable="true" minOccurs="0"/>
+			<xs:element name="texnikhPerigrafh" type="xs:string" nillable="true" minOccurs="0"/>
 			<xs:element name="posoMhEnisxyomenh" type="xs:decimal" nillable="true" minOccurs="0"/>
 			<xs:element name="posoIdiot" type="xs:decimal" nillable="true" minOccurs="0"/>
-			<xs:element name="parathrhseisKataxorTdyDik" type="string4000" nillable="true" minOccurs="0"/>
-			<xs:element name="parathrhseisKataxorTdy" type="string4000" nillable="true" minOccurs="0"/>
-			<xs:element name="stFlag" type="xs:decimal" nillable="true" minOccurs="0"/>
+			<xs:element name="parathrhseisKataxorTdyDik" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="parathrhseisKataxorTdy" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="thesmikoPlaisio" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="thesmikoPlaisioEn" type="xs:string" nillable="true" minOccurs="0"/>
+			<xs:element name="krisimoYe" type="xs:int" nillable="true" minOccurs="0"/>
+			<xs:element name="flagTmhmatopoihmeno" type="xs:int" nillable="true" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="Kps6YpoergaPrimaryKey" type="Kps6YpoergaPrimaryKey"/>
@@ -367,59 +379,4 @@
 			<xs:element name="tdyId" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:simpleType name="string100">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="100"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string222">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="222"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string765">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="765"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string627">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="627"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string81">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="81"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string50">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="50"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string500">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="500"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string4000">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="4000"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string240">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="240"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string300">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="300"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="string30">
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="30"/>
-		</xs:restriction>
-	</xs:simpleType>
 </xs:schema>
