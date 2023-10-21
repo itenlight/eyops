@@ -692,6 +692,29 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7b76">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N79ee" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N79ed</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N79ea</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7b74" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -750,6 +773,29 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7a0c">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7980" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N797f</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N797e</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7a0b" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -807,6 +853,29 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7990">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7947" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7946</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7945</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N798f" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -864,6 +933,29 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.N483b0112.0.18b16270d2e.N7914">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N790e" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N790d</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N790c</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.N483b0112.0.18b16270d2e.N7913" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -921,6 +1013,29 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.N3f60f8fb.0.18b1f7abaae.N7f57">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N78d5" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N78d4</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N78d3</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.N3f60f8fb.0.18b1f7abaae.N7f56" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -978,6 +1093,29 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.N3f60f8fb.0.18b1f7abaae.N7eaa">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N789c" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N789b</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N789a</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.N3f60f8fb.0.18b1f7abaae.N7ea9" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1036,6 +1174,29 @@ else &lt;e524:Kps6DeltioErothmata/></con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7f8c">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7863" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7862</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7861</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7f8b" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1093,6 +1254,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7f10">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N782a" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7829</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7828</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7f0f" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1150,6 +1334,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7e94">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N77f1" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N77f0</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N77ef</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7e93" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1207,6 +1414,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7e15">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N77b8" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N77b7</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N77b6</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7e14" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1252,6 +1482,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.5993581f.0.18b252842bd.N7d95">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N777f" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N777e</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N777d</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.5993581f.0.18b252842bd.N7d94" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1309,6 +1562,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7f57">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N770d" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N770c</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N770b</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7f56" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1354,6 +1630,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7edc">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7746" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7745</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7744</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7edb" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1399,6 +1698,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7e65">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N76d4" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N76d3</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N76d2</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7e64" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1444,6 +1766,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7dee">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N769b" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N769a</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7699</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7ded" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1489,6 +1834,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7d00">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7662" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7661</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7660</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7cff" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1534,6 +1902,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7c89">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N7629" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7628</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N7627</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7c88" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
@@ -1624,6 +2015,29 @@ $body//e524:kathgoria_ekdoshs)</con1:xqueryText>
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-7f000101.2ddade37.0.18b29e7b3c0.N7b6a">
+            <con:stage id="_StageId-7f000101.3128294b.0.18b528c0515.N75f0" name="Set User Context">
+                <con:context>
+                    <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
+                    <con1:dependencies>
+                        <con1:importModule ref="E524/Resources/library"/>
+                    </con1:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N75ef</con1:id>
+                        <con5:service ref="Common/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con3:replace varName="body" contents-only="true">
+                                <con1:id>_ActionId-7f000101.3128294b.0.18b528c0515.N75ee</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e524-lib:get-user($inbound)}&lt;/com:username></con1:xqueryText>
+                                </con3:expr>
+                            </con3:replace>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-7f000101.2ddade37.0.18b29e7b3c0.N7b69" name="Run Native Query">
                 <con:context>
                     <con1:userNsDecl prefix="e524-lib" namespace="http://espa.gr/v6/e524/lib"/>
