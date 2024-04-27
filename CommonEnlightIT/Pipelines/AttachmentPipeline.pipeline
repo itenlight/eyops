@@ -12,6 +12,7 @@
         <con:pipeline type="request" name="request-7f000101.N30dc5fc6.0.18eb9a5e923.N7f3a">
             <con:stage id="_StageId-7f000101.N30dc5fc6.0.18eb9a5e923.N7f38" name="Prepare Stage">
                 <con:context/>
+                <con:disabled>true</con:disabled>
                 <con:actions>
                     <con1:assign varName="vFilename">
                         <con2:id>_ActionId-7f000101.N30dc5fc6.0.18eb9a5e923.N7f2e</con2:id>
@@ -36,6 +37,7 @@ xs:unsignedLong($inbound/ctx:transport/ctx:request/http:query-parameters/http:pa
         <con:pipeline type="response" name="response-7f000101.N30dc5fc6.0.18eb9a5e923.N7f39">
             <con:stage id="_StageId-7f000101.N30dc5fc6.0.18eb9a5e923.N7dc9" name="Stage1">
                 <con:context/>
+                <con:disabled>true</con:disabled>
                 <con:actions>
                     <con1:javaCallout varName="vDocument">
                         <con2:id>_ActionId-7f000101.N30dc5fc6.0.18eb9a5e923.N7dc6</con2:id>
