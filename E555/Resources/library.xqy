@@ -55,7 +55,7 @@ declare function e555-lib:GetTrasmittionList($TraAA as xs:unsignedInt, $IDEp as 
    {if ($TransmittionList/node()) then
      for $Row in $TransmittionList return
      <Row>
-      <traAa>{fn:data($Row//*:TRA_AA)}</traAa>
+      <traAa>{xs:unsignedInt($Row//*:TRA_AA)}</traAa>
       <etos>{fn:data($Row//*:ETOS)}</etos>
       <anaforaEos>{fn:data($Row//*:ANAFORA_EOS)}</anaforaEos>
       <ypovolhEos>{fn:data($Row//*:YPOVOLH_EOS)}</ypovolhEos>

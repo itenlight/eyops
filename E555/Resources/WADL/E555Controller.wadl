@@ -29,7 +29,7 @@
             </response>
          </method>
       </resource>
-      <resource path="/getAnaforaPeriod">
+    <resource path="/search/getAnaforaPeriod">
          <method name="GET" soa:name="GetPeriodoAnaforasList">
             <request/>
             <response status="200">

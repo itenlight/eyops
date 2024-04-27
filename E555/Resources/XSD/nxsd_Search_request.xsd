@@ -5,7 +5,7 @@
       <xsd:complexType>
          <xsd:sequence>
             <xsd:element name="idTra" type="xsd:unsignedLong"/>
-            <xsd:element name="traAA" type="xsd:unsignedLong"/>
+            <xsd:element name="traAa" type="xsd:unsignedLong"/>
             <xsd:element name="idEp" type="xsd:unsignedInt"/>
             <xsd:element name="etos" type="xsd:unsignedShort"/>
             <xsd:element name="anaforaPeriodDesc" type="xsd:string"/>
