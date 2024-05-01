@@ -223,20 +223,20 @@
                                     <con2:replace varName="body" contents-only="true">
                                         <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7f9f</con6:id>
                                         <con2:expr>
-                                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<e555:TDYResponse>
+                                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<e555:E555Response>
  <e555:ERROR_CODE>{fn:data($ResponsePayload//*:errorCode)}</e555:ERROR_CODE>
  <e555:ERROR_MESSAGE>{fn:data($ResponsePayload//*:errorMessage)}</e555:ERROR_MESSAGE>
-</e555:TDYResponse>]]></con6:xqueryText>
+</e555:E555Response>]]></con6:xqueryText>
                                         </con2:expr>
                                     </con2:replace>
                                     <con2:nxsdTranslation>
                                         <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N65bb5d9b.0.18f0eca0453.N7f9e</con6:id>
                                         <con2:type>XML-To-Native</con2:type>
                                         <con2:sourceExpr>
-                                            <con1:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body/*:TDYResponse</con1:xqueryText>
+                                            <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body/e555:E555Response</con6:xqueryText>
                                         </con2:sourceExpr>
-                                        <con2:nxsd ref="TDY/Resources/XSD/nxsd_tdy_generic_response"/>
-                                        <con2:schemaElement xmlns:tdy="http://espa.gr/v6/tdy">tdy:TDYResponse</con2:schemaElement>
+                                        <con2:nxsd ref="E555/Resources/XSD/nxsd_UpdateDeiktes_response"/>
+                                        <con2:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con2:schemaElement>
                                         <con2:replace-body-content/>
                                     </con2:nxsdTranslation>
                                     <con1:reply isError="true" xmlns:con6="http://www.bea.com/wli/sb/stages/config">
@@ -285,12 +285,11 @@
         <con:pipeline type="response" name="response-7f000101.N2487300b.0.18f10ae46d5.N7fe3">
             <con:stage id="_StageId-7f000101.N7a4803e5.0.18f18faa62a.N7f25" name="Log Action Stage" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
                 <con:context>
-                    <con6:userNsDecl prefix="lib" namespace="http://espa.gr/v6/tdy/library" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
-                    <con6:userNsDecl prefix="tdy" namespace="http://espa.gr/v6/tdy" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
+                    <con6:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
                     <con6:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
-                    <con1:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
-                        <con1:importModule ref="TDY/Resources/library"/>
-                    </con1:dependencies>
+                    <con6:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                        <con6:importModule ref="E555/Resources/library"/>
+                    </con6:dependencies>
                 </con:context>
                 <con:actions>
                     <con2:wsCallout>
@@ -308,13 +307,13 @@
                                 <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000101.N7a4803e5.0.18f18faa62a.N7f23</con6:id>
                                 <con2:expr>
                                     <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config"><![CDATA[<stat:InputParameters xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService">
-    <stat:USERNAME>{lib:get-user($inbound)}</stat:USERNAME>
+    <stat:USERNAME>{e555-lib:get-user($inbound)}</stat:USERNAME>
     <stat:PLANG>
     {if (fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('Stoxos3'),
             'select KPS6_CHECKS_GLOBAL.Is_Stoxos_3(?, 10) as STOXOS3 from dual',
-            xs:unsignedInt($body//tdy:KPS6_YPOERGA/tdy:TDY_ID))//*:STOXOS3)=1) 
+            xs:unsignedInt($body//e555:idTra))//*:STOXOS3)=1) 
     then 'EN'    
-    else fn:upper-case(lib:get-lang($inbound))}</stat:PLANG>
+    else fn:upper-case(e555-lib:get-lang($inbound))}</stat:PLANG>
     <stat:COMBINECHECKS>{fn:data($body//e555:combineChecks)}</stat:COMBINECHECKS>
     <stat:OBJECTID>{fn:data($body//e555:idTra)}</stat:OBJECTID>
     <stat:CATEGORYID>10</stat:CATEGORYID>    

@@ -62,17 +62,17 @@ declare function docs-lib:get-user($inbound as element()) as xs:string{
 };
 
 declare function docs-lib:GetUserCategory($User as xs:string) as xs:unsignedByte{
-  fn:data(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('SQL-RESULT'),
+  xs:unsignedByte(fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('SQL-RESULT'),
                                       'Select RLS7_Security.GetSSOUserKathg(?) Katigoria From Dual',
                                       $User)//*:KATIGORIA)
 };
 
 declare function docs-lib:GetKatastasiDeltiou($BulletinID as xs:unsignedInt, $BulletinCategory as xs:unsignedByte) as xs:unsignedShort{
   xs:unsignedShort(if ($BulletinCategory = (5,21,22,26)) then 302 
-                       else xs:unsignedShort(fn-bea:execute-sql('mis_master6DS',xs:QName('SQL-RESULT'),
+                       else fn-bea:execute-sql('jdbc/mis_master6DS',xs:QName('SQL-RESULT'),
                                           'Select Kps6_Core.Get_Obj_Status(?, ?) Status 
                                            From Dual',
-                                           $BulletinID, $BulletinCategory)//*:STATUS))
+                                           $BulletinID, $BulletinCategory)//*:STATUS)
 };
 
 declare function docs-lib:FetchAttachments($Document as element(), $User as xs:string) {
