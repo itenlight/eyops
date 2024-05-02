@@ -15,7 +15,7 @@
                     <con1:userNsDecl prefix="urn" namespace="urn:espa:v6:library:generic"/>
                     <con1:userNsDecl prefix="generic" namespace="http://espa.gr/v6/library/generic"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/generic"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/generic"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -63,7 +63,7 @@
                     <con1:userNsDecl prefix="urn" namespace="urn:espa:v6:library:generic"/>
                     <con1:userNsDecl prefix="generic" namespace="http://espa.gr/v6/library/generic"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/generic"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/generic"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -121,7 +121,7 @@
                     <con1:userNsDecl prefix="urn" namespace="urn:espa:v6:library:generic"/>
                     <con1:userNsDecl prefix="generic" namespace="http://espa.gr/v6/library/generic"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/generic"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/generic"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -208,7 +208,7 @@
                                     <con1:userNsDecl prefix="soa" namespace="http://espa.gr/v6/soa"/>
                                     <con1:userNsDecl prefix="generic" namespace="http://espa.gr/v6/generic"/>
                                     <con1:dependencies>
-                                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/generic"/>
+                                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/generic"/>
                                     </con1:dependencies>
                                 </con:context>
                                 <con:actions>
@@ -292,7 +292,7 @@
                                     <con1:userNsDecl prefix="soa" namespace="http://espa.gr/v6/soa"/>
                                     <con1:userNsDecl prefix="generic" namespace="http://espa.gr/v6/generic"/>
                                     <con1:dependencies>
-                                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/generic"/>
+                                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/generic"/>
                                     </con1:dependencies>
                                 </con:context>
                                 <con:actions>

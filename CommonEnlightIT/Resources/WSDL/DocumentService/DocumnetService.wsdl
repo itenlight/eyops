@@ -6,7 +6,8 @@
   </plt:partnerLinkType>
     <wsdl:types>
       <schema xmlns="http://www.w3.org/2001/XMLSchema">
-        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocumnetService" schemaLocation="../../ADAPTERS/DocumentService/DocumnetService_table.xsd"/>
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocumnetService"
+                schemaLocation="../../Adapters/DocumentService/DocumnetService_table.xsd"/>
       </schema>
     </wsdl:types>
     <wsdl:message name="DocumnetServiceSelect_inputParameters">

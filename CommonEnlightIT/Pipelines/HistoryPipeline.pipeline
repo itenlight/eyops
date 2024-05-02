@@ -15,7 +15,7 @@
                     <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
                     <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/history"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -78,7 +78,7 @@
                     <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
                     <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/history"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -137,7 +137,7 @@
                     <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
                     <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/history"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -200,7 +200,7 @@
                     <con1:userNsDecl prefix="history-lib" namespace="urn:espa:v6:library:history"/>
                     <con1:userNsDecl prefix="history" namespace="urn:espa:v6:history"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/history"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/history"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>

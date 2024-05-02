@@ -32,7 +32,7 @@
         </tran:outbound-properties>
         <tran:all-headers>false</tran:all-headers>
         <tran:provider-specific xsi:type="jca:JCAEndPointConfiguration">
-            <jca:jca-file ref="CommonEnlightIT/Resources/ADAPTERS/SetUserContextService/SetUserContextServices_db"/>
+            <jca:jca-file ref="CommonEnlightIT/Resources/Adapters/SetUserContextService/SetUserContextServices_db"/>
             <jca:adapter-name>SetUserContextServices</jca:adapter-name>
             <jca:adapter-type>DB</jca:adapter-type>
             <jca:always-use-wsdl>true</jca:always-use-wsdl>

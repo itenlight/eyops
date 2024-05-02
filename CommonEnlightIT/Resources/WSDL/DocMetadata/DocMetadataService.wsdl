@@ -7,7 +7,7 @@
     <wsdl:types>
       <schema xmlns="http://www.w3.org/2001/XMLSchema">
         <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DocMetadataService"
-                schemaLocation="../../ADAPTERS/DocMetadataService/DocMetadataService_table.xsd"/>
+                schemaLocation="../../Adapters/DocMetadataService/DocMetadataService_table.xsd"/>
       </schema>
     </wsdl:types>
     <wsdl:message name="Com6DocMetadataCollection_msg">

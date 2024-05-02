@@ -57,7 +57,7 @@ declare function generic:GetLastUserAction($inbound as element()) as element(){
   <LastUserAction xmlns="http://espa.gr/v6/generic">
    <id>{xs:unsignedLong($LastUserAction//*:LOG_USER_ACTION_ID)}</id>
    <objectCategoryId>{fn:data($LastUserAction//*:OBJECT_CATEGORY_ID)}</objectCategoryId>
-   <objectId>{fn:data($LastUserAction//*:OBJECT_ID)}</objectId>
+   <objectId>{xs:unsignedLong($LastUserAction//*:OBJECT_ID)}</objectId>
    <actionCategoryId>{fn:data($LastUserAction//*:ACTION_CATEGORY_ID)}</actionCategoryId>
    <userName>{fn:data($LastUserAction//*:USER_NAME)}</userName>
    <dateAction>{fn:data($LastUserAction//*:DATE_ACTION)}</dateAction>

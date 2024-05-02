@@ -15,7 +15,7 @@
                     <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
                     <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/user"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/user"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -64,7 +64,7 @@
                     <con1:userNsDecl prefix="common" namespace="urn:espa:v6:library:common"/>
                     <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/user"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/user"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -112,7 +112,7 @@
                     <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
                     <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/user"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/user"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -160,7 +160,7 @@
                     <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
                     <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/user"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/user"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>
@@ -208,7 +208,7 @@
                     <con1:userNsDecl prefix="user" namespace="urn:espa:v6:library:user"/>
                     <con1:userNsDecl prefix="generic" namespace="urn:espa:v6:library:generic"/>
                     <con1:dependencies>
-                        <con1:importModule ref="CommonEnlightIT/Resources/LIBRARIES/user"/>
+                        <con1:importModule ref="CommonEnlightIT/Resources/Libraries/user"/>
                     </con1:dependencies>
                 </con:context>
                 <con:actions>

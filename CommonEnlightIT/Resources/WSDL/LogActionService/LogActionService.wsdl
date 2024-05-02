@@ -6,7 +6,8 @@
   </plt:partnerLinkType>
     <wsdl:types>
       <schema xmlns="http://www.w3.org/2001/XMLSchema">
-        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/LogActionService" schemaLocation="../../ADAPTERS/LogActionService/LogActionService_table.xsd"/>
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/LogActionService"
+                schemaLocation="../../Adapters/LogActionService/LogActionService_table.xsd"/>
       </schema>
     </wsdl:types>
     <wsdl:message name="Kps6LogUserActionsCollection_msg">

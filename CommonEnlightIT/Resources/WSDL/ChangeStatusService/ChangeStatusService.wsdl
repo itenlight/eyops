@@ -7,7 +7,7 @@
     <wsdl:types>
      <schema xmlns="http://www.w3.org/2001/XMLSchema">
        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/ChangeStatusService"
-               schemaLocation="../../ADAPTERS/ChangeStatusService/ChangeStatusService_sp.xsd"/>
+               schemaLocation="../../Adapters/ChangeStatusService/ChangeStatusService_sp.xsd"/>
      </schema>
     </wsdl:types>
     <wsdl:message name="args_in_msg">
