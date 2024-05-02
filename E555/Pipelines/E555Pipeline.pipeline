@@ -9,7 +9,7 @@
             <con:snippetVersion>1.0</con:snippetVersion>
         </con:xqConfiguration>
     </con:coreEntry>
-    <con:router>
+    <con:router errorHandler="error-a00020f.N13fddf44.0.18f33dfd23d.N7f98">
         <con:pipeline type="request" name="request-7f000101.7c4aadc4.0.18efc161860.N7f7d" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
             <con:stage id="_StageId-7f000101.7c4aadc4.0.18efc161860.N7f7c" name="Set User Context">
                 <con:context>
@@ -287,9 +287,9 @@
                 <con:context>
                     <con6:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
                     <con6:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555" xmlns:con6="http://www.bea.com/wli/sb/stages/config"/>
-                    <con6:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
-                        <con6:importModule ref="E555/Resources/library"/>
-                    </con6:dependencies>
+                    <con1:dependencies xmlns:con6="http://www.bea.com/wli/sb/stages/config">
+                        <con1:importModule ref="E555/Resources/library"/>
+                    </con1:dependencies>
                 </con:context>
                 <con:actions>
                     <con2:wsCallout>
@@ -369,6 +369,358 @@
                             <con2:xqueryText>'application/json'</con2:xqueryText>
                         </con4:header>
                     </con4:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-a00020f.N568ea7d8.0.18f2aa62850.N7fe1">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fdf" name="Json Request to XML">
+                <con:context/>
+                <con:actions>
+                    <con4:nxsdTranslation>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fdb</con2:id>
+                        <con4:type>Native-To-XML</con4:type>
+                        <con4:sourceExpr>
+                            <con2:xqueryText>$body/text()</con2:xqueryText>
+                        </con4:sourceExpr>
+                        <con4:nxsd ref="E555/Resources/XSD/nxsd_Create_request"/>
+                        <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555CreateRequest</con4:schemaElement>
+                        <con4:replace-body-content/>
+                    </con4:nxsdTranslation>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fda" name="Set User Context">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fd7</con2:id>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con4:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fd4</con2:id>
+                                <con4:expr>
+                                    <con2:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e555-lib:get-user($inbound)}&lt;/com:username></con2:xqueryText>
+                                </con4:expr>
+                            </con4:replace>
+                            <con4:routing-options>
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fd1</con2:id>
+                                <con4:qualityOfService>exactly-once</con4:qualityOfService>
+                            </con4:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fce" name="Insert Deltio">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-csp" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/E555CreateService"/>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:wsCallout>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fcd</con2:id>
+                        <con4:service ref="E555/BusinessServices/E555CreateService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con4:operation>E555CreateService</con4:operation>
+                        <con4:request>
+                            <con4:body wrapped="false">RequestPayload</con4:body>
+                        </con4:request>
+                        <con4:response>
+                            <con4:body wrapped="false">ResponsePayload</con4:body>
+                        </con4:response>
+                        <con4:requestTransform>
+                            <con4:assign varName="RequestPayload">
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fca</con2:id>
+                                <con4:expr>
+                                    <con2:xqueryText><![CDATA[<e555-csp:InputParameters xmlns:e555-csp="http://xmlns.oracle.com/pcbpel/adapter/db/sp/E555CreateService">
+    <e555-csp:NID_EP>{fn:data($body//e555:idEp)}</e555-csp:NID_EP>
+    <e555-csp:NETOS>{fn:data($body//e555:etos)}</e555-csp:NETOS>
+    <e555-csp:NANAFORA_PERIOD>{fn:data($body//e555:anaforaPeriod)}</e555-csp:NANAFORA_PERIOD>
+    <e555-csp:COPY_TYPE>{fn:data($body//e555:copyType)}</e555-csp:COPY_TYPE>
+    <e555-csp:NLANG>{e555-lib:get-lang($inbound)}</e555-csp:NLANG>  
+</e555-csp:InputParameters>]]></con2:xqueryText>
+                                </con4:expr>
+                            </con4:assign>
+                        </con4:requestTransform>
+                        <con4:responseTransform>
+                            <con4:assign varName="CreateResponse">
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fc7</con2:id>
+                                <con4:expr>
+                                    <con2:xqueryText><![CDATA[<e555:E555CreateResponse xmlns="http://espa.gr/v6/e555">
+ <e555:idTra>{fn:data($ResponsePayload//e555-csp:ID_TRA_GEN)}</e555:idTra>
+ <e555:nerror>{fn:data($ResponsePayload//e555-csp:NERROR)}</e555:nerror>
+ <e555:serror>{fn:data($ResponsePayload//e555-csp:SERROR)}</e555:serror>
+</e555:E555CreateResponse>]]></con2:xqueryText>
+                                </con4:expr>
+                            </con4:assign>
+                        </con4:responseTransform>
+                    </con4:wsCallout>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a00020f.N568ea7d8.0.18f2aa62850.N7fe0">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fde" name="Send Response">
+                <con:context>
+                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                </con:context>
+                <con:actions>
+                    <con4:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fc4</con2:id>
+                        <con4:expr>
+                            <con2:xqueryText>$CreateResponse</con2:xqueryText>
+                        </con4:expr>
+                    </con4:replace>
+                    <con4:nxsdTranslation>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fc1</con2:id>
+                        <con4:type>XML-To-Native</con4:type>
+                        <con4:sourceExpr>
+                            <con2:xqueryText>$body/e555:E555CreateResponse</con2:xqueryText>
+                        </con4:sourceExpr>
+                        <con4:nxsd ref="E555/Resources/XSD/nxsd_Create_response"/>
+                        <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555CreateResponse</con4:schemaElement>
+                        <con4:replace-body-content/>
+                    </con4:nxsdTranslation>
+                    <con4:transport-headers>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fbe</con2:id>
+                        <con4:header-set>inbound-response</con4:header-set>
+                        <con4:header value="expression" name="Content-Type">
+                            <con2:xqueryText>'application/json'</con2:xqueryText>
+                        </con4:header>
+                    </con4:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-a00020f.N568ea7d8.0.18f2aa62850.N7fbd">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fbb" name="Set User Context">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fb7</con2:id>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con4:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fb4</con2:id>
+                                <con4:expr>
+                                    <con2:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e555-lib:get-user($inbound)}&lt;/com:username></con2:xqueryText>
+                                </con4:expr>
+                            </con4:replace>
+                            <con4:routing-options>
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fb1</con2:id>
+                                <con4:qualityOfService>exactly-once</con4:qualityOfService>
+                            </con4:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fb0" name="Run Native Query">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fad</con2:id>
+                        <con4:expr>
+                            <con2:xqueryText>e555-lib:GetEpList()</con2:xqueryText>
+                        </con4:expr>
+                    </con4:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a00020f.N568ea7d8.0.18f2aa62850.N7fbc">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fba" name="Prepare Response">
+                <con:context>
+                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                </con:context>
+                <con:actions>
+                    <con4:nxsdTranslation>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fa7</con2:id>
+                        <con4:type>XML-To-Native</con4:type>
+                        <con4:sourceExpr>
+                            <con2:xqueryText>$body/e555:E555Response</con2:xqueryText>
+                        </con4:sourceExpr>
+                        <con4:nxsd ref="E555/Resources/XSD/nxsd_EpList"/>
+                        <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con4:schemaElement>
+                        <con4:replace-body-content/>
+                    </con4:nxsdTranslation>
+                    <con4:transport-headers>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fa4</con2:id>
+                        <con4:header-set>inbound-response</con4:header-set>
+                        <con4:header value="expression" name="Content-Type">
+                            <con2:xqueryText>'application/json'</con2:xqueryText>
+                        </con4:header>
+                    </con4:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-a00020f.N568ea7d8.0.18f2aa62850.N7fa3">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fa1" name="Set User Context">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f9d</con2:id>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con4:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f9a</con2:id>
+                                <con4:expr>
+                                    <con2:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e555-lib:get-user($inbound)}&lt;/com:username></con2:xqueryText>
+                                </con4:expr>
+                            </con4:replace>
+                            <con4:routing-options>
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f97</con2:id>
+                                <con4:qualityOfService>exactly-once</con4:qualityOfService>
+                            </con4:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7f96" name="Run Native Query">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:replace contents-only="true" varName="body">
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f93</con2:id>
+                        <con4:expr>
+                            <con2:xqueryText>e555-lib:GetSearchAnaforaPeriodList(xs:unsignedLong($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="idEp"]/@value))</con2:xqueryText>
+                        </con4:expr>
+                    </con4:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a00020f.N568ea7d8.0.18f2aa62850.N7fa2">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7fa0" name="Prepare Response">
+                <con:context>
+                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                </con:context>
+                <con:actions>
+                    <con4:nxsdTranslation>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f90</con2:id>
+                        <con4:type>XML-To-Native</con4:type>
+                        <con4:sourceExpr>
+                            <con2:xqueryText>$body/e555:E555Response</con2:xqueryText>
+                        </con4:sourceExpr>
+                        <con4:nxsd ref="E555/Resources/XSD/nxsd_AnaforaPeriodList"/>
+                        <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con4:schemaElement>
+                        <con4:replace-body-content/>
+                    </con4:nxsdTranslation>
+                    <con4:transport-headers>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f8d</con2:id>
+                        <con4:header-set>inbound-response</con4:header-set>
+                        <con4:header value="expression" name="Content-Type">
+                            <con2:xqueryText>'application/json'</con2:xqueryText>
+                        </con4:header>
+                    </con4:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-a00020f.N568ea7d8.0.18f2aa62850.N7f8c">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7f8a" name="Set User Context">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con5:route>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f86</con2:id>
+                        <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con5:operation>SetUserContext</con5:operation>
+                        <con5:outboundTransform>
+                            <con4:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f83</con2:id>
+                                <con4:expr>
+                                    <con2:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e555-lib:get-user($inbound)}&lt;/com:username></con2:xqueryText>
+                                </con4:expr>
+                            </con4:replace>
+                            <con4:routing-options>
+                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f7f</con2:id>
+                                <con4:qualityOfService>exactly-once</con4:qualityOfService>
+                            </con4:routing-options>
+                        </con5:outboundTransform>
+                    </con5:route>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7f7e" name="Run Native Query">
+                <con:context>
+                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                    <con2:dependencies>
+                        <con2:importModule ref="E555/Resources/library"/>
+                    </con2:dependencies>
+                </con:context>
+                <con:actions>
+                    <con4:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f7b</con2:id>
+                        <con4:expr>
+                            <con2:xqueryText>e555-lib:GetSearchTableList(xs:unsignedLong($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="idTra"]/@value))</con2:xqueryText>
+                        </con4:expr>
+                    </con4:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a00020f.N568ea7d8.0.18f2aa62850.N7f8b">
+            <con:stage id="_StageId-a00020f.N568ea7d8.0.18f2aa62850.N7f89" name="Prepare Response">
+                <con:context>
+                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                </con:context>
+                <con:actions>
+                    <con4:nxsdTranslation>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f78</con2:id>
+                        <con4:type>XML-To-Native</con4:type>
+                        <con4:sourceExpr>
+                            <con2:xqueryText>$body/e555:E555Response</con2:xqueryText>
+                        </con4:sourceExpr>
+                        <con4:nxsd ref="E555/Resources/XSD/nxsd_TableList"/>
+                        <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con4:schemaElement>
+                        <con4:replace-body-content/>
+                    </con4:nxsdTranslation>
+                    <con4:transport-headers>
+                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f75</con2:id>
+                        <con4:header-set>inbound-response</con4:header-set>
+                        <con4:header value="expression" name="Content-Type">
+                            <con2:xqueryText>'appliucation/json'</con2:xqueryText>
+                        </con4:header>
+                    </con4:transport-headers>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="error" name="error-a00020f.N13fddf44.0.18f33dfd23d.N7f98">
+            <con:stage id="_StageId-a00020f.N13fddf44.0.18f33dfd23d.N7f97" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con3:log>
+                        <con2:id>_ActionId-a00020f.N13fddf44.0.18f33dfd23d.N7f94</con2:id>
+                        <con3:logLevel>error</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
                 </con:actions>
             </con:stage>
         </con:pipeline>
@@ -503,11 +855,244 @@
                             </con:pipeline-node>
                         </con:flow>
                     </con:branch>
+                    <con:branch name="DeleteDeltio">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="Delete Deltio">
+                                <con:context>
+                                    <con2:userNsDecl prefix="stat" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService"/>
+                                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                                    <con2:dependencies>
+                                        <con2:importModule ref="E555/Resources/library"/>
+                                    </con2:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con1:route>
+                                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7ffd</con2:id>
+                                        <con1:service ref="E555/BusinessServices/STATUSService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>StatusService</con1:operation>
+                                        <con1:outboundTransform>
+                                            <con5:route>
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7ffa</con2:id>
+                                                <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                                <con5:operation>SetUserContext</con5:operation>
+                                                <con5:outboundTransform>
+                                                    <con4:replace varName="body" contents-only="true">
+                                                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7ff7</con2:id>
+                                                        <con4:expr>
+                                                            <con2:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e555-lib:get-user($inbound)}&lt;/com:username></con2:xqueryText>
+                                                        </con4:expr>
+                                                    </con4:replace>
+                                                    <con4:routing-options>
+                                                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7ff4</con2:id>
+                                                        <con4:qualityOfService>exactly-once</con4:qualityOfService>
+                                                    </con4:routing-options>
+                                                </con5:outboundTransform>
+                                            </con5:route>
+                                            <con4:nxsdTranslation>
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7ff1</con2:id>
+                                                <con4:type>Native-To-XML</con4:type>
+                                                <con4:sourceExpr>
+                                                    <con2:xqueryText>$body/text()</con2:xqueryText>
+                                                </con4:sourceExpr>
+                                                <con4:nxsd ref="E555/Resources/XSD/nxsd_Delete_request"/>
+                                                <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Request</con4:schemaElement>
+                                                <con4:replace-body-content/>
+                                            </con4:nxsdTranslation>
+                                            <con4:assign varName="vObjectID">
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fee</con2:id>
+                                                <con4:expr>
+                                                    <con2:xqueryText>fn:data($body//*:idTra)</con2:xqueryText>
+                                                </con4:expr>
+                                            </con4:assign>
+                                            <con4:replace varName="body" contents-only="true">
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7feb</con2:id>
+                                                <con4:expr>
+                                                    <con2:xqueryText><![CDATA[<stat:InputParameters xmlns:stat="http://xmlns.oracle.com/pcbpel/adapter/db/sp/STATUSService">
+    <stat:USERNAME>{e555-lib:get-user($inbound)}</stat:USERNAME>
+    <stat:PLANG>{e555-lib:get-lang($inbound)}</stat:PLANG>
+    <stat:COMBINECHECKS>{fn:data($body//*:combineChecks)}</stat:COMBINECHECKS>
+    <stat:OBJECTID>{$vObjectID}</stat:OBJECTID>
+    <stat:CATEGORYID>10</stat:CATEGORYID>
+    <stat:ACTIONUI>{fn:data($body//*:actionCode)}</stat:ACTIONUI>
+    <stat:COMMENTSSTATUS>{fn:data($body//*:comments)}</stat:COMMENTSSTATUS>
+    <stat:DATEACTION>{fn:current-dateTime()}</stat:DATEACTION>
+    <stat:OBJECTPARENTID></stat:OBJECTPARENTID>
+</stat:InputParameters>]]></con2:xqueryText>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con4:replace varName="body" contents-only="true">
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fe8</con2:id>
+                                                <con4:expr>
+                                                    <con2:xqueryText><![CDATA[<e555:E555Response xmlns:e555="http://espa.gr/v6/e555">
+ <e555:ERROR_CODE>{fn:data($body//*:ERRORCODE)}</e555:ERROR_CODE>
+ <e555:ERROR_MESSAGE>{fn:data($body//*:ERRORMESSAGE)}</e555:ERROR_MESSAGE>
+ <e555:DATA>
+ <e555:Kps6DeltioTransmission>
+ <e555:idTra>{$vObjectID}</e555:idTra>
+ </e555:Kps6DeltioTransmission>
+ </e555:DATA>
+</e555:E555Response>]]></con2:xqueryText>
+                                                </con4:expr>
+                                            </con4:replace>
+                                            <con4:nxsdTranslation>
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fe5</con2:id>
+                                                <con4:type>XML-To-Native</con4:type>
+                                                <con4:sourceExpr>
+                                                    <con2:xqueryText>$body/e555:E555Response</con2:xqueryText>
+                                                </con4:sourceExpr>
+                                                <con4:nxsd ref="E555/Resources/XSD/nxsd_Delete_response"/>
+                                                <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con4:schemaElement>
+                                                <con4:replace-body-content/>
+                                            </con4:nxsdTranslation>
+                                            <con4:transport-headers>
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7fe2</con2:id>
+                                                <con4:header-set>inbound-response</con4:header-set>
+                                                <con4:header value="expression" name="Content-Type">
+                                                    <con2:xqueryText>'application/json'</con2:xqueryText>
+                                                </con4:header>
+                                            </con4:transport-headers>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="Create">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Insert Deltio Pipeline">
+                                <con:request>request-a00020f.N568ea7d8.0.18f2aa62850.N7fe1</con:request>
+                                <con:response>response-a00020f.N568ea7d8.0.18f2aa62850.N7fe0</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetEpList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="EpList Pipeline">
+                                <con:request>request-a00020f.N568ea7d8.0.18f2aa62850.N7fbd</con:request>
+                                <con:response>response-a00020f.N568ea7d8.0.18f2aa62850.N7fbc</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetSearchAnaforaPeriodList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="AnaforaPeriodList Pipeline">
+                                <con:request>request-a00020f.N568ea7d8.0.18f2aa62850.N7fa3</con:request>
+                                <con:response>response-a00020f.N568ea7d8.0.18f2aa62850.N7fa2</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetTableList">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Get Table List Pipeline">
+                                <con:request>request-a00020f.N568ea7d8.0.18f2aa62850.N7f8c</con:request>
+                                <con:response>response-a00020f.N568ea7d8.0.18f2aa62850.N7f8b</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="GetIdTra">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="Get Deltio Route">
+                                <con:context>
+                                    <con2:userNsDecl prefix="e555-db" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetDeltioService"/>
+                                    <con2:userNsDecl prefix="e555-lib" namespace="http://espa.gr/v6/e555/lib"/>
+                                    <con2:userNsDecl prefix="e555" namespace="http://espa.gr/v6/e555"/>
+                                    <con2:dependencies>
+                                        <con2:importModule ref="E555/Resources/library"/>
+                                    </con2:dependencies>
+                                </con:context>
+                                <con:actions>
+                                    <con1:route>
+                                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f40</con2:id>
+                                        <con1:service ref="E555/BusinessServices/GetDeltioService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>selectByPrimaryKey</con1:operation>
+                                        <con1:outboundTransform>
+                                            <con5:route>
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f3d</con2:id>
+                                                <con5:service ref="CommonEnlightIT/ProxyServices/CommonServices" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                                <con5:operation>SetUserContext</con5:operation>
+                                                <con5:outboundTransform>
+                                                    <con4:replace varName="body" contents-only="true">
+                                                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f3a</con2:id>
+                                                        <con4:expr>
+                                                            <con2:xqueryText>&lt;com:username xmlns:com="http://espa.gr/v6/common">{e555-lib:get-user($inbound)}&lt;/com:username></con2:xqueryText>
+                                                        </con4:expr>
+                                                    </con4:replace>
+                                                    <con4:routing-options>
+                                                        <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f37</con2:id>
+                                                        <con4:qualityOfService>exactly-once</con4:qualityOfService>
+                                                    </con4:routing-options>
+                                                </con5:outboundTransform>
+                                            </con5:route>
+                                            <con4:assign varName="idTra">
+                                                <con2:id>_ActionId-a00020f.N13fddf44.0.18f33dfd23d.N7f60</con2:id>
+                                                <con4:expr>
+                                                    <con2:xqueryText>$inbound/ctx:transport/ctx:request/tp:user-metadata[@name="idTra"]/@value</con2:xqueryText>
+                                                </con4:expr>
+                                            </con4:assign>
+                                            <con4:replace varName="body" contents-only="true">
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f34</con2:id>
+                                                <con4:expr>
+                                                    <con2:xqueryText>&lt;e555-db:Kps6DeltioTransmissionPrimaryKey xmlns:e555db="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetDeltioService">
+ &lt;e555-db:idTra>{xs:unsignedLong($inbound/ctx:transport/ctx:request/tp:user-metadata[@name="idTra"]/@value)}&lt;/e555-db:idTra>
+&lt;/e555-db:Kps6DeltioTransmissionPrimaryKey></con2:xqueryText>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con4:replace varName="body" contents-only="true">
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f31</con2:id>
+                                                <con4:expr>
+                                                    <con2:xqueryText>e555-lib:map-db-to-get-response($body/$inbound, $body/e555-db:Kps6DeltioTransmissionCollection, $idTra)</con2:xqueryText>
+                                                </con4:expr>
+                                            </con4:replace>
+                                            <con4:nxsdTranslation>
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f2e</con2:id>
+                                                <con4:type>XML-To-Native</con4:type>
+                                                <con4:sourceExpr>
+                                                    <con2:xqueryText>$body/e555:E555Response</con2:xqueryText>
+                                                </con4:sourceExpr>
+                                                <con4:nxsd ref="E555/Resources/XSD/nxsd_getid_response"/>
+                                                <con4:schemaElement xmlns:e555="http://espa.gr/v6/e555">e555:E555Response</con4:schemaElement>
+                                                <con4:replace-body-content/>
+                                            </con4:nxsdTranslation>
+                                            <con4:transport-headers>
+                                                <con2:id>_ActionId-a00020f.N568ea7d8.0.18f2aa62850.N7f2b</con2:id>
+                                                <con4:header-set>inbound-response</con4:header-set>
+                                                <con4:header value="expression" name="Content-Type">
+                                                    <con2:xqueryText>'application/json'</con2:xqueryText>
+                                                </con4:header>
+                                            </con4:transport-headers>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
                     <con:default-branch>
                         <con:flow/>
                     </con:default-branch>
                 </con:branch-table>
             </con:branch-node>
         </con:flow>
+        <con:shared-variables>
+            <con:variable>vObjectID</con:variable>
+            <con:variable>CreateResponse</con:variable>
+            <con:variable>idTra</con:variable>
+        </con:shared-variables>
     </con:router>
 </con:pipelineEntry>

@@ -1,0 +1,158 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetDeltioService" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetDeltioService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Kps6DeltioTransmissionCollection" type="Kps6DeltioTransmissionCollection"/>
+   <xs:complexType name="Kps6DeltioTransmissionCollection">
+      <xs:sequence>
+         <xs:element name="Kps6DeltioTransmission" type="Kps6DeltioTransmission" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6DeltioTransmission">
+      <xs:sequence>
+         <xs:element name="traAa" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="traEkdosh" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="idEp" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="idEpekd" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="etos" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="anaforaPeriod" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="kathgGroupEp" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="keimeno" type="string2000" minOccurs="0" nillable="true"/>
+         <xs:element name="sxoliaEyd" type="string2000" minOccurs="0" nillable="true"/>
+         <xs:element name="sxoliaYops" type="string2000" minOccurs="0" nillable="true"/>
+         <xs:element name="objStatusId" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="objStatusDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="objIsxys" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="objIsxysDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="kps6DelTransmissionDeiktesCollection" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Kps6DelTransmissionDeiktes" type="Kps6DelTransmissionDeiktes" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="vs6DeltioTransmissionInfo" type="Vs6DeltioTransmissionInfo"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Kps6DelTransmissionDeiktes">
+      <xs:sequence>
+         <xs:element name="idEp" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="idAxona" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idSo" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idTam" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idKatper" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idAtp" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idDeikth" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idEidd" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="idMm" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhStoxos" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhOroshmo" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhBashs" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhStoxosMis" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopMisFixed" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopMis" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopMenFixed" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopMen" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopWomenFixed" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="timhYlopWomen" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="aitiologia" type="string2000" minOccurs="0" nillable="true"/>
+         <xs:element name="tableId" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="vs6DelTransDeiktesInfo" type="Vs6DelTransDeiktesInfo"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Vs6DelTransDeiktesInfo">
+      <xs:sequence>
+         <xs:element name="idTrdeik" type="xs:decimal"/>
+         <xs:element name="idEp" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="kodikosAxona" type="string15" minOccurs="0"/>
+         <xs:element name="descrTam" type="string10" minOccurs="0"/>
+         <xs:element name="descrTamEn" type="string10" minOccurs="0" nillable="true"/>
+         <xs:element name="descrKatper" type="string50" minOccurs="0" nillable="true"/>
+         <xs:element name="descrKatperEn" type="string50" minOccurs="0" nillable="true"/>
+         <xs:element name="idAtp" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="kodikosDeikth" type="string9" minOccurs="0"/>
+         <xs:element name="perigrafh" type="string500" minOccurs="0"/>
+         <xs:element name="perigrafhEn" type="string500" minOccurs="0" nillable="true"/>
+         <xs:element name="syntm" type="string9" minOccurs="0"/>
+         <xs:element name="analogiaYlopoihshs" type="xs:decimal" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Vs6DeltioTransmissionInfo">
+      <xs:sequence>
+         <xs:element name="idTra" type="xs:decimal"/>
+         <xs:element name="idEp" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="kodikosEp" type="string5" minOccurs="0" nillable="true"/>
+         <xs:element name="titlosEp" type="string255" minOccurs="0"/>
+         <xs:element name="titlosEpEn" type="string255" minOccurs="0" nillable="true"/>
+         <xs:element name="ekdoshEp" type="string81" minOccurs="0" nillable="true"/>
+         <xs:element name="armodiaDa" type="string300" minOccurs="0" nillable="true"/>
+         <xs:element name="dateEgkrishs" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="anaforaPeriod" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="dedomenaEos" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="ypovolhSfc" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="apostolhSfcEos" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="tameia" type="string4000" minOccurs="0" nillable="true"/>
+         <xs:element name="descrTam" type="string4000" minOccurs="0" nillable="true"/>
+         <xs:element name="eidosDeltioyDescr" type="string500" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Kps6DeltioTransmissionPrimaryKey" type="Kps6DeltioTransmissionPrimaryKey"/>
+   <xs:complexType name="Kps6DeltioTransmissionPrimaryKey">
+      <xs:sequence>
+         <xs:element name="idTra" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string2000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string15">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="15"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string10">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="10"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string50">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="50"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string9">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="9"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string500">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="500"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string5">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="5"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string255">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="255"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string81">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="81"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string300">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="300"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string4000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="4000"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

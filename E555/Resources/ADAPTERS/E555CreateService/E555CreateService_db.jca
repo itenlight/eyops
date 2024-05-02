@@ -1,0 +1,12 @@
+<adapter-config name="E555CreateService" adapter="db" wsdlLocation="../../WSDL/E555CreateService/E555CreateService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="E555CreateService_ptt" operation="E555CreateService">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="MASTER6"/>
+      <property name="ProcedureName" value="KPS6_CREATE_DELTIO_TRANS"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

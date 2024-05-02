@@ -1,0 +1,24 @@
+<wsdl:definitions name="GetDeltioService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/GetDeltioService" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/GetDeltioService" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetDeltioService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plt:partnerLinkType name="GetDeltioService_plt">
+    <plt:role name="GetDeltioService_role">
+      <plt:portType name="tns:GetDeltioService_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetDeltioService" schemaLocation="../../ADAPTERS/E555GetDeltioService/GetDeltioService_table.xsd"/>
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="selectByPrimaryKey_inputParameters">
+        <wsdl:part name="selectByPrimaryKey_inputParameters" element="top:Kps6DeltioTransmissionPrimaryKey"/>
+    </wsdl:message>
+    <wsdl:message name="Kps6DeltioTransmissionCollection_msg">
+        <wsdl:part name="Kps6DeltioTransmissionCollection" element="top:Kps6DeltioTransmissionCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetDeltioService_ptt">
+        <wsdl:operation name="selectByPrimaryKey">
+            <wsdl:input message="tns:selectByPrimaryKey_inputParameters"/>
+            <wsdl:output message="tns:Kps6DeltioTransmissionCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

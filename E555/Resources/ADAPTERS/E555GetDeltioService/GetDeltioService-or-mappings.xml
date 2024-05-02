@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.4.v20160829-44060b6">
+   <name>GetDeltioService-OR</name>
+   <class-mapping-descriptors>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>GetDeltioService.Kps6DeltioTransmission</class>
+         <alias>KPS6_DELTIO_TRANSMISSION</alias>
+         <primary-key>
+            <field table="KPS6_DELTIO_TRANSMISSION" name="ID_TRA" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying>
+            <queries>
+               <query name="GetDeltioServiceSelect" xsi:type="read-all-query">
+                  <reference-class>GetDeltioService.Kps6DeltioTransmission</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>java.util.Vector</collection-type>
+                  </container>
+               </query>
+            </queries>
+         </querying>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idTra</attribute-name>
+               <read-only>true</read-only>
+               <properties>
+                  <property name="fkPlaceholder">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="ID_TRA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>traAa</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="TRA_AA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>traEkdosh</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="TRA_EKDOSH" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idEp</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="ID_EP" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idEpekd</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="ID_EPEKD" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>etos</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="ETOS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>anaforaPeriod</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="ANAFORA_PERIOD" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kathgGroupEp</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="KATHG_GROUP_EP" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>keimeno</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="KEIMENO" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>sxoliaEyd</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="SXOLIA_EYD" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>sxoliaYops</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="SXOLIA_YOPS" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>objStatusId</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="OBJ_STATUS_ID" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>objStatusDate</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="OBJ_STATUS_DATE" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>objIsxys</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="OBJ_ISXYS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>objIsxysDate</attribute-name>
+               <field table="KPS6_DELTIO_TRANSMISSION" name="OBJ_ISXYS_DATE" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="one-to-many-mapping">
+               <attribute-name>kps6DelTransmissionDeiktesCollection</attribute-name>
+               <reference-class>GetDeltioService.Kps6DelTransmissionDeiktes</reference-class>
+               <private-owned>true</private-owned>
+               <target-foreign-key>
+                  <field-reference>
+                     <source-field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRA" xsi:type="column"/>
+                     <target-field table="KPS6_DELTIO_TRANSMISSION" name="ID_TRA" xsi:type="column"/>
+                  </field-reference>
+               </target-foreign-key>
+               <batch-reading>true</batch-reading>
+               <container xsi:type="list-container-policy">
+                  <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+               </container>
+               <indirection xsi:type="value-holder-indirection-policy"/>
+               <selection-query xsi:type="read-all-query">
+                  <reference-class>GetDeltioService.Kps6DelTransmissionDeiktes</reference-class>
+                  <container xsi:type="list-container-policy">
+                     <collection-type>org.eclipse.persistence.indirection.IndirectList</collection-type>
+                  </container>
+               </selection-query>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="one-to-one-mapping">
+               <attribute-name>vs6DeltioTransmissionInfo</attribute-name>
+               <properties>
+                  <property name="enabled">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <reference-class>GetDeltioService.Vs6DeltioTransmissionInfo</reference-class>
+               <foreign-key>
+                  <field-reference>
+                     <source-field table="KPS6_DELTIO_TRANSMISSION" name="ID_TRA" xsi:type="column"/>
+                     <target-field table="VS6_DELTIO_TRANSMISSION_INFO" name="ID_TRA" xsi:type="column"/>
+                  </field-reference>
+               </foreign-key>
+               <foreign-key-fields>
+                  <field table="KPS6_DELTIO_TRANSMISSION" name="ID_TRA" xsi:type="column"/>
+               </foreign-key-fields>
+               <batch-reading>true</batch-reading>
+               <indirection xsi:type="value-holder-indirection-policy"/>
+               <selection-query xsi:type="read-object-query">
+                  <reference-class>GetDeltioService.Vs6DeltioTransmissionInfo</reference-class>
+               </selection-query>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="KPS6_DELTIO_TRANSMISSION"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>GetDeltioService.Vs6DeltioTransmissionInfo</class>
+         <alias>VS6_DELTIO_TRANSMISSION_INFO</alias>
+         <primary-key>
+            <field table="VS6_DELTIO_TRANSMISSION_INFO" name="ID_TRA" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying/>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idTra</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="ID_TRA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idEp</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="ID_EP" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosEp</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="KODIKOS_EP" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>titlosEp</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="TITLOS_EP" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>titlosEpEn</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="TITLOS_EP_EN" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ekdoshEp</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="EKDOSH_EP" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>armodiaDa</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="ARMODIA_DA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dateEgkrishs</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="DATE_EGKRISHS" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>anaforaPeriod</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="ANAFORA_PERIOD" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>dedomenaEos</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="DEDOMENA_EOS" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>ypovolhSfc</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="YPOVOLH_SFC" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>apostolhSfcEos</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="APOSTOLH_SFC_EOS" xsi:type="column"/>
+               <attribute-classification>java.sql.Timestamp</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>tameia</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="TAMEIA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>descrTam</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="DESCR_TAM" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>eidosDeltioyDescr</attribute-name>
+               <field table="VS6_DELTIO_TRANSMISSION_INFO" name="EIDOS_DELTIOY_DESCR" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="VS6_DELTIO_TRANSMISSION_INFO"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>GetDeltioService.Kps6DelTransmissionDeiktes</class>
+         <alias>KPS6_DEL_TRANSMISSION_DEIKTES</alias>
+         <primary-key>
+            <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRDEIK" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying/>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idTrdeik</attribute-name>
+               <read-only>true</read-only>
+               <properties>
+                  <property name="fkPlaceholder">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRDEIK" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idTra</attribute-name>
+               <read-only>true</read-only>
+               <properties>
+                  <property name="fkPlaceholder">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idEp</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_EP" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idAxona</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_AXONA" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idSo</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_SO" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idTam</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TAM" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idKatper</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_KATPER" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idAtp</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_ATP" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idDeikth</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_DEIKTH" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idEidd</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_EIDD" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idMm</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_MM" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhStoxos</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_STOXOS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhOroshmo</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_OROSHMO" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhBashs</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_BASHS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhStoxosMis</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_STOXOS_MIS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhYlopMisFixed</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_YLOP_MIS_FIXED" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhYlopMis</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_YLOP_MIS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhYlopMenFixed</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_YLOP_MEN_FIXED" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhYlopMen</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_YLOP_MEN" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhYlopWomenFixed</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_YLOP_WOMEN_FIXED" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>timhYlopWomen</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TIMH_YLOP_WOMEN" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>aitiologia</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="AITIOLOGIA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>tableId</attribute-name>
+               <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="TABLE_ID" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="one-to-one-mapping">
+               <attribute-name>idTra</attribute-name>
+               <reference-class>GetDeltioService.Kps6DeltioTransmission</reference-class>
+               <private-owned>true</private-owned>
+               <foreign-key>
+                  <field-reference>
+                     <source-field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRA" xsi:type="column"/>
+                     <target-field table="KPS6_DELTIO_TRANSMISSION" name="ID_TRA" xsi:type="column"/>
+                  </field-reference>
+               </foreign-key>
+               <foreign-key-fields>
+                  <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRA" xsi:type="column"/>
+               </foreign-key-fields>
+               <batch-reading>true</batch-reading>
+               <indirection xsi:type="value-holder-indirection-policy"/>
+               <selection-query xsi:type="read-object-query">
+                  <reference-class>GetDeltioService.Kps6DeltioTransmission</reference-class>
+               </selection-query>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="one-to-one-mapping">
+               <attribute-name>vs6DelTransDeiktesInfo</attribute-name>
+               <properties>
+                  <property name="enabled">
+                     <value>true</value>
+                  </property>
+               </properties>
+               <reference-class>GetDeltioService.Vs6DelTransDeiktesInfo</reference-class>
+               <foreign-key>
+                  <field-reference>
+                     <source-field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRDEIK" xsi:type="column"/>
+                     <target-field table="VS6_DEL_TRANS_DEIKTES_INFO" name="ID_TRDEIK" xsi:type="column"/>
+                  </field-reference>
+               </foreign-key>
+               <foreign-key-fields>
+                  <field table="KPS6_DEL_TRANSMISSION_DEIKTES" name="ID_TRDEIK" xsi:type="column"/>
+               </foreign-key-fields>
+               <batch-reading>true</batch-reading>
+               <indirection xsi:type="value-holder-indirection-policy"/>
+               <selection-query xsi:type="read-object-query">
+                  <reference-class>GetDeltioService.Vs6DelTransDeiktesInfo</reference-class>
+               </selection-query>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="KPS6_DEL_TRANSMISSION_DEIKTES"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+      <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
+         <class>GetDeltioService.Vs6DelTransDeiktesInfo</class>
+         <alias>VS6_DEL_TRANS_DEIKTES_INFO</alias>
+         <primary-key>
+            <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="ID_TRDEIK" xsi:type="column"/>
+         </primary-key>
+         <events/>
+         <querying/>
+         <attribute-mappings>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idTrdeik</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="ID_TRDEIK" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idEp</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="ID_EP" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosAxona</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="KODIKOS_AXONA" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>descrTam</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="DESCR_TAM" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>descrTamEn</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="DESCR_TAM_EN" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>descrKatper</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="DESCR_KATPER" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>descrKatperEn</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="DESCR_KATPER_EN" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>idAtp</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="ID_ATP" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>kodikosDeikth</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="KODIKOS_DEIKTH" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>perigrafh</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="PERIGRAFH" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>perigrafhEn</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="PERIGRAFH_EN" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>syntm</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="SYNTM" xsi:type="column"/>
+               <attribute-classification>java.lang.String</attribute-classification>
+            </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>analogiaYlopoihshs</attribute-name>
+               <field table="VS6_DEL_TRANS_DEIKTES_INFO" name="ANALOGIA_YLOPOIHSHS" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
+         </attribute-mappings>
+         <descriptor-type>independent</descriptor-type>
+         <caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+            <always-refresh>true</always-refresh>
+         </caching>
+         <remote-caching>
+            <cache-type>weak-reference</cache-type>
+            <cache-size>-1</cache-size>
+         </remote-caching>
+         <instantiation/>
+         <copying xsi:type="instantiation-copy-policy"/>
+         <tables>
+            <table name="VS6_DEL_TRANS_DEIKTES_INFO"/>
+         </tables>
+         <structure>structureName</structure>
+      </class-mapping-descriptor>
+   </class-mapping-descriptors>
+   <login xsi:type="database-login">
+      <platform-class>org.eclipse.persistence.platform.database.oracle.Oracle9Platform</platform-class>
+      <connection-url></connection-url>
+   </login>
+</object-persistence>

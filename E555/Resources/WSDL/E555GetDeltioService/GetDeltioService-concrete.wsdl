@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/GetDeltioService" name="GetDeltioService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="GetDeltioService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/GetDeltioService"/>
+    <wsdl:binding name="GetDeltioService_ptt-binding" type="get:GetDeltioService_ptt" xmlns:get="http://xmlns.oracle.com/pcbpel/adapter/db/EnlightIT/E555/GetDeltioService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="selectByPrimaryKey">
+            <soap:operation soapAction="selectByPrimaryKey"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://espa.gr/v6/e555" targetNamespace="http://espa.gr/v6/e555" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="E555Response">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="ERROR_CODE" type="xsd:integer"/>
+            <xsd:element name="ERROR_MESSAGE" type="xsd:string"/>
+            <xsd:element name="DATA">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="Kps6DeltioTransmission">
+                        <xsd:complexType>
+                           <xsd:sequence>
+                              <xsd:element name="idTra" type="xsd:unsignedLong"/>
+                              <xsd:element name="traAa" type="xsd:integer"/>
+                              <xsd:element name="traEkdosh" type="xsd:integer"/>
+                              <xsd:element name="idEp" type="xsd:unsignedLong"/>
+                              <xsd:element name="idEpekd" type="xsd:integer"/>
+                              <xsd:element name="etos" type="xsd:unsignedShort"/>
+                              <xsd:element name="anaforaPeriod" type="xsd:integer"/>
+                              <xsd:element name="kathgGroupEp" type="xsd:integer"/>
+                              <xsd:element name="keimeno" type="xsd:string"/>
+                              <xsd:element name="sxoliaEyd" type="xsd:string"/>
+                              <xsd:element name="sxoliaYops" type="xsd:string"/>
+                              <xsd:element name="objStatusId" type="xsd:integer"/>
+                              <xsd:element name="objStatusDate" type="xsd:string"/>
+                              <xsd:element name="objIsxys" type="xsd:integer"/>
+                              <xsd:element name="objIsxysDate" type="xsd:string"/>
+                              <xsd:element name="Vs6DeltioTransmission">
+                                 <xsd:complexType>
+                                    <xsd:sequence>
+                                       <xsd:element name="idTra" type="xsd:unsignedLong"/>
+                                       <xsd:element name="idEp" type="xsd:unsignedLong"/>
+                                       <xsd:element name="kodikosEp" type="xsd:string"/>
+                                       <xsd:element name="titlosEp" type="xsd:string"/>
+                                       <xsd:element name="titlosEpEn" type="xsd:string"/>
+                                       <xsd:element name="ekdoshEp" type="xsd:string"/>
+                                       <xsd:element name="armodiaDa" type="xsd:string"/>
+                                       <xsd:element name="dateEgkrishs" type="xsd:string"/>
+                                       <xsd:element name="anaforaPeriod" type="xsd:integer"/>
+                                       <xsd:element name="dedomenaEos" type="xsd:string"/>
+                                       <xsd:element name="ypovolhSfc" type="xsd:integer"/>
+                                       <xsd:element name="apostolhSfcEos" type="xsd:string"/>
+                                       <xsd:element name="tameia" type="xsd:string"/>
+                                       <xsd:element name="descrTam" type="xsd:string"/>
+                                       <xsd:element name="eidosDeltioyDescr" type="xsd:string"/>
+                                    </xsd:sequence>
+                                 </xsd:complexType>
+                              </xsd:element>
+                              <xsd:element name="Kps6DelTransmissionDeiktes">
+                                 <xsd:complexType>
+                                    <xsd:sequence>
+                                       <xsd:element name="idTrdeik" type="xsd:unsignedLong"/>
+                                       <xsd:element name="idTra" type="xsd:unsignedLong"/>
+                                       <xsd:element name="idEp" type="xsd:unsignedLong"/>
+                                       <xsd:element name="idAxona" type="xsd:integer"/>
+                                       <xsd:element name="idSo" type="xsd:integer"/>
+                                       <xsd:element name="idTam" type="xsd:integer"/>
+                                       <xsd:element name="idKatper" type="xsd:integer"/>
+                                       <xsd:element name="idAtp" type="xsd:integer"/>
+                                       <xsd:element name="idDeikth" type="xsd:integer"/>
+                                       <xsd:element name="idEidd" type="xsd:integer"/>
+                                       <xsd:element name="idMm" type="xsd:integer"/>
+                                       <xsd:element name="timhStoxos" type="xsd:string"/>
+                                       <xsd:element name="timhOroshmo" type="xsd:string"/>
+                                       <xsd:element name="timhBashs" type="xsd:string"/>
+                                       <xsd:element name="timhStoxosMis" type="xsd:string"/>
+                                       <xsd:element name="timhYlopMisFixed" type="xsd:string"/>
+                                       <xsd:element name="timhYlopMis" type="xsd:string"/>
+                                       <xsd:element name="timhYlopMenFixed" type="xsd:string"/>
+                                       <xsd:element name="timhYlopMen" type="xsd:string"/>
+                                       <xsd:element name="timhYlopWomenFixed" type="xsd:string"/>
+                                       <xsd:element name="timhYlopWomen" type="xsd:string"/>
+                                       <xsd:element name="aitiologia" type="xsd:string"/>
+                                       <xsd:element name="tableId" type="xsd:integer"/>
+                                       <xsd:element name="Vs6DelTransDeiktesInfo">
+                                          <xsd:complexType>
+                                             <xsd:sequence>
+                                                <xsd:element name="idTrdeik" type="xsd:unsignedLong"/>
+                                                <xsd:element name="idEp" type="xsd:unsignedLong"/>
+                                                <xsd:element name="kodikosAxona" type="xsd:string"/>
+                                                <xsd:element name="descrTam" type="xsd:string"/>
+                                                <xsd:element name="descrTamEn" type="xsd:string"/>
+                                                <xsd:element name="descrKatper" type="xsd:string"/>
+                                                <xsd:element name="descrKatperEn" type="xsd:string"/>
+                                                <xsd:element name="kodikosDeikth" type="xsd:string"/>
+                                                <xsd:element name="perigrafh" type="xsd:string"/>
+                                                <xsd:element name="idAp" type="xsd:unsignedLong"/>
+                                                <xsd:element name="perigrafhEn" type="xsd:string"/>
+                                                <xsd:element name="syntm" type="xsd:string"/>
+                                                <xsd:element name="analogiaYlopoihshs" type="xsd:decimal"/>
+                                             </xsd:sequence>
+                                          </xsd:complexType>
+                                       </xsd:element>
+                                    </xsd:sequence>
+                                 </xsd:complexType>
+                              </xsd:element>
+                           </xsd:sequence>
+                        </xsd:complexType>
+                     </xsd:element>
+                     <xsd:element name="actionCode" type="xsd:unsignedShort"/>
+                     <xsd:element name="comments" type="xsd:string"/>
+                     <xsd:element name="combineChecks" type="xsd:unsignedShort"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

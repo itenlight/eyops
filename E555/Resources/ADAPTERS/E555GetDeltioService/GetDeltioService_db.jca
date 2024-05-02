@@ -1,0 +1,13 @@
+<adapter-config name="GetDeltioService" adapter="db" wsdlLocation="../../WSDL/E555GetDeltioService/GetDeltioService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SBYTEN6" location="eis/mis_master6DS"/>
+  <endpoint-interaction portType="GetDeltioService_ptt" operation="selectByPrimaryKey">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="GetDeltioService.Kps6DeltioTransmission"/>
+      <property name="QueryName" value="readObject"/>
+      <property name="MappingsMetaDataURL" value="GetDeltioService-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

@@ -29,7 +29,7 @@
             </response>
          </method>
       </resource>
-    <resource path="/search/getAnaforaPeriod">
+      <resource path="/search/getAnaforaPeriod">
          <method name="GET" soa:name="GetPeriodoAnaforasList">
             <request/>
             <response status="200">
@@ -44,6 +44,82 @@
          <method name="POST" soa:name="UpdateDeiktes">
             <request>
                <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/deleteBulletin">
+         <method name="POST" soa:name="DeleteDeltio">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/getAnaforaPeriodList/{idEp}">
+         <method name="GET" soa:name="GetSearchAnaforaPeriodList">
+            <request>
+               <param name="idEp" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/sdpc">
+         <method name="POST" soa:name="Create">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/search/getEpList">
+         <method name="GET" soa:name="GetEpList">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/getTableList/{idTra}">
+         <method name="GET" soa:name="GetTableList">
+            <request>
+               <param name="idTra" style="template" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500">
+               <representation mediaType="application/json"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/get/{idTra}">
+         <method name="GET" soa:name="GetIdTra">
+            <request>
+               <param name="idTra" style="template" type="xsd:string"/>
             </request>
             <response status="200">
                <representation mediaType="application/json"/>
